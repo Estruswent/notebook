@@ -1,0 +1,72 @@
+# site basic info
+site_name: E5trusw3nt's Notebook
+site_author: E5trusw3nt
+site_description: "This is E5trusw3nt's Notebook"
+copyright: Copyright 2024 by estruswent
+
+# repo
+repo_url: "https://github.com/Estruswent/notebook"
+
+# content
+nav:
+  - 首页: "index.md"
+  - 数据结构基础:
+    - "双向链表": "数据结构基础/DoublyLinkedList.md"
+    - "图": "数据结构基础/Graph.md"
+    - "排序问题": "数据结构基础/Sort.md"
+    - "树": "数据结构基础/Tree.md"
+    - "待完成": "数据结构基础/unfinished.md"
+  - 写作:
+    - "latex": "写作/latex.md"
+  - 其它:
+    - "Matplotlib入门": "其它/Matplotlib.md"
+    - "Windows上的子系统“消失不见”": "其它/Explorer不见了.md"
+
+theme:
+  name: 'material'
+  logo: "style/images/logo.png"
+  favicon: 'style/images/favicon.ico'
+  palette:
+    # 深浅色主题
+    scheme: 'default'
+    # 顶栏
+    primary: 'black'
+    # 强调色（交互）
+    accent: 'indigo'
+  features: 
+    - navigation.tabs
+    - navigation.tabs.sticky
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition # 注解
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.snippets
+  - pymdownx.magiclink
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+
+extra_javascript:
+  - 'style/javascripts/mathjax.js'
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - 'style/css/img.css'
+  - 'style/css/code.css'
+plugins:
+  - search
+
+language:
+  - 'zh'
+  - 'en'

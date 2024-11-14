@@ -1,0 +1,40 @@
+pre {
+    border-radius: 3px;
+    background-color:#f7f7f7;
+    color: inherit;
+    line-height: 18px;
+    overflow: auto;
+    margin-top: 15px;
+    padding: 9px;
+    /*边框的颜色*/
+    /*border: 9px solid #f7fa58;*/
+}
+
+pre:before {
+    content: " ";
+    position: absolute;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #fc625d; /* 红色 */
+    width: 12px;
+    height: 12px;
+    left: 10px;
+    top: 5px;
+    -webkit-box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b; /* 黄色和绿色的阴影 */
+    box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+    z-index: 2;
+}
+
+
+pre > code {
+    border: 0;
+    display: inline;
+    max-width: initial;
+    padding: 0;
+    margin: 0;
+    overflow: initial;
+    line-height: inherit;
+    font-size: 18px;
+    white-space: pre;
+    background: 0 0;
+}

@@ -10,8 +10,8 @@ repo_url: "https://github.com/Estruswent/notebook"
 # content
 nav:
   - 首页: "index.md"
-  - 数据结构基础:
-    - "时间复杂度": "数据结构基础/TimeComplexity"
+  - 数据结构基础:  
+    - "时间复杂度": "数据结构基础/TimeComplexity.md"
     - "双向链表": "数据结构基础/DoublyLinkedList.md"
     - "图": "数据结构基础/Graph.md"
     - "排序问题": "数据结构基础/Sort.md"

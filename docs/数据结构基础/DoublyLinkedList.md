@@ -1,11 +1,5 @@
----
-profileName: Estruswent
-postId: "21"
-postType: post
-categories:
-  - 1
----
 # 双向链表
+
 ## 1.定义
 一般而言，我们认为双向链表的C语言定义如下：
 ```C

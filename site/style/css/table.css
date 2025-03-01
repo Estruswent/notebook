@@ -1,0 +1,13 @@
+/* 针对 Material 主题的表格内容居中 */
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+/* 添加列间竖线分隔符 */
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  border-right: 1px solid rgba(0,0,0,0.12) !important;  /* 右侧竖线 */
+  border-left: 1px solid rgba(0,0,0,0.12) !important;   /* 左侧竖线（首列需保留） */
+}

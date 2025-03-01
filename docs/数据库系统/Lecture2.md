@@ -67,24 +67,24 @@ $$
    示例：$instructor × teaches $生成所有可能的教师-课程组合。
 
 6. **重命名（Rename）**  
-   $ \rho_{x(A_1, A_2, \dots, A_n)}(E) $：将表达式$E$的结果重命名为$x$，并可改属性名。
+   $\rho_{x(A_1, A_2, \dots, A_n)}(E)$：将表达式$E$的结果重命名为$x$，并可改属性名。
 
 ### 其它操作符
 
-1. **连接（Join）**
-  $\Join_{\theta}$ 结合选择与笛卡尔积，保留满足条件$\theta$的元组。  
-  示例：查询教师及其对应的授课信息  
-  $$
-  \text{instructor} \Join_{\text{instructor.ID=teaches.ID}} \text{teaches}
-  $$
-  注：自然连接是自动匹配同名属性，省略$\theta$条件。
+1. **连接（Join）**  
+   $\Join_{\theta}$：结合选择与笛卡尔积，保留满足条件$\theta$的元组。  
+   示例：查询教师及其对应的授课信息  
+   $$
+   \text{instructor} \Join_{\text{instructor.ID=teaches.ID}} \text{teaches}
+   $$
+   注：自然连接是自动匹配同名属性，省略$\theta$条件。
 
-1. **集合交（Intersection）**
-  $r \cap s$：返回同时在$r$和$s$中的元组。  
-  示例：查询同时在2017秋季和2018春季开设的课程  
-  $$
-  \Pi_{\text{course_id}}(\sigma_{\text{semester=Fall} \land \text{year=2017}}(\text{section})) \cap \Pi_{\text{course_id}}(\sigma_{\text{semester=Spring} \land \text{year=2018}}(\text{section}))
-  $$
+2. **集合交（Intersection）**  
+   $r \cap s$：返回同时在$r$和$s$中的元组。  
+   示例：查询同时在2017秋季和2018春季开设的课程  
+   $$
+   \Pi_{\text{course_id}}(\sigma_{\text{semester=Fall} \land \text{year=2017}}(\text{section})) \cap \Pi_{\text{course_id}}(\sigma_{\text{semester=Spring} \land \text{year=2018}}(\text{section}))
+   $$
 
 
 ## 四、等价查询

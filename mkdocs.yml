@@ -17,11 +17,11 @@ nav:
     - "排序问题": "数据结构基础/Sort.md"
     - "树": "数据结构基础/Tree.md"
     - "待完成": "数据结构基础/unfinished.md"
-  - 写作:
-    - "latex": "写作/latex.md"
   - 数据库系统:
     - "Lecture1: Introduction": "数据库系统/Lecture1.md"
     - "Lecture2: relations models and algebra": "数据库系统/Lecture2.md"
+  - 写作:
+    - "latex": "写作/latex.md"
   - 其它:
     - "Matplotlib入门": "其它/Matplotlib.md"
     - "Windows上的子系统“消失不见”": "其它/Explorer不见了.md"
@@ -68,6 +68,7 @@ extra_javascript:
 extra_css:
   - 'style/css/img.css'
   - 'style/css/code.css'
+  - 'style/css/table.css'
 plugins:
   - search
 

@@ -46,7 +46,7 @@ T(N) = 1 + 3 + 9 + \dots + 3^{\log_3 N}
 这是一个等比数列，求和得到：
 
 \[
-T(N) = \frac{3N - 1}{2}
+T(N) = \frac{N - 1}{2}
 \]
 
 因此，时间复杂度是 \(O(N)\)。
@@ -73,12 +73,14 @@ else {
 
 **A > B 分支**  
 总操作次数：  
+
 \[
 \sum_{i=0}^{2N-1} (N^2 - i) = \underbrace{2N \cdot N^2}_{\text{外层总次数}} - \underbrace{\sum_{i=0}^{2N-1} i}_{\text{等差求和}} = 2N^3 - \frac{(2N-1) \cdot 2N}{2} = O(N^3)
 \]
 
 **A ≤ B 分支**  
 总操作次数：  
+
 \[
 \sum_{i=0}^{N-1} \underbrace{(N - i)}_{\text{中间循环}} \cdot \underbrace{3N}_{\text{内层循环}} = 3N \cdot \sum_{i=0}^{N-1} (N - i) = 3N \cdot \frac{N(N+1)}{2} = O(N^3)
 \]

@@ -59,3 +59,7 @@ $ mkdocs build
 # 根据配置文件 mkdocs.yml 自动生成网页有关的 site 文件夹，它自己会传到 gh-pages 分支
 $ mkdocs gh-deploy
 ```
+
+## 友情链接
+
+NaNa's Notebook: https://kagunanana.site

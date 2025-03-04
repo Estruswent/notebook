@@ -10,19 +10,22 @@ repo_url: "https://github.com/Estruswent/notebook"
 # content
 nav:
   - 首页: "index.md"
-  - 数据结构基础:  
-    - "时间复杂度": "数据结构基础/TimeComplexity.md"
-    - "双向链表": "数据结构基础/DoublyLinkedList.md"
-    - "图": "数据结构基础/Graph.md"
-    - "排序问题": "数据结构基础/Sort.md"
-    - "树": "数据结构基础/Tree.md"
-    - "待完成": "数据结构基础/unfinished.md"
-  - 数据库系统:
-    - "Lecture1: Introduction": "数据库系统/Lecture1.md"
-    - "Lecture2: relations models and algebra": "数据库系统/Lecture2.md"
-  - 写作:
-    - "latex": "写作/latex.md"
-  - 其它:
+  - Computer Science:
+    - 数据结构基础:  
+      - "时间复杂度": "数据结构基础/TimeComplexity.md"
+      - "双向链表": "数据结构基础/DoublyLinkedList.md"
+      - "图": "数据结构基础/Graph.md"
+      - "排序问题": "数据结构基础/Sort.md"
+      - "树": "数据结构基础/Tree.md"
+      - "待完成": "数据结构基础/unfinished.md"
+    - 数据库系统:
+      - "Lecture1: Introduction": "数据库系统/Lecture1.md"
+      - "Lecture2: relations models and algebra": "数据库系统/Lecture2.md"
+    - 面向对象程序设计:
+      - "Lecture0: Course Introduction": "面向对象程序设计/Lecture0.md"
+  - Writing:
+      - "Latex Introduction": "写作/latex.md"
+  - Others:
     - "Matplotlib入门": "其它/Matplotlib.md"
     - "Windows上的子系统“消失不见”": "其它/Explorer不见了.md"
 

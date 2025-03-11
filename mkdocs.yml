@@ -16,7 +16,7 @@ nav:
       - "双向链表": "数据结构基础/DoublyLinkedList.md"
       - "图": "数据结构基础/Graph.md"
       - "排序问题": "数据结构基础/Sort.md"
-      - "树": "数据结构基础/Tree.md"
+      - "树、二叉树与线索二叉树": "数据结构基础/Tree.md"
       - "待完成": "数据结构基础/unfinished.md"
     - 数据库系统:
       - "Lecture1: Introduction": "数据库系统/Lecture1.md"

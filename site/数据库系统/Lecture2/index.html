@@ -16,7 +16,7 @@
         <link rel="prev" href="../Lecture1/">
       
       
-        <link rel="next" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture0/">
+        <link rel="next" href="../Lecture3/">
       
       
       <link rel="icon" href="../../style/images/favicon.ico">
@@ -812,6 +812,28 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Lecture3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lecture3: SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1267,69 +1289,48 @@
 <h2 id="_7">三、关系代数</h2>
 <p>关系代数是过程式查询语言，包含6种基本操作：</p>
 <h3 id="_8">基本操作符</h3>
-<ol>
-<li>
-<p><strong>选择（Select）</strong><br />
+<p>1.<strong>选择（Select）</strong><br />
 <span class="arithmatex">\(\sigma_p(r)\)</span>：筛选满足谓词<span class="arithmatex">\(p\)</span>的元组。<br />
-   示例：查询物理系教师<br />
-   $$
+   示例：查询物理系教师  </p>
+<p>$$
    \sigma_{\text{dept_name="Physics"}}(\text{instructor})
    $$</p>
-</li>
-<li>
-<p><strong>投影（Project）</strong><br />
-<span class="arithmatex">\(\Pi_{A_1, A_2, \dots, A_k}(r)\)</span>：保留指定属性，去重后输出。<br />
-   示例：获取教师ID和姓名<br />
-   $$
+<p>2.<strong>投影（Project）</strong><br />
+<span class="arithmatex">\(\Pi_{A_1, A_2, \dots, A_k}(r)\)</span>：保留指定属性，去重后输出。</p>
+<p>示例：获取教师ID和姓名  </p>
+<p>$$
    \Pi_{\text{ID, name}}(\text{instructor})
    $$</p>
-</li>
-<li>
-<p><strong>并（Union）</strong><br />
+<p>3.<strong>并（Union）</strong><br />
 <span class="arithmatex">\(r \cup s\)</span>：合并两个同构关系的元组。<br />
-   示例：查询2017秋季或2018春季开设的课程
-   $$
-   \Pi_{course_id}(\sigma_{semester=Fall \land year=2017}(section)) \cup \Pi_{course_id}(\sigma_{semester=Spring \land year=2018}(section))
+   示例：查询2017秋季或2018春季开设的课程</p>
+<p>$$
+   \Pi_{\text{course_id}}(\sigma_{\text{semester=Fall} \land \text{year=2017}}(section)) \cup \Pi_{\text{course_id}}(\sigma_{\text{semester=Spring} \land \text{year=2018}}(section))
    $$</p>
-</li>
-<li>
-<p><strong>差（Set Difference）</strong><br />
+<p>4.<strong>差（Set Difference）</strong><br />
 <span class="arithmatex">\(r - s\)</span>：保留在<span class="arithmatex">\(r\)</span>中但不在<span class="arithmatex">\(s\)</span>中的元组。<br />
-   示例：查询2017秋季开设但2018春季未开设的课程<br />
-$$
-\Pi_{course_id}(\sigma_{semester=Fall \land year=2017}(section)) - \Pi_{course_id}(\sigma_{semester=Spring \land year=2018}(section))
-$$</p>
-</li>
-<li>
-<p><strong>笛卡尔积（Cartesian Product）</strong><br />
+   示例：查询2017秋季开设但2018春季未开设的课程</p>
+<p>$$
+   \Pi_{\text{course_id}}(\sigma_{\text{semester=Fall} \land \text{year=2017}}(\text{section})) - \Pi_{\text{course_id}}(\sigma_{\text{semester=Spring} \land \text{year=2018}}(\text{section}))
+   $$</p>
+<p>5.<strong>笛卡尔积（Cartesian Product）</strong><br />
 <span class="arithmatex">\(r \times s\)</span>：组合两关系的所有元组对。<br />
-   示例：$instructor × teaches $生成所有可能的教师-课程组合。</p>
-</li>
-<li>
-<p><strong>重命名（Rename）</strong><br />
+   示例：<span class="arithmatex">\(instructor \times teaches\)</span>生成所有可能的教师-课程组合。</p>
+<p>6.<strong>重命名（Rename）</strong><br />
 <span class="arithmatex">\(\rho_{x(A_1, A_2, \dots, A_n)}(E)\)</span>：将表达式<span class="arithmatex">\(E\)</span>的结果重命名为<span class="arithmatex">\(x\)</span>，并可改属性名。</p>
-</li>
-</ol>
 <h3 id="_9">其它操作符</h3>
-<ol>
-<li>
-<p><strong>连接（Join）</strong><br />
+<p>7.<strong>连接（Join）</strong><br />
 <span class="arithmatex">\(\Join_{\theta}\)</span>：结合选择与笛卡尔积，保留满足条件<span class="arithmatex">\(\theta\)</span>的元组。<br />
-   示例：查询教师及其对应的授课信息<br />
-   $$
+   示例：查询教师及其对应的授课信息：（自然连接是自动匹配同名属性，省略<span class="arithmatex">\(\theta\)</span>条件）</p>
+<p>$$
    \text{instructor} \Join_{\text{instructor.ID=teaches.ID}} \text{teaches}
-   $$
-   注：自然连接是自动匹配同名属性，省略<span class="arithmatex">\(\theta\)</span>条件。</p>
-</li>
-<li>
-<p><strong>集合交（Intersection）</strong><br />
+   $$</p>
+<p>8.<strong>集合交（Intersection）</strong><br />
 <span class="arithmatex">\(r \cap s\)</span>：返回同时在<span class="arithmatex">\(r\)</span>和<span class="arithmatex">\(s\)</span>中的元组。<br />
-   示例：查询同时在2017秋季和2018春季开设的课程<br />
-   $$
+   示例：查询同时在2017秋季和2018春季开设的课程  </p>
+<p>$$
    \Pi_{\text{course_id}}(\sigma_{\text{semester=Fall} \land \text{year=2017}}(\text{section})) \cap \Pi_{\text{course_id}}(\sigma_{\text{semester=Spring} \land \text{year=2018}}(\text{section}))
    $$</p>
-</li>
-</ol>
 <h2 id="_10">四、等价查询</h2>
 <p>同一查询可通过不同关系代数表达式实现。例如，查询物理系高薪（&gt;90000）教师：</p>
 <p><strong>表达式1</strong>：先选择后投影<br />

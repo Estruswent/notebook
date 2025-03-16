@@ -1,10 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@455;550;600;680;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@455;500;550;600;680;700&display=swap');
 
+/* 全局字体设置 */
 :root > * {
-  --md-text-font-family: "Roboto Slab", sans-serif; 
-  --md-heading-font-family: "Roboto Slab", sans-serif;
+  --md-text-font-family: "Roboto Slab", "Noto Sans SC", sans-serif; 
+  --md-heading-font-family: "Roboto Slab", "Noto Sans SC", sans-serif;
 }
 
 .md-typeset h2 {
-    font-weight: 530!important;
+    font-weight: 550!important;
+}
+
+/* 修改段落的粗度 */
+.md-typeset p {
+  font-family: "Noto Sans SC", "Roboto Slab",sans-serif;
+  font-weight: 455!important;
+}
+
+/* 修改加粗的粗度 */
+.md-typeset p strong {
+  font-weight: 680 !important; 
 }

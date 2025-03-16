@@ -23,6 +23,7 @@ nav:
       - "Lecture2: relations models and algebra": "数据库系统/Lecture2.md"
     - 面向对象程序设计:
       - "Lecture0: Course Introduction": "面向对象程序设计/Lecture0.md"
+      - "Lecture1: Using Objects": "面向对象程序设计/Lecture1.md"
   - Writing:
       - "Latex Introduction": "写作/latex.md"
   - Others:
@@ -72,6 +73,9 @@ extra_css:
   - 'style/css/img.css'
   - 'style/css/code.css'
   - 'style/css/table.css'
+  - 'style/css/fonts.css'
+  - 'style/css/TOC.css'
+  - 'style/css/size.css'
 plugins:
   - search
 

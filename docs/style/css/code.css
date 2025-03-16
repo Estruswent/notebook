@@ -8,6 +8,8 @@ pre {
     padding: 9px;
     /*边框的颜色*/
     /*border: 9px solid #f7fa58;*/
+    border-collapse: separate; /* 需要设置为 separate 以支持圆角 */
+    border-radius: 8px; /* 根据需要调整圆角的大小 */
 }
 
 pre:before {

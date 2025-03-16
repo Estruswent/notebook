@@ -40,3 +40,10 @@ pre > code {
     white-space: pre;
     background: 0 0;
 }
+
+/* 修改行内代码的字体颜色 */
+.md-typeset code {
+    color: #fc952f !important;  /* 颜色值 */
+    /* 边框圆角化*/
+    border-radius: 0.3em;
+  }

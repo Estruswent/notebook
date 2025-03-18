@@ -1149,6 +1149,8 @@ T(N) = \frac{N - 1}{2}
 \]</div>
 <p>因此，时间复杂度是 <span class="arithmatex">\(O(N)\)</span>。</p>
 <h2 id="_5">二、迭代类时间复杂度的计算</h2>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
 <p><strong>(FDS HW1)</strong> 例题：对于以下代码，最低上界时间复杂度是 <span class="arithmatex">\(O(N^3)\)</span>。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="p">){</span><span class="w">     </span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w">         </span>
@@ -1173,6 +1175,7 @@ T(N) = \frac{N - 1}{2}
 <div class="arithmatex">\[
 \sum_{i=0}^{N-1} \underbrace{(N - i)}_{\text{中间循环}} \cdot \underbrace{3N}_{\text{内层循环}} = 3N \cdot \sum_{i=0}^{N-1} (N - i) = 3N \cdot \frac{N(N+1)}{2} = O(N^3)
 \]</div>
+</div>
 
 
 

@@ -22,6 +22,8 @@ nav:
       - "Lecture1: Introduction": "数据库系统/Lecture1.md"
       - "Lecture2: relations models and algebra": "数据库系统/Lecture2.md"
       - "Lecture3: SQL": "数据库系统/Lecture3.md"
+      - "Lecture4: Immediate SQL": "数据库系统/Lecture4.md"
+      - "Lecture5: Advanced SQL": "数据库系统/Lecture5.md"
     - 面向对象程序设计:
       - "Lecture0: Course Introduction": "面向对象程序设计/Lecture0.md"
       - "Lecture1: Using Objects": "面向对象程序设计/Lecture1.md"

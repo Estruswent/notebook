@@ -1,4 +1,4 @@
-# Lecture3: introduction of SQL
+# Lecture 3: introduction of SQL
 
 ## 1. SQL概述
 

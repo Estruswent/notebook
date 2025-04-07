@@ -5,29 +5,30 @@ pre {
     line-height: 18px;
     overflow: auto;
     margin-top: 15px;
-    padding: 9px;
+    padding: 3px;
     /*边框的颜色*/
     /*border: 9px solid #f7fa58;*/
     border-collapse: separate; /* 需要设置为 separate 以支持圆角 */
     border-radius: 8px; /* 根据需要调整圆角的大小 */
 }
 
+/*用一个平面实现代码框的三个点*/
 pre:before {
     content: " ";
     position: absolute;
     -webkit-border-radius: 50%;
     border-radius: 50%;
     background: #fc625d; /* 红色 */
-    width: 12px;
-    height: 12px;
-    left: 10px;
-    top: 5px;
+    width: 11.5px;
+    height: 11.5px;
+    left: 12px;
+    top: 13px;
     -webkit-box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b; /* 黄色和绿色的阴影 */
     box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
     z-index: 2;
 }
 
-
+/*代码框（黑）与字体*/
 pre > code {
     border: 0;
     display: inline;
@@ -39,6 +40,7 @@ pre > code {
     font-size: 18px;
     white-space: pre;
     background: 0 0;
+    padding-top: 30px !important; /* 添加字体和内部边框的上边距 */
 }
 
 /* 修改行内代码的字体颜色 */

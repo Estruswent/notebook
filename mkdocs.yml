@@ -24,6 +24,7 @@ nav:
       - "Lecture3: SQL": "数据库系统/Lecture3.md"
       - "Lecture4: Immediate SQL": "数据库系统/Lecture4.md"
       - "Lecture5: Advanced SQL": "数据库系统/Lecture5.md"
+      - "Lecture6: Database Design using the E-R Model": "数据库系统/Lecture6.md"
     - 面向对象程序设计:
       - "Lecture0: Course Introduction": "面向对象程序设计/Lecture0.md"
       - "Lecture1: Using Objects": "面向对象程序设计/Lecture1.md"
@@ -37,13 +38,22 @@ theme:
   name: 'material'
   logo: "style/images/logo.png"
   favicon: 'style/images/favicon.ico'
-  palette:
-    # 深浅色主题
-    scheme: 'default'
-    # 顶栏
-    primary: 'black'
-    # 强调色（交互）
-    accent: 'indigo'
+  palette:     #切换昼夜模式的颜色
+    - media: "(prefers-color-scheme: light)" 
+      scheme: 'default'  #浅色模式
+      # 顶栏
+      primary: 'black'
+      # 强调色（交互）
+      accent: 'indigo'  #强调色，默认蓝，可以交互的元素如悬停链接、按钮和滚动条
+      toggle:
+        icon: material/weather-sunny #图标，太阳
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"  
+      scheme: 'slate'  #深色模式
+      primary: 'black'
+      toggle:
+        icon: material/weather-night #图标，月亮
+        name: Switch to light mode
   features: 
     - navigation.tabs
     - navigation.tabs.sticky

@@ -21,3 +21,8 @@
 .md-typeset p strong {
   font-weight: 680 !important; 
 }
+
+/*修改暗主题下的加粗字体的可见颜色*/
+[data-md-color-scheme="slate"] .md-typeset p strong {
+  color: rgb(227, 234, 241) !important;
+}

@@ -44,7 +44,7 @@ theme:
       # 顶栏
       primary: 'black'
       # 强调色（交互）
-      accent: 'indigo'  #强调色，默认蓝，可以交互的元素如悬停链接、按钮和滚动条
+      accent: 'indigo'  #强调色
       toggle:
         icon: material/weather-sunny #图标，太阳
         name: Switch to dark mode

@@ -2,15 +2,16 @@
 
 ## 一、递归类时间复杂度的计算
 
-**(FDS HW1)** 例题：递归关系如下，求时间复杂度。
+!!! example
+    **(FDS HW1)** 例题：递归关系如下，求时间复杂度。
 
-\[
-T(1) = 1
-\]
+    \[
+    T(1) = 1
+    \]
 
-\[
-T(N) = 3T\left(\frac{N}{3}\right) + 1
-\]
+    \[
+    T(N) = 3T\left(\frac{N}{3}\right) + 1
+    \]
 
 ### 法一：主定理
 
@@ -71,18 +72,20 @@ T(N) = \frac{N - 1}{2}
     }
     ```
 
-    分析方法：逐层分析即可。
+分析方法：逐层分析即可。
 
-    **A > B 分支**  
-    总操作次数：  
+**A > B 分支**  
 
-    \[
-    \sum_{i=0}^{2N-1} (N^2 - i) = \underbrace{2N \cdot N^2}_{\text{外层总次数}} - \underbrace{\sum_{i=0}^{2N-1} i}_{\text{等差求和}} = 2N^3 - \frac{(2N-1) \cdot 2N}{2} = O(N^3)
-    \]
+总操作次数：  
 
-    **A ≤ B 分支**  
-    总操作次数：  
+\[
+\sum_{i=0}^{2N-1} (N^2 - i) = \underbrace{2N \cdot N^2}_{\text{外层总次数}} - \underbrace{\sum_{i=0}^{2N-1} i}_{\text{等差求和}} = 2N^3 - \frac{(2N-1) \cdot 2N}{2} = O(N^3)
+\]
 
-    \[
-    \sum_{i=0}^{N-1} \underbrace{(N - i)}_{\text{中间循环}} \cdot \underbrace{3N}_{\text{内层循环}} = 3N \cdot \sum_{i=0}^{N-1} (N - i) = 3N \cdot \frac{N(N+1)}{2} = O(N^3)
-    \]
+**A ≤ B 分支**  
+
+总操作次数： 
+
+\[
+\underbrace{\frac{N^2}{100}}_{\text{外层循环}} \sum_{i=0}^{N-1} \underbrace{(N - i)}_{\text{中间循环}} \cdot \underbrace{3N}_{\text{内层循环}} = \frac{N^2}{100} \cdot 3N \cdot \sum_{i=0}^{N-1} (N - i) = O(N^4)
+\]

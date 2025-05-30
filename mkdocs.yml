@@ -95,7 +95,6 @@ extra_css:
   - 'style/css/code.css'
   - 'style/css/table.css'
   - 'style/css/fonts.css'
-  - 'style/css/size.css'
   - 'style/css/mermaid.css'
 plugins:
   - search

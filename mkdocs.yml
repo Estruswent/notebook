@@ -27,6 +27,7 @@ nav:
       - "Lecture4: Immediate SQL": "数据库系统/Lecture4.md"
       - "Lecture5: Advanced SQL": "数据库系统/Lecture5.md"
       - "Lecture6: Database Design using the E-R Model": "数据库系统/Lecture6.md"
+      - "Lecture7: Normalization": "数据库系统/Lecture7.md"
     - 面向对象程序设计:
       - "Lecture0: Course Introduction": "面向对象程序设计/Lecture0.md"
       - "Lecture1: Using Objects": "面向对象程序设计/Lecture1.md"
@@ -71,7 +72,12 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.snippets
   - pymdownx.magiclink
-  - pymdownx.superfences
+  - pymdownx.superfences:
+        # make exceptions to highlighting of code:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
   - pymdownx.inlinehilite
   - pymdownx.tabbed:
       alternate_style: true 
@@ -89,10 +95,11 @@ extra_css:
   - 'style/css/code.css'
   - 'style/css/table.css'
   - 'style/css/fonts.css'
-  - 'style/css/TOC.css'
   - 'style/css/size.css'
+  - 'style/css/mermaid.css'
 plugins:
   - search
+  - mermaid2
 
 language:
   - 'zh'

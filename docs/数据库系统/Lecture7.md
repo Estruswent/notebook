@@ -17,10 +17,10 @@
 
 举个例子吧，假设我们有一个关系 `employee`，包含以下属性：
 
-- `ID`: 员工编号
-- `name`: 姓名
-- `street`: 街道地址
-- `city`: 城市
+- $\text{ID}$: 员工编号  
+- $\text{name}$: 姓名  
+- $\text{street}$: 街道地址  
+- $\text{city}$: 城市  
 
 原始关系 `employee` 的示例数据如下：
 
@@ -33,8 +33,8 @@
 
 现在，我们将 `employee` 分解为两个关系：
 
-1. `employee1(ID, name)`
-2. `employee2(name, street, city)`
+1. $\text{employee1}(\text{ID}, \text{name})$  
+2. $\text{employee2}(\text{name}, \text{street}, \text{city})$  
 
 由此我们得到分解后的关系示例数据：
 
@@ -56,7 +56,7 @@
 | Charlie     | Pine Blvd    | Chicago |
 | Estruswent  | Cedar Rd     | Seattle |
 
-如果我们对这两个分解后的关系又**重新进行自然连接**（当然是基于 `name` 列！），我们会得到以下结果：
+如果我们对这两个分解后的关系又**重新进行自然连接**（当然是基于 $\text{name}$ 列！），我们会得到以下结果：
 
 ```sql
 SELECT e1.ID, e1.name, e2.street, e2.city
@@ -73,29 +73,11 @@ NATURAL JOIN employee2 e2;
 | 4   | Estruswent  | Maple St     | New York|
 | 4   | Estruswent  | Cedar Rd     | Seattle |
 
-可以看到，原本只有一个 `Estruswent` 在 `New York` 和另一个 `Estruswent` 在 `Seattle`，但自然连接产生了额外的元组 `(1, Estruswent, Cedar Rd, Seattle)` 和 `(4, Estruswent, Maple St, New York)`，这并不是原始关系中的数据。
+可以看到，原本只有一个 `Estruswent` 在 `New York` 和另一个 `Estruswent` 在 `Seattle`，但自然连接会产生额外的元组 `(1, Estruswent, Cedar Rd, Seattle)` 和 `(4, Estruswent, Maple St, New York)`，这并不是原始关系中的数据。
 
-这个例子很好地展示了为什么这种分解是有损的。因为存在同名员工（即 `name` 不唯一），自然连接会产生额外的元组，导致了不一致。
+这个例子很好地展示了为什么这种分解是有损的。因为存在同名员工（即 $\text{name}$ 不唯一），自然连接会产生额外的元组，导致了不一致。
 
 这种关系的分解就叫**有损分解**。
-
-### 2. 判定定理
-
-根据判定定理，要判断分解是否无损，我们需要检查以下条件：\( R_1 \cap R_2 \rightarrow R_1 \)或\( R_1 \cap R_2 \rightarrow R_2 \)中的一个成立。
-
-比如说，在上面的那一个例子中：
-
-\(\because R_1 = \{ID, name\},R_2 = \{name, street, city\} \)
-
-\(\therefore R_1 \cap R_2 = \{name\} \)
-
-显然，`name` 并不能唯一确定 `ID` 或者 `street` 和 `city`，因此：
-
-- \( \{name\} \not\rightarrow \{ID, name\} \)
-- \( \{name\} \not\rightarrow \{name, street, city\} \)
-
-所以，这个分解是有损的。
-
 
 ## 二、函数依赖理论
 
@@ -105,28 +87,30 @@ NATURAL JOIN employee2 e2;
 
 #### 1.1 函数依赖：
 
-\( \alpha \rightarrow \beta \)：如果两个元组在属性集 \( \alpha \) 上的值相同，那么它们在属性集 \( \beta \) 上的值也必须相同。（简单地理解，就是“ \( \alpha \) **决定了**\( \beta \) ”，~~此事在你学过的离散数学里亦有记载~~）。
+$\alpha \rightarrow \beta$：如果两个元组在属性集 $\alpha$ 上的值相同，那么它们在属性集 $\beta$ 上的值也必须相同。（简单地理解，就是“ $\alpha$ **决定了** $\beta$ ”，~~此事在你学过的离散数学里亦有记载~~）。
 
 举个例子吧，假设有一个关系 `Employee`，包含以下属性：
 
-- `ID`（员工编号）
-- `Name`（姓名）
-- `Dept`（部门）
+- $\text{ID}$（员工编号）  
+- $\text{Name}$（姓名）  
+- $\text{Dept}$（部门）
 
 如果我们明确了这样一个规则：每个员工的编号唯一地决定了他们的姓名和部门，那么我们可以说：
 
-- `ID → Name`
-- `ID → Dept`
+- $\text{ID} \rightarrow \text{Name}$  
+- $\text{ID} \rightarrow \text{Dept}$  
 
-这意味着，只要给定 `ID`，就能确定 `Name` 和 `Dept`。
+这意味着，只要给定 $\text{ID}$，就能确定 $\text{Name}$ 和 $\text{Dept}$。
 
 #### 1.2 键的表示：
 
-- **超键（Super Key）**：能够唯一标识一个元组的属性集合。例如，在上面的例子中，`{ID}` 是一个超键，因为它能唯一决定 `Employee` 中的所有属性。
-- **候选键（Candidate Key）**：最小的超键，即**没有它的任何真子集**也能唯一决定所有属性。在上面的例子中，`{ID}` 也是一个候选键，因为没有比它更小的集合能唯一决定 `Employee` 中的所有属性。
+- **超键（Super Key）**：能够唯一标识一个元组的属性集合。例如，在上面的例子中，$\{\text{ID}\}$ 是一个超键，因为它能唯一决定 `Employee` 中的所有属性。
+- **候选键（Candidate Key）**：最小的超键，即**没有它的任何真子集**也能唯一决定所有属性。在上面的例子中，$\{\text{ID}\}$ 也是一个候选键，因为没有比它更小的集合能唯一决定 `Employee` 中的所有属性。
 
 #### 1.3 平凡依赖：
-- 如果  \( \beta \) 是  \( \alpha \) 的子集（ \( \beta \subseteq \alpha \)），那么  \( \alpha \rightarrow \beta \) 总是成立。例如，`ID, Name → ID` 就是一个平凡依赖，因为它只是说“如果 `ID` 和 `Name` 相同，那么 `ID` 也相同”，这是显而易见的。
+
+如果 $\beta \subseteq \alpha$，那么 $\alpha \rightarrow \beta$ 总是成立。例如，$\text{ID}, \text{Name} \rightarrow \text{ID}$ 就是一个平凡依赖，因为它只是说“如果 $\text{ID}$ 和 $\text{Name}$ 相同，那么 $\text{ID}$ 也相同”，这是显而易见的。
+
 
 ### 2. 闭包计算 (Closure)
 
@@ -629,9 +613,10 @@ remove redundant schemas
 
 ## 五、高级范式
 
-### 5.1 多值依赖 (Multivalued Dependencies)
+### 5.1 多值依赖 (Multivalued Dependencies, MVD)
 
 - **定义**： \( \alpha \)→→β表示对 \( \alpha \)的每个值，β的值独立于R- \( \alpha \)-β
+- **示例**：比如对于\(\text{ID}\)为99999的家长，他有两个孩子和两个电话号码，那么就会产生下面这种情况。
 
   | ID   | child_name | phone       |
   |------|------------|-------------|
@@ -640,14 +625,16 @@ remove redundant schemas
   | 99999| William    | 512-555-1234|
   | 99999| William    | 512-555-4321|
 
-- 存在MVD：ID→→child_name 和 ID→→phone
+没错，这里就存在MVD：因为\(child\_name \space phone \)二者没有关系，所以直接存储会导致冗余，但是\(\text{ID}\)又确实决定了这两个属性。
+
+而这种情况我们称为MVD，分别记作\(\text{ID}\rightarrow \rightarrow child\_name\) 和 \(\text{ID}\rightarrow \rightarrow phone\)。
 
 ### 5.2 4NF范式
 
-- **定义**：对D⁺中所有 \( \alpha \)→→β，满足：
-    1. β⊆ \( \alpha \)或 \( \alpha \)∪β=R（平凡MVD），或
+- **定义**：对\( D^+ \)中所有 \( \alpha \rightarrow \rightarrow \beta \)，满足以下之一：
+    1. \(\beta \subseteq \alpha \)或 \( \alpha \cup \beta = R \)（平凡MVD）
     2.  \( \alpha \)是超键
-- **分解算法**：类似BCNF分解，使用MVD替代FD
+- **分解算法**：和BCNF分解非常相像，使用MVD替代FD
 
 ## 六、实际设计问题
 

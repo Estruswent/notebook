@@ -28,9 +28,12 @@ nav:
       - "Lecture5: Advanced SQL": "数据库系统/Lecture5.md"
       - "Lecture6: Database Design using the E-R Model": "数据库系统/Lecture6.md"
       - "Lecture7: Normalization": "数据库系统/Lecture7.md"
+      - "Lecture8: Physical Storage System": "数据库系统/Lecture8.md"
     - 面向对象程序设计:
       - "Lecture0: Course Introduction": "面向对象程序设计/Lecture0.md"
       - "Lecture1: Using Objects": "面向对象程序设计/Lecture1.md"
+      - "Lecture2: Class": "面向对象程序设计/Lecture2.md"
+      - "Lecture3: Object Interactive": "面向对象程序设计/Lecture3.md"
   - Writing:
       - "Latex Introduction": "写作/latex.md"
   - Others:

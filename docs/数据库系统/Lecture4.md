@@ -29,9 +29,7 @@ FROM student NATURAL JOIN takes;
      SELECT name, title  
      FROM student NATURAL JOIN takes, course  
      WHERE takes.course_id = course.course_id;  -- 保证只要课程名称相同
-    ```  
-
----
+    ```
 
 ### 1.2 内连接（Inner Join）  
 

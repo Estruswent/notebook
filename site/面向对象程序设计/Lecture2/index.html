@@ -1,0 +1,1856 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="This is E5trusw3nt's Notebook" name="description"/>
+<meta content="E5trusw3nt" name="author"/>
+<link href="../Lecture1/" rel="prev"/>
+<link href="../Lecture3/" rel="next"/>
+<link href="../../style/images/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.5.34" name="generator"/>
+<title>Lecture2: Class - E5trusw3nt's Notebook</title>
+<link href="../../assets/stylesheets/main.35f28582.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../style/css/img.css" rel="stylesheet"/>
+<link href="../../style/css/code.css" rel="stylesheet"/>
+<link href="../../style/css/table.css" rel="stylesheet"/>
+<link href="../../style/css/fonts.css" rel="stylesheet"/>
+<link href="../../style/css/mermaid.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="black" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#lecture-2-classes-and-objects">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="E5trusw3nt's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../style/images/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            E5trusw3nt's Notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Lecture2: Class
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="black" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        
+  
+    
+  
+  首页
+
+      </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/TimeComplexity/">
+          
+  
+  Computer Science
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E5%86%99%E4%BD%9C/latex/">
+          
+  
+  Writing
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E5%85%B6%E5%AE%83/Matplotlib/">
+          
+  
+  Others
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="E5trusw3nt's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../style/images/logo.png"/>
+</a>
+    E5trusw3nt's Notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    首页
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-ellipsis">
+    Computer Science
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            Computer Science
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+<span class="md-ellipsis">
+    数据结构基础
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_1">
+<span class="md-nav__icon md-icon"></span>
+            数据结构基础
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/TimeComplexity/">
+<span class="md-ellipsis">
+    时间复杂度
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DoublyLinkedList/">
+<span class="md-ellipsis">
+    双向链表
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Graph/">
+<span class="md-ellipsis">
+    图
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort/">
+<span class="md-ellipsis">
+    排序问题
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Tree/">
+<span class="md-ellipsis">
+    树、二叉树与线索二叉树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/PriorityQueues/">
+<span class="md-ellipsis">
+    优先队列（堆）
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DisjointSet/">
+<span class="md-ellipsis">
+    并查集
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/unfinished/">
+<span class="md-ellipsis">
+    待完成
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    数据库系统
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: relations models and algebra
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture4/">
+<span class="md-ellipsis">
+    Lecture4: Immediate SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture5/">
+<span class="md-ellipsis">
+    Lecture5: Advanced SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture6/">
+<span class="md-ellipsis">
+    Lecture6: Database Design using the E-R Model
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture7/">
+<span class="md-ellipsis">
+    Lecture7: Normalization
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture8/">
+<span class="md-ellipsis">
+    Lecture8: Physical Storage System
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-ellipsis">
+    面向对象程序设计
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Course Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Using Objects
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Lecture2: Class
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    Lecture2: Class
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+<span class="md-ellipsis">
+      一、从结构体到类
+    </span>
+</a>
+<nav aria-label="一、从结构体到类" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-struct">
+<span class="md-ellipsis">
+      1 结构体（struct）的局限性
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-class">
+<span class="md-ellipsis">
+      2. 类（Class）的引入
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+<span class="md-ellipsis">
+      二、类与对象的基本概念
+    </span>
+</a>
+<nav aria-label="二、类与对象的基本概念" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1">
+<span class="md-ellipsis">
+      1. 对象 = 属性 + 服务
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-vs">
+<span class="md-ellipsis">
+      2.2 类 vs 对象
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-oop">
+<span class="md-ellipsis">
+      2.3 OOP核心特性
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#this">
+<span class="md-ellipsis">
+      三、成员函数与this指针
+    </span>
+</a>
+<nav aria-label="三、成员函数与this指针" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1_1">
+<span class="md-ellipsis">
+      1. 成员函数实现 与 作用域解析运算符
+    </span>
+</a>
+<nav aria-label="1. 成员函数实现 与 作用域解析运算符" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11">
+<span class="md-ellipsis">
+      1.1 正确做法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12">
+<span class="md-ellipsis">
+      1.2 错误做法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#13">
+<span class="md-ellipsis">
+      1.3 总结
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#14">
+<span class="md-ellipsis">
+      1.4 完整代码演示
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2this">
+<span class="md-ellipsis">
+      2.this指针
+    </span>
+</a>
+<nav aria-label="2.this指针" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-this">
+<span class="md-ellipsis">
+      2.1 this的含义
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-this">
+<span class="md-ellipsis">
+      2.2 this的常见用途
+    </span>
+</a>
+<nav aria-label="2.2 this的常见用途" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#221">
+<span class="md-ellipsis">
+      2.2.1 解决变量命名冲突
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#222">
+<span class="md-ellipsis">
+      2.2.2 返回当前对象（支持链式调用）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#223">
+<span class="md-ellipsis">
+      2.2.3 区分全局函数和成员函数
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-this">
+<span class="md-ellipsis">
+      2.3 this 指针的高级用法（进阶）
+    </span>
+</a>
+<nav aria-label="2.3 this 指针的高级用法（进阶）" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#231">
+<span class="md-ellipsis">
+      2.3.1 判断是否是自赋值（自我拷贝）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#232-c-11">
+<span class="md-ellipsis">
+      2.3.2 用于转发构造函数（C++ 11）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stash">
+<span class="md-ellipsis">
+      四、容器设计：Stash示例
+    </span>
+</a>
+<nav aria-label="四、容器设计：Stash示例" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41">
+<span class="md-ellipsis">
+      4.1 容器概念
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-stash">
+<span class="md-ellipsis">
+      4.2 Stash实现
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43">
+<span class="md-ellipsis">
+      4.3 关键函数实现
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#makefile">
+<span class="md-ellipsis">
+      五、项目构建与Makefile
+    </span>
+</a>
+<nav aria-label="五、项目构建与Makefile" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51-makefile">
+<span class="md-ellipsis">
+      5.1 Makefile作用
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#52-makefile">
+<span class="md-ellipsis">
+      5.2 Makefile核心语法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#53-makefile">
+<span class="md-ellipsis">
+      5.3 Makefile高级特性
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#54">
+<span class="md-ellipsis">
+      5.4 项目构建示例
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ticket-machine">
+<span class="md-ellipsis">
+      六、案例分析：Ticket Machine
+    </span>
+</a>
+<nav aria-label="六、案例分析：Ticket Machine" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#61">
+<span class="md-ellipsis">
+      6.1 过程式实现
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#62">
+<span class="md-ellipsis">
+      6.2 面向对象设计
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#63">
+<span class="md-ellipsis">
+      6.3 类实现
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+<span class="md-ellipsis">
+      七、头文件与实现分离
+    </span>
+</a>
+<nav aria-label="七、头文件与实现分离" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#71">
+<span class="md-ellipsis">
+      7.1 文件组织原则
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#72">
+<span class="md-ellipsis">
+      7.2 头文件保护
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#73">
+<span class="md-ellipsis">
+      7.3 编译单元与链接
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+<span class="md-ellipsis">
+      八、最佳实践与总结
+    </span>
+</a>
+<nav aria-label="八、最佳实践与总结" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#81">
+<span class="md-ellipsis">
+      8.1 类设计原则
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#82-c-vs-c">
+<span class="md-ellipsis">
+      8.2 C vs C++对比
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#83">
+<span class="md-ellipsis">
+      8.3 核心要点总结
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: Object Interactive
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Writing
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            Writing
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%86%99%E4%BD%9C/latex/">
+<span class="md-ellipsis">
+    Latex Introduction
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Others
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%85%B6%E5%AE%83/Matplotlib/">
+<span class="md-ellipsis">
+    Matplotlib入门
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%85%B6%E5%AE%83/Explorer%E4%B8%8D%E8%A7%81%E4%BA%86/">
+<span class="md-ellipsis">
+    Windows上的子系统“消失不见”
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+<span class="md-ellipsis">
+      一、从结构体到类
+    </span>
+</a>
+<nav aria-label="一、从结构体到类" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-struct">
+<span class="md-ellipsis">
+      1 结构体（struct）的局限性
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-class">
+<span class="md-ellipsis">
+      2. 类（Class）的引入
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+<span class="md-ellipsis">
+      二、类与对象的基本概念
+    </span>
+</a>
+<nav aria-label="二、类与对象的基本概念" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1">
+<span class="md-ellipsis">
+      1. 对象 = 属性 + 服务
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-vs">
+<span class="md-ellipsis">
+      2.2 类 vs 对象
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-oop">
+<span class="md-ellipsis">
+      2.3 OOP核心特性
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#this">
+<span class="md-ellipsis">
+      三、成员函数与this指针
+    </span>
+</a>
+<nav aria-label="三、成员函数与this指针" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1_1">
+<span class="md-ellipsis">
+      1. 成员函数实现 与 作用域解析运算符
+    </span>
+</a>
+<nav aria-label="1. 成员函数实现 与 作用域解析运算符" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11">
+<span class="md-ellipsis">
+      1.1 正确做法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12">
+<span class="md-ellipsis">
+      1.2 错误做法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#13">
+<span class="md-ellipsis">
+      1.3 总结
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#14">
+<span class="md-ellipsis">
+      1.4 完整代码演示
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2this">
+<span class="md-ellipsis">
+      2.this指针
+    </span>
+</a>
+<nav aria-label="2.this指针" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-this">
+<span class="md-ellipsis">
+      2.1 this的含义
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-this">
+<span class="md-ellipsis">
+      2.2 this的常见用途
+    </span>
+</a>
+<nav aria-label="2.2 this的常见用途" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#221">
+<span class="md-ellipsis">
+      2.2.1 解决变量命名冲突
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#222">
+<span class="md-ellipsis">
+      2.2.2 返回当前对象（支持链式调用）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#223">
+<span class="md-ellipsis">
+      2.2.3 区分全局函数和成员函数
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-this">
+<span class="md-ellipsis">
+      2.3 this 指针的高级用法（进阶）
+    </span>
+</a>
+<nav aria-label="2.3 this 指针的高级用法（进阶）" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#231">
+<span class="md-ellipsis">
+      2.3.1 判断是否是自赋值（自我拷贝）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#232-c-11">
+<span class="md-ellipsis">
+      2.3.2 用于转发构造函数（C++ 11）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stash">
+<span class="md-ellipsis">
+      四、容器设计：Stash示例
+    </span>
+</a>
+<nav aria-label="四、容器设计：Stash示例" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41">
+<span class="md-ellipsis">
+      4.1 容器概念
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-stash">
+<span class="md-ellipsis">
+      4.2 Stash实现
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43">
+<span class="md-ellipsis">
+      4.3 关键函数实现
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#makefile">
+<span class="md-ellipsis">
+      五、项目构建与Makefile
+    </span>
+</a>
+<nav aria-label="五、项目构建与Makefile" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51-makefile">
+<span class="md-ellipsis">
+      5.1 Makefile作用
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#52-makefile">
+<span class="md-ellipsis">
+      5.2 Makefile核心语法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#53-makefile">
+<span class="md-ellipsis">
+      5.3 Makefile高级特性
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#54">
+<span class="md-ellipsis">
+      5.4 项目构建示例
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ticket-machine">
+<span class="md-ellipsis">
+      六、案例分析：Ticket Machine
+    </span>
+</a>
+<nav aria-label="六、案例分析：Ticket Machine" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#61">
+<span class="md-ellipsis">
+      6.1 过程式实现
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#62">
+<span class="md-ellipsis">
+      6.2 面向对象设计
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#63">
+<span class="md-ellipsis">
+      6.3 类实现
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+<span class="md-ellipsis">
+      七、头文件与实现分离
+    </span>
+</a>
+<nav aria-label="七、头文件与实现分离" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#71">
+<span class="md-ellipsis">
+      7.1 文件组织原则
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#72">
+<span class="md-ellipsis">
+      7.2 头文件保护
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#73">
+<span class="md-ellipsis">
+      7.3 编译单元与链接
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_4">
+<span class="md-ellipsis">
+      八、最佳实践与总结
+    </span>
+</a>
+<nav aria-label="八、最佳实践与总结" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#81">
+<span class="md-ellipsis">
+      8.1 类设计原则
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#82-c-vs-c">
+<span class="md-ellipsis">
+      8.2 C vs C++对比
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#83">
+<span class="md-ellipsis">
+      8.3 核心要点总结
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="lecture-2-classes-and-objects">Lecture 2: Classes and Objects</h1>
+<h2 id="_1">一、从结构体到类</h2>
+<h3 id="1-struct">1 结构体（struct）的局限性</h3>
+<ul>
+<li><strong>只包含数据</strong>：传统C结构体只能定义数据成员</li>
+<li><strong>无封装性</strong>：所有成员默认为public</li>
+<li><strong>无成员函数</strong>：无法将操作与数据绑定</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">// 这里写个C风格结构体示例</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">point</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="p">}</span><span class="w"> </span><span class="n">Point</span><span class="p">;</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="n">Point</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="n">a</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Point</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%f %f</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">);</span>
+<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="2-class">2. 类（Class）的引入</h3>
+<ul>
+<li><strong>封装数据与操作</strong>：将数据和相关函数绑定在一起</li>
+<li><strong>访问控制</strong>：通过public/private控制访问权限</li>
+<li><strong>构造函数</strong>：初始化对象状态</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">// C++类示例</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w">     </span><span class="c1">// 初始化方法</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">move</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span><span class="w">   </span><span class="c1">// 移动点</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w">          </span><span class="c1">// 打印点坐标</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="k">private</span><span class="o">:</span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">  </span><span class="c1">// x坐标</span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w">  </span><span class="c1">// y坐标</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="p">};</span>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="c1">// 成员函数实现（这里或许还看不懂，我们接着往后看）</span>
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Point::init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ix</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">iy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ix</span><span class="p">;</span>
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">iy</span><span class="p">;</span>
+<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="p">}</span>
+<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a>
+<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Point::move</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-20" id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
+<a href="#__codelineno-1-21" id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dy</span><span class="p">;</span>
+<a href="#__codelineno-1-22" id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="p">}</span>
+<a href="#__codelineno-1-23" id="__codelineno-1-23" name="__codelineno-1-23"></a>
+<a href="#__codelineno-1-24" id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Point::print</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-25" id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">' '</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<a href="#__codelineno-1-26" id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="_2">二、类与对象的基本概念</h2>
+<h3 id="1">1. 对象 = 属性 + 服务</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>属性</strong></td>
+<td>对象的状态/数据</td>
+<td><code>Point::x, Point::y</code></td>
+</tr>
+<tr>
+<td><strong>服务</strong></td>
+<td>对象提供的操作/方法</td>
+<td><code>Point::move()</code></td>
+</tr>
+<tr>
+<td><strong>对象</strong></td>
+<td>类的具体实例</td>
+<td><code>Point a;</code></td>
+</tr>
+<tr>
+<td><strong>类</strong></td>
+<td>创建对象的蓝图/模板</td>
+<td><code>class Point {...}</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-vs">2.2 类 vs 对象</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>类（Class）</th>
+<th>对象（Object）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>性质</strong></td>
+<td>抽象模板</td>
+<td>具体实例</td>
+</tr>
+<tr>
+<td><strong>内存</strong></td>
+<td>不占用内存</td>
+<td>运行时分配内存</td>
+</tr>
+<tr>
+<td><strong>关系</strong></td>
+<td>定义对象的类型</td>
+<td>类的具体表现</td>
+</tr>
+<tr>
+<td><strong>示例</strong></td>
+<td><code>class Car {...}</code></td>
+<td><code>Car myTesla;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-oop">2.3 OOP核心特性</h3>
+<ol>
+<li><strong>万物皆对象</strong>：程序中的所有元素都是对象</li>
+<li><strong>对象间通信</strong>：通过消息传递（方法调用）</li>
+<li><strong>对象独立性</strong>：每个对象拥有自己的内存空间</li>
+<li><strong>类型系统</strong>：每个对象都有特定类型</li>
+<li><strong>多态性</strong>：同类型对象响应相同消息</li>
+</ol>
+<h2 id="this">三、成员函数与this指针</h2>
+<h3 id="1_1">1. 成员函数实现 与 作用域解析运算符</h3>
+<p>举个例子吧。我们在类中声明了一个成员函数，比如：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">print</span><span class="p">();</span><span class="w">  </span><span class="c1">// 声明一个成员函数print</span>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="p">};</span>
+</code></pre></div>
+<h4 id="11">1.1 正确做法</h4>
+<p>但是我们<strong>不能直接在类外写函数体</strong>，而是要使用一种特殊的语法——<strong>作用域解析运算符 <code>::</code></strong> 来告诉编译器这个函数是属于哪个类的：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">// 类定义</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">print</span><span class="p">();</span><span class="w">  </span><span class="c1">// 成员函数声明</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="p">};</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="c1">// 类外实现成员函数</span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="c1">// 此处::表明了这个函数是Point这个类里面的</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Point::print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>所以，这里就可以知道：</p>
+<ul>
+<li><code>Point::print()</code> 表示：“我要实现的是 <code>Point</code> 这个类中的 <code>print</code> 函数”。</li>
+<li>而编译器通过 <code>::</code> 知道这个函数属于哪个类，它就可以正确地访问该类的成员变量（如 <code>x</code> 和 <code>y</code>）。</li>
+</ul>
+<h4 id="12">1.2 错误做法</h4>
+<p>如果你这样写：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="p">}</span>
+</code></pre></div>
+<p>会发生问题：</p>
+<ol>
+<li>编译器会认为这是一个<strong>全局函数</strong>，不是 <code>Point</code> 类的成员函数。</li>
+<li>它无法访问 <code>x</code> 和 <code>y</code>，因为它们是 <code>Point</code> 类的<code>Private</code>成员。</li>
+<li>接着编译器会报错：</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># 比如以下报错</span>
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>error:<span class="w"> </span>‘x’<span class="w"> </span>was<span class="w"> </span>not<span class="w"> </span>declared<span class="w"> </span><span class="k">in</span><span class="w"> </span>this<span class="w"> </span>scope
+</code></pre></div>
+<h4 id="13">1.3 总结</h4>
+<p>从上面的简单例子可以学到，C++ 是静态类型语言，要求每个函数必须明确归属。当我们在类外面写函数体时，必须告诉编译器（用<code>::</code>）这个函数属于哪个类，否则：</p>
+<ul>
+<li>编译器不知道这是类的成员函数还是全局函数；</li>
+<li>无法访问类的成员变量；</li>
+<li>无法调用时绑定到对象上。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">类比：现实生活中的“归属关系”</p>
+<p>想象你在一个叫做ZJU的学校里：</p>
+<ul>
+<li><strong>类</strong>就像是专业（比如 “IS”）；</li>
+<li><strong>成员函数</strong>就像专业里的学生（比如这位叫 “Wen”的小同学）；<ul>
+<li>如果你说 “Wen”，但是ZJU里名字叫作Wen的有这么多，别人可能不知道是哪个专业的Wen；</li>
+<li>如果你要说 “IS: :Wen”，别人才知道你是说哪个Wen。</li>
+</ul>
+</li>
+</ul>
+<p>同理：</p>
+<ul>
+<li><code>print()</code> 是名字；</li>
+<li><code>Point::print()</code> 才是完整的身份标识。</li>
+</ul>
+</div>
+<h4 id="14">1.4 完整代码演示</h4>
+<p>可以跑一跑这个代码。</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c1">//初始化函数</span>
+<a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">();</span><span class="w">            </span><span class="c1">//输出打印函数</span>
+<a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a>
+<a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="k">private</span><span class="o">:</span>
+<a href="#__codelineno-6-10" id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a href="#__codelineno-6-11" id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a href="#__codelineno-6-12" id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="p">};</span>
+<a href="#__codelineno-6-13" id="__codelineno-6-13" name="__codelineno-6-13"></a>
+<a href="#__codelineno-6-14" id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="c1">// 类外实现成员函数</span>
+<a href="#__codelineno-6-15" id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="c1">//用::标识这个函数的类</span>
+<a href="#__codelineno-6-16" id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Point::init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x_val</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y_val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-6-17" id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_val</span><span class="p">;</span>
+<a href="#__codelineno-6-18" id="__codelineno-6-18" name="__codelineno-6-18"></a><span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_val</span><span class="p">;</span>
+<a href="#__codelineno-6-19" id="__codelineno-6-19" name="__codelineno-6-19"></a><span class="p">}</span>
+<a href="#__codelineno-6-20" id="__codelineno-6-20" name="__codelineno-6-20"></a>
+<a href="#__codelineno-6-21" id="__codelineno-6-21" name="__codelineno-6-21"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Point::print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-6-22" id="__codelineno-6-22" name="__codelineno-6-22"></a><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Point("</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">", "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">")"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<a href="#__codelineno-6-23" id="__codelineno-6-23" name="__codelineno-6-23"></a><span class="p">}</span>
+<a href="#__codelineno-6-24" id="__codelineno-6-24" name="__codelineno-6-24"></a>
+<a href="#__codelineno-6-25" id="__codelineno-6-25" name="__codelineno-6-25"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-6-26" id="__codelineno-6-26" name="__codelineno-6-26"></a><span class="w">    </span><span class="n">Point</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<a href="#__codelineno-6-27" id="__codelineno-6-27" name="__codelineno-6-27"></a><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+<a href="#__codelineno-6-28" id="__codelineno-6-28" name="__codelineno-6-28"></a><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">print</span><span class="p">();</span><span class="w">  </span><span class="c1">// 输出预期：Point(10, 20)</span>
+<a href="#__codelineno-6-29" id="__codelineno-6-29" name="__codelineno-6-29"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="2this">2.<code>this</code>指针</h3>
+<h4 id="21-this">2.1 <code>this</code>的含义</h4>
+<p>在 C++ 中，<strong>每个非静态成员函数都有一个隐含的参数：<code>this</code> 指针</strong>。它指向<strong>调用该函数的对象本身</strong>，比如当你写：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1">// 编译器视角的成员函数</span>
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Point::move</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span><span class="w">  </span><span class="c1">// 等价于 x += dx</span>
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dy</span><span class="p">;</span><span class="w">  </span><span class="c1">// 等价于 y += dy</span>
+<a href="#__codelineno-7-5" id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="p">}</span>
+<a href="#__codelineno-7-6" id="__codelineno-7-6" name="__codelineno-7-6"></a>
+<a href="#__codelineno-7-7" id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="c1">// 调用时的转换</span>
+<a href="#__codelineno-7-8" id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="n">Point</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<a href="#__codelineno-7-9" id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="n">a</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w">  </span>
+</code></pre></div>
+<p>编译器实际上会把它转换为类似这样的：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1">// 转换前：a.move(2, 2); </span>
+<a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="n">Point</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<p>也就是说，成员函数其实有一个隐藏的第一个参数：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Point::move</span><span class="p">(</span><span class="n">Point</span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition waring">
+<p class="admonition-title"><code>this</code>的使用</p>
+<p>从上面就可以看出来，我们不能显式声明 <code>this</code> 参数（编译器自动处理），但可以在函数体内使用它。</p>
+<p><code>this</code>只能在成员函数中使用(静态函数没有 <code>this</code>)，它也不可以重新赋值（自C++ 11起，它是<code>Type* const</code> 类型）。</p>
+</div>
+<h4 id="22-this">2.2 <code>this</code>的常见用途</h4>
+<h5 id="221">2.2.1 解决变量命名冲突</h5>
+<p>当局部变量和成员变量同名时，可以用 <code>this-&gt;x</code> 来明确访问成员变量。举个例子：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setX</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">          </span><span class="c1">// 错误：这里把形参赋给自己，没效果</span>
+<a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">    </span><span class="c1">// 正确：将形参 x 赋给成员变量 x</span>
+<a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a>
+<a href="#__codelineno-10-8" id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="k">private</span><span class="o">:</span>
+<a href="#__codelineno-10-9" id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a href="#__codelineno-10-10" id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="p">};</span>
+</code></pre></div>
+<p>编译器视角：</p>
+<ul>
+<li><code>x = x;</code>：两个 <code>x</code> 都是函数参数 <code>x</code>，没有修改成员变量。</li>
+<li><code>this-&gt;x = x;</code>：明确告诉编译器“左边的是成员变量”。</li>
+</ul>
+<h5 id="222">2.2.2 返回当前对象（支持链式调用）</h5>
+<p>你可以让成员函数返回当前对象的引用，实现链式调用。示例：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w">    </span><span class="n">Point</span><span class="o">&amp;</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dx</span><span class="p">;</span>
+<a href="#__codelineno-11-5" id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dy</span><span class="p">;</span>
+<a href="#__codelineno-11-6" id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w">  </span><span class="c1">// 返回当前对象的引用</span>
+<a href="#__codelineno-11-7" id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-11-8" id="__codelineno-11-8" name="__codelineno-11-8"></a>
+<a href="#__codelineno-11-9" id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">print</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-11-10" id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Point("</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">", "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">")"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<a href="#__codelineno-11-11" id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-11-12" id="__codelineno-11-12" name="__codelineno-11-12"></a>
+<a href="#__codelineno-11-13" id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="k">private</span><span class="o">:</span>
+<a href="#__codelineno-11-14" id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a href="#__codelineno-11-15" id="__codelineno-11-15" name="__codelineno-11-15"></a><span class="p">};</span>
+<a href="#__codelineno-11-16" id="__codelineno-11-16" name="__codelineno-11-16"></a>
+<a href="#__codelineno-11-17" id="__codelineno-11-17" name="__codelineno-11-17"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-11-18" id="__codelineno-11-18" name="__codelineno-11-18"></a><span class="w">    </span><span class="n">Point</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<a href="#__codelineno-11-19" id="__codelineno-11-19" name="__codelineno-11-19"></a><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">).</span><span class="n">move</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">).</span><span class="n">print</span><span class="p">();</span><span class="w">  </span><span class="c1">// 支持链式调用</span>
+<a href="#__codelineno-11-20" id="__codelineno-11-20" name="__codelineno-11-20"></a><span class="p">}</span>
+</code></pre></div>
+<p>输出得到：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>Point(4, 6)
+</code></pre></div>
+<blockquote>
+<p>这种方式广泛应用于 STL 和现代 C++ 编程中，比如流操作 <code>std::cout &lt;&lt; "Hello" &lt;&lt; std::endl;</code></p>
+</blockquote>
+<h5 id="223">2.2.3 区分全局函数和成员函数</h5>
+<p>如果你有一个全局函数和一个成员函数同名，可以用 <code>this-&gt;</code> 来指定调用成员函数。示例：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a>
+<a href="#__codelineno-13-4" id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="kt">void</span><span class="w"> </span><span class="nf">g</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-13-5" id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Global g()"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<a href="#__codelineno-13-6" id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="p">}</span>
+<a href="#__codelineno-13-7" id="__codelineno-13-7" name="__codelineno-13-7"></a>
+<a href="#__codelineno-13-8" id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">SSK</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-13-9" id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-13-10" id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">g</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-13-11" id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Member g()"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<a href="#__codelineno-13-12" id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-13-13" id="__codelineno-13-13" name="__codelineno-13-13"></a>
+<a href="#__codelineno-13-14" id="__codelineno-13-14" name="__codelineno-13-14"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">f</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-13-15" id="__codelineno-13-15" name="__codelineno-13-15"></a><span class="w">        </span><span class="o">::</span><span class="n">g</span><span class="p">();</span><span class="w">        </span><span class="c1">// 显式调用全局 g()</span>
+<a href="#__codelineno-13-16" id="__codelineno-13-16" name="__codelineno-13-16"></a><span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">g</span><span class="p">();</span><span class="w">    </span><span class="c1">// 显式调用成员 g()</span>
+<a href="#__codelineno-13-17" id="__codelineno-13-17" name="__codelineno-13-17"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-13-18" id="__codelineno-13-18" name="__codelineno-13-18"></a><span class="p">};</span>
+<a href="#__codelineno-13-19" id="__codelineno-13-19" name="__codelineno-13-19"></a>
+<a href="#__codelineno-13-20" id="__codelineno-13-20" name="__codelineno-13-20"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-13-21" id="__codelineno-13-21" name="__codelineno-13-21"></a><span class="w">    </span><span class="n">SSK</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<a href="#__codelineno-13-22" id="__codelineno-13-22" name="__codelineno-13-22"></a><span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">f</span><span class="p">();</span>
+<a href="#__codelineno-13-23" id="__codelineno-13-23" name="__codelineno-13-23"></a><span class="p">}</span>
+</code></pre></div>
+<p>输出得到：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>Global g()
+<a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a>Member g()
+</code></pre></div>
+<h4 id="23-this">2.3 this 指针的高级用法（进阶）</h4>
+<h5 id="231">2.3.1 判断是否是自赋值（自我拷贝）</h5>
+<p>在重载赋值运算符时，经常需要判断是否自己给自己赋值。</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-15-2" id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-15-3" id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">    </span><span class="n">MyClass</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MyClass</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-15-4" id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">&amp;</span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w">  </span><span class="c1">// 自我赋值直接返回</span>
+<a href="#__codelineno-15-5" id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">        </span><span class="c1">// 执行真正的赋值逻辑</span>
+<a href="#__codelineno-15-6" id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<a href="#__codelineno-15-7" id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-15-8" id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="p">};</span>
+</code></pre></div>
+<h5 id="232-c-11">2.3.2 用于转发构造函数（C++ 11）</h5>
+<p>虽然 <code>this</code> 不能用来直接调用其他构造函数，但 C++ 11 支持委托构造函数语法：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-16-2" id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-16-3" id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">    </span><span class="n">Point</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<a href="#__codelineno-16-4" id="__codelineno-16-4" name="__codelineno-16-4"></a>
+<a href="#__codelineno-16-5" id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="w">    </span><span class="n">Point</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">  </span><span class="c1">// 委托构造函数，不是用 this，而是用初始化列表</span>
+<a href="#__codelineno-16-6" id="__codelineno-16-6" name="__codelineno-16-6"></a>
+<a href="#__codelineno-16-7" id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="k">private</span><span class="o">:</span>
+<a href="#__codelineno-16-8" id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a href="#__codelineno-16-9" id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="p">};</span>
+</code></pre></div>
+<h2 id="stash">四、容器设计：Stash示例</h2>
+<h3 id="41">4.1 容器概念</h3>
+<ul>
+<li><strong>定义</strong>：存储其他对象的对象</li>
+<li><strong>通用接口</strong>：</li>
+<li><code>put()</code>：添加元素</li>
+<li><code>get()</code>：获取元素</li>
+<li><strong>动态扩展</strong>：运行时根据需要扩容</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+    A[Stash] --&gt; B[add p1]
+    A --&gt; C[add p2]
+    A --&gt; D[add p3]
+    A --&gt; E[add p4]
+</code></pre>
+<h3 id="42-stash">4.2 Stash实现</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="c1">// Stash2.h</span>
+<a href="#__codelineno-17-2" id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Stash</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-17-3" id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">;</span><span class="w">       </span><span class="c1">// 每个元素大小</span>
+<a href="#__codelineno-17-4" id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">quantity</span><span class="p">;</span><span class="w">   </span><span class="c1">// 存储空间总数</span>
+<a href="#__codelineno-17-5" id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">next</span><span class="p">;</span><span class="w">       </span><span class="c1">// 下一个空位</span>
+<a href="#__codelineno-17-6" id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">storage</span><span class="p">;</span><span class="w"> </span><span class="c1">// 动态字节数组</span>
+<a href="#__codelineno-17-7" id="__codelineno-17-7" name="__codelineno-17-7"></a>
+<a href="#__codelineno-17-8" id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="w">    </span><span class="c1">// 成员函数</span>
+<a href="#__codelineno-17-9" id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+<a href="#__codelineno-17-10" id="__codelineno-17-10" name="__codelineno-17-10"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">cleanup</span><span class="p">();</span>
+<a href="#__codelineno-17-11" id="__codelineno-17-11" name="__codelineno-17-11"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">element</span><span class="p">);</span>
+<a href="#__codelineno-17-12" id="__codelineno-17-12" name="__codelineno-17-12"></a><span class="w">    </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="nf">fetch</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">);</span>
+<a href="#__codelineno-17-13" id="__codelineno-17-13" name="__codelineno-17-13"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">count</span><span class="p">();</span>
+<a href="#__codelineno-17-14" id="__codelineno-17-14" name="__codelineno-17-14"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">inflate</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">increase</span><span class="p">);</span>
+<a href="#__codelineno-17-15" id="__codelineno-17-15" name="__codelineno-17-15"></a><span class="p">};</span>
+</code></pre></div>
+<h3 id="43">4.3 关键函数实现</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="c1">// Stash2.cpp</span>
+<a href="#__codelineno-18-2" id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Stash::initialize</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sz</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-18-3" id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sz</span><span class="p">;</span>
+<a href="#__codelineno-18-4" id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="w">    </span><span class="n">quantity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a href="#__codelineno-18-5" id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="w">    </span><span class="n">storage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a href="#__codelineno-18-6" id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="w">    </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a href="#__codelineno-18-7" id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="p">}</span>
+<a href="#__codelineno-18-8" id="__codelineno-18-8" name="__codelineno-18-8"></a>
+<a href="#__codelineno-18-9" id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="kt">int</span><span class="w"> </span><span class="nf">Stash::add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">element</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-18-10" id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">next</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">quantity</span><span class="p">)</span><span class="w">  </span><span class="c1">// 空间不足时扩容</span>
+<a href="#__codelineno-18-11" id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="w">        </span><span class="n">inflate</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">     </span><span class="c1">// 增加100个元素空间</span>
+<a href="#__codelineno-18-12" id="__codelineno-18-12" name="__codelineno-18-12"></a>
+<a href="#__codelineno-18-13" id="__codelineno-18-13" name="__codelineno-18-13"></a><span class="w">    </span><span class="c1">// 拷贝元素到存储空间</span>
+<a href="#__codelineno-18-14" id="__codelineno-18-14" name="__codelineno-18-14"></a><span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">storage</span><span class="p">[</span><span class="n">next</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">]),</span><span class="w"> </span><span class="n">element</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+<a href="#__codelineno-18-15" id="__codelineno-18-15" name="__codelineno-18-15"></a><span class="w">    </span><span class="n">next</span><span class="o">++</span><span class="p">;</span>
+<a href="#__codelineno-18-16" id="__codelineno-18-16" name="__codelineno-18-16"></a><span class="w">    </span><span class="k">return</span><span class="p">(</span><span class="n">next</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 返回添加元素的索引</span>
+<a href="#__codelineno-18-17" id="__codelineno-18-17" name="__codelineno-18-17"></a><span class="p">}</span>
+<a href="#__codelineno-18-18" id="__codelineno-18-18" name="__codelineno-18-18"></a>
+<a href="#__codelineno-18-19" id="__codelineno-18-19" name="__codelineno-18-19"></a><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="nf">Stash::fetch</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-18-20" id="__codelineno-18-20" name="__codelineno-18-20"></a><span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">next</span><span class="p">)</span>
+<a href="#__codelineno-18-21" id="__codelineno-18-21" name="__codelineno-18-21"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 越界检查</span>
+<a href="#__codelineno-18-22" id="__codelineno-18-22" name="__codelineno-18-22"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="p">(</span><span class="n">storage</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">]);</span><span class="w">  </span><span class="c1">// 返回元素指针</span>
+<a href="#__codelineno-18-23" id="__codelineno-18-23" name="__codelineno-18-23"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="makefile">五、项目构建与Makefile</h2>
+<h3 id="51-makefile">5.1 Makefile作用</h3>
+<ul>
+<li><strong>自动化编译</strong>：管理多文件项目依赖</li>
+<li><strong>增量编译</strong>：仅重新编译修改过的文件</li>
+<li><strong>规则定义</strong>：指定目标、依赖和构建命令</li>
+</ul>
+<h3 id="52-makefile">5.2 Makefile核心语法</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="c"># 基本规则</span>
+<a href="#__codelineno-19-2" id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="nf">target</span><span class="o">:</span><span class="w"> </span><span class="n">dependencies</span>
+<a href="#__codelineno-19-3" id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="w">    </span>commands
+<a href="#__codelineno-19-4" id="__codelineno-19-4" name="__codelineno-19-4"></a>
+<a href="#__codelineno-19-5" id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="c"># 示例</span>
+<a href="#__codelineno-19-6" id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="nf">sum</span><span class="o">:</span><span class="w"> </span><span class="n">main</span>.<span class="n">o</span> <span class="n">sum</span>.<span class="n">o</span>
+<a href="#__codelineno-19-7" id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="w">    </span>gcc<span class="w"> </span>-o<span class="w"> </span>sum<span class="w"> </span>main.o<span class="w"> </span>sum.o
+<a href="#__codelineno-19-8" id="__codelineno-19-8" name="__codelineno-19-8"></a>
+<a href="#__codelineno-19-9" id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="nf">main.o</span><span class="o">:</span><span class="w"> </span><span class="n">main</span>.<span class="n">c</span> <span class="n">sum</span>.<span class="n">h</span>
+<a href="#__codelineno-19-10" id="__codelineno-19-10" name="__codelineno-19-10"></a><span class="w">    </span>gcc<span class="w"> </span>-c<span class="w"> </span>main.c
+<a href="#__codelineno-19-11" id="__codelineno-19-11" name="__codelineno-19-11"></a>
+<a href="#__codelineno-19-12" id="__codelineno-19-12" name="__codelineno-19-12"></a><span class="nf">sum.o</span><span class="o">:</span><span class="w"> </span><span class="n">sum</span>.<span class="n">c</span> <span class="n">sum</span>.<span class="n">h</span>
+<a href="#__codelineno-19-13" id="__codelineno-19-13" name="__codelineno-19-13"></a><span class="w">    </span>gcc<span class="w"> </span>-c<span class="w"> </span>sum.c
+</code></pre></div>
+<h3 id="53-makefile">5.3 Makefile高级特性</h3>
+<ol>
+<li>
+<p><strong>自动变量</strong>：
+   <div class="highlight"><pre><span></span><code><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="nf">sum</span><span class="o">:</span><span class="w"> </span><span class="n">main</span>.<span class="n">o</span> <span class="n">sum</span>.<span class="n">o</span>
+<a href="#__codelineno-20-2" id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="w">    </span>gcc<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^<span class="w">  </span><span class="c1"># $@=目标名, $^=所有依赖</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>模式规则</strong>：
+   <div class="highlight"><pre><span></span><code><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="nf">%.o</span><span class="o">:</span><span class="w"> </span>%.<span class="n">c</span>
+<a href="#__codelineno-21-2" id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="w">    </span>gcc<span class="w"> </span>-c<span class="w"> </span>$&lt;<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w">  </span><span class="c1"># $&lt;=第一个依赖</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>条件语句</strong>：
+   <div class="highlight"><pre><span></span><code><a href="#__codelineno-22-1" id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="cp">ifeq ($(USE_SUM),1)</span>
+<a href="#__codelineno-22-2" id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="nf">sum.o</span><span class="o">:</span><span class="w"> </span><span class="n">sum</span>1.<span class="n">c</span>
+<a href="#__codelineno-22-3" id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="cp">else</span>
+<a href="#__codelineno-22-4" id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="nf">sum.o</span><span class="o">:</span><span class="w"> </span><span class="n">sum</span>2.<span class="n">c</span>
+<a href="#__codelineno-22-5" id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="cp">endif</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>伪目标</strong>：
+   <div class="highlight"><pre><span></span><code><a href="#__codelineno-23-1" id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="nf">clean</span><span class="o">:</span>
+<a href="#__codelineno-23-2" id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span>*.o<span class="w"> </span>sum
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="54">5.4 项目构建示例</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-24-1" id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="c"># 编译Stash测试程序</span>
+<a href="#__codelineno-24-2" id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="nv">CXX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>g++
+<a href="#__codelineno-24-3" id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="nv">CXXFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-std<span class="o">=</span>c++11<span class="w"> </span>-Wall
+<a href="#__codelineno-24-4" id="__codelineno-24-4" name="__codelineno-24-4"></a>
+<a href="#__codelineno-24-5" id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="n">stash_test</span>
+<a href="#__codelineno-24-6" id="__codelineno-24-6" name="__codelineno-24-6"></a>
+<a href="#__codelineno-24-7" id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="nf">stash_test</span><span class="o">:</span><span class="w"> </span><span class="n">Stash</span>2<span class="n">Test</span>.<span class="n">o</span> <span class="n">Stash</span>2.<span class="n">o</span>
+<a href="#__codelineno-24-8" id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="w">    </span><span class="k">$(</span>CXX<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CXXFLAGS<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^
+<a href="#__codelineno-24-9" id="__codelineno-24-9" name="__codelineno-24-9"></a>
+<a href="#__codelineno-24-10" id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="nf">Stash2Test.o</span><span class="o">:</span><span class="w"> </span><span class="n">Stash</span>2<span class="n">Test</span>.<span class="n">cpp</span> <span class="n">Stash</span>2.<span class="n">h</span>
+<a href="#__codelineno-24-11" id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="w">    </span><span class="k">$(</span>CXX<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CXXFLAGS<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span>$&lt;
+<a href="#__codelineno-24-12" id="__codelineno-24-12" name="__codelineno-24-12"></a>
+<a href="#__codelineno-24-13" id="__codelineno-24-13" name="__codelineno-24-13"></a><span class="nf">Stash2.o</span><span class="o">:</span><span class="w"> </span><span class="n">Stash</span>2.<span class="n">cpp</span> <span class="n">Stash</span>2.<span class="n">h</span>
+<a href="#__codelineno-24-14" id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="w">    </span><span class="k">$(</span>CXX<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CXXFLAGS<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span>$&lt;
+<a href="#__codelineno-24-15" id="__codelineno-24-15" name="__codelineno-24-15"></a>
+<a href="#__codelineno-24-16" id="__codelineno-24-16" name="__codelineno-24-16"></a><span class="nf">clean</span><span class="o">:</span>
+<a href="#__codelineno-24-17" id="__codelineno-24-17" name="__codelineno-24-17"></a><span class="w">    </span>rm<span class="w"> </span>-f<span class="w"> </span>*.o<span class="w"> </span>stash_test
+</code></pre></div>
+<h2 id="ticket-machine">六、案例分析：Ticket Machine</h2>
+<h3 id="61">6.1 过程式实现</h3>
+<pre class="mermaid"><code>graph TD
+    A[用户走近机器] --&gt; B[插入钱]
+    B --&gt; C[机器打印票]
+    C --&gt; D[用户取票离开]
+</code></pre>
+<p><strong>问题</strong>：
+- 无状态保持
+- 无法扩展功能
+- 缺乏对象概念</p>
+<h3 id="62">6.2 面向对象设计</h3>
+<pre class="mermaid"><code>classDiagram
+    class TicketMachine {
+        -int PRICE
+        -int balance
+        -int total
+        +showPrompt()
+        +getMoney()
+        +printTicket()
+        +showBalance()
+        +printError()
+    }
+</code></pre>
+<p><strong>优势</strong>：
+1. <strong>状态封装</strong>：PRICE, balance, total作为属性
+2. <strong>行为绑定</strong>：操作与数据关联
+3. <strong>可扩展性</strong>：易于添加新功能</p>
+<h3 id="63">6.3 类实现</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-25-1" id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">TicketMachine</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-25-2" id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-25-3" id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">showPrompt</span><span class="p">();</span>
+<a href="#__codelineno-25-4" id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">getMoney</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">amount</span><span class="p">);</span>
+<a href="#__codelineno-25-5" id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">printTicket</span><span class="p">();</span>
+<a href="#__codelineno-25-6" id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">showBalance</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a href="#__codelineno-25-7" id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">printError</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span>
+<a href="#__codelineno-25-8" id="__codelineno-25-8" name="__codelineno-25-8"></a>
+<a href="#__codelineno-25-9" id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="k">private</span><span class="o">:</span>
+<a href="#__codelineno-25-10" id="__codelineno-25-10" name="__codelineno-25-10"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PRICE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">  </span><span class="c1">// 票价</span>
+<a href="#__codelineno-25-11" id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">       </span><span class="c1">// 当前余额</span>
+<a href="#__codelineno-25-12" id="__codelineno-25-12" name="__codelineno-25-12"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">         </span><span class="c1">// 总收入</span>
+<a href="#__codelineno-25-13" id="__codelineno-25-13" name="__codelineno-25-13"></a><span class="p">};</span>
+<a href="#__codelineno-25-14" id="__codelineno-25-14" name="__codelineno-25-14"></a>
+<a href="#__codelineno-25-15" id="__codelineno-25-15" name="__codelineno-25-15"></a><span class="c1">// 使用方法</span>
+<a href="#__codelineno-25-16" id="__codelineno-25-16" name="__codelineno-25-16"></a><span class="n">TicketMachine</span><span class="w"> </span><span class="n">tm</span><span class="p">;</span>
+<a href="#__codelineno-25-17" id="__codelineno-25-17" name="__codelineno-25-17"></a><span class="n">tm</span><span class="p">.</span><span class="n">getMoney</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<a href="#__codelineno-25-18" id="__codelineno-25-18" name="__codelineno-25-18"></a><span class="n">tm</span><span class="p">.</span><span class="n">printTicket</span><span class="p">();</span>
+</code></pre></div>
+<h2 id="_3">七、头文件与实现分离</h2>
+<h3 id="71">7.1 文件组织原则</h3>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>内容</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>头文件(.h)</td>
+<td>类声明、函数原型</td>
+<td><code>Point.h</code></td>
+</tr>
+<tr>
+<td>源文件(.cpp)</td>
+<td>成员函数实现</td>
+<td><code>Point.cpp</code></td>
+</tr>
+<tr>
+<td>主程序</td>
+<td>使用类的代码</td>
+<td><code>main.cpp</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="72">7.2 头文件保护</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-26-1" id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="c1">// Point.h</span>
+<a href="#__codelineno-26-2" id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="cp">#ifndef POINT_H  </span><span class="c1">// 如果没有定义POINT_H</span>
+<a href="#__codelineno-26-3" id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="cp">#define POINT_H  </span><span class="c1">// 定义POINT_H</span>
+<a href="#__codelineno-26-4" id="__codelineno-26-4" name="__codelineno-26-4"></a>
+<a href="#__codelineno-26-5" id="__codelineno-26-5" name="__codelineno-26-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-26-6" id="__codelineno-26-6" name="__codelineno-26-6"></a><span class="k">public</span><span class="o">:</span>
+<a href="#__codelineno-26-7" id="__codelineno-26-7" name="__codelineno-26-7"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span>
+<a href="#__codelineno-26-8" id="__codelineno-26-8" name="__codelineno-26-8"></a><span class="k">private</span><span class="o">:</span>
+<a href="#__codelineno-26-9" id="__codelineno-26-9" name="__codelineno-26-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<a href="#__codelineno-26-10" id="__codelineno-26-10" name="__codelineno-26-10"></a><span class="p">};</span>
+<a href="#__codelineno-26-11" id="__codelineno-26-11" name="__codelineno-26-11"></a>
+<a href="#__codelineno-26-12" id="__codelineno-26-12" name="__codelineno-26-12"></a><span class="cp">#endif </span><span class="c1">// POINT_H</span>
+</code></pre></div>
+<p><strong>作用</strong>：防止多次包含导致的重复定义错误</p>
+<h3 id="73">7.3 编译单元与链接</h3>
+<pre class="mermaid"><code>graph LR
+    A[Point.h] --&gt; B[Point.cpp]
+    A --&gt; C[main.cpp]
+    B --&gt; D[Point.obj]
+    C --&gt; E[main.obj]
+    D --&gt; F[链接器]
+    E --&gt; F
+    F --&gt; G[可执行文件]
+</code></pre>
+<h2 id="_4">八、最佳实践与总结</h2>
+<h3 id="81">8.1 类设计原则</h3>
+<ol>
+<li><strong>高内聚</strong>：类应该专注于单一功能</li>
+<li><strong>低耦合</strong>：减少类之间的依赖</li>
+<li><strong>封装性</strong>：隐藏内部实现细节</li>
+<li><strong>清晰的接口</strong>：提供简单易用的公共方法</li>
+</ol>
+<h3 id="82-c-vs-c">8.2 C vs C++对比</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>C 风格</th>
+<th>C++ 面向对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数据组织</strong></td>
+<td>结构体(struct)</td>
+<td>类(class)</td>
+</tr>
+<tr>
+<td><strong>函数</strong></td>
+<td>全局函数</td>
+<td>成员函数</td>
+</tr>
+<tr>
+<td><strong>访问</strong></td>
+<td>直接访问字段</td>
+<td>通过方法访问</td>
+</tr>
+<tr>
+<td><strong>初始化</strong></td>
+<td>手动初始化</td>
+<td>构造函数</td>
+</tr>
+<tr>
+<td><strong>示例</strong></td>
+<td><code>move(&amp;a, 2, 2)</code></td>
+<td><code>a.move(2, 2)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="83">8.3 核心要点总结</h3>
+<ol>
+<li><strong>类是蓝图</strong>：定义对象的属性和行为</li>
+<li><strong>对象是实例</strong>：运行时创建的具体实体</li>
+<li><strong>封装是关键</strong>：隐藏实现，暴露接口</li>
+<li><strong>this指针</strong>：成员函数的隐含参数</li>
+<li><strong>头文件分离</strong>：.h声明 vs .cpp实现</li>
+<li><strong>Makefile</strong>：自动化构建复杂项目</li>
+</ol>
+<blockquote>
+<p>"面向对象设计的核心不是创建完美的层次结构，而是管理依赖关系。" - Robert C. Martin</p>
+</blockquote>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright 2024 by estruswent
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+<script src="../../style/javascripts/mathjax.js"></script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>

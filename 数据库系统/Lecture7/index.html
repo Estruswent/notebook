@@ -8,7 +8,7 @@
 <meta content="This is E5trusw3nt's Notebook" name="description"/>
 <meta content="E5trusw3nt" name="author"/>
 <link href="../Lecture6/" rel="prev"/>
-<link href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture0/" rel="next"/>
+<link href="../Lecture8/" rel="next"/>
 <link href="../../style/images/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.34" name="generator"/>
 <title>Lecture7: Normalization - E5trusw3nt's Notebook</title>
@@ -21,7 +21,6 @@
 <link href="../../style/css/code.css" rel="stylesheet"/>
 <link href="../../style/css/table.css" rel="stylesheet"/>
 <link href="../../style/css/fonts.css" rel="stylesheet"/>
-<link href="../../style/css/size.css" rel="stylesheet"/>
 <link href="../../style/css/mermaid.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
@@ -379,13 +378,6 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#2">
-<span class="md-ellipsis">
-      2. 判定定理
-    </span>
-</a>
-</li>
 </ul>
 </nav>
 </li>
@@ -795,9 +787,9 @@
 <nav aria-label="五、高级范式" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#51-multivalued-dependencies">
+<a class="md-nav__link" href="#51-multivalued-dependencies-mvd">
 <span class="md-ellipsis">
-      5.1 多值依赖 (Multivalued Dependencies)
+      5.1 多值依赖 (Multivalued Dependencies, MVD)
     </span>
 </a>
 </li>
@@ -846,6 +838,13 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture8/">
+<span class="md-ellipsis">
+    Lecture8: Physical Storage System
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -874,6 +873,20 @@
 <a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture1/">
 <span class="md-ellipsis">
     Lecture1: Using Objects
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: Class
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: Object Interactive
   </span>
 </a>
 </li>
@@ -985,13 +998,6 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#2">
-<span class="md-ellipsis">
-      2. 判定定理
-    </span>
-</a>
-</li>
 </ul>
 </nav>
 </li>
@@ -1401,9 +1407,9 @@
 <nav aria-label="五、高级范式" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#51-multivalued-dependencies">
+<a class="md-nav__link" href="#51-multivalued-dependencies-mvd">
 <span class="md-ellipsis">
-      5.1 多值依赖 (Multivalued Dependencies)
+      5.1 多值依赖 (Multivalued Dependencies, MVD)
     </span>
 </a>
 </li>
@@ -1469,10 +1475,10 @@
 <h4 id="12">1.2 有损分解</h4>
 <p>举个例子吧，假设我们有一个关系 <code>employee</code>，包含以下属性：</p>
 <ul>
-<li><code>ID</code>: 员工编号</li>
-<li><code>name</code>: 姓名</li>
-<li><code>street</code>: 街道地址</li>
-<li><code>city</code>: 城市</li>
+<li><span class="arithmatex">\(\text{ID}\)</span>: 员工编号  </li>
+<li><span class="arithmatex">\(\text{name}\)</span>: 姓名  </li>
+<li><span class="arithmatex">\(\text{street}\)</span>: 街道地址  </li>
+<li><span class="arithmatex">\(\text{city}\)</span>: 城市  </li>
 </ul>
 <p>原始关系 <code>employee</code> 的示例数据如下：</p>
 <table>
@@ -1513,8 +1519,8 @@
 </table>
 <p>现在，我们将 <code>employee</code> 分解为两个关系：</p>
 <ol>
-<li><code>employee1(ID, name)</code></li>
-<li><code>employee2(name, street, city)</code></li>
+<li><span class="arithmatex">\(\text{employee1}(\text{ID}, \text{name})\)</span> </li>
+<li><span class="arithmatex">\(\text{employee2}(\text{name}, \text{street}, \text{city})\)</span> </li>
 </ol>
 <p>由此我们得到分解后的关系示例数据：</p>
 <p><strong><code>employee1</code></strong>:</p>
@@ -1576,7 +1582,7 @@
 </tr>
 </tbody>
 </table>
-<p>如果我们对这两个分解后的关系又<strong>重新进行自然连接</strong>（当然是基于 <code>name</code> 列！），我们会得到以下结果：</p>
+<p>如果我们对这两个分解后的关系又<strong>重新进行自然连接</strong>（当然是基于 <span class="arithmatex">\(\text{name}\)</span> 列！），我们会得到以下结果：</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">street</span><span class="p">,</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">city</span>
 <a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employee1</span><span class="w"> </span><span class="n">e1</span>
 <a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">NATURAL</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">employee2</span><span class="w"> </span><span class="n">e2</span><span class="p">;</span>
@@ -1618,46 +1624,33 @@
 </tr>
 </tbody>
 </table>
-<p>可以看到，原本只有一个 <code>Estruswent</code> 在 <code>New York</code> 和另一个 <code>Estruswent</code> 在 <code>Seattle</code>，但自然连接产生了额外的元组 <code>(1, Estruswent, Cedar Rd, Seattle)</code> 和 <code>(4, Estruswent, Maple St, New York)</code>，这并不是原始关系中的数据。</p>
-<p>这个例子很好地展示了为什么这种分解是有损的。因为存在同名员工（即 <code>name</code> 不唯一），自然连接会产生额外的元组，导致了不一致。</p>
+<p>可以看到，原本只有一个 <code>Estruswent</code> 在 <code>New York</code> 和另一个 <code>Estruswent</code> 在 <code>Seattle</code>，但自然连接会产生额外的元组 <code>(1, Estruswent, Cedar Rd, Seattle)</code> 和 <code>(4, Estruswent, Maple St, New York)</code>，这并不是原始关系中的数据。</p>
+<p>这个例子很好地展示了为什么这种分解是有损的。因为存在同名员工（即 <span class="arithmatex">\(\text{name}\)</span> 不唯一），自然连接会产生额外的元组，导致了不一致。</p>
 <p>这种关系的分解就叫<strong>有损分解</strong>。</p>
-<h3 id="2">2. 判定定理</h3>
-<p>根据判定定理，要判断分解是否无损，我们需要检查以下条件：<span class="arithmatex">\( R_1 \cap R_2 \rightarrow R_1 \)</span>或<span class="arithmatex">\( R_1 \cap R_2 \rightarrow R_2 \)</span>中的一个成立。</p>
-<p>比如说，在上面的那一个例子中：</p>
-<p><span class="arithmatex">\(\because R_1 = \{ID, name\},R_2 = \{name, street, city\} \)</span></p>
-<p><span class="arithmatex">\(\therefore R_1 \cap R_2 = \{name\} \)</span></p>
-<p>显然，<code>name</code> 并不能唯一确定 <code>ID</code> 或者 <code>street</code> 和 <code>city</code>，因此：</p>
-<ul>
-<li><span class="arithmatex">\( \{name\} \not\rightarrow \{ID, name\} \)</span></li>
-<li><span class="arithmatex">\( \{name\} \not\rightarrow \{name, street, city\} \)</span></li>
-</ul>
-<p>所以，这个分解是有损的。</p>
 <h2 id="_2">二、函数依赖理论</h2>
 <p>好了，大伙 <del>最喜欢</del> 的数学部分来了。</p>
 <h3 id="1-functional-dependencies">1. 函数依赖 (Functional Dependencies)</h3>
 <h4 id="11_1">1.1 函数依赖：</h4>
-<p><span class="arithmatex">\( \alpha \rightarrow \beta \)</span>：如果两个元组在属性集 <span class="arithmatex">\( \alpha \)</span> 上的值相同，那么它们在属性集 <span class="arithmatex">\( \beta \)</span> 上的值也必须相同。（简单地理解，就是“ <span class="arithmatex">\( \alpha \)</span> <strong>决定了</strong><span class="arithmatex">\( \beta \)</span> ”，<del>此事在你学过的离散数学里亦有记载</del>）。</p>
+<p><span class="arithmatex">\(\alpha \rightarrow \beta\)</span>：如果两个元组在属性集 <span class="arithmatex">\(\alpha\)</span> 上的值相同，那么它们在属性集 <span class="arithmatex">\(\beta\)</span> 上的值也必须相同。（简单地理解，就是“ <span class="arithmatex">\(\alpha\)</span> <strong>决定了</strong> <span class="arithmatex">\(\beta\)</span> ”，<del>此事在你学过的离散数学里亦有记载</del>）。</p>
 <p>举个例子吧，假设有一个关系 <code>Employee</code>，包含以下属性：</p>
 <ul>
-<li><code>ID</code>（员工编号）</li>
-<li><code>Name</code>（姓名）</li>
-<li><code>Dept</code>（部门）</li>
+<li><span class="arithmatex">\(\text{ID}\)</span>（员工编号）  </li>
+<li><span class="arithmatex">\(\text{Name}\)</span>（姓名）  </li>
+<li><span class="arithmatex">\(\text{Dept}\)</span>（部门）</li>
 </ul>
 <p>如果我们明确了这样一个规则：每个员工的编号唯一地决定了他们的姓名和部门，那么我们可以说：</p>
 <ul>
-<li><code>ID → Name</code></li>
-<li><code>ID → Dept</code></li>
+<li><span class="arithmatex">\(\text{ID} \rightarrow \text{Name}\)</span> </li>
+<li><span class="arithmatex">\(\text{ID} \rightarrow \text{Dept}\)</span> </li>
 </ul>
-<p>这意味着，只要给定 <code>ID</code>，就能确定 <code>Name</code> 和 <code>Dept</code>。</p>
+<p>这意味着，只要给定 <span class="arithmatex">\(\text{ID}\)</span>，就能确定 <span class="arithmatex">\(\text{Name}\)</span> 和 <span class="arithmatex">\(\text{Dept}\)</span>。</p>
 <h4 id="12_1">1.2 键的表示：</h4>
 <ul>
-<li><strong>超键（Super Key）</strong>：能够唯一标识一个元组的属性集合。例如，在上面的例子中，<code>{ID}</code> 是一个超键，因为它能唯一决定 <code>Employee</code> 中的所有属性。</li>
-<li><strong>候选键（Candidate Key）</strong>：最小的超键，即<strong>没有它的任何真子集</strong>也能唯一决定所有属性。在上面的例子中，<code>{ID}</code> 也是一个候选键，因为没有比它更小的集合能唯一决定 <code>Employee</code> 中的所有属性。</li>
+<li><strong>超键（Super Key）</strong>：能够唯一标识一个元组的属性集合。例如，在上面的例子中，<span class="arithmatex">\(\{\text{ID}\}\)</span> 是一个超键，因为它能唯一决定 <code>Employee</code> 中的所有属性。</li>
+<li><strong>候选键（Candidate Key）</strong>：最小的超键，即<strong>没有它的任何真子集</strong>也能唯一决定所有属性。在上面的例子中，<span class="arithmatex">\(\{\text{ID}\}\)</span> 也是一个候选键，因为没有比它更小的集合能唯一决定 <code>Employee</code> 中的所有属性。</li>
 </ul>
 <h4 id="13">1.3 平凡依赖：</h4>
-<ul>
-<li>如果  <span class="arithmatex">\( \beta \)</span> 是  <span class="arithmatex">\( \alpha \)</span> 的子集（ <span class="arithmatex">\( \beta \subseteq \alpha \)</span>），那么  <span class="arithmatex">\( \alpha \rightarrow \beta \)</span> 总是成立。例如，<code>ID, Name → ID</code> 就是一个平凡依赖，因为它只是说“如果 <code>ID</code> 和 <code>Name</code> 相同，那么 <code>ID</code> 也相同”，这是显而易见的。</li>
-</ul>
+<p>如果 <span class="arithmatex">\(\beta \subseteq \alpha\)</span>，那么 <span class="arithmatex">\(\alpha \rightarrow \beta\)</span> 总是成立。例如，<span class="arithmatex">\(\text{ID}, \text{Name} \rightarrow \text{ID}\)</span> 就是一个平凡依赖，因为它只是说“如果 <span class="arithmatex">\(\text{ID}\)</span> 和 <span class="arithmatex">\(\text{Name}\)</span> 相同，那么 <span class="arithmatex">\(\text{ID}\)</span> 也相同”，这是显而易见的。</p>
 <h3 id="2-closure">2. 闭包计算 (Closure)</h3>
 <h4 id="21">2.1 定义：</h4>
 <p>闭包是用来<strong>判断某个属性集能“决定”哪些其他属性的工具</strong>。具体来说，给定一个属性集  <span class="arithmatex">\( \alpha \)</span> 和一组函数依赖 F，求  <span class="arithmatex">\( \alpha \)</span> 的闭包（记作  <span class="arithmatex">\( \alpha^{+} \)</span>），即  <span class="arithmatex">\( \alpha \)</span> 能决定的所有属性。</p>
@@ -2109,9 +2102,10 @@ F_c = \{ emp\_id \rightarrow name,\ emp\_id \rightarrow dept\_id,\ dept\_id \rig
 </ul>
 </div>
 <h2 id="_16">五、高级范式</h2>
-<h3 id="51-multivalued-dependencies">5.1 多值依赖 (Multivalued Dependencies)</h3>
+<h3 id="51-multivalued-dependencies-mvd">5.1 多值依赖 (Multivalued Dependencies, MVD)</h3>
 <ul>
 <li><strong>定义</strong>： <span class="arithmatex">\( \alpha \)</span>→→β表示对 <span class="arithmatex">\( \alpha \)</span>的每个值，β的值独立于R- <span class="arithmatex">\( \alpha \)</span>-β</li>
+<li><strong>示例</strong>：比如对于<span class="arithmatex">\(\text{ID}\)</span>为99999的家长，他有两个孩子和两个电话号码，那么就会产生下面这种情况。</li>
 </ul>
 <table>
 <thead>
@@ -2144,17 +2138,16 @@ F_c = \{ emp\_id \rightarrow name,\ emp\_id \rightarrow dept\_id,\ dept\_id \rig
 </tr>
 </tbody>
 </table>
-<ul>
-<li>存在MVD：ID→→child_name 和 ID→→phone</li>
-</ul>
+<p>没错，这里就存在MVD：因为<span class="arithmatex">\(child\_name \space phone \)</span>二者没有关系，所以直接存储会导致冗余，但是<span class="arithmatex">\(\text{ID}\)</span>又确实决定了这两个属性。</p>
+<p>而这种情况我们称为MVD，分别记作<span class="arithmatex">\(\text{ID}\rightarrow \rightarrow child\_name\)</span> 和 <span class="arithmatex">\(\text{ID}\rightarrow \rightarrow phone\)</span>。</p>
 <h3 id="52-4nf">5.2 4NF范式</h3>
 <ul>
-<li><strong>定义</strong>：对D⁺中所有 <span class="arithmatex">\( \alpha \)</span>→→β，满足：<ol>
-<li>β⊆ <span class="arithmatex">\( \alpha \)</span>或 <span class="arithmatex">\( \alpha \)</span>∪β=R（平凡MVD），或</li>
+<li><strong>定义</strong>：对<span class="arithmatex">\( D^+ \)</span>中所有 <span class="arithmatex">\( \alpha \rightarrow \rightarrow \beta \)</span>，满足以下之一：<ol>
+<li><span class="arithmatex">\(\beta \subseteq \alpha \)</span>或 <span class="arithmatex">\( \alpha \cup \beta = R \)</span>（平凡MVD）</li>
 <li><span class="arithmatex">\( \alpha \)</span>是超键</li>
 </ol>
 </li>
-<li><strong>分解算法</strong>：类似BCNF分解，使用MVD替代FD</li>
+<li><strong>分解算法</strong>：和BCNF分解非常相像，使用MVD替代FD</li>
 </ul>
 <h2 id="_17">六、实际设计问题</h2>
 <h3 id="1-temporal-data">1. 时态数据 (Temporal Data)</h3>

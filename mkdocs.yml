@@ -29,6 +29,7 @@ nav:
       - "Lecture6: Database Design using the E-R Model": "数据库系统/Lecture6.md"
       - "Lecture7: Normalization": "数据库系统/Lecture7.md"
       - "Lecture8: Physical Storage System": "数据库系统/Lecture8.md"
+      - "Lecture9: Data Storage Structure": "数据库系统/Lecture9.md"
     - 面向对象程序设计:
       - "Lecture0: Course Introduction": "面向对象程序设计/Lecture0.md"
       - "Lecture1: Using Objects": "面向对象程序设计/Lecture1.md"

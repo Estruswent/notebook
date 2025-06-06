@@ -1,0 +1,1905 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="This is E5trusw3nt's Notebook" name="description"/>
+<meta content="E5trusw3nt" name="author"/>
+<link href="../Lecture8/" rel="prev"/>
+<link href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture0/" rel="next"/>
+<link href="../../style/images/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.5.34" name="generator"/>
+<title>Lecture9: Data Storage Structure - E5trusw3nt's Notebook</title>
+<link href="../../assets/stylesheets/main.35f28582.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../style/css/img.css" rel="stylesheet"/>
+<link href="../../style/css/code.css" rel="stylesheet"/>
+<link href="../../style/css/table.css" rel="stylesheet"/>
+<link href="../../style/css/fonts.css" rel="stylesheet"/>
+<link href="../../style/css/mermaid.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="black" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#lecture-9-data-storage-structure">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="E5trusw3nt's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../style/images/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            E5trusw3nt's Notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Lecture9: Data Storage Structure
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="black" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        
+  
+    
+  
+  首页
+
+      </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/TimeComplexity/">
+          
+  
+  Computer Science
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E5%86%99%E4%BD%9C/latex/">
+          
+  
+  Writing
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E5%85%B6%E5%AE%83/Matplotlib/">
+          
+  
+  Others
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="E5trusw3nt's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../style/images/logo.png"/>
+</a>
+    E5trusw3nt's Notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    首页
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-ellipsis">
+    Computer Science
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            Computer Science
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+<span class="md-ellipsis">
+    数据结构基础
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_1">
+<span class="md-nav__icon md-icon"></span>
+            数据结构基础
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/TimeComplexity/">
+<span class="md-ellipsis">
+    时间复杂度
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DoublyLinkedList/">
+<span class="md-ellipsis">
+    双向链表
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Graph/">
+<span class="md-ellipsis">
+    图
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort/">
+<span class="md-ellipsis">
+    排序问题
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Tree/">
+<span class="md-ellipsis">
+    树、二叉树与线索二叉树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/PriorityQueues/">
+<span class="md-ellipsis">
+    优先队列（堆）
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DisjointSet/">
+<span class="md-ellipsis">
+    并查集
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/unfinished/">
+<span class="md-ellipsis">
+    待完成
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    数据库系统
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: relations models and algebra
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture4/">
+<span class="md-ellipsis">
+    Lecture4: Immediate SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture5/">
+<span class="md-ellipsis">
+    Lecture5: Advanced SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture6/">
+<span class="md-ellipsis">
+    Lecture6: Database Design using the E-R Model
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture7/">
+<span class="md-ellipsis">
+    Lecture7: Normalization
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture8/">
+<span class="md-ellipsis">
+    Lecture8: Physical Storage System
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Lecture9: Data Storage Structure
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    Lecture9: Data Storage Structure
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1">
+<span class="md-ellipsis">
+      1. 数据存储结构
+    </span>
+</a>
+<nav aria-label="1. 数据存储结构" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11">
+<span class="md-ellipsis">
+      1.1 文件组织基础
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12">
+<span class="md-ellipsis">
+      1.2 变长记录处理
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#13-slotted-page">
+<span class="md-ellipsis">
+      1.3 分槽页结构（Slotted Page）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2">
+<span class="md-ellipsis">
+      2. 文件组织方式
+    </span>
+</a>
+<nav aria-label="2. 文件组织方式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21">
+<span class="md-ellipsis">
+      2.1 主要组织方式对比
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22">
+<span class="md-ellipsis">
+      2.2 关键技术详解
+    </span>
+</a>
+<nav aria-label="2.2 关键技术详解" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-heap-file-organization">
+<span class="md-ellipsis">
+      1. 堆文件组织（Heap File Organization）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-sequential-file-organization">
+<span class="md-ellipsis">
+      2. 顺序文件组织（Sequential File Organization）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-multitable-clustering">
+<span class="md-ellipsis">
+      3. 多表聚簇文件组织（Multitable Clustering）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-partitioning">
+<span class="md-ellipsis">
+      4. 分区（Partitioning）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3">
+<span class="md-ellipsis">
+      3. 数据字典与缓冲区
+    </span>
+</a>
+<nav aria-label="3. 数据字典与缓冲区" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31">
+<span class="md-ellipsis">
+      3.1 数据字典（系统目录）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32">
+<span class="md-ellipsis">
+      3.2 缓冲区管理
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4">
+<span class="md-ellipsis">
+      4. 存储
+    </span>
+</a>
+<nav aria-label="4. 存储" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-vs">
+<span class="md-ellipsis">
+      4.1 列存储 vs 行存储
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-orcoptimized-row-columnarparquet">
+<span class="md-ellipsis">
+      4.2 混合存储格式(ORC（Optimized Row Columnar）/Parquet)
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-sql">
+<span class="md-ellipsis">
+      5. SQL与存储层关联
+    </span>
+</a>
+<nav aria-label="5. SQL与存储层关联" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51">
+<span class="md-ellipsis">
+      5.1 索引的物理实现
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#52-io">
+<span class="md-ellipsis">
+      5.2 连接操作的IO优化
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#53">
+<span class="md-ellipsis">
+      5.3 事务与存储协同
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+<span class="md-ellipsis">
+      附录：存储参数优化建议
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-ellipsis">
+    面向对象程序设计
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Course Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Using Objects
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: Class
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: Object Interactive
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Writing
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            Writing
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%86%99%E4%BD%9C/latex/">
+<span class="md-ellipsis">
+    Latex Introduction
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Others
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%85%B6%E5%AE%83/Matplotlib/">
+<span class="md-ellipsis">
+    Matplotlib入门
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%85%B6%E5%AE%83/Explorer%E4%B8%8D%E8%A7%81%E4%BA%86/">
+<span class="md-ellipsis">
+    Windows上的子系统“消失不见”
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1">
+<span class="md-ellipsis">
+      1. 数据存储结构
+    </span>
+</a>
+<nav aria-label="1. 数据存储结构" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11">
+<span class="md-ellipsis">
+      1.1 文件组织基础
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12">
+<span class="md-ellipsis">
+      1.2 变长记录处理
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#13-slotted-page">
+<span class="md-ellipsis">
+      1.3 分槽页结构（Slotted Page）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2">
+<span class="md-ellipsis">
+      2. 文件组织方式
+    </span>
+</a>
+<nav aria-label="2. 文件组织方式" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21">
+<span class="md-ellipsis">
+      2.1 主要组织方式对比
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22">
+<span class="md-ellipsis">
+      2.2 关键技术详解
+    </span>
+</a>
+<nav aria-label="2.2 关键技术详解" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-heap-file-organization">
+<span class="md-ellipsis">
+      1. 堆文件组织（Heap File Organization）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-sequential-file-organization">
+<span class="md-ellipsis">
+      2. 顺序文件组织（Sequential File Organization）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-multitable-clustering">
+<span class="md-ellipsis">
+      3. 多表聚簇文件组织（Multitable Clustering）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-partitioning">
+<span class="md-ellipsis">
+      4. 分区（Partitioning）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3">
+<span class="md-ellipsis">
+      3. 数据字典与缓冲区
+    </span>
+</a>
+<nav aria-label="3. 数据字典与缓冲区" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31">
+<span class="md-ellipsis">
+      3.1 数据字典（系统目录）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32">
+<span class="md-ellipsis">
+      3.2 缓冲区管理
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4">
+<span class="md-ellipsis">
+      4. 存储
+    </span>
+</a>
+<nav aria-label="4. 存储" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-vs">
+<span class="md-ellipsis">
+      4.1 列存储 vs 行存储
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-orcoptimized-row-columnarparquet">
+<span class="md-ellipsis">
+      4.2 混合存储格式(ORC（Optimized Row Columnar）/Parquet)
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-sql">
+<span class="md-ellipsis">
+      5. SQL与存储层关联
+    </span>
+</a>
+<nav aria-label="5. SQL与存储层关联" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51">
+<span class="md-ellipsis">
+      5.1 索引的物理实现
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#52-io">
+<span class="md-ellipsis">
+      5.2 连接操作的IO优化
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#53">
+<span class="md-ellipsis">
+      5.3 事务与存储协同
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+<span class="md-ellipsis">
+      附录：存储参数优化建议
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="lecture-9-data-storage-structure">Lecture 9: Data Storage Structure</h1>
+<h2 id="1">1. 数据存储结构</h2>
+<h3 id="11">1.1 文件组织基础</h3>
+<p><strong>文件结构层次</strong>：数据库 → 文件集合 → 记录序列 → 字段序列</p>
+<p>这表示数据在物理存储中的组织方式：数据库包含多个文件（文件集合），每个文件由多个记录组成，而每个记录又由多个字段组成。这是典型的<strong>层次化数据</strong>组织方式，便于管理和访问。</p>
+<p><strong>固定长度记录</strong>：</p>
+<ol>
+<li>
+<p>存储位置计算：<span class="arithmatex">\( \text{ Record(i) } = n \cdot (i - 1) \)</span></p>
+<ul>
+<li><code>i</code> 是记录的编号（从1开始）</li>
+<li><code>n</code> 是每条记录所占的空间（字节数）</li>
+</ul>
+<p>举个栗子🌰：假设你有一个文件，里面有5条记录（record 1 到 record 5），每条记录占用10字节。</p>
+<p>那么这也就是说：</p>
+<ul>
+<li><code>n = 10</code>（每条记录长10字节）</li>
+<li><code>i = 1, 2, 3, 4, 5</code>（记录编号）</li>
+</ul>
+<p>那么我们可以算出每条记录的起始位置：</p>
+<table>
+<thead>
+<tr>
+<th>记录编号</th>
+<th>起始位置计算方式</th>
+<th>起始位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>record 1</td>
+<td>10 × (1 - 1) = 10 × 0</td>
+<td>0 字节</td>
+</tr>
+<tr>
+<td>record 2</td>
+<td>10 × (2 - 1) = 10 × 1</td>
+<td>10 字节</td>
+</tr>
+<tr>
+<td>record 3</td>
+<td>10 × (3 - 1) = 10 × 2</td>
+<td>20 字节</td>
+</tr>
+<tr>
+<td>record 4</td>
+<td>10 × (4 - 1) = 10 × 3</td>
+<td>30 字节</td>
+</tr>
+<tr>
+<td>record 5</td>
+<td>10 × (5 - 1) = 10 × 4</td>
+<td>40 字节</td>
+</tr>
+</tbody>
+</table>
+<p>因为每条记录长度是固定的（比如都是10字节），所以你可以通过简单的数学公式直接定位到任意一条记录的位置：比如你想访问第3条记录，你就知道它从第20字节开始读取，读到第29字节结束（共10字节）。</p>
+<p>这就像你在图书馆里找书：如果每本书都一样厚，排成一排，那你可以直接根据它的序号快速找到它的位置。</p>
+</li>
+<li>
+<p><strong>删除处理策略</strong>：</p>
+<p>当删除一条记录时，由于记录是<strong>固定长度、顺序存储</strong>的，不能简单留下空位，否则会影响后续查找效率。有三种常见策略：</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>操作</th>
+<th>优缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>顺序前移</td>
+<td>移动<code>i+1</code>至末尾记录填补空缺</td>
+<td>保持连续但是操作代价高（大量数据移动）</td>
+</tr>
+<tr>
+<td>末尾填补</td>
+<td>用最后一条记录覆盖被删记录</td>
+<td>速度快但是会破坏顺序</td>
+</tr>
+<tr>
+<td>空闲链表（最佳方案）</td>
+<td>维护空闲记录链表</td>
+<td>高效利用空间但是需要额外空间</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="alt text" src="../image-19.png"/></p>
+<pre class="mermaid"><code>graph LR
+Record0[Record0: 占用] --&gt; Record1
+Record1[Record1: 占用] --&gt; Record3
+Record3[Record3: 空闲] --&gt; Record4
+Record4[Record4: 占用] --&gt; Record5
+Record5[Record5: 空闲]
+
+Header[Header：空闲列表头指针] --&gt; record3[Record3: 空闲] --&gt; record5[Record5: 空闲]
+
+style Record3 stroke:#333,stroke-dasharray: 5 5
+style Record5 stroke:#333,stroke-dasharray: 5 5
+style record3 stroke:#333,stroke-dasharray: 5 5
+style record5 stroke:#333,stroke-dasharray: 5 5
+</code></pre>
+</li>
+</ol>
+<h3 id="12">1.2 变长记录处理</h3>
+<p><strong>定义</strong>：在实际数据库应用中，如果一直采用固定长度存储（如<code>CHAR(100)</code>），会浪费大量空间。有些字段的长度不是固定的，各种各样的情况导致了每条记录的实际长度不一样，即为<strong>变长记录（Variable-length Records）</strong>。</p>
+<p><strong>出现场景</strong>：</p>
+<ol>
+<li>
+<p><strong>VARCHAR字段</strong></p>
+<ul>
+<li>如 <code>name VARCHAR(100)</code>，实际名字可能是 "Tom" 或 "Christopher Columbus"。</li>
+<li>不固定长度，需要<strong>动态管理</strong>存储空间。</li>
+</ul>
+</li>
+<li>
+<p><strong>多类型记录混合存储</strong></p>
+<p>同一张物理文件中存储多种结构的数据（比如一个员工表里混着老师、助教、行政人员等不同类型）。这通常出现在一些老式或优化性能的设计中。</p>
+</li>
+<li>
+<p><strong>重复字段（旧数据模型）</strong></p>
+<ul>
+<li>在早期数据库设计中（如层次模型、网状模型），允许字段重复出现（如一个学生有多个电话号码）。</li>
+<li>相对的，现代数据库已较少使用这种方式，而是通过关联表实现。</li>
+</ul>
+</li>
+</ol>
+<p><strong>存储结构</strong>：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>[Null位图][固定长度属性][偏移量1,长度1][偏移量2,长度2]...[变长数据]
+</code></pre></div>
+<p><img alt="alt text" src="../image-21.png"/></p>
+<div class="admonition example">
+<p class="admonition-title">小朋友点名册</p>
+<p>想象一下你是某混沌邪恶的老师，每次上课都要统计班上学生的出勤情况。你设计了一个简单的表格：</p>
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>班级</th>
+<th>缺勤原因（可空）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aa</td>
+<td>bb</td>
+<td>cc</td>
+</tr>
+</tbody>
+</table>
+<p>其中：</p>
+<ul>
+<li><strong>姓名</strong>：字符串（<code>VARCHAR</code>）</li>
+<li><strong>班级</strong>：字符串（<code>VARCHAR</code>）</li>
+<li><strong>缺勤原因</strong>：可为空（<code>NULL</code>）</li>
+</ul>
+<p>有一天你记录了这样一条信息：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>(姓名: '文子衿', 班级: '二年级1班', 缺勤原因: NULL)
+</code></pre></div>
+<p>你想把这条记录<strong>存到计算机里</strong>，而且想尽可能<strong>节省空间</strong>，同时还能<strong>快速查找</strong>字段内容。</p>
+<p>那么计算机是怎么存这条记录的？</p>
+<p>我们把上面这条记录转换成刚才提到的计算机底层存储的样子：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>[Null位图] [固定字段] [偏移量对] ... [变长数据]
+</code></pre></div>
+<p>看不懂？不急，接着往下看。</p>
+<p><strong>步骤 1</strong>：判断哪些是变长字段</p>
+<p>在我们的例子中：</p>
+<ul>
+<li><code>姓名</code>：变长（比如“文庭”和“文子衿”长度不同）。</li>
+<li><code>班级</code>：变长（比如“二年级1班” vs “三年级12班”）。</li>
+<li><code>缺勤原因</code>：可为 NULL，也是变长字符串。</li>
+</ul>
+<p>所以它们都属于<strong>变长字段</strong>。</p>
+<p><strong>步骤 2</strong>：构造 Null 位图</p>
+<p>总共3个字段，而第三个字段“缺勤原因”是 NULL，所以 Null 位图是：<code>001</code>；</p>
+<blockquote>
+<p>有些系统会反过来，写成 <code>100</code>，具体取决于实现。</p>
+</blockquote>
+<p>我们就假设这里使用的是 <code>001</code> 表示第三个字段为NULL。</p>
+<p><strong>步骤 3</strong>：计算偏移量</p>
+<p>先写下所有的字段内容：</p>
+<ul>
+<li>姓名：<code>文子衿</code> → 9个字节（这里假定用的是 UTF-8 标准，一个汉字3字节）</li>
+<li>班级：<code>二年级1班</code> → 13个字节</li>
+<li>缺勤原因：<code>NULL</code> → 不需要存储</li>
+</ul>
+<p>分解解释每一部分：</p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>内容</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Null位图</td>
+<td><code>001</code></td>
+<td>第三个字段“缺勤原因”为<code>NULL</code>，而其它都非空</td>
+</tr>
+<tr>
+<td>固定字段</td>
+<td>（没有）</td>
+<td>没有 INT、DATE 这类固定长度字段，略</td>
+</tr>
+<tr>
+<td>偏移量1</td>
+<td><code>(10,9)</code></td>
+<td>第一个变长字段从第10字节开始，占9字节</td>
+</tr>
+<tr>
+<td>偏移量2</td>
+<td><code>(19,13)</code></td>
+<td>第二个变长字段从第19字节开始，占13字节</td>
+</tr>
+<tr>
+<td>变长数据区</td>
+<td><code>文子衿</code>, <code>二年级1班</code></td>
+<td>实际的字符串内容</td>
+</tr>
+</tbody>
+</table>
+<p>需要注意的是，这里假定Null位图占1字节，偏移量1和偏移量2将要各占4字节，因此</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>+--------+------------+--------------+--------------+-----------+--------------+
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>| 001    | (无)       | (10,9)       | (19,13)      |    文子衿  |   二年级1班   |
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>+--------+------------+--------------+--------------+-----------+--------------+
+</code></pre></div>
+</div>
+<h3 id="13-slotted-page">1.3 分槽页结构（Slotted Page）</h3>
+<p><strong>定义</strong>：分槽页结构是一种将记录指针和记录内容分离的页面布局方式，它允许记录在页面内移动而不影响外部引用它们的指针。</p>
+<p><strong>块结构</strong>：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>--------------------------------------------------------------------------------
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>| 记录数 | 空闲空间尾 | 记录1位置/大小 | ... | 记录N位置/大小 | 空闲空间 | 记录数据 |
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>--------------------------------------------------------------------------------
+</code></pre></div>
+<p><strong>关键特性</strong>：</p>
+<ul>
+<li>
+<p>记录可在页内移动（保持紧凑）</p>
+<p>如果某条记录被删除了，后面的数据可以向前移动填补空缺，同时只更新“槽表”中的位置信息即可，不需要修改其他地方的指针。</p>
+</li>
+<li>
+<p>指针指向<strong>页头条目</strong>而非直接指向记录</p>
+<p>外部引用（如索引）并不直接指向记录本身，而是指向“槽表”中的一个入口。即使记录内容在页面内移动了，只要更新槽表里的偏移量，所有引用依然有效。</p>
+</li>
+<li>
+<p>空闲空间动态管理</p>
+<p>页面中间可能有空洞（比如删除了某些记录），插入新记录时<strong>优先使用这些空洞</strong>，如果没有足够空间，则从页面两端向中间扩展。</p>
+</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">学生档案</p>
+<p>想象你有一个学生档案架（相当于数据库中的一个磁盘页），这个架子有以下特点：</p>
+<ul>
+<li>它有编号为 <code>0 ~ 99</code> 的位置（共100个字节）。</li>
+<li>每个学生的档案必须整本放入档案架，不能断开存放。</li>
+<li>你还有一个目录表（槽表），用来记录每本学生档案的位置和长度。</li>
+<li>插入新档案时优先使用空闲空间，而不是盲目前移或后移。</li>
+</ul>
+<p>而对于这个学生档案架：</p>
+<ol>
+<li>
+<p>初始状态：（空页面）</p>
+<table>
+<thead>
+<tr>
+<th>字节位置</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 ~ 99</td>
+<td>空闲空间</td>
+</tr>
+</tbody>
+</table>
+<p>槽表（Slot Table）为空：<code>[ ]</code></p>
+</li>
+<li>
+<p>步骤一：插入第一条记录</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">students</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">'Alice'</span><span class="p">,</span><span class="w"> </span><span class="s1">'CS'</span><span class="p">);</span>
+</code></pre></div>
+<p>我们假设这条记录大小是 20 字节，而其存放：</p>
+<ul>
+<li>起始位置 80（从后往前放）</li>
+<li>更新槽表：添加一条记录 <code>(pos=80, len=20)</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>字节位置</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 ~ 79</td>
+<td>空闲空间</td>
+</tr>
+<tr>
+<td>80 ~ 99</td>
+<td>记录1</td>
+</tr>
+</tbody>
+</table>
+<p>槽表：<code>[ (pos=80, len=20) ]</code></p>
+</li>
+<li>
+<p>步骤二：插入第二条记录</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">students</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">'Bob'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Math'</span><span class="p">);</span>
+</code></pre></div>
+<p>我们假定这条记录大小是 15 字节，对于其存放：</p>
+<ul>
+<li>起始位置 65（继续从后往前放）</li>
+<li>更新槽表：添加一条记录 <code>(pos=65, len=15)</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>字节位置</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 ~ 64</td>
+<td>空闲空间</td>
+</tr>
+<tr>
+<td>65 ~ 79</td>
+<td>记录2</td>
+</tr>
+<tr>
+<td>80 ~ 99</td>
+<td>记录1</td>
+</tr>
+</tbody>
+</table>
+<p>槽表：<code>[ (pos=80, len=20), (pos=65, len=15) ]</code></p>
+<p>注意：槽表是按插入顺序排列的，不是物理顺序。（也就是说，<strong>逻辑与物理分离</strong>）</p>
+</li>
+<li>
+<p>步骤三：删除第一条记录</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">students</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+<p>现在记录1被删除了：</p>
+<ul>
+<li>删除后不立即移动其他记录</li>
+<li>在槽表中将记录1标记为“无效”或删除</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>字节位置</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 ~ 64</td>
+<td>空闲空间</td>
+</tr>
+<tr>
+<td>65 ~ 79</td>
+<td>记录2</td>
+</tr>
+<tr>
+<td>80 ~ 99</td>
+<td>(已删除)空闲空间</td>
+</tr>
+</tbody>
+</table>
+<p>槽表：<code>[ (pos=65, len=15) ]</code></p>
+<p>这时候页面中间出现了空洞（80~99 是空的，前面也有空闲空间）</p>
+</li>
+<li>
+<p>步骤四：插入第三条记录（较大的记录）</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">students</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">'Donald Trump'</span><span class="p">,</span><span class="w"> </span><span class="s1">'e-business'</span><span class="p">);</span>
+</code></pre></div>
+<p>假设这条记录大小是70字节。</p>
+<ul>
+<li>当前空闲空间在前段（0~64）只有65字节可用</li>
+<li>后面有个空洞（80~99）也只有20字节</li>
+</ul>
+<p>不够单独放下70字节的记录，怎么办？<strong>这时候就进行一次紧凑整理</strong>：</p>
+<ul>
+<li>把记录2移到后面去（起始位置70）</li>
+<li>前面腾出连续空间（0~69）</li>
+<li>插入新记录到0 ~ 69（70字节）</li>
+</ul>
+<p>由于通常会从页面末尾向前<strong>紧挨着放置记录</strong>，所以记录2被移到了70<sub>84，而非85</sub>99。</p>
+<p>最终结果如下：</p>
+<table>
+<thead>
+<tr>
+<th>字节位置</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 ~ 69</td>
+<td>记录3</td>
+</tr>
+<tr>
+<td>70 ~ 84</td>
+<td>记录2</td>
+</tr>
+<tr>
+<td>85 ~ 99</td>
+<td>空闲空间</td>
+</tr>
+</tbody>
+</table>
+<p>槽表：<code>[ (pos=70, len=15), (pos=0, len=70) ]</code></p>
+</li>
+</ol>
+<p>注意：</p>
+<ul>
+<li>槽表仍然有<strong>两个入口</strong></li>
+<li>记录2的位置变了，但<strong>槽号不变</strong>（外部引用依然有效）</li>
+<li>页面保持紧凑，没有碎片</li>
+</ul>
+</div>
+<h2 id="2">2. 文件组织方式</h2>
+<p>在数据库系统中，文件组织方式（File Organization） 是指如何将表中的记录（即数据）<strong>物理地存储</strong>在磁盘上。不同的组织方式会影响查询效率、插入/更新/删除性能、空间利用率以及索引结构设计等属性。</p>
+<h3 id="21">2.1 主要组织方式对比</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>存储特点</th>
+<th>适用场景</th>
+<th>I/O效率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>堆文件</strong></td>
+<td>任意位置存放</td>
+<td>通用</td>
+<td>中等</td>
+</tr>
+<tr>
+<td><strong>顺序文件</strong></td>
+<td>按搜索键排序</td>
+<td>全表扫描</td>
+<td>顺序访问高效</td>
+</tr>
+<tr>
+<td><strong>聚簇文件</strong></td>
+<td>多关系同文件存储</td>
+<td>关联查询</td>
+<td>关联查询高效</td>
+</tr>
+<tr>
+<td><strong>B+树文件</strong></td>
+<td>树形结构有序存储</td>
+<td>范围查询</td>
+<td>高（动态平衡）</td>
+</tr>
+<tr>
+<td><strong>哈希文件</strong></td>
+<td>哈希值定位块</td>
+<td>点查询</td>
+<td>极高（精确匹配）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22">2.2 关键技术详解</h3>
+<h4 id="1-heap-file-organization">1. 堆文件组织（Heap File Organization）</h4>
+<p><strong>核心特点</strong>：</p>
+<ul>
+<li>记录可以存放文件的任何空闲位置。</li>
+<li>记录一旦存放通常不会移动。</li>
+<li>需要高效的空闲空间管理机制。</li>
+</ul>
+<p><strong>空闲空间管理</strong>：</p>
+<ul>
+<li>
+<p><strong>一级位图</strong>（Primary Bitmap）：<strong>每个磁盘块</strong>对应一个<strong>位图项</strong>，位图项的值表示这个块中<strong>有多少空闲空间</strong>（用 0~7 表示 <span class="arithmatex">\( \frac{1}{8} \sim \frac{7}{8} \)</span> 的空闲比例），3位足够表示0到7的数值（正好覆盖 0% 到 100% 的空闲比例，步长为 12.5%）。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>在下面这个一级位图中，</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>[4, 2, 1, 4, 7, 3, 6, 5, 1, 2, 0, 1, 1, 0, 5, 6]
+</code></pre></div>
+<ul>
+<li>第0块：4/8 = 50% 空闲</li>
+<li>
+<p>第1块：2/8 = 25% 空闲</p>
+<p>......</p>
+</li>
+<li>
+<p>第4块：7/8 = 87.5% 空闲 （此块有很多空闲！）</p>
+</li>
+</ul>
+</div>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>精确度高：能知道每一块的具体空闲比例；</li>
+<li>插入记录时可以选择合适的位置。</li>
+</ul>
+<p><strong>缺点</strong>：查找空闲块效率低，要遍历整个数组才能找到合适的块；</p>
+</li>
+<li>
+<p><strong>二级位图</strong>（Secondary Bitmap）：为了提高查找效率，在一级位图的基础上建立“摘要层”，也就是记录<strong>每组块的最大空闲值</strong>。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>比如下面的示例中，每组分了4个块。</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>一级位图：[4,2,1,4, 7,3,6,5, 1,2,0,1, 1,0,5,6]
+<a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a>分组：    [0, 3]   [4, 7]   [8, 11]  [12, 15]
+<a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a>二级位图：[4,        7,        2,        6]
+</code></pre></div>
+<p>解释：</p>
+<ul>
+<li>第一组（块0~3）最大空闲比例是 4（即 50%）</li>
+<li>第二组（块4~7）最大是 7（即 87.5%）（所以说这组很适合插入）</li>
+<li>第三组最大是 2（25%）</li>
+<li>第四组最大是 6（75%）</li>
+</ul>
+</div>
+<p><strong>优点</strong>：把多个块分成一组，而每个组记录其中最大的空闲比例，就能实现先看“摘要”，再决定要不要深入查看一级位图。这么做能够<strong>快速定位</strong>“可能有空闲空间”的块组，也<strong>减少扫描一级位图的次数</strong>，进而<strong>提升插入效率</strong>。</p>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>需要维护两层结构，增加复杂度；</li>
+<li>更新时需要同步更新一级和二级位图；</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-sequential-file-organization">2. 顺序文件组织（Sequential File Organization）</h4>
+<p><strong>定义</strong>：在顺序文件中，数据是<strong>按搜索键（如主键 ID）物理有序存储</strong>的，插入新记录时，必须保证它放在正确的位置，保持整体有序，这种组织方式就叫做顺序文件组织。</p>
+<p><strong>存储特点</strong>：按照搜索键物理有序存储。</p>
+<p><strong>插入处理</strong>：</p>
+<ul>
+<li>有空闲空间：直接插入适当位置</li>
+<li>无空闲空间：使用溢出块</li>
+</ul>
+<p>这概念不太好懂，请看下面：</p>
+<p><strong>情况一</strong>：有空闲空间，直接插入</p>
+<p>假设你的磁盘块里有空位：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>[10101] [12121] [____] [15151] [22222]
+</code></pre></div>
+<p>你想插入一条 <code>id=13456</code> 的记录：</p>
+<p>它应该插在 <code>12121</code> 和 <code>15151</code> 之间，因为中间有一个空位，可以直接放进去，而它插入后仍保持物理有序：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>[10101] [12121] [13456] [15151] [22222]
+</code></pre></div>
+<p><strong>情况二</strong>：没有空闲空间，使用溢出块</p>
+<p>如果当前磁盘块长下面这样（它已满了）：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>[10101] [12121] [15151] [22222]
+</code></pre></div>
+<p>你现在想插入 <code>id=13456</code>，怎么办？</p>
+<p><strong>没有空位，无法把所有记录往后移</strong>（即便有，那样做的代价也太高），所以数据库引入了“溢出块”机制：</p>
+<div class="admonition note">
+<p class="admonition-title">溢出块</p>
+<p>溢出块是一个额外的磁盘块，专门用来存放那些“插不进主区”的记录，这样主区保持原有顺序不变。</p>
+<p>而新记录放入溢出块，并用<strong>指针连接到前后记录</strong>。</p>
+</div>
+<p>对于主区（Main Block）：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>[10101] → [12121] → [15151] → [22222]
+</code></pre></div>
+<p>而溢出区（Overflow Block）：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a>[13456]
+</code></pre></div>
+<p>通过指针链接成这样：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a>... → 12121 → 13456 → 15151 → ...
+</code></pre></div>
+<p>注意：</p>
+<ul>
+<li>查询时要顺着链表查找；</li>
+<li>这样虽然可以插入，但破坏了原本的“连续有序”结构；</li>
+<li>随着时间推移，溢出链会越来越长，查询效率下降。</li>
+</ul>
+<blockquote>
+<p>这种组织方式需要定期重组（Reorganization）以保持顺序。</p>
+<p><strong>定期重组</strong> 是指将主区与溢出块中的记录重新整理，恢复物理上的有序存储结构。</p>
+<p>具体而言，当溢出链太长（影响查询性能）时或者系统维护期间就自动执行（当然可以手动）。</p>
+<p>而定期重组主要做的是<strong>把主区和溢出块中的所有记录合并</strong>、<strong>按照搜索键排序</strong>、将空位<strong>重新分配</strong>到新的或清理后的主区中 以及 <strong>删除原来的溢出链</strong>。</p>
+</blockquote>
+<h4 id="3-multitable-clustering">3. 多表聚簇文件组织（Multitable Clustering）</h4>
+<p><strong>定义</strong>：多表聚簇文件组织是一种将<strong>多个相关表的数据物理上存储在一起</strong>的组织方式。</p>
+<p>举个简单例子：</p>
+<p><img alt="alt text" src="../image-20.png"/></p>
+<ul>
+<li>每个“部门 + 所属教师”作为一个整体存储；</li>
+<li>这样在查询“某个系的所有老师”时，只需要一次 I/O 即可获取所有相关信息；</li>
+</ul>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>关联查询效率极高（减少I/O）。</li>
+<li>局部性优化（相关数据集中存储）。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>单表查询效率降低。</li>
+<li>产生变长记录。</li>
+</ul>
+<h4 id="4-partitioning">4. 分区（Partitioning）</h4>
+<p><strong>定义</strong>：这个一看名字就懂了，按某种条件或者规则将表分割为多个物理部分，最终实现提升查询效率、优化存储等功能。</p>
+<p>示例（按年份分区）：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="n">transaction_2018</span><span class="p">(...,</span><span class="w"> </span><span class="k">year</span><span class="o">=</span><span class="mi">2018</span><span class="p">)</span>
+<a href="#__codelineno-17-2" id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="n">transaction_2019</span><span class="p">(...,</span><span class="w"> </span><span class="k">year</span><span class="o">=</span><span class="mi">2019</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>存储优化</strong>：使用冷热数据分离。</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>特点</th>
+<th>存储建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>热数据（Hot Data）</strong></td>
+<td>访问频繁、实时性强</td>
+<td>存在 SSD 上，速度快</td>
+</tr>
+<tr>
+<td><strong>冷数据（Cold Data）</strong></td>
+<td>几乎不访问、历史数据</td>
+<td>存在 HDD 或磁带上，成本低</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>SSD（Solid State Drive，固态硬盘）：存放当前年度分区（高访问频率），这类数据对响应速度要求很高，SSD又快又好。</li>
+<li>HDD（Hard Disk Drive，硬盘驱动器）：存放历史年度分区（低访问频率），这类数据可以接受较慢的响应时间，因此可以存储在HDD上，以节省成本。</li>
+</ul>
+<blockquote>
+<p>B+树和哈希组织方式将在第14章(Lecture 10)详细讨论</p>
+</blockquote>
+<h2 id="3">3. 数据字典与缓冲区</h2>
+<h3 id="31">3.1 数据字典（系统目录）</h3>
+<p><strong>定义</strong>：数据字典是数据库用来存储“关于数据的数据”的地方。它记录了数据库中所有对象的元信息（Metadata），也就是描述数据库结构和行为的信息。</p>
+<p><strong>存储内容</strong>：</p>
+<ul>
+<li>关系元数据（表名、属性名、类型、约束（如主键、外键））</li>
+<li>物理存储信息（存储类型（堆文件、B+树等）、文件路径或页号）</li>
+<li>用户权限与统计信息（哪些用户可以访问或修改哪些表、行数、索引分布等（用于查询优化器））</li>
+</ul>
+<p><strong>关系表示例</strong>：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="p">(</span>
+<a href="#__codelineno-18-2" id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="w">    </span><span class="n">relation_name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<a href="#__codelineno-18-3" id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="w">    </span><span class="n">attribute_count</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<a href="#__codelineno-18-4" id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="w">    </span><span class="n">storage_type</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="c1">-- heap/btree/hash</span>
+<a href="#__codelineno-18-5" id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="w">    </span><span class="k">location</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<a href="#__codelineno-18-6" id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="p">);</span>
+</code></pre></div>
+<p>对于这样一张简化的数据字典表（实际可能更复杂）：</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>relation_name</code></td>
+<td><code>VARCHAR(50)</code></td>
+<td>表名（即关系名）</td>
+</tr>
+<tr>
+<td><code>attribute_count</code></td>
+<td><code>INT</code></td>
+<td>属性数量（即字段数量）</td>
+</tr>
+<tr>
+<td><code>storage_type</code></td>
+<td><code>VARCHAR(20)</code></td>
+<td>存储方式，例如：堆文件（heap）、B+树、哈希等</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td><code>VARCHAR(100)</code></td>
+<td>物理存储位置（比如磁盘文件路径、页面编号等）</td>
+</tr>
+</tbody>
+</table>
+<p>由此你也可以看到，数据字典是数据库的核心组成部分，它存储了所有表的结构、存储方式、位置、权限和统计信息等信息，是数据库进行查询解析、执行、优化和管理的基础。</p>
+<h3 id="32">3.2 缓冲区管理</h3>
+<p><strong>缓冲区管理</strong>：它是数据库系统中的一个组件，负责将<strong>磁盘上的数据块缓存到内存</strong>中，以提高访问效率。</p>
+<blockquote>
+<p>磁盘 I/O 很慢，内存读写速度比磁盘快很多，所以数据库使用一块叫做 缓冲池（Buffer Pool） 的内存区域来缓存常用的数据块。</p>
+<p>这个过程就像操作系统用内存做文件缓存一样。</p>
+</blockquote>
+<p><strong>缓冲池工作流程</strong>：(一看就懂！)</p>
+<pre class="mermaid"><code>graph LR
+    A[请求块X] --&gt; B{在缓冲区?}
+    B --&gt;|是| C[返回内存地址]
+    B --&gt;|否| D[分配缓冲区空间]
+    D --&gt; E{空间不足?}
+    E --&gt;|是| F[按策略替换块]
+    F --&gt; G[脏块写回磁盘]
+    E --&gt;|否| H[磁盘读取到缓冲区]
+    H --&gt; C
+</code></pre>
+<p><strong>关键机制</strong>：</p>
+<ul>
+<li>
+<p><strong>PIN操作</strong>：锁定块防止被替换。</p>
+<p>什么意思呢？就是说，当某个线程正在访问一个块时，存在并发访问，此时不允许其他线程将其替换或释放。</p>
+<p><code>pin_count</code>是一个引用计数器，只有当所有持有 PIN 的线程都调用<code>unpin()</code>后，该块才可能被替换，有点类似于操作系统的“锁”机制：你可以把它理解成一种“临时锁定”，防止块在使用过程中被换出。</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="n">pin_count</span><span class="w"> </span><span class="o">++</span><span class="p">;</span><span class="w">  </span><span class="c1">// 加锁</span>
+<a href="#__codelineno-19-2" id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="n">read_data</span><span class="p">();</span><span class="w">  </span><span class="c1">// 安全读写</span>
+<a href="#__codelineno-19-3" id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="n">unpin</span><span class="p">();</span><span class="w">      </span><span class="c1">// 解锁</span>
+</code></pre></div>
+</li>
+<li>
+<p><strong>替换策略</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>原理</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LRU</td>
+<td>替换最久未使用块</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>MRU</td>
+<td>替换最近使用块</td>
+<td>嵌套循环连接</td>
+</tr>
+<tr>
+<td>Toss-immediate</td>
+<td>处理完立即释放</td>
+<td>仅需单次扫描</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p>LRU（最久未使用）</p>
+<p>维护一个使用时间队列，<strong>最近使用</strong>的放在<strong>队尾</strong>，<strong>最久未使用</strong>的在<strong>队头</strong>，满时替换队头块（容易受到“一次性扫描”干扰）。</p>
+</li>
+<li>
+<p>MRU（最近使用）</p>
+<p>替换最近刚使用的块（看起来奇怪？但在某些特殊查询（如嵌套循环）中很有用）<strong>防止重复加载</strong>同一块多次。</p>
+</li>
+<li>
+<p>Toss-immediate（即用即弃）</p>
+<p>数据块只使用一次，使用后立即释放，<strong>避免污染缓冲池</strong>（适用于全表扫描等单次操作）。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="4">4. 存储</h2>
+<h3 id="41-vs">4.1 列存储 vs 行存储</h3>
+<ul>
+<li><strong>列存储</strong>：列存储是将每一列的数据单独存储，而不是按行存储。</li>
+<li><strong>行存储</strong>：行存储是将整行记录连续地存储在一起。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>行存储</th>
+<th>列存储</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>存储结构</strong></td>
+<td>行数据连续存储</td>
+<td>列数据连续存储</td>
+</tr>
+<tr>
+<td><strong>I/O效率</strong></td>
+<td>读整行即使只需部分列</td>
+<td>仅读取所需列</td>
+</tr>
+<tr>
+<td><strong>压缩率</strong></td>
+<td>低（异构数据）</td>
+<td>高（同质数据）</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>OLTP事务处理</td>
+<td>OLAP分析查询</td>
+</tr>
+<tr>
+<td><strong>更新代价</strong></td>
+<td>低</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">列存储与行存储</p>
+<p>假设你有如下一张表 <code>instructor</code>：</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>name</th>
+<th>dept_name</th>
+<th>salary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10101</td>
+<td>Srinivasan</td>
+<td>Comp.Sci.</td>
+<td>65000</td>
+</tr>
+<tr>
+<td>12121</td>
+<td>Wu</td>
+<td>Finance</td>
+<td>90000</td>
+</tr>
+<tr>
+<td>15151</td>
+<td>Mozart</td>
+<td>Music</td>
+<td>40000</td>
+</tr>
+</tbody>
+</table>
+<p>在磁盘上，行存储会这样保存：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a>[10101, 'Srinivasan', 'Comp.Sci.', 65000]
+<a href="#__codelineno-20-2" id="__codelineno-20-2" name="__codelineno-20-2"></a>[12121, 'Wu', 'Finance', 90000]
+<a href="#__codelineno-20-3" id="__codelineno-20-3" name="__codelineno-20-3"></a>[15151, 'Mozart', 'Music', 40000]
+</code></pre></div>
+<p>每个记录作为一个整体存储。</p>
+<p>同样的 <code>instructor</code> 表，在列存储中是这样组织的：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a>ID列:    [10101, 12121, 15151]
+<a href="#__codelineno-21-2" id="__codelineno-21-2" name="__codelineno-21-2"></a>name列:  ['Srinivasan', 'Wu', 'Mozart']
+<a href="#__codelineno-21-3" id="__codelineno-21-3" name="__codelineno-21-3"></a>dept列:  ['Comp.Sci.', 'Finance', 'Music']
+<a href="#__codelineno-21-4" id="__codelineno-21-4" name="__codelineno-21-4"></a>salary列:[65000, 90000, 40000]
+</code></pre></div>
+<p>每一列单独存储在一个文件或块中。</p>
+</div>
+<p>用哪一个具体取决于你的<strong>使用场景</strong>：</p>
+<ul>
+<li>
+<p>场景一：OLTP（联机事务处理）。银行系统、电商订单系统，更适合用 <strong>行存储</strong>，因为它支持快速插入/更新一行，也能一次性读取完整信息；</p>
+</li>
+<li>
+<p>场景二：OLAP（联机分析处理）。报表系统、数据分析平台（它们需要查询大量数据并且只关心某些列；它们很少更新，主要用于聚合统计），更适合用 <strong>列存储</strong>，因为它能高效读取特定列，数据压缩率高节省空间，更适合向量化执行引擎加速计算。</p>
+</li>
+</ul>
+<h3 id="42-orcoptimized-row-columnarparquet">4.2 混合存储格式(ORC（Optimized Row Columnar）/Parquet)</h3>
+<p>混合存储，顾名思义，它不是纯粹的行存储，也不是纯粹的列存储，而是结合了两者的优点的一种结构化数据存储方式。</p>
+<ul>
+<li><strong>ORC文件结构</strong>：</li>
+</ul>
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>ORC 文件结构</title>
+<style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-family: Arial, sans-serif;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: center;
+    }
+    .sub-item {
+      font-size: 0.9em;
+      color: #555;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+<h2>ORC 文件结构示意图</h2>
+<table>
+<tr>
+<th colspan="4">文件头（File Header）</th>
+</tr>
+<tr>
+<td><strong>Stripe 1</strong><br/><span class="sub-item">・ 索引数据<br/>・ 行数据<br/>・ Footer</span></td>
+<td><strong>Stripe 2</strong><br/><span class="sub-item">・ 索引数据<br/>・ 行数据<br/>・ Footer</span></td>
+<td><strong>Stripe 3</strong><br/><span class="sub-item">・ 索引数据<br/>・ 行数据<br/>・ Footer</span></td>
+<td>...</td>
+</tr>
+</table>
+</body>
+</html>
+<p><img alt="alt text" src="../image-22.png"/></p>
+<ol>
+<li>
+<p>文件头（File Header）</p>
+<ul>
+<li>标识这是一个 ORC 文件；</li>
+<li>包含文件的基本信息（如版本号、压缩算法等）；</li>
+</ul>
+</li>
+<li>
+<p>Stripe</p>
+<ul>
+<li>这是 ORC 文件的核心单位；</li>
+<li>一个 Stripe 相当于一个小的列式存储单元，通常大小为 <strong>256MB ~ 1GB</strong>，可配置；</li>
+<li>
+<p>每个 Stripe 包含：</p>
+<ul>
+<li><strong>列数据（Column Data）</strong></li>
+<li><strong>索引信息（Index Data）</strong></li>
+<li><strong>元数据（Footer）</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>列数据（Column Data）</p>
+<ul>
+<li>数据按列存储；</li>
+<li>每列数据单独存放；</li>
+<li>支持高效压缩（如字典编码等）；</li>
+</ul>
+</li>
+<li>
+<p>索引信息（Index Data）</p>
+<ul>
+<li>可以加速谓词下推（Predicate Pushdown）；</li>
+<li>比如 <code>WHERE salary &gt; 100000</code>，可以直接跳过不满足条件的 Stripe；</li>
+<li>包括每列的统计信息（如最小值、最大值、空值数量等）；</li>
+</ul>
+</li>
+<li>
+<p>Footer 元数据</p>
+<ul>
+<li>描述该 Stripe 中各列的位置、长度、类型等；</li>
+<li>用于快速定位和解析列数据；</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-sql">5. SQL与存储层关联</h2>
+<h3 id="51">5.1 索引的物理实现</h3>
+<p>譬如在下面这个语句中，</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-22-1" id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</code></pre></div>
+<p>我们在数据库表<code>student</code>上创建名为<code>idx_name</code>的索引的SQL语句，该索引基于列<code>name</code>。这意味着对于<code>student</code>表中的每一个<code>name</code>值，都会在索引<code>idx_name</code>中有一个对应的入口。</p>
+<p>而其对应的<strong>物理表现</strong>：</p>
+<ul>
+<li>B+树或哈希结构：B+允许快速查找、顺序访问、插入及删除操作；而哈希索引则提供了一种更直接的方法来进行查找，但不支持范围查询。</li>
+<li>叶子节点存储记录物理位置指针：非叶子节点存储键值以及指向子节点的指针，而所有叶子节点都在同一层，并包含实际的数据行的物理地址（指针），这使得对数据行的访问非常高效。</li>
+<li>缓冲池缓存热点索引页：这个老生常谈，主要是减少直接访问磁盘读取数据的需求。</li>
+</ul>
+<h3 id="52-io">5.2 连接操作的IO优化</h3>
+<p>在下面的这个SQL语句中，</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-23-1" id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span>
+<a href="#__codelineno-23-2" id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">NATURAL</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">customers</span>
+</code></pre></div>
+<p>这是一个看起来很简单的<code>JOIN</code>操作，但这个查询在底层执行时，如果数据量大、设计不合理，会导致大量磁盘 I/O，影响性能。</p>
+<p>于是数据库系统会通过一些<strong>物理存储和访问策略</strong>来优化这种连接操作的 I/O 效率。</p>
+<p><strong>底层优化</strong>：</p>
+<ul>
+<li>聚簇文件减少关联I/O：把多个相关表的数据<strong>物理存储在一起</strong>，形成一种结构化的组织方式。</li>
+<li>缓冲池保留被多次访问的维度表：在连接中，<strong>维度表（Dimension Table）</strong> 是较小且被频繁访问的表；而<strong>事实表（Fact Table）</strong>，相对地，数据量大。</li>
+<li>列存储优化投影属性访问：“投影属性”就是 SELECT 中指定的字段，比如上面的查询，我们就只关心<code>name</code>列，所以查询时只需读取它即可，节省 I/O；</li>
+</ul>
+<h3 id="53">5.3 事务与存储协同</h3>
+<p><strong>ACID实现</strong>：</p>
+<pre class="mermaid"><code>graph TB
+    A[事务开始] --&gt; B[数据修改缓冲池]
+    B --&gt;|不在缓冲池| C[从磁盘加载数据页到内存]
+    B --&gt;|在缓冲池| D[WAL日志]
+    C --&gt; D
+    D --&gt; E[提交事务]
+    E --&gt; F[新数据刷到磁盘里]
+</code></pre>
+<ul>
+<li>
+<p><strong>日志先行</strong>（WAL）：先记录操作到日志上，日志在合适的时机将操作传回磁盘。也就是说，当事务提交时，必须将日志写入磁盘（fsync），才算“真正提交”。这样就通过日志磁盘保证<strong>持久性</strong>（Durability）。</p>
+<p>如果不日志先行，比如说，你修改了一半数据页，突然就断电了，那数据不一致，也无法恢复中间状态；而现实是修改一半断电会直接回到事务前，这就是undo log（WAL的一种）。</p>
+</li>
+<li>
+<p><strong>非易失缓冲</strong>：使用一种掉电不丢失的内存（Non-Volatile RAM / NV-RAM） 来加速日志写入和事务提交。</p>
+<p>为什么可以加速呢？将日志先写入NV-RAM，因为它是“非易失”的，即使断电也不会丢数据，所以可以认为写入 NV-RAM 就等同于“落盘”，这样就不需要等待真正的磁盘 I/O，事务提交速度大大加快。</p>
+</li>
+</ul>
+<h2 id="_1">附录：存储参数优化建议</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>推荐值</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>块大小</td>
+<td>8KB-32KB</td>
+<td>I/O效率</td>
+</tr>
+<tr>
+<td>缓冲池大小</td>
+<td>总内存70-80%</td>
+<td>缓存命中率</td>
+</tr>
+<tr>
+<td>预读窗口</td>
+<td>4-16块</td>
+<td>顺序扫描速度</td>
+</tr>
+<tr>
+<td>检查点间隔</td>
+<td>5-15分钟</td>
+<td>恢复速度与运行时开销</td>
+</tr>
+</tbody>
+</table>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright 2024 by estruswent
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+<script src="../../style/javascripts/mathjax.js"></script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
+</html>

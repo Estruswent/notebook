@@ -7,11 +7,9 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="This is E5trusw3nt's Notebook" name="description"/>
 <meta content="E5trusw3nt" name="author"/>
-<link href="../.." rel="prev"/>
-<link href="../DoublyLinkedList/" rel="next"/>
 <link href="../../style/images/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.34" name="generator"/>
-<title>时间复杂度 - E5trusw3nt's Notebook</title>
+<title>Lecture10 - E5trusw3nt's Notebook</title>
 <link href="../../assets/stylesheets/main.35f28582.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -29,9 +27,6 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#_1">
-          Skip to content
-        </a>
 </div>
 <div data-md-component="announce">
 </div>
@@ -53,7 +48,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              时间复杂度
+              Lecture10
             
           </span>
 </div>
@@ -124,8 +119,8 @@
 
       </a>
 </li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="./">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/TimeComplexity/">
           
   
   Computer Science
@@ -183,132 +178,85 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
 <span class="md-ellipsis">
     Computer Science
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
             Computer Science
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
 <span class="md-ellipsis">
     数据结构基础
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_2_1">
 <span class="md-nav__icon md-icon"></span>
             数据结构基础
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    时间复杂度
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/TimeComplexity/">
 <span class="md-ellipsis">
     时间复杂度
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-<span class="md-ellipsis">
-      一、递归类时间复杂度的计算
-    </span>
-</a>
-<nav aria-label="一、递归类时间复杂度的计算" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-<span class="md-ellipsis">
-      法一：主定理
-    </span>
-</a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-<span class="md-ellipsis">
-      法二：递归树法
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-<span class="md-ellipsis">
-      二、迭代类时间复杂度的计算
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../DoublyLinkedList/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DoublyLinkedList/">
 <span class="md-ellipsis">
     双向链表
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Graph/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Graph/">
 <span class="md-ellipsis">
     图
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Sort/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort/">
 <span class="md-ellipsis">
     排序问题
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Tree/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Tree/">
 <span class="md-ellipsis">
     树、二叉树与线索二叉树
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../PriorityQueues/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/PriorityQueues/">
 <span class="md-ellipsis">
     优先队列（堆）
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../DisjointSet/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DisjointSet/">
 <span class="md-ellipsis">
     并查集
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../unfinished/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/unfinished/">
 <span class="md-ellipsis">
     待完成
   </span>
@@ -332,63 +280,63 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture1/">
+<a class="md-nav__link" href="../Lecture1/">
 <span class="md-ellipsis">
     Lecture1: Introduction
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture2/">
+<a class="md-nav__link" href="../Lecture2/">
 <span class="md-ellipsis">
     Lecture2: relations models and algebra
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture3/">
+<a class="md-nav__link" href="../Lecture3/">
 <span class="md-ellipsis">
     Lecture3: SQL
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture4/">
+<a class="md-nav__link" href="../Lecture4/">
 <span class="md-ellipsis">
     Lecture4: Immediate SQL
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture5/">
+<a class="md-nav__link" href="../Lecture5/">
 <span class="md-ellipsis">
     Lecture5: Advanced SQL
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture6/">
+<a class="md-nav__link" href="../Lecture6/">
 <span class="md-ellipsis">
     Lecture6: Database Design using the E-R Model
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture7/">
+<a class="md-nav__link" href="../Lecture7/">
 <span class="md-ellipsis">
     Lecture7: Normalization
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture8/">
+<a class="md-nav__link" href="../Lecture8/">
 <span class="md-ellipsis">
     Lecture8: Physical Storage System
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture9/">
+<a class="md-nav__link" href="../Lecture9/">
 <span class="md-ellipsis">
     Lecture9: Data Storage Structure
   </span>
@@ -509,119 +457,13 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-<span class="md-ellipsis">
-      一、递归类时间复杂度的计算
-    </span>
-</a>
-<nav aria-label="一、递归类时间复杂度的计算" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-<span class="md-ellipsis">
-      法一：主定理
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-<span class="md-ellipsis">
-      法二：递归树法
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-<span class="md-ellipsis">
-      二、迭代类时间复杂度的计算
-    </span>
-</a>
-</li>
-</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="_1">时间复杂度的计算问题</h1>
-<h2 id="_2">一、递归类时间复杂度的计算</h2>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p><strong>(FDS HW1)</strong> 例题：递归关系如下，求时间复杂度。</p>
-<div class="arithmatex">\[
-T(1) = 1
-\]</div>
-<div class="arithmatex">\[
-T(N) = 3T\left(\frac{N}{3}\right) + 1
-\]</div>
-</div>
-<h3 id="_3">法一：主定理</h3>
-<p>递归关系 <span class="arithmatex">\( T(N) = aT\left(\frac{N}{b}\right) + O(N^d) \)</span> 可以按照以下规则来解决：</p>
-<ol>
-<li>如果 <span class="arithmatex">\( a &gt; b^d \)</span>，时间复杂度是 <span class="arithmatex">\( O(N^{\log_b a}) \)</span>。</li>
-<li>如果 <span class="arithmatex">\( a = b^d \)</span>，时间复杂度是 <span class="arithmatex">\( O(N^d \log N) \)</span>。</li>
-<li>如果 <span class="arithmatex">\( a &lt; b^d \)</span>，时间复杂度是 <span class="arithmatex">\( O(N^d) \)</span>。</li>
-</ol>
-<p>根据该定理可以得到时间复杂度是 <span class="arithmatex">\(O(N)\)</span>。</p>
-<h3 id="_4">法二：递归树法</h3>
-<p><strong>展开递归</strong></p>
-<ul>
-<li>第 1 层：一个问题大小为 <span class="arithmatex">\(N\)</span>，工作量是 <span class="arithmatex">\(1\)</span>。</li>
-<li>第 2 层：3 个子问题，每个大小为 <span class="arithmatex">\(N/3\)</span>，工作量是 <span class="arithmatex">\(3\)</span>。</li>
-<li>第 3 层：9 个子问题，每个大小为 <span class="arithmatex">\(N/9\)</span>，工作量是 <span class="arithmatex">\(9\)</span>。</li>
-<li>...</li>
-<li>第 <span class="arithmatex">\(k\)</span> 层：<span class="arithmatex">\(3^k\)</span> 个子问题，每个大小为 <span class="arithmatex">\(N/3^k\)</span>，工作量是 <span class="arithmatex">\(3^k\)</span>。</li>
-</ul>
-<p><strong>求高度</strong></p>
-<p>树的高度为 <span class="arithmatex">\(k\)</span>，当子问题大小为 1 时，满足 <span class="arithmatex">\(\frac{N}{3^k} = 1\)</span>，解得 <span class="arithmatex">\(k = \log_3 N\)</span>。</p>
-<p><strong>总工作量</strong></p>
-<p>所有层的工作量之和为：</p>
-<div class="arithmatex">\[
-T(N) = 1 + 3 + 9 + \dots + 3^{\log_3 N}
-\]</div>
-<p>这是一个等比数列，求和得到：</p>
-<div class="arithmatex">\[
-T(N) = \frac{N - 1}{2}
-\]</div>
-<p>因此，时间复杂度是 <span class="arithmatex">\(O(N)\)</span>。</p>
-<h2 id="_5">二、迭代类时间复杂度的计算</h2>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p><strong>(FDS HW1)</strong> 例题：对于以下代码，最低上界时间复杂度是 <span class="arithmatex">\(O(N^3)\)</span>。</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="p">){</span><span class="w">     </span>
-<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w">         </span>
-<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="o">*</span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="p">)</span><span class="w">    </span>
-<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">      </span><span class="n">C</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"> </span>
-<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="p">}</span>
-<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">     </span>
-<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="o">*</span><span class="n">N</span><span class="o">/</span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p">)</span><span class="w">         </span>
-<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="p">)</span><span class="w"> </span>
-<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="o">*</span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">++</span><span class="p">)</span>
-<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">        </span><span class="n">C</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">B</span><span class="p">;</span>
-<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="p">}</span>
-</code></pre></div>
-</div>
-<p>分析方法：逐层分析即可。</p>
-<p><strong>A &gt; B 分支</strong> </p>
-<p>总操作次数：  </p>
-<div class="arithmatex">\[
-\sum_{i=0}^{2N-1} (N^2 - i) = \underbrace{2N \cdot N^2}_{\text{外层总次数}} - \underbrace{\sum_{i=0}^{2N-1} i}_{\text{等差求和}} = 2N^3 - \frac{(2N-1) \cdot 2N}{2} = O(N^3)
-\]</div>
-<p><strong>A ≤ B 分支</strong> </p>
-<p>总操作次数： </p>
-<div class="arithmatex">\[
-\underbrace{\frac{N^2}{100}}_{\text{外层循环}} \sum_{i=0}^{N-1} \underbrace{(N - i)}_{\text{中间循环}} \cdot \underbrace{3N}_{\text{内层循环}} = \frac{N^2}{100} \cdot 3N \cdot \sum_{i=0}^{N-1} (N - i) = O(N^4)
-\]</div>
+<h1>Lecture10</h1>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>

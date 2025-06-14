@@ -1014,7 +1014,6 @@
 <a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1">-- 删除列</span>
 <a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="n">resume</span><span class="p">;</span>
 </code></pre></div>
-<hr/>
 <h2 id="3">3. 基本查询结构</h2>
 <h3 id="31-select">3.1 SELECT子句</h3>
 <p><code>SELECT</code>用于<strong>指定查询结果中的属性</strong>。例如，查询所有教师姓名： </p>
@@ -1212,7 +1211,7 @@
 <a href="#__codelineno-20-4" id="__codelineno-20-4" name="__codelineno-20-4"></a>
 <a href="#__codelineno-20-5" id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="c1">-- 插入查询结果</span>
 <a href="#__codelineno-20-6" id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span>
-<a href="#__codelineno-20-7" id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span><span class="mi">18000</span><span class="w"> </span>
+<a href="#__codelineno-20-7" id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">dept_name</span>
 <a href="#__codelineno-20-8" id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span>
 <a href="#__codelineno-20-9" id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Music'</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">total_cred</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">144</span><span class="p">;</span>
 </code></pre></div></p>

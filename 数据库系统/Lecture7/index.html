@@ -1716,7 +1716,7 @@
 <p>如果 <span class="arithmatex">\(\beta \subseteq \alpha\)</span>，那么 <span class="arithmatex">\(\alpha \rightarrow \beta\)</span> 总是成立。例如，<span class="arithmatex">\(\text{ID}, \text{Name} \rightarrow \text{ID}\)</span> 就是一个平凡依赖，因为它只是说“如果 <span class="arithmatex">\(\text{ID}\)</span> 和 <span class="arithmatex">\(\text{Name}\)</span> 相同，那么 <span class="arithmatex">\(\text{ID}\)</span> 也相同”，这是显而易见的。</p>
 <h3 id="2-closure">2. 闭包计算 (Closure)</h3>
 <h4 id="21">2.1 定义：</h4>
-<p>闭包是用来<strong>判断某个属性集能“决定”哪些其他属性的工具</strong>。具体来说，给定一个属性集  <span class="arithmatex">\( \alpha \)</span> 和一组函数依赖 F，求  <span class="arithmatex">\( \alpha \)</span> 的闭包（记作  <span class="arithmatex">\( \alpha^{+} \)</span>），即  <span class="arithmatex">\( \alpha \)</span> 能决定的所有属性。</p>
+<p>闭包是用来<strong>判断某个属性集能“决定”哪些其他属性的工具</strong>。具体来说，给定一个属性集  <span class="arithmatex">\( \alpha \)</span> 和一组函数依赖 <span class="arithmatex">\(F\)</span>，求  <span class="arithmatex">\( \alpha \)</span> 的闭包（记作  <span class="arithmatex">\( \alpha^{+} \)</span>），即  <span class="arithmatex">\( \alpha \)</span> 能决定的所有属性。</p>
 <blockquote>
 <p>Armstrong公理：</p>
 <ol>
@@ -1938,7 +1938,7 @@ F = \{ A \rightarrow B,\ B \rightarrow C,\ C \rightarrow A \}
 <p>那么候选键包括 <span class="arithmatex">\(A, B, C\)</span>，随便选一个出来都可以决定所有属性。</p>
 <p>此时 <span class="arithmatex">\(B \rightarrow C\)</span> 中的<span class="arithmatex">\(C\)</span>在候选键中，满足 3NF。</p>
 <p>再举个复杂例子：<span class="arithmatex">\(R(A, B, C, D),\ F = \{ AB \rightarrow CD,\ C \rightarrow A \}\)</span>。</p>
-<p>根据闭包算法，显然有<span class="arithmatex">\(AB^+\)</span> = <span class="arithmatex">\(\{A,B,C,D\}\)</span>（怎么来的看”闭包计算“一段的例子），所以<span class="arithmatex">\(AB\)</span>是<span class="arithmatex">\(F\)</span>的候选键。</p>
+<p>根据闭包算法，显然有<span class="arithmatex">\(AB^+\)</span> = <span class="arithmatex">\(\{A,B,C,D\}\)</span>（怎么来的看“闭包计算”一段的例子），所以<span class="arithmatex">\(AB\)</span>是<span class="arithmatex">\(F\)</span>的候选键。</p>
 <p>而对于<span class="arithmatex">\(C \rightarrow A\)</span>呢？<span class="arithmatex">\(C\)</span>肯定不是超键或者候选键，平凡依赖也谈不上，再看最后一个定义，我们有：</p>
 <div class="arithmatex">\[
 A - C = \{A\}
@@ -2028,7 +2028,7 @@ section(course\_id, sec\_id, semester, year, building, room\_number, time\_slot\
 </code></pre></div>
 <h3 id="_13">算法说明：</h3>
 <ol>
-<li>先求出<strong>正则覆盖</strong> $ F_c $（去除冗余属性和依赖）。</li>
+<li>先求出<strong>正则覆盖</strong> <span class="arithmatex">\(F_c\)</span>（去除冗余属性和依赖）。</li>
 <li>对于每个 <span class="arithmatex">\(\alpha \rightarrow \beta\)</span>：<ul>
 <li>如果还没有一个关系包含 <span class="arithmatex">\(\alpha\beta\)</span>，就新建一个关系。</li>
 <li>如果没有任何一个关系包含候选键，就单独加一个包含候选键的关系。</li>

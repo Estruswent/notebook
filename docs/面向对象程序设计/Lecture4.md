@@ -1,4 +1,4 @@
-# Lecture 6: Copy Constructor in C++
+# Lecture 4: Copy Constructor
 
 ## 一、拷贝构造函数基础概念
 

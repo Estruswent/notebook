@@ -32,12 +32,17 @@ nav:
       - "Lecture9: Data Storage Structure": "数据库系统/Lecture9.md"
       - "Lecture10: Index": "数据库系统/Lecture10.md"
       - "Lecture11: Query Processing": "数据库系统/Lecture11.md"
+      - "Lecture12: Query Optimization": "数据库系统/Lecture12.md"
+      - "Lecture13: Transaction": "数据库系统/Lecture13.md"
+      - "Lecture14: Concurrency Control": "数据库系统/Lecture14.md"
+      - "Lecture15: Recovery System": "数据库系统/Lecture15.md"
     - 面向对象程序设计:
       - "Lecture0: Course Introduction": "面向对象程序设计/Lecture0.md"
       - "Lecture1: Using Objects": "面向对象程序设计/Lecture1.md"
       - "Lecture2: Class": "面向对象程序设计/Lecture2.md"
       - "Lecture3: Object Interactive": "面向对象程序设计/Lecture3.md"
       - "Lecture4: Copy Constructor": "面向对象程序设计/Lecture4.md"
+      - "Lecture5: Inheritance": "面向对象程序设计/Lecture5.md"
   - Writing:
       - "Latex Introduction": "写作/latex.md"
   - Others:

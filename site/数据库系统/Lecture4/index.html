@@ -1228,8 +1228,8 @@
 <p>用 <code>LEFT JOIN</code> 获取左表的所有行，然后用 <code>RIGHT JOIN</code> 获取右表的所有行，并通过 <code>UNION ALL</code> 将两部分结果合并。最后的 <code>WHERE</code> 子句确保只添加那些在左表中没有匹配的右表行。</p>
 <h2 id="2-views">2. 视图（Views）</h2>
 <h3 id="21">2.1 视图定义</h3>
-<p>作用：隐藏数据复杂性或敏感信息，提供虚拟表。（个人理解就是取一部分出来做成一个单独的表来给人看）
-语法：（以<code>instructor(ID, name, dept_name)</code>为例）</p>
+<p>作用：隐藏数据复杂性或敏感信息，提供虚拟表。（个人理解就是取一部分出来做成一个单独的表来给人看）</p>
+<p>语法：（以<code>instructor(ID, name, dept_name)</code>为例）</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">faculty</span><span class="w"> </span><span class="k">AS</span><span class="w">  </span><span class="c1">-- 创建faculty视图  </span>
 <a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">dept_name</span><span class="w">  </span>
 <a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="p">;</span><span class="w">  </span>

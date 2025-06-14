@@ -72,9 +72,7 @@ ALTER TABLE student ADD resume VARCHAR(256);
 
 -- 删除列
 ALTER TABLE student DROP resume;
-```  
-
----
+```
 
 ## 3. 基本查询结构  
 
@@ -346,7 +344,7 @@ VALUES ('CS-437', 'Database Systems', 'Comp. Sci.', 4);
 
 -- 插入查询结果
 INSERT INTO instructor 
-SELECT ID, name, dept_name, 18000 
+SELECT ID, name, dept_name
 FROM student 
 WHERE dept_name = 'Music' AND total_cred > 144;
 ```  

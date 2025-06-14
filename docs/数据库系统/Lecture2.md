@@ -63,7 +63,7 @@
    示例：查询2017秋季开设但2018春季未开设的课程
 
    $$
-   \Pi_{\text{course_id}}(\sigma_{\text{semester=Fall} \land \text{year=2017}}(\text{section})) - \Pi_{\text{course_id}}(\sigma_{\text{semester=Spring} \land \text{year=2018}}(\text{section}))
+   \Pi_{\text{course_id}}(\sigma(\text{section})) - \Pi_{\text{course_id}}(\sigma_{\text{semester=Spring} \land \text{year=2018}}(\text{section}))
    $$
 
 

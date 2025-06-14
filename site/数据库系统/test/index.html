@@ -9,7 +9,7 @@
 <meta content="E5trusw3nt" name="author"/>
 <link href="../../style/images/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.34" name="generator"/>
-<title>Test - E5trusw3nt's Notebook</title>
+<title>Lecture 15: Recovery System Notes - E5trusw3nt's Notebook</title>
 <link href="../../assets/stylesheets/main.35f28582.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -27,7 +27,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#serializability">
+<a class="md-skip" href="#lecture-15-recovery-system-notes">
           Skip to content
         </a>
 </div>
@@ -51,7 +51,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Test
+              Lecture 15: Recovery System Notes
             
           </span>
 </div>
@@ -522,53 +522,24 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#serializability">
+<a class="md-nav__link" href="#failure-classification">
 <span class="md-ellipsis">
-      三、串行化 (Serializability)
+      一、故障分类 (Failure Classification)
     </span>
 </a>
-<nav aria-label="三、串行化 (Serializability)" class="md-nav">
+<nav aria-label="一、故障分类 (Failure Classification)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#34-conflict-serializability">
+<a class="md-nav__link" href="#1">
 <span class="md-ellipsis">
-      3.4 冲突串行化 (Conflict Serializability)
-    </span>
-</a>
-<nav aria-label="3.4 冲突串行化 (Conflict Serializability)" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#341">
-<span class="md-ellipsis">
-      3.4.1 定义
+      1. 故障类型
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#342">
+<a class="md-nav__link" href="#2">
 <span class="md-ellipsis">
-      3.4.2 冲突等价
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#343">
-<span class="md-ellipsis">
-      3.4.3 示例分析
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#344">
-<span class="md-ellipsis">
-      3.4.4 前趋图测试
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#345">
-<span class="md-ellipsis">
-      3.4.5 图表示例
+      2. 故障影响
     </span>
 </a>
 </li>
@@ -576,31 +547,24 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#35-view-serializability">
+<a class="md-nav__link" href="#recovery-and-atomicity">
 <span class="md-ellipsis">
-      3.5 视图串行化 (View Serializability)
+      二、恢复和原子性 (Recovery and Atomicity)
     </span>
 </a>
-<nav aria-label="3.5 视图串行化 (View Serializability)" class="md-nav">
+<nav aria-label="二、恢复和原子性 (Recovery and Atomicity)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#351">
+<a class="md-nav__link" href="#1_1">
 <span class="md-ellipsis">
-      3.5.1 定义
+      1. 恢复算法的核心
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#352">
+<a class="md-nav__link" href="#2_1">
 <span class="md-ellipsis">
-      3.5.2 视图等价示例
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#353">
-<span class="md-ellipsis">
-      3.5.3 视图串行化的意义
+      2. 原子性保证
     </span>
 </a>
 </li>
@@ -608,44 +572,190 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#36">
+<a class="md-nav__link" href="#log-based-recovery">
 <span class="md-ellipsis">
-      3.6 其他串行化形式
+      三、基于日志的恢复 (Log-Based Recovery)
     </span>
 </a>
-<nav aria-label="3.6 其他串行化形式" class="md-nav">
+<nav aria-label="三、基于日志的恢复 (Log-Based Recovery)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#361">
+<a class="md-nav__link" href="#1_2">
 <span class="md-ellipsis">
-      3.6.1 非常规串行化
+      1. 日志基础
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#362">
+<a class="md-nav__link" href="#2-immediate-database-modification">
 <span class="md-ellipsis">
-      3.6.2 其他串行化的意义
+      2. 立即数据库修改 (Immediate Database Modification)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-deferred-database-modification">
+<span class="md-ellipsis">
+      3. 延迟数据库修改 (Deferred Database Modification)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4">
+<span class="md-ellipsis">
+      4. 并发控制与恢复
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5">
+<span class="md-ellipsis">
+      5. 撤销与重做
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6">
+<span class="md-ellipsis">
+      6. 故障恢复规则
     </span>
 </a>
 </li>
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#checkpoints">
+<span class="md-ellipsis">
+      四、检查点 (Checkpoints)
+    </span>
+</a>
+<nav aria-label="四、检查点 (Checkpoints)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1_3">
+<span class="md-ellipsis">
+      1. 检查点作用
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2_2">
+<span class="md-ellipsis">
+      2. 检查点过程
+    </span>
+</a>
+</li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#buffer-management">
+<span class="md-ellipsis">
+      五、缓冲区管理 (Buffer Management)
+    </span>
+</a>
+<nav aria-label="五、缓冲区管理 (Buffer Management)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1_4">
+<span class="md-ellipsis">
+      1. 缓冲区概念
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2_3">
+<span class="md-ellipsis">
+      2. 写策略
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#early-lock-release-and-logical-undo-operations">
+<span class="md-ellipsis">
+      六、早期锁释放和逻辑撤销操作 (Early Lock Release and Logical Undo Operations)
+    </span>
+</a>
+<nav aria-label="六、早期锁释放和逻辑撤销操作 (Early Lock Release and Logical Undo Operations)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1_5">
+<span class="md-ellipsis">
+      1. 早期锁释放
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2_4">
+<span class="md-ellipsis">
+      2. 逻辑撤销
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3">
+<span class="md-ellipsis">
+      3. 事务回滚
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#aries-aries-recovery-algorithm">
+<span class="md-ellipsis">
+      七、ARIES 恢复算法 (ARIES Recovery Algorithm)
+    </span>
+</a>
+<nav aria-label="七、ARIES 恢复算法 (ARIES Recovery Algorithm)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-aries">
+<span class="md-ellipsis">
+      1. ARIES 概述
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-aries">
+<span class="md-ellipsis">
+      2. ARIES 数据结构
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-aries">
+<span class="md-ellipsis">
+      3. ARIES 恢复过程
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4_1">
+<span class="md-ellipsis">
+      4. 其他特性
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#recovery-in-main-memory-databases">
+<span class="md-ellipsis">
+      八、主存数据库恢复 (Recovery in Main Memory Databases)
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_1">
 <span class="md-ellipsis">
-      四、图表辅助理解
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-<span class="md-ellipsis">
-      五、总结
+      总结图解
     </span>
 </a>
 </li>
@@ -656,263 +766,340 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Test</h1>
-<p>好的，我会结合 <em>Database System Concepts, 7th Edition</em> 第十七章的课件内容（参考 Lecture7 和 Lecture8），对“冲突串行化”、“视图串行化”和“其他串行化”部分进行详细展开讲解，并重新整理成一份更清晰、更全面的笔记，替换你提供的 3.4、3.5 和 3.6 部分。以下内容将从学生视角出发，深入浅出，包含定义、原理、示例和图表，帮助你更好地理解这些概念。</p>
+<h1 id="lecture-15-recovery-system-notes">Lecture 15: Recovery System Notes</h1>
+<h2 id="failure-classification">一、故障分类 (Failure Classification)</h2>
+<h3 id="1">1. 故障类型</h3>
+<ul>
+<li><strong>逻辑错误 (Logical Errors)</strong> </li>
+<li>原因：事务因内部错误条件（如应用程序bug或数据不一致）无法完成。</li>
+<li>
+<p>示例：输入数据违反约束条件。</p>
+</li>
+<li>
+<p><strong>系统错误 (System Errors)</strong> </p>
+</li>
+<li>原因：数据库系统因错误状态（如死锁）终止活动事务。</li>
+<li>
+<p>示例：两个事务互相等待资源导致死锁。</p>
+</li>
+<li>
+<p><strong>系统崩溃 (System Crash)</strong> </p>
+</li>
+<li>原因：电源故障、硬件或软件失败导致系统崩溃。</li>
+<li>假设：故障停止假说（Fail-stop assumption），即非易失性存储内容不会因崩溃而损坏。</li>
+<li>
+<p>保护措施：数据库系统有多个完整性检查防止磁盘数据损坏。</p>
+</li>
+<li>
+<p><strong>磁盘故障 (Disk Failure)</strong> </p>
+</li>
+<li>原因：磁头碰撞或其他磁盘故障破坏全部或部分磁盘存储。</li>
+<li>检测：磁盘驱动器使用校验和（checksums）检测故障。</li>
+</ul>
+<h3 id="2">2. 故障影响</h3>
+<table>
+<thead>
+<tr>
+<th>故障类型</th>
+<th>影响</th>
+<th>恢复措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事务失败</td>
+<td>事务未完成需回滚</td>
+<td>使用日志撤销</td>
+</tr>
+<tr>
+<td>系统崩溃</td>
+<td>数据库需恢复一致状态</td>
+<td>日志重做和撤销</td>
+</tr>
+<tr>
+<td>磁盘故障</td>
+<td>数据丢失需从备份恢复</td>
+<td>备份+日志恢复</td>
+</tr>
+</tbody>
+</table>
 <hr/>
-<h2 id="serializability">三、串行化 (Serializability)</h2>
-<h3 id="34-conflict-serializability">3.4 冲突串行化 (Conflict Serializability)</h3>
-<h4 id="341">3.4.1 定义</h4>
+<h2 id="recovery-and-atomicity">二、恢复和原子性 (Recovery and Atomicity)</h2>
+<h3 id="1_1">1. 恢复算法的核心</h3>
+<p>恢复算法分为两部分：</p>
 <ul>
-<li><strong>冲突串行化</strong>是指一个调度（schedule）可以通过交换非冲突指令，转换为某个串行调度（serial schedule，即事务按顺序逐一执行的调度），且保持冲突操作的顺序不变。</li>
-<li><strong>冲突指令</strong>：两个指令冲突，当且仅当：</li>
-<li>它们来自不同事务。</li>
-<li>访问同一数据项（如变量 Q）。</li>
-<li>至少一个是写操作。</li>
-<li><strong>冲突类型</strong>：<ol>
-<li><code>read(Q)</code> vs <code>read(Q)</code>：<strong>不冲突</strong>，因为读操作不修改数据。</li>
-<li><code>read(Q)</code> vs <code>write(Q)</code>：<strong>冲突</strong>，写操作可能改变读到的值。</li>
-<li><code>write(Q)</code> vs <code>read(Q)</code>：<strong>冲突</strong>，读操作依赖于写操作的结果。</li>
-<li><code>write(Q)</code> vs <code>write(Q)</code>：<strong>冲突</strong>，后一个写操作会覆盖前一个。</li>
-</ol>
+<li><strong>正常事务处理期间的动作</strong> </li>
+<li>记录足够信息（如日志），确保故障后可恢复。</li>
+<li>
+<p>示例：写日志记录到稳定存储。</p>
 </li>
-</ul>
-<h4 id="342">3.4.2 冲突等价</h4>
-<ul>
-<li><strong>冲突等价</strong>：如果调度 S 可以通过一系列非冲突指令的交换，转换为调度 S'，则 S 和 S' 是冲突等价的。</li>
-<li><strong>关键点</strong>：交换非冲突指令不会改变事务的结果，因为非冲突指令的执行顺序无关紧要。</li>
-<li><strong>目标</strong>：通过交换，将并发调度转换为某个串行调度（如 T1 → T2 或 T2 → T1）。</li>
-</ul>
-<h4 id="343">3.4.3 示例分析</h4>
-<p>考虑以下调度（Schedule 3，基于课件中的转账示例）：
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>| T1           | T2           |
-<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>|--------------|--------------|
-<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>| read(A)      |              |
-<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>| A := A - 50  |              |
-<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>| write(A)     |              |
-<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>|              | read(A)      |
-<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>|              | temp := A * 0.1 |
-<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>|              | A := A - temp |
-<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>|              | write(A)     |
-<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a>| read(B)      |              |
-<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a>| B := B + 50  |              |
-<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a>| write(B)     |              |
-<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a>|              | read(B)      |
-<a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a>|              | B := B + temp |
-<a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a>|              | write(B)     |
-<a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a>| commit       |              |
-<a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a>|              | commit       |
-</code></pre></div>
-- <strong>分析</strong>：
-  - 冲突操作：
-    - T1 的 <code>write(A)</code> 和 T2 的 <code>read(A)</code>：冲突，因为 T1 先写 A，T2 后读 A，顺序不可交换。
-    - T1 的 <code>write(B)</code> 和 T2 的 <code>read(B)</code>：冲突，T1 先写 B，T2 后读 B。
-  - 尝试交换非冲突指令：
-    - 可以将 T2 的 <code>read(A), temp := A * 0.1, write(A)</code> 整体移到 T1 的 <code>write(A)</code> 之前，因为这些指令与 T1 的 <code>read(B), B := B + 50, write(B)</code> 不冲突（操作不同数据项 A 和 B）。
-    - 类似地，T2 的 <code>read(B), B := B + temp, write(B)</code> 可移到 T1 的 <code>write(B)</code> 之前。
-  - <strong>结果</strong>：通过交换，Schedule 3 可转换为串行调度 T1 → T2：
-    <div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>T1: read(A), A := A - 50, write(A), read(B), B := B + 50, write(B)
-<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>T2: read(A), temp := A * 0.1, A := A - temp, write(A), read(B), B := B + temp, write(B)
-</code></pre></div>
-  - <strong>结论</strong>：Schedule 3 是冲突串行化的，等价于串行调度 T1 → T2。</p>
-<h4 id="344">3.4.4 前趋图测试</h4>
-<ul>
-<li><strong>前趋图</strong>：用于测试冲突串行化。</li>
-<li>节点：每个事务（如 T1, T2）。</li>
-<li>边：若 T_i 的操作先于 T_j 的冲突操作访问同一数据项，则有边 T_i → T_j。</li>
-<li><strong>无环</strong>：调度是冲突串行化的。</li>
-<li><strong>有环</strong>：调度非冲突串行化。</li>
-<li><strong>示例前趋图</strong>（基于 Schedule 3）：
-  <pre class="mermaid"><code>graph TD
-    T1 --&gt; T2
-</code></pre></li>
-<li>T1 的 <code>write(A)</code> 先于 T2 的 <code>read(A)</code>，T1 的 <code>write(B)</code> 先于 T2 的 <code>read(B)</code>，故 T1 → T2，无环，确认冲突串行化。</li>
-</ul>
-<h4 id="345">3.4.5 图表示例</h4>
-<p>以下是一个更复杂的调度（Schedule A，参考课件）：
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>| T1     | T2     | T3     | T4     | T5     |
-<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>|--------|--------|--------|--------|--------|
-<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>| read(X)|        |        |        |        |
-<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>| read(Z)|        |        |        |        |
-<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>|        | read(Y)|        |        |        |
-<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a>|        | write(Y)|       |        |        |
-<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a>|        |        | read(Z)|        |        |
-<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a>|        |        | write(Z)|       |        |
-<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a>|        |        |        | read(X)|        |
-<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a>|        |        |        | write(X)|       |
-<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a>|        |        |        |        | read(U)|
-<a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a>|        |        |        |        | write(U)|
-</code></pre></div>
-- <strong>前趋图</strong>：
-  <pre class="mermaid"><code>graph TD
-    T1 --&gt; T4  // T1: read(X), T4: write(X)
-    T2 --&gt; T3  // T2: write(Y), T3: read(Y) (假设 Y 和 Z 有依赖)
-    T5 --&gt; T1  // T5: write(U), T1: read(U) (假设 U 和 Z 有依赖)
-    T5 --&gt; T3
-</code></pre>
-- <strong>结论</strong>：无环，调度是冲突串行化的，串行顺序为 T5 → T1 → T4 或 T5 → T2 → T3。</p>
-<h3 id="35-view-serializability">3.5 视图串行化 (View Serializability)</h3>
-<h4 id="351">3.5.1 定义</h4>
-<ul>
-<li><strong>视图串行化</strong>：一个调度 S 是视图串行化的，如果它与某个串行调度 S' <strong>视图等价</strong>，即两者的执行结果在以下方面相同：</li>
-<li><strong>初始读</strong>：每个数据项的<strong>首次读取</strong>来自同一事务。</li>
-<li><strong>读写依赖</strong>：每个<strong>读操作读取的写操作</strong>来源相同。</li>
-<li><strong>最终写</strong>：每个数据项的<strong>最后写</strong>操作由同一事务完成。</li>
-<li><strong>特点</strong>：</li>
-<li>视图串行化比冲突串行化更宽松，包含所有冲突串行化调度。</li>
-<li>允许“盲写”（blind write），即事务不读取直接写入。</li>
-</ul>
-<h4 id="352">3.5.2 视图等价示例</h4>
-<p>考虑以下调度：</p>
-<p><img alt="alt text" src="../image-45.png"/></p>
-<ul>
-<li><strong>分析</strong>：<ul>
-<li><strong>初始读</strong>：Q 的首次读取由 T27 完成。</li>
-<li><strong>读写依赖</strong>：T27 的 <code>read(Q)</code> 读取初始值，无其他写操作影响。</li>
-<li><strong>最终写</strong>：T29 执行 Q 的最后写操作。</li>
-</ul>
+<li>
+<p><strong>故障后的恢复动作</strong> </p>
 </li>
-<li><strong>视图等价</strong>：该调度等价于串行调度 T27 → T28 → T29：<ul>
-<li>T27 读初始 Q，T28 写 Q，T29 写 Q，结果一致。</li>
+<li>将数据库恢复到一致状态，保证原子性、一致性和持久性。</li>
+<li>示例：撤销未提交事务，重做已提交事务。</li>
 </ul>
-</li>
-<li><strong>冲突串行化检查</strong>：<ul>
-<li>T28 的 <code>write(Q)</code> 和 T29 的 <code>write(Q)</code> 冲突，无法交换到 T27 → T28 → T29 的顺序。</li>
-<li>因此，该调度是视图串行化的，但<strong>非冲突串行化</strong>，因为冲突指令顺序限制了交换。</li>
-</ul>
-</li>
-</ul>
-<h4 id="353">3.5.3 视图串行化的意义</h4>
+<h3 id="2_1">2. 原子性保证</h3>
 <ul>
-<li><strong>优势</strong>：允许更多并发调度，尤其是包含盲写的场景。</li>
-<li><strong>缺点</strong>：测试视图串行化是 NP 完全问题，计算复杂，实际数据库中较少直接使用。</li>
-<li><strong>关系</strong>：所有冲突串行化调度都是视图串行化的，但反之不一定。</li>
+<li><strong>问题</strong>：事务中途失败可能导致数据库不一致。</li>
+<li>示例：事务 <span class="arithmatex">\( T_i \)</span> 从账户 A 转 50 美元到 B，若 A 已扣款但 B 未加款时崩溃。</li>
+<li><strong>解决方案</strong>：先将修改信息输出到稳定存储（如日志），再更新数据库。</li>
+<li><strong>替代方案</strong>：影子复制（Shadow-copy）和影子分页（Shadow-paging），书中简述，不常用。</li>
 </ul>
-<h3 id="36">3.6 其他串行化形式</h3>
-<h4 id="361">3.6.1 非常规串行化</h4>
+<hr/>
+<h2 id="log-based-recovery">三、基于日志的恢复 (Log-Based Recovery)</h2>
+<h3 id="1_2">1. 日志基础</h3>
 <ul>
-<li>有些调度与串行调度结果相同，但既非冲突串行化也非视图串行化，需分析读写以外的逻辑（如计算逻辑）。</li>
-<li><strong>示例</strong>（基于课件中的 T1 和 T5）：
-  <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>| T1           | T5           |
-<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>|--------------|--------------|
-<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>| read(A)      |              |
-<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>| A := A - 50  |              |
-<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>| write(A)     |              |
-<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a>|              | read(B)      |
-<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a>|              | B := B - 10  |
-<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a>|              | write(B)     |
-<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a>| read(B)      |              |
-<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a>| B := B + 50  |              |
-<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a>| write(B)     |              |
-<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a>|              | read(A)      |
-<a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a>|              | A := A + 10  |
-<a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a>|              | write(A)     |
+<li><strong>日志 (Log)</strong> </li>
+<li>定义：记录数据库更新活动的序列，存储在稳定存储上。</li>
+<li>
+<p>特点：通过多份非易失性介质副本近似实现故障耐受。</p>
+</li>
+<li>
+<p><strong>日志记录类型</strong> </p>
+</li>
+<li><code>&lt;T_i start&gt;</code>：事务 <span class="arithmatex">\( T_i \)</span> 开始。</li>
+<li><code>&lt;T_i, X, V_1, V_2&gt;</code>：事务 <span class="arithmatex">\( T_i \)</span> 将数据项 <span class="arithmatex">\( X \)</span> 从旧值 <span class="arithmatex">\( V_1 \)</span> 更新为新值 <span class="arithmatex">\( V_2 \)</span>。</li>
+<li><code>&lt;T_i commit&gt;</code>：事务 <span class="arithmatex">\( T_i \)</span> 提交。</li>
+<li><code>&lt;T_i abort&gt;</code>：事务 <span class="arithmatex">\( T_i \)</span> 中止。</li>
+</ul>
+<h3 id="2-immediate-database-modification">2. 立即数据库修改 (Immediate Database Modification)</h3>
+<ul>
+<li><strong>特点</strong> </li>
+<li>未提交事务的更新可写入缓冲区或磁盘。</li>
+<li><strong>写前日志 (Write-Ahead Logging, WAL)</strong>：更新数据库前必须先写日志到稳定存储。</li>
+<li><strong>提交</strong> </li>
+<li>当 <code>&lt;T_i commit&gt;</code> 记录写入稳定存储时，事务提交。</li>
+<li>更新块可在此前后写入磁盘，顺序灵活。</li>
+<li><strong>示例</strong><br/>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>Log: &lt;T_0 start&gt;, &lt;T_0, A, 1000, 950&gt;, &lt;T_0, B, 2000, 2050&gt;, &lt;T_0 commit&gt;
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>Write: A=950, B=2050
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>Output: B_B, B_A (顺序随意)
 </code></pre></div></li>
-<li><strong>分析</strong>：</li>
-<li><strong>冲突检查</strong>：<ul>
-<li>T1 的 <code>write(A)</code> 和 T5 的 <code>read(A)</code> 冲突，T1 → T5。</li>
-<li>T1 的 <code>read(B)</code> 和 T5 的 <code>write(B)</code> 冲突，T5 → T1。</li>
-<li>前趋图有环（T1 → T5 → T1），非冲突串行化。</li>
 </ul>
-</li>
-<li><strong>视图检查</strong>：<ul>
-<li>初始读：A 由 T1 读，B 由 T5 读。</li>
-<li>读写依赖：T1 的 <code>read(B)</code> 读 T5 的 <code>write(B)</code>，T5 的 <code>read(A)</code> 读 T1 的 <code>write(A)</code>。</li>
-<li>最终写：A 由 T5 写，B 由 T1 写。</li>
-<li>与串行调度 T1 → T5 或 T5 → T1 不完全匹配，需进一步分析。</li>
-</ul>
-</li>
-<li><strong>逻辑分析</strong>：<ul>
-<li>假设初始 A = 100, B = 100：</li>
-<li>T1: A = 100 - 50 = 50, B = 100 + 50 = 150</li>
-<li>T5: B = 100 - 10 = 90, A = 50 + 10 = 60</li>
-<li>并发执行结果：A = 60, B = 150。</li>
-<li>串行执行 T1 → T5：</li>
-<li>T1: A = 100 - 50 = 50, B = 100 + 50 = 150</li>
-<li>T5: B = 150 - 10 = 140, A = 50 + 10 = 60</li>
-<li>结果：A = 60, B = 140（与并发不同）。</li>
-<li>串行执行 T5 → T1：</li>
-<li>T5: B = 100 - 10 = 90, A = 100 + 10 = 110</li>
-<li>T1: A = 110 - 50 = 60, B = 90 + 50 = 140</li>
-<li>结果：A = 60, B = 140（与并发不同）。</li>
-</ul>
-</li>
-<li><strong>结论</strong>：此调度与任何串行调度都不完全等价，但可能在特定逻辑下（如忽略 B 的中间值）与 T1 → T5 结果相似，需额外分析事务的语义。</li>
-</ul>
-<h4 id="362">3.6.2 其他串行化的意义</h4>
+<h3 id="3-deferred-database-modification">3. 延迟数据库修改 (Deferred Database Modification)</h3>
 <ul>
-<li><strong>场景</strong>：某些应用不严格要求冲突或视图串行化，可能接受基于语义的等价性（如统计查询）。</li>
-<li><strong>挑战</strong>：需要分析事务的计算逻辑，复杂度高，实际数据库中通常依赖冲突串行化。</li>
+<li><strong>特点</strong> </li>
+<li>仅在事务提交时更新缓冲区/磁盘。</li>
+<li>优点：简化恢复。</li>
+<li>缺点：需存储事务本地副本，增加开销。</li>
+</ul>
+<h3 id="4">4. 并发控制与恢复</h3>
+<ul>
+<li><strong>共享资源</strong>：并发事务共享磁盘缓冲区和日志。</li>
+<li><strong>锁机制</strong>：  </li>
+<li>若 <span class="arithmatex">\( T_i \)</span> 修改数据项，其他事务在 <span class="arithmatex">\( T_i \)</span> 提交或中止前不可修改。</li>
+<li>使用严格两阶段锁（Strict 2PL）确保更新不可见。</li>
+<li><strong>日志交错</strong>：不同事务的日志记录可能交错存储。</li>
+</ul>
+<h3 id="5">5. 撤销与重做</h3>
+<ul>
+<li><strong>撤销 (Undo)</strong> </li>
+<li>操作：将数据项恢复到旧值 <span class="arithmatex">\( V_1 \)</span>。</li>
+<li>日志：记录补偿日志 <code>&lt;T_i, X, V_1&gt;</code>。</li>
+<li>完成：写 <code>&lt;T_i abort&gt;</code>。</li>
+<li><strong>重做 (Redo)</strong> </li>
+<li>操作：将数据项设置为新值 <span class="arithmatex">\( V_2 \)</span>。</li>
+<li>无需额外日志。</li>
+</ul>
+<h3 id="6">6. 故障恢复规则</h3>
+<table>
+<thead>
+<tr>
+<th>日志状态</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有 <code>&lt;T_i start&gt;</code> 无 <code>&lt;T_i commit&gt;</code> 或 <code>&lt;T_i abort&gt;</code></td>
+<td>撤销 <span class="arithmatex">\( T_i \)</span></td>
+</tr>
+<tr>
+<td>有 <code>&lt;T_i start&gt;</code> 和 <code>&lt;T_i commit&gt;</code> 或 <code>&lt;T_i abort&gt;</code></td>
+<td>重做 <span class="arithmatex">\( T_i \)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>重复历史 (Repeating History)</strong> </li>
+<li>重做包括恢复旧值的步骤，简化恢复但略显冗余。</li>
 </ul>
 <hr/>
-<h2 id="_1">四、图表辅助理解</h2>
-<p>为了直观展示冲突串行化和视图串行化的区别，以下是一个柱状图，比较两者的包含关系和测试复杂度：</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>{
-<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>  "type": "bar",
-<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>  "data": {
-<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>    "labels": ["冲突串行化", "视图串行化"],
-<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>    "datasets": [{
-<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>      "label": "调度范围",
-<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a>      "data": [80, 100],
-<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>      "backgroundColor": ["#36A2EB", "#FF6384"],
-<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a>      "borderColor": ["#2E86C1", "#E74C3C"],
-<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a>      "borderWidth": 1
-<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a>    }, {
-<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a>      "label": "测试复杂度",
-<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>      "data": [20, 80],
-<a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a>      "backgroundColor": ["#4BC0C0", "#FFCE56"],
-<a href="#__codelineno-4-15" id="__codelineno-4-15" name="__codelineno-4-15"></a>      "borderColor": ["#3E9A9A", "#E0B03E"],
-<a href="#__codelineno-4-16" id="__codelineno-4-16" name="__codelineno-4-16"></a>      "borderWidth": 1
-<a href="#__codelineno-4-17" id="__codelineno-4-17" name="__codelineno-4-17"></a>    }]
-<a href="#__codelineno-4-18" id="__codelineno-4-18" name="__codelineno-4-18"></a>  },
-<a href="#__codelineno-4-19" id="__codelineno-4-19" name="__codelineno-4-19"></a>  "options": {
-<a href="#__codelineno-4-20" id="__codelineno-4-20" name="__codelineno-4-20"></a>    "scales": {
-<a href="#__codelineno-4-21" id="__codelineno-4-21" name="__codelineno-4-21"></a>      "y": {
-<a href="#__codelineno-4-22" id="__codelineno-4-22" name="__codelineno-4-22"></a>        "beginAtZero": true,
-<a href="#__codelineno-4-23" id="__codelineno-4-23" name="__codelineno-4-23"></a>        "title": {
-<a href="#__codelineno-4-24" id="__codelineno-4-24" name="__codelineno-4-24"></a>          "display": true,
-<a href="#__codelineno-4-25" id="__codelineno-4-25" name="__codelineno-4-25"></a>          "text": "相对值（%）"
-<a href="#__codelineno-4-26" id="__codelineno-4-26" name="__codelineno-4-26"></a>        }
-<a href="#__codelineno-4-27" id="__codelineno-4-27" name="__codelineno-4-27"></a>      },
-<a href="#__codelineno-4-28" id="__codelineno-4-28" name="__codelineno-4-28"></a>      "x": {
-<a href="#__codelineno-4-29" id="__codelineno-4-29" name="__codelineno-4-29"></a>        "title": {
-<a href="#__codelineno-4-30" id="__codelineno-4-30" name="__codelineno-4-30"></a>          "display": true,
-<a href="#__codelineno-4-31" id="__codelineno-4-31" name="__codelineno-4-31"></a>          "text": "串行化类型"
-<a href="#__codelineno-4-32" id="__codelineno-4-32" name="__codelineno-4-32"></a>        }
-<a href="#__codelineno-4-33" id="__codelineno-4-33" name="__codelineno-4-33"></a>      }
-<a href="#__codelineno-4-34" id="__codelineno-4-34" name="__codelineno-4-34"></a>    },
-<a href="#__codelineno-4-35" id="__codelineno-4-35" name="__codelineno-4-35"></a>    "plugins": {
-<a href="#__codelineno-4-36" id="__codelineno-4-36" name="__codelineno-4-36"></a>      "title": {
-<a href="#__codelineno-4-37" id="__codelineno-4-37" name="__codelineno-4-37"></a>        "display": true,
-<a href="#__codelineno-4-38" id="__codelineno-4-38" name="__codelineno-4-38"></a>        "text": "冲突串行化 vs 视图串行化"
-<a href="#__codelineno-4-39" id="__codelineno-4-39" name="__codelineno-4-39"></a>      },
-<a href="#__codelineno-4-40" id="__codelineno-4-40" name="__codelineno-4-40"></a>      "legend": {
-<a href="#__codelineno-4-41" id="__codelineno-4-41" name="__codelineno-4-41"></a>        "display": true,
-<a href="#__codelineno-4-42" id="__codelineno-4-42" name="__codelineno-4-42"></a>        "position": "top"
-<a href="#__codelineno-4-43" id="__codelineno-4-43" name="__codelineno-4-43"></a>      }
-<a href="#__codelineno-4-44" id="__codelineno-4-44" name="__codelineno-4-44"></a>    }
-<a href="#__codelineno-4-45" id="__codelineno-4-45" name="__codelineno-4-45"></a>  }
-<a href="#__codelineno-4-46" id="__codelineno-4-46" name="__codelineno-4-46"></a>}
-</code></pre></div>
+<h2 id="checkpoints">四、检查点 (Checkpoints)</h2>
+<h3 id="1_3">1. 检查点作用</h3>
 <ul>
-<li><strong>调度范围</strong>：视图串行化包含所有冲突串行化调度，范围更广。</li>
-<li><strong>测试复杂度</strong>：冲突串行化通过前趋图测试（O(n²)），视图串行化是 NP 完全问题，复杂度更高。</li>
+<li><strong>减少恢复时间</strong>：无需从日志开头扫描。</li>
+<li><strong>定期记录</strong>：将缓冲区状态写入稳定存储。</li>
+</ul>
+<h3 id="2_2">2. 检查点过程</h3>
+<ul>
+<li><strong>模糊检查点 (Fuzzy Checkpoint)</strong> </li>
+<li>不强制脏页立即写入磁盘。</li>
+<li>记录脏页表和活动事务列表。</li>
+<li><strong>ARIES 优化</strong>：后续详述。</li>
 </ul>
 <hr/>
-<h2 id="_2">五、总结</h2>
+<h2 id="buffer-management">五、缓冲区管理 (Buffer Management)</h2>
+<h3 id="1_4">1. 缓冲区概念</h3>
 <ul>
-<li><strong>冲突串行化</strong>：</li>
-<li>基于冲突指令的顺序，通过交换非冲突指令转换为串行调度。</li>
-<li>使用前趋图测试，高效且实用。</li>
-<li>示例：Schedule 3 通过交换等价于 T1 → T2。</li>
-<li><strong>视图串行化</strong>：</li>
-<li>基于初始读、读写依赖和最终写，允许盲写，范围更广。</li>
-<li>测试复杂，实际中较少使用。</li>
-<li>示例：T27 → T28 → T29 调度视图等价但非冲突串行化。</li>
-<li><strong>其他串行化</strong>：</li>
-<li>某些调度可能在特定逻辑下等价于串行调度，但不满足冲突或视图串行化定义。</li>
-<li>需要分析事务语义，复杂且应用有限。</li>
+<li><strong>脏页 (Dirty Page)</strong>：缓冲区中被修改但未写入磁盘的页面。</li>
+<li><strong>固定 (Pin)</strong>：锁定页面防止换出。</li>
+<li><strong>解除固定 (Unpin)</strong>：允许页面换出。</li>
 </ul>
-<p>这份笔记替换了原 3.4、3.5 和 3.6 部分，结合课件内容，增加了详细解释、示例分析和图表，力求清晰易懂。如有进一步疑问，可深入探讨前趋图算法或视图等价的数学定义！</p>
+<h3 id="2_3">2. 写策略</h3>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>定义</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>强制写 (Force)</strong></td>
+<td>提交时强制所有更新写入磁盘</td>
+<td>保证持久性但慢</td>
+</tr>
+<tr>
+<td><strong>偷写 (Steal)</strong></td>
+<td>允许未提交更新写入磁盘</td>
+<td>需撤销支持</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="early-lock-release-and-logical-undo-operations">六、早期锁释放和逻辑撤销操作 (Early Lock Release and Logical Undo Operations)</h2>
+<h3 id="1_5">1. 早期锁释放</h3>
+<ul>
+<li><strong>场景</strong>：如 B+ 树插入/删除，锁提前释放。</li>
+<li><strong>问题</strong>：物理撤销不可行，因其他事务可能已更新。</li>
+</ul>
+<h3 id="2_4">2. 逻辑撤销</h3>
+<ul>
+<li><strong>逻辑撤销日志 (Logical Undo Logging)</strong> </li>
+<li>记录撤销操作而非旧值。</li>
+<li>
+<p>示例：插入撤销为删除操作。</p>
+</li>
+<li>
+<p><strong>操作日志 (Operation Logging)</strong> </p>
+</li>
+<li>开始：<code>&lt;T_j, O_j, operation-begin&gt;</code>。</li>
+<li>执行：记录物理重做和撤销信息。</li>
+<li>结束：<code>&lt;T_j, O_j, operation-end, U&gt;</code>，<span class="arithmatex">\( U \)</span> 为逻辑撤销信息。</li>
+<li>
+<p>示例：插入 <code>(K5, RID7)</code> 到索引 I9：
+    <div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>&lt;T1, O1, operation-begin&gt;
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>&lt;T1, X, 10, K5&gt;
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>&lt;T1, Y, 45, RID7&gt;
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>&lt;T1, O1, operation-end, (delete I9, K5, RID7)&gt;
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>恢复逻辑</strong> </p>
+</li>
+<li>未完成：使用物理撤销。</li>
+<li>已完成：使用 <span class="arithmatex">\( U \)</span> 逻辑撤销，忽略物理撤销。</li>
+</ul>
+<h3 id="3">3. 事务回滚</h3>
+<ul>
+<li><strong>回滚步骤</strong> </li>
+<li>逆向扫描日志。</li>
+<li>物理撤销：<code>&lt;T_i, X, V_1, V_2&gt;</code> -&gt; <code>&lt;T_i, X, V_1&gt;</code>。</li>
+<li>逻辑撤销：<code>&lt;T_i, O_j, operation-end, U&gt;</code> -&gt; 执行 <span class="arithmatex">\( U \)</span>，记录 <code>&lt;T_i, O_j, operation-abort&gt;</code>。</li>
+<li>跳过已撤销操作。</li>
+<li>结束：<code>&lt;T_i, abort&gt;</code>。</li>
+</ul>
+<hr/>
+<h2 id="aries-aries-recovery-algorithm">七、ARIES 恢复算法 (ARIES Recovery Algorithm)</h2>
+<h3 id="1-aries">1. ARIES 概述</h3>
+<ul>
+<li><strong>特点</strong>：先进的恢复方法，优化正常处理和恢复。</li>
+<li><strong>关键技术</strong> </li>
+<li><strong>日志序列号 (LSN)</strong>：标识日志记录。</li>
+<li><strong>页面 LSN (PageLSN)</strong>：记录页面上最后应用的 LSN。</li>
+<li><strong>生理重做 (Physiological Redo)</strong>：页面物理标识，操作逻辑记录，减少日志开销。</li>
+</ul>
+<h3 id="2-aries">2. ARIES 数据结构</h3>
+<ul>
+<li><strong>脏页表 (Dirty Page Table)</strong> </li>
+<li>记录缓冲区中被修改的页面。</li>
+<li>字段：PageLSN（最后更新LSN），RecLSN（磁盘版本已应用的LSN）。</li>
+<li><strong>检查点日志</strong> </li>
+<li>包含：脏页表、活动事务列表、每个事务的 LastLSN。</li>
+<li>
+<p>特点：不强制写脏页，低开销。</p>
+</li>
+<li>
+<p><strong>日志记录</strong> </p>
+</li>
+<li>结构：<code>LSN | TransID | PrevLSN | RedoInfo | UndoInfo</code>。</li>
+<li><strong>补偿日志记录 (CLR)</strong>：记录恢复动作，无需撤销，含 UndoNextLSN。</li>
+</ul>
+<h3 id="3-aries">3. ARIES 恢复过程</h3>
+<ul>
+<li><strong>三个阶段</strong> </li>
+<li><strong>分析阶段 (Analysis Pass)</strong> <ul>
+<li>从最后检查点开始。</li>
+<li>确定：需撤销的事务、脏页、RedoLSN（重做起点）。</li>
+</ul>
+</li>
+<li><strong>重做阶段 (Redo Pass)</strong> <ul>
+<li>从 RedoLSN 开始重复历史。</li>
+<li>条件：若页面不在脏页表或 LSN &lt; RecLSN，跳过；否则重做。</li>
+</ul>
+</li>
+<li><strong>撤销阶段 (Undo Pass)</strong> <ul>
+<li>逆向回滚未完成事务。</li>
+<li>优化：跳过已撤销记录，使用 UndoNextLSN。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4_1">4. 其他特性</h3>
+<ul>
+<li><strong>页面独立恢复</strong>：部分页面可单独从备份恢复。</li>
+<li><strong>保存点 (Savepoints)</strong>：支持部分回滚，如死锁处理。</li>
+<li><strong>细粒度锁</strong>：支持元组级索引锁，需逻辑撤销。</li>
+</ul>
+<hr/>
+<h2 id="recovery-in-main-memory-databases">八、主存数据库恢复 (Recovery in Main Memory Databases)</h2>
+<ul>
+<li><strong>优化</strong> </li>
+<li>无需索引重做日志：内存重建快。</li>
+<li>无需撤销日志：仅提交数据写磁盘。</li>
+<li>并行恢复：快速加载和恢复。</li>
+</ul>
+<hr/>
+<h2 id="_1">总结图解</h2>
+<pre class="mermaid"><code>mindmap
+  root((Recovery System))
+    故障分类
+      逻辑错误
+      系统错误
+      系统崩溃
+      磁盘故障
+    恢复和原子性
+      恢复算法
+      原子性保证
+    日志恢复
+      日志记录
+      立即修改
+      延迟修改
+    检查点
+      模糊检查点
+    缓冲区管理
+      脏页
+      写策略
+    逻辑撤销
+      早期锁释放
+      操作日志
+    ARIES
+      数据结构
+      恢复过程
+      优化特性
+</code></pre>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>

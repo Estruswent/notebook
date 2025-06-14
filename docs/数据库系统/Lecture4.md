@@ -176,6 +176,7 @@ WHERE emp.ID IS NULL;
 
 ### 2.1 视图定义  
 作用：隐藏数据复杂性或敏感信息，提供虚拟表。（个人理解就是取一部分出来做成一个单独的表来给人看）
+
 语法：（以`instructor(ID, name, dept_name)`为例）
 
 ```sql  

@@ -774,7 +774,7 @@
 <span class="arithmatex">\(r - s\)</span>：保留在<span class="arithmatex">\(r\)</span>中但不在<span class="arithmatex">\(s\)</span>中的元组。<br/>
    示例：查询2017秋季开设但2018春季未开设的课程</p>
 <p>$$
-   \Pi_{\text{course_id}}(\sigma_{\text{semester=Fall} \land \text{year=2017}}(\text{section})) - \Pi_{\text{course_id}}(\sigma_{\text{semester=Spring} \land \text{year=2018}}(\text{section}))
+   \Pi_{\text{course_id}}(\sigma(\text{section})) - \Pi_{\text{course_id}}(\sigma_{\text{semester=Spring} \land \text{year=2018}}(\text{section}))
    $$</p>
 <p>5.<strong>笛卡尔积（Cartesian Product）</strong><br/>
 <span class="arithmatex">\(r \times s\)</span>：组合两关系的所有元组对。<br/>

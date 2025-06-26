@@ -226,16 +226,16 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Graph/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort2/">
 <span class="md-ellipsis">
-    图
+    排序问题（上）
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort1/">
 <span class="md-ellipsis">
-    排序问题
+    排序问题（下）
   </span>
 </a>
 </li>
@@ -257,6 +257,34 @@
 <a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DisjointSet/">
 <span class="md-ellipsis">
     并查集
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Graph_new/">
+<span class="md-ellipsis">
+    图：基本概念
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/ShortestPathAlgorithm/">
+<span class="md-ellipsis">
+    图：最短路径算法
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/MST/">
+<span class="md-ellipsis">
+    图：网络流与最小生成树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DFS/">
+<span class="md-ellipsis">
+    图：深度优先搜索
   </span>
 </a>
 </li>
@@ -388,21 +416,21 @@
     Lecture14: Concurrency Control
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<nav aria-label="index" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      index
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
+<a class="md-nav__link" href="#一并发控制概述">
 <span class="md-ellipsis">
       一、并发控制概述
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lock-based-protocols">
+<a class="md-nav__link" href="#二锁机制lock-based-protocols">
 <span class="md-ellipsis">
       二、锁机制（Lock-Based Protocols）
     </span>
@@ -410,7 +438,7 @@
 <nav aria-label="二、锁机制（Lock-Based Protocols）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1">
+<a class="md-nav__link" href="#1-锁的基本概念">
 <span class="md-ellipsis">
       1. 锁的基本概念
     </span>
@@ -418,35 +446,35 @@
 <nav aria-label="1. 锁的基本概念" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#11">
+<a class="md-nav__link" href="#11-锁的两种模式">
 <span class="md-ellipsis">
       1.1 锁的两种模式
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#12">
+<a class="md-nav__link" href="#12-锁兼容性矩阵">
 <span class="md-ellipsis">
       1.2 锁兼容性矩阵
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#13">
+<a class="md-nav__link" href="#13-锁的使用示例">
 <span class="md-ellipsis">
       1.3 锁的使用示例
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#14">
+<a class="md-nav__link" href="#14-锁协议与调度">
 <span class="md-ellipsis">
       1.4 锁协议与调度
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#15">
+<a class="md-nav__link" href="#15-锁表与锁管理器">
 <span class="md-ellipsis">
       1.5 锁表与锁管理器
     </span>
@@ -456,7 +484,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2-two-phase-locking-protocol-2pl">
+<a class="md-nav__link" href="#2-两阶段锁协议two-phase-locking-protocol-2pl">
 <span class="md-ellipsis">
       2. 两阶段锁协议（Two-Phase Locking Protocol, 2PL）
     </span>
@@ -464,28 +492,28 @@
 <nav aria-label="2. 两阶段锁协议（Two-Phase Locking Protocol, 2PL）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#21">
+<a class="md-nav__link" href="#21-定义">
 <span class="md-ellipsis">
       2.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22">
+<a class="md-nav__link" href="#22-变种">
 <span class="md-ellipsis">
       2.2 变种
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#23">
+<a class="md-nav__link" href="#23-自动锁获取">
 <span class="md-ellipsis">
       2.3 自动锁获取
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#24">
+<a class="md-nav__link" href="#24-局限性">
 <span class="md-ellipsis">
       2.4 局限性
     </span>
@@ -495,7 +523,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3-graph-based-protocols">
+<a class="md-nav__link" href="#3-基于图的协议graph-based-protocols">
 <span class="md-ellipsis">
       3. 基于图的协议（Graph-Based Protocols）
     </span>
@@ -503,14 +531,14 @@
 <nav aria-label="3. 基于图的协议（Graph-Based Protocols）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#31">
+<a class="md-nav__link" href="#31-定义">
 <span class="md-ellipsis">
       3.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#32-tree-protocol">
+<a class="md-nav__link" href="#32-树协议tree-protocol">
 <span class="md-ellipsis">
       3.2 树协议（Tree Protocol）
     </span>
@@ -523,7 +551,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#deadlock-handling">
+<a class="md-nav__link" href="#三死锁处理deadlock-handling">
 <span class="md-ellipsis">
       三、死锁处理（Deadlock Handling）
     </span>
@@ -531,21 +559,21 @@
 <nav aria-label="三、死锁处理（Deadlock Handling）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_1">
+<a class="md-nav__link" href="#1-死锁定义">
 <span class="md-ellipsis">
       1. 死锁定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2">
+<a class="md-nav__link" href="#2-死锁预防">
 <span class="md-ellipsis">
       2. 死锁预防
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3">
+<a class="md-nav__link" href="#3-死锁检测与恢复">
 <span class="md-ellipsis">
       3. 死锁检测与恢复
     </span>
@@ -555,7 +583,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#multiple-granularity-locking">
+<a class="md-nav__link" href="#四多粒度锁multiple-granularity-locking">
 <span class="md-ellipsis">
       四、多粒度锁（Multiple Granularity Locking）
     </span>
@@ -563,14 +591,14 @@
 <nav aria-label="四、多粒度锁（Multiple Granularity Locking）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_2">
+<a class="md-nav__link" href="#1-概述">
 <span class="md-ellipsis">
       1. 概述
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2_1">
+<a class="md-nav__link" href="#2-意图锁模式">
 <span class="md-ellipsis">
       2. 意图锁模式
     </span>
@@ -578,14 +606,14 @@
 <nav aria-label="2. 意图锁模式" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#21_1">
+<a class="md-nav__link" href="#21-更多的锁">
 <span class="md-ellipsis">
       2.1 更多的锁
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22_1">
+<a class="md-nav__link" href="#22-兼容性矩阵">
 <span class="md-ellipsis">
       2.2 兼容性矩阵
     </span>
@@ -595,7 +623,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3_1">
+<a class="md-nav__link" href="#3-多粒度锁协议">
 <span class="md-ellipsis">
       3. 多粒度锁协议
     </span>
@@ -605,7 +633,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
+<a class="md-nav__link" href="#五插入与删除操作">
 <span class="md-ellipsis">
       五、插入与删除操作
     </span>
@@ -613,14 +641,14 @@
 <nav aria-label="五、插入与删除操作" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_3">
+<a class="md-nav__link" href="#1-基本锁规则">
 <span class="md-ellipsis">
       1. 基本锁规则
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2-phantom-phenomenon">
+<a class="md-nav__link" href="#2-幻影现象phantom-phenomenon">
 <span class="md-ellipsis">
       2. 幻影现象（Phantom Phenomenon）
     </span>
@@ -628,14 +656,14 @@
 <nav aria-label="2. 幻影现象（Phantom Phenomenon）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#21_2">
+<a class="md-nav__link" href="#21-示例">
 <span class="md-ellipsis">
       2.1 示例
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22_2">
+<a class="md-nav__link" href="#22-解决幻影问题">
 <span class="md-ellipsis">
       2.2 解决幻影问题
     </span>
@@ -719,6 +747,37 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-ellipsis">
+    脑机接口算法及实践
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            脑机接口算法及实践
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Python EEG Signal
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </li>
@@ -785,21 +844,21 @@
 <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<nav aria-label="index" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      index
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
+<a class="md-nav__link" href="#一并发控制概述">
 <span class="md-ellipsis">
       一、并发控制概述
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lock-based-protocols">
+<a class="md-nav__link" href="#二锁机制lock-based-protocols">
 <span class="md-ellipsis">
       二、锁机制（Lock-Based Protocols）
     </span>
@@ -807,7 +866,7 @@
 <nav aria-label="二、锁机制（Lock-Based Protocols）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1">
+<a class="md-nav__link" href="#1-锁的基本概念">
 <span class="md-ellipsis">
       1. 锁的基本概念
     </span>
@@ -815,35 +874,35 @@
 <nav aria-label="1. 锁的基本概念" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#11">
+<a class="md-nav__link" href="#11-锁的两种模式">
 <span class="md-ellipsis">
       1.1 锁的两种模式
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#12">
+<a class="md-nav__link" href="#12-锁兼容性矩阵">
 <span class="md-ellipsis">
       1.2 锁兼容性矩阵
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#13">
+<a class="md-nav__link" href="#13-锁的使用示例">
 <span class="md-ellipsis">
       1.3 锁的使用示例
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#14">
+<a class="md-nav__link" href="#14-锁协议与调度">
 <span class="md-ellipsis">
       1.4 锁协议与调度
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#15">
+<a class="md-nav__link" href="#15-锁表与锁管理器">
 <span class="md-ellipsis">
       1.5 锁表与锁管理器
     </span>
@@ -853,7 +912,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2-two-phase-locking-protocol-2pl">
+<a class="md-nav__link" href="#2-两阶段锁协议two-phase-locking-protocol-2pl">
 <span class="md-ellipsis">
       2. 两阶段锁协议（Two-Phase Locking Protocol, 2PL）
     </span>
@@ -861,28 +920,28 @@
 <nav aria-label="2. 两阶段锁协议（Two-Phase Locking Protocol, 2PL）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#21">
+<a class="md-nav__link" href="#21-定义">
 <span class="md-ellipsis">
       2.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22">
+<a class="md-nav__link" href="#22-变种">
 <span class="md-ellipsis">
       2.2 变种
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#23">
+<a class="md-nav__link" href="#23-自动锁获取">
 <span class="md-ellipsis">
       2.3 自动锁获取
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#24">
+<a class="md-nav__link" href="#24-局限性">
 <span class="md-ellipsis">
       2.4 局限性
     </span>
@@ -892,7 +951,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3-graph-based-protocols">
+<a class="md-nav__link" href="#3-基于图的协议graph-based-protocols">
 <span class="md-ellipsis">
       3. 基于图的协议（Graph-Based Protocols）
     </span>
@@ -900,14 +959,14 @@
 <nav aria-label="3. 基于图的协议（Graph-Based Protocols）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#31">
+<a class="md-nav__link" href="#31-定义">
 <span class="md-ellipsis">
       3.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#32-tree-protocol">
+<a class="md-nav__link" href="#32-树协议tree-protocol">
 <span class="md-ellipsis">
       3.2 树协议（Tree Protocol）
     </span>
@@ -920,7 +979,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#deadlock-handling">
+<a class="md-nav__link" href="#三死锁处理deadlock-handling">
 <span class="md-ellipsis">
       三、死锁处理（Deadlock Handling）
     </span>
@@ -928,21 +987,21 @@
 <nav aria-label="三、死锁处理（Deadlock Handling）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_1">
+<a class="md-nav__link" href="#1-死锁定义">
 <span class="md-ellipsis">
       1. 死锁定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2">
+<a class="md-nav__link" href="#2-死锁预防">
 <span class="md-ellipsis">
       2. 死锁预防
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3">
+<a class="md-nav__link" href="#3-死锁检测与恢复">
 <span class="md-ellipsis">
       3. 死锁检测与恢复
     </span>
@@ -952,7 +1011,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#multiple-granularity-locking">
+<a class="md-nav__link" href="#四多粒度锁multiple-granularity-locking">
 <span class="md-ellipsis">
       四、多粒度锁（Multiple Granularity Locking）
     </span>
@@ -960,14 +1019,14 @@
 <nav aria-label="四、多粒度锁（Multiple Granularity Locking）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_2">
+<a class="md-nav__link" href="#1-概述">
 <span class="md-ellipsis">
       1. 概述
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2_1">
+<a class="md-nav__link" href="#2-意图锁模式">
 <span class="md-ellipsis">
       2. 意图锁模式
     </span>
@@ -975,14 +1034,14 @@
 <nav aria-label="2. 意图锁模式" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#21_1">
+<a class="md-nav__link" href="#21-更多的锁">
 <span class="md-ellipsis">
       2.1 更多的锁
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22_1">
+<a class="md-nav__link" href="#22-兼容性矩阵">
 <span class="md-ellipsis">
       2.2 兼容性矩阵
     </span>
@@ -992,7 +1051,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3_1">
+<a class="md-nav__link" href="#3-多粒度锁协议">
 <span class="md-ellipsis">
       3. 多粒度锁协议
     </span>
@@ -1002,7 +1061,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
+<a class="md-nav__link" href="#五插入与删除操作">
 <span class="md-ellipsis">
       五、插入与删除操作
     </span>
@@ -1010,14 +1069,14 @@
 <nav aria-label="五、插入与删除操作" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_3">
+<a class="md-nav__link" href="#1-基本锁规则">
 <span class="md-ellipsis">
       1. 基本锁规则
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2-phantom-phenomenon">
+<a class="md-nav__link" href="#2-幻影现象phantom-phenomenon">
 <span class="md-ellipsis">
       2. 幻影现象（Phantom Phenomenon）
     </span>
@@ -1025,14 +1084,14 @@
 <nav aria-label="2. 幻影现象（Phantom Phenomenon）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#21_2">
+<a class="md-nav__link" href="#21-示例">
 <span class="md-ellipsis">
       2.1 示例
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22_2">
+<a class="md-nav__link" href="#22-解决幻影问题">
 <span class="md-ellipsis">
       2.2 解决幻影问题
     </span>
@@ -1052,7 +1111,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="lecture14-concurrency-control">Lecture14: Concurrency Control</h1>
-<h2 id="_1">一、并发控制概述</h2>
+<h2 id="一并发控制概述">一、并发控制概述</h2>
 <p>并发控制（Concurrency Control）确保多个事务并发执行时不会破坏数据的一致性或完整性。其目标是保证<strong>可串行化（serializability）</strong>，即并发事务的执行结果等价于某种串行执行顺序。</p>
 <p><strong>主要内容：</strong></p>
 <ul>
@@ -1061,15 +1120,15 @@
 <li>多粒度锁（Multiple Granularity Locking）</li>
 <li>插入与删除操作及谓词读取（Insert and Delete Operations with Predicate Reads）</li>
 </ul>
-<h2 id="lock-based-protocols">二、锁机制（Lock-Based Protocols）</h2>
-<h3 id="1">1. 锁的基本概念</h3>
+<h2 id="二锁机制lock-based-protocols">二、锁机制（Lock-Based Protocols）</h2>
+<h3 id="1-锁的基本概念">1. 锁的基本概念</h3>
 <p><strong>锁（Lock）</strong> 是一种控制并发访问数据项的机制，由<strong>并发控制管理器（concurrency-control manager）</strong>管理。事务通过请求和获取锁来控制对数据的访问。</p>
-<h4 id="11">1.1 锁的两种模式</h4>
+<h4 id="11-锁的两种模式">1.1 锁的两种模式</h4>
 <ul>
 <li><strong>共享锁（S-lock）</strong>：允许读取数据项，但禁止写入。通过 <code>lock-S</code> 指令请求。</li>
 <li><strong>排他锁（X-lock）</strong>：允许读取和写入数据项。通过 <code>lock-X</code> 指令请求。</li>
 </ul>
-<h4 id="12">1.2 锁兼容性矩阵</h4>
+<h4 id="12-锁兼容性矩阵">1.2 锁兼容性矩阵</h4>
 <p>锁请求的兼容性由以下矩阵决定：</p>
 <table>
 <thead>
@@ -1097,7 +1156,7 @@
 <li>如果某个事务持有数据项的 X-lock，则其他事务无法持有该数据项的任何锁（S 或 X）。</li>
 <li>事务只有在锁请求被授予后才能继续执行。</li>
 </ul>
-<h4 id="13">1.3 锁的使用示例</h4>
+<h4 id="13-锁的使用示例">1.3 锁的使用示例</h4>
 <p>考虑事务 <span class="arithmatex">\(T_2 \)</span>：</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">lock</span><span class="o">-</span><span class="n">S</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
 <a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">read</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
@@ -1108,13 +1167,13 @@
 <a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="n">display</span><span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">B</span><span class="p">);</span>
 </code></pre></div>
 <p><strong>注意</strong>：上述锁的使用方式<strong>不能保证可串行化</strong>，因为调度可能允许产生非可串行化的交错执行。</p>
-<h4 id="14">1.4 锁协议与调度</h4>
+<h4 id="14-锁协议与调度">1.4 锁协议与调度</h4>
 <ul>
 <li><strong>锁协议（Locking Protocol）</strong>：事务在请求和释放锁时遵循的一组规则。</li>
 <li>一个调度在锁协议下是<strong>合法的（legal）</strong>，如果它能由遵循该协议的事务生成。</li>
 <li>如果协议下所有合法调度都是可串行化的，则该协议保证<strong>可串行化</strong>。</li>
 </ul>
-<h4 id="15">1.5 锁表与锁管理器</h4>
+<h4 id="15-锁表与锁管理器">1.5 锁表与锁管理器</h4>
 <ul>
 <li><strong>锁管理器（Lock Manager）</strong>：一个独立进程，通过发送锁授权消息来响应加锁请求（若发生死锁，则发送要求事务回滚的消息），它还维护了内存中的<strong>锁表（Lock Table）</strong>，记录：<ul>
 <li>已授予的锁（图中用深色矩形表示）。</li>
@@ -1129,8 +1188,8 @@
 <li>解锁请求会删除相应锁，锁管理器检查等待请求是否可以授予。</li>
 <li>若事务中止，其所有锁（已授予或等待中）都会被删除。</li>
 </ul>
-<h3 id="2-two-phase-locking-protocol-2pl">2. 两阶段锁协议（Two-Phase Locking Protocol, 2PL）</h3>
-<h4 id="21">2.1 定义</h4>
+<h3 id="2-两阶段锁协议two-phase-locking-protocol-2pl">2. 两阶段锁协议（Two-Phase Locking Protocol, 2PL）</h3>
+<h4 id="21-定义">2.1 定义</h4>
 <p>两阶段锁协议（2PL）确保<strong>冲突可串行化调度（conflict-serializable schedules）</strong>，包括两个阶段：</p>
 <ul>
 <li><strong>增长阶段（Growing Phase）</strong>：事务可以获取锁，但不能释放锁。</li>
@@ -1138,7 +1197,7 @@
 </ul>
 <p><img alt="alt text" src="../image-49.png"/></p>
 <p><strong>锁点（Lock Point）</strong>：事务获取最后一个锁的时刻。事务可以按锁点顺序串行化。</p>
-<h4 id="22">2.2 变种</h4>
+<h4 id="22-变种">2.2 变种</h4>
 <ul>
 <li><strong>严格两阶段锁（Strict 2PL）</strong>：<ul>
 <li>所有排他锁（X-lock）必须持有到事务提交或中止。</li>
@@ -1157,7 +1216,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="23">2.3 自动锁获取</h4>
+<h4 id="23-自动锁获取">2.3 自动锁获取</h4>
 <p>锁在事务发出读写操作时自动获取：</p>
 <ul>
 <li>
@@ -1185,18 +1244,18 @@
 </li>
 </ul>
 <p>所有锁在事务提交或中止后释放。</p>
-<h4 id="24">2.4 局限性</h4>
+<h4 id="24-局限性">2.4 局限性</h4>
 <ul>
 <li>2PL 保证可串行化，但<strong>不能防止死锁</strong>。</li>
 <li>2PL 不是可串行化的必要条件，某些可串行化调度在 2PL 下无法实现。</li>
 </ul>
-<h3 id="3-graph-based-protocols">3. 基于图的协议（Graph-Based Protocols）</h3>
-<h4 id="31">3.1 定义</h4>
+<h3 id="3-基于图的协议graph-based-protocols">3. 基于图的协议（Graph-Based Protocols）</h3>
+<h4 id="31-定义">3.1 定义</h4>
 <p>基于图的协议对数据项集 <span class="arithmatex">\(D = \{d_1, d_2, \ldots, d_h\} \)</span>施加<strong>偏序（partial ordering）</strong>。若 <span class="arithmatex">\(d_i \rightarrow d_j \)</span>，则事务必须先锁 <span class="arithmatex">\(d_i \)</span>再锁 <span class="arithmatex">\(d_j \)</span>。这形成一个<strong>有向无环图（DAG）</strong>，称为<strong>数据库图（database graph）</strong>。</p>
 <blockquote>
 <p>偏序（Partially Ordered Set，简称 poset）是一个数学概念，主要应用于集合论、组合数学和计算机科学等领域。偏序描述了一种关系，这种关系在某些元素之间存在顺序，但并非所有元素都可以相互比较。</p>
 </blockquote>
-<h4 id="32-tree-protocol">3.2 树协议（Tree Protocol）</h4>
+<h4 id="32-树协议tree-protocol">3.2 树协议（Tree Protocol）</h4>
 <p>一种特定的基于图协议，规则如下：</p>
 <ul>
 <li>仅允许<strong>排他锁（X-lock）</strong>。</li>
@@ -1217,13 +1276,13 @@
 <li>事务可能锁定未访问的数据项，增加锁开销和等待时间。</li>
 <li>2PL 和树协议下可实现的调度互不完全重叠。</li>
 </ul>
-<h2 id="deadlock-handling">三、死锁处理（Deadlock Handling）</h2>
-<h3 id="1_1">1. 死锁定义</h3>
+<h2 id="三死锁处理deadlock-handling">三、死锁处理（Deadlock Handling）</h2>
+<h3 id="1-死锁定义">1. 死锁定义</h3>
 <p><strong>死锁（Deadlock）</strong> 发生在事务集形成循环等待，每个事务等待另一个事务持有的资源。例如：</p>
 <p><img alt="alt text" src="../image-48.png"/></p>
 <p><span class="arithmatex">\(T_3 \)</span>等待 <span class="arithmatex">\(T_4 \)</span>释放 A，<span class="arithmatex">\(T_4 \)</span>等待 <span class="arithmatex">\(T_3 \)</span>释放 B，形成死锁。</p>
 <p><strong>解决方法</strong>：回滚一个事务（例如 <span class="arithmatex">\(T_3 \)</span>或 <span class="arithmatex">\(T_4 \)</span>）并释放其锁。</p>
-<h3 id="2">2. 死锁预防</h3>
+<h3 id="2-死锁预防">2. 死锁预防</h3>
 <p>通过以下策略确保系统不进入死锁状态：</p>
 <ul>
 <li><strong>预声明（Pre-declaration）</strong>：事务在开始前声明所有需要的锁。</li>
@@ -1251,7 +1310,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="3">3. 死锁检测与恢复</h3>
+<h3 id="3-死锁检测与恢复">3. 死锁检测与恢复</h3>
 <ul>
 <li><strong>等待图（Wait-For Graph）</strong>：<ul>
 <li><strong>顶点</strong>表示<strong>事务</strong>。</li>
@@ -1277,8 +1336,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="multiple-granularity-locking">四、多粒度锁（Multiple Granularity Locking）</h2>
-<h3 id="1_2">1. 概述</h3>
+<h2 id="四多粒度锁multiple-granularity-locking">四、多粒度锁（Multiple Granularity Locking）</h2>
+<h3 id="1-概述">1. 概述</h3>
 <p>多粒度锁允许在不同粒度级别（例如数据库、区域、文件、记录）上锁定数据项，组织成<strong>树形层次结构</strong>(区别于树形锁定协议 tree-locking protocol )。当事务显式锁定树中的某个节点时，会隐式以相同模式锁定该节点的所有后代节点。</p>
 <ul>
 <li><strong>粒度级别</strong>（从最粗到最细）：数据库 → 区域 → 文件 → 记录</li>
@@ -1289,17 +1348,17 @@
 </li>
 </ul>
 <p><img alt="alt text" src="../image-54.png"/></p>
-<h3 id="2_1">2. 意图锁模式</h3>
-<h4 id="21_1">2.1 更多的锁</h4>
+<h3 id="2-意图锁模式">2. 意图锁模式</h3>
+<h4 id="21-更多的锁">2.1 更多的锁</h4>
 <p>除之前提到的 S 和 X 这两种锁外，引入三种意图锁模式：</p>
 <ul>
 <li><strong>意图共享锁（IS, Intention-Shared）</strong>：表示在较低层次只使用共享锁。</li>
 <li><strong>意图排他锁（IX, Intention-Exclusive）</strong>：表示在较低层次使用排他锁或共享锁。</li>
 <li><strong>共享与意图排他锁（SIX, Shared and Intention-Exclusive）</strong>：子树以共享模式锁定，且较低层次有排他锁。</li>
 </ul>
-<h4 id="22_1">2.2 兼容性矩阵</h4>
+<h4 id="22-兼容性矩阵">2.2 兼容性矩阵</h4>
 <p><img alt="alt text" src="../image-55.png"/></p>
-<h3 id="3_1">3. 多粒度锁协议</h3>
+<h3 id="3-多粒度锁协议">3. 多粒度锁协议</h3>
 <p>事务 <span class="arithmatex">\(T_i \)</span>锁定节点 <span class="arithmatex">\(Q \)</span>的规则：</p>
 <ol>
 <li>锁必须与现有锁兼容（参考兼容性矩阵）。</li>
@@ -1311,8 +1370,8 @@
 <li>锁按<strong>根到叶</strong>顺序获取，按<strong>叶到根</strong>顺序释放。</li>
 </ol>
 <p><strong>锁粒度升级（Lock Granularity Escalation）</strong>：当某一级锁过多时，切换到更粗粒度的 S 或 X 锁以减少开销。</p>
-<h2 id="_2">五、插入与删除操作</h2>
-<h3 id="1_3">1. 基本锁规则</h3>
+<h2 id="五插入与删除操作">五、插入与删除操作</h2>
+<h3 id="1-基本锁规则">1. 基本锁规则</h3>
 <ul>
 <li><strong>删除（Delete）</strong>：需在被删除数据项上获取<strong>排他锁（X-lock）</strong>。</li>
 <li><strong>插入（Insert）</strong>：插入事务自动为新元组获取<strong>排他锁</strong>。<ul>
@@ -1321,9 +1380,9 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-phantom-phenomenon">2. 幻影现象（Phantom Phenomenon）</h3>
+<h3 id="2-幻影现象phantom-phenomenon">2. 幻影现象（Phantom Phenomenon）</h3>
 <p><strong>幻影现象</strong>（幻读）指事务执行<strong>谓词读取（predicate read）</strong>（如范围查询）时，与插入、删除或更新操作发生冲突，即使未访问共同元组。</p>
-<h4 id="21_2">2.1 示例</h4>
+<h4 id="21-示例">2.1 示例</h4>
 <ul>
 <li><strong>事务 <span class="arithmatex">\(T_1 \)</span></strong>：执行谓词读取：
   <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Physics'</span><span class="p">;</span>
@@ -1370,7 +1429,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="22_2">2.2 解决幻影问题</h4>
+<h4 id="22-解决幻影问题">2.2 解决幻影问题</h4>
 <ul>
 <li><strong>基本方案</strong>：<ul>
 <li>为关系关联一个<strong>数据项</strong>，表示其包含的元组信息。</li>

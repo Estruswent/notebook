@@ -1,0 +1,1538 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="This is E5trusw3nt's Notebook" name="description"/>
+<meta content="E5trusw3nt" name="author"/>
+<link href="../Graph_new/" rel="prev"/>
+<link href="../MST/" rel="next"/>
+<link href="../../style/images/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.5.34" name="generator"/>
+<title>图：最短路径算法 - E5trusw3nt's Notebook</title>
+<link href="../../assets/stylesheets/main.35f28582.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../style/css/img.css" rel="stylesheet"/>
+<link href="../../style/css/code.css" rel="stylesheet"/>
+<link href="../../style/css/table.css" rel="stylesheet"/>
+<link href="../../style/css/fonts.css" rel="stylesheet"/>
+<link href="../../style/css/mermaid.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="black" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#图最短路径算法shortest-path-algorithms">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="E5trusw3nt's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../style/images/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            E5trusw3nt's Notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              图：最短路径算法
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="black" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        
+  
+    
+  
+  首页
+
+      </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../TimeComplexity/">
+          
+  
+  Computer Science
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E5%86%99%E4%BD%9C/latex/">
+          
+  
+  Writing
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E5%85%B6%E5%AE%83/Matplotlib/">
+          
+  
+  Others
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="E5trusw3nt's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../style/images/logo.png"/>
+</a>
+    E5trusw3nt's Notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    首页
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-ellipsis">
+    Computer Science
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            Computer Science
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+<span class="md-ellipsis">
+    数据结构基础
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_1">
+<span class="md-nav__icon md-icon"></span>
+            数据结构基础
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../TimeComplexity/">
+<span class="md-ellipsis">
+    时间复杂度
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../DoublyLinkedList/">
+<span class="md-ellipsis">
+    双向链表
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Sort2/">
+<span class="md-ellipsis">
+    排序问题（上）
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Sort1/">
+<span class="md-ellipsis">
+    排序问题（下）
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Tree/">
+<span class="md-ellipsis">
+    树、二叉树与线索二叉树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../PriorityQueues/">
+<span class="md-ellipsis">
+    优先队列（堆）
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../DisjointSet/">
+<span class="md-ellipsis">
+    并查集
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Graph_new/">
+<span class="md-ellipsis">
+    图：基本概念
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    图：最短路径算法
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    图：最短路径算法
+  </span>
+</a>
+<nav aria-label="index" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      index
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#一单源最短路径问题-single-source-shortest-path-problem">
+<span class="md-ellipsis">
+      一、单源最短路径问题 (Single-Source Shortest-Path Problem)
+    </span>
+</a>
+<nav aria-label="一、单源最短路径问题 (Single-Source Shortest-Path Problem)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-问题定义">
+<span class="md-ellipsis">
+      1. 问题定义
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-示例图">
+<span class="md-ellipsis">
+      2. 示例图
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#二无权最短路径算法-unweighted-shortest-paths">
+<span class="md-ellipsis">
+      二、无权最短路径算法 (Unweighted Shortest Paths)
+    </span>
+</a>
+<nav aria-label="二、无权最短路径算法 (Unweighted Shortest Paths)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-核心思想">
+<span class="md-ellipsis">
+      1. 核心思想
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-数据结构">
+<span class="md-ellipsis">
+      2. 数据结构
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-基本算法">
+<span class="md-ellipsis">
+      3. 基本算法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-改进版算法基于队列">
+<span class="md-ellipsis">
+      4. 改进版算法（基于队列）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#三dijkstra-算法-weighted-shortest-paths">
+<span class="md-ellipsis">
+      三、Dijkstra 算法 (Weighted Shortest Paths)
+    </span>
+</a>
+<nav aria-label="三、Dijkstra 算法 (Weighted Shortest Paths)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-核心思想_1">
+<span class="md-ellipsis">
+      1. 核心思想
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-伪代码实现">
+<span class="md-ellipsis">
+      2. 伪代码实现
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-时间复杂度">
+<span class="md-ellipsis">
+      3. 时间复杂度
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#四负权边处理-graphs-with-negative-edge-costs">
+<span class="md-ellipsis">
+      四、负权边处理 (Graphs with Negative Edge Costs)
+    </span>
+</a>
+<nav aria-label="四、负权边处理 (Graphs with Negative Edge Costs)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-简单想法的失败">
+<span class="md-ellipsis">
+      1. 简单想法的失败
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-负权边算法">
+<span class="md-ellipsis">
+      2. 负权边算法
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#五无环图最短路径-acyclic-graphs">
+<span class="md-ellipsis">
+      五、无环图最短路径 (Acyclic Graphs)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#六全对最短路径问题-all-pairs-shortest-path-problem">
+<span class="md-ellipsis">
+      六、全对最短路径问题 (All-Pairs Shortest Path Problem)
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../MST/">
+<span class="md-ellipsis">
+    图：网络流与最小生成树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../DFS/">
+<span class="md-ellipsis">
+    图：深度优先搜索
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../unfinished/">
+<span class="md-ellipsis">
+    待完成
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    数据库系统
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: relations models and algebra
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture4/">
+<span class="md-ellipsis">
+    Lecture4: Immediate SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture5/">
+<span class="md-ellipsis">
+    Lecture5: Advanced SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture6/">
+<span class="md-ellipsis">
+    Lecture6: Database Design using the E-R Model
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture7/">
+<span class="md-ellipsis">
+    Lecture7: Normalization
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture8/">
+<span class="md-ellipsis">
+    Lecture8: Physical Storage System
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture9/">
+<span class="md-ellipsis">
+    Lecture9: Data Storage Structure
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture10/">
+<span class="md-ellipsis">
+    Lecture10: Index
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture11/">
+<span class="md-ellipsis">
+    Lecture11: Query Processing
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture12/">
+<span class="md-ellipsis">
+    Lecture12: Query Optimization
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture13/">
+<span class="md-ellipsis">
+    Lecture13: Transaction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture14/">
+<span class="md-ellipsis">
+    Lecture14: Concurrency Control
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture15/">
+<span class="md-ellipsis">
+    Lecture15: Recovery System
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-ellipsis">
+    面向对象程序设计
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Course Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Using Objects
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: Class
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: Object Interactive
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture4/">
+<span class="md-ellipsis">
+    Lecture4: Copy Constructor
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture5/">
+<span class="md-ellipsis">
+    Lecture5: Inheritance
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-ellipsis">
+    脑机接口算法及实践
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            脑机接口算法及实践
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Python EEG Signal
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Writing
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            Writing
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%86%99%E4%BD%9C/latex/">
+<span class="md-ellipsis">
+    Latex Introduction
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Others
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%85%B6%E5%AE%83/Matplotlib/">
+<span class="md-ellipsis">
+    Matplotlib入门
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%85%B6%E5%AE%83/Explorer%E4%B8%8D%E8%A7%81%E4%BA%86/">
+<span class="md-ellipsis">
+    Windows上的子系统“消失不见”
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="index" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      index
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#一单源最短路径问题-single-source-shortest-path-problem">
+<span class="md-ellipsis">
+      一、单源最短路径问题 (Single-Source Shortest-Path Problem)
+    </span>
+</a>
+<nav aria-label="一、单源最短路径问题 (Single-Source Shortest-Path Problem)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-问题定义">
+<span class="md-ellipsis">
+      1. 问题定义
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-示例图">
+<span class="md-ellipsis">
+      2. 示例图
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#二无权最短路径算法-unweighted-shortest-paths">
+<span class="md-ellipsis">
+      二、无权最短路径算法 (Unweighted Shortest Paths)
+    </span>
+</a>
+<nav aria-label="二、无权最短路径算法 (Unweighted Shortest Paths)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-核心思想">
+<span class="md-ellipsis">
+      1. 核心思想
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-数据结构">
+<span class="md-ellipsis">
+      2. 数据结构
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-基本算法">
+<span class="md-ellipsis">
+      3. 基本算法
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-改进版算法基于队列">
+<span class="md-ellipsis">
+      4. 改进版算法（基于队列）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#三dijkstra-算法-weighted-shortest-paths">
+<span class="md-ellipsis">
+      三、Dijkstra 算法 (Weighted Shortest Paths)
+    </span>
+</a>
+<nav aria-label="三、Dijkstra 算法 (Weighted Shortest Paths)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-核心思想_1">
+<span class="md-ellipsis">
+      1. 核心思想
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-伪代码实现">
+<span class="md-ellipsis">
+      2. 伪代码实现
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-时间复杂度">
+<span class="md-ellipsis">
+      3. 时间复杂度
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#四负权边处理-graphs-with-negative-edge-costs">
+<span class="md-ellipsis">
+      四、负权边处理 (Graphs with Negative Edge Costs)
+    </span>
+</a>
+<nav aria-label="四、负权边处理 (Graphs with Negative Edge Costs)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-简单想法的失败">
+<span class="md-ellipsis">
+      1. 简单想法的失败
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-负权边算法">
+<span class="md-ellipsis">
+      2. 负权边算法
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#五无环图最短路径-acyclic-graphs">
+<span class="md-ellipsis">
+      五、无环图最短路径 (Acyclic Graphs)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#六全对最短路径问题-all-pairs-shortest-path-problem">
+<span class="md-ellipsis">
+      六、全对最短路径问题 (All-Pairs Shortest Path Problem)
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="图最短路径算法shortest-path-algorithms">图：最短路径算法（Shortest Path Algorithms）</h1>
+<h2 id="一单源最短路径问题-single-source-shortest-path-problem">一、单源最短路径问题 (Single-Source Shortest-Path Problem)</h2>
+<h3 id="1-问题定义">1. 问题定义</h3>
+<p>给定一个加权有向图 <span class="arithmatex">\( G = (V, E) \)</span>，其中：</p>
+<ul>
+<li><span class="arithmatex">\( V \)</span> 是顶点集</li>
+<li><span class="arithmatex">\( E \)</span> 是边集</li>
+<li>每条边 <span class="arithmatex">\( e \in E \)</span> 有一个权重（成本）函数 <span class="arithmatex">\( c(e) \)</span></li>
+<li>指定一个起点顶点 <span class="arithmatex">\( s \)</span></li>
+</ul>
+<p><strong>目标</strong>：找到从 <span class="arithmatex">\( s \)</span> 到图中每个其他顶点的最短加权路径。</p>
+<p><strong>路径长度</strong>：对于从起点到终点的路径 <span class="arithmatex">\( P \)</span>，其长度定义为路径上所有边的权重之和：</p>
+<div class="arithmatex">\[
+\text{Length}(P) = \sum_{e \in P} c(e)
+\]</div>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>如果图中存在 <strong>负权环</strong>（negative-cost cycle），最短路径可能不存在（因为可以无限循环降低路径成本）。</li>
+<li>若无负权环，从 <span class="arithmatex">\( s \)</span> 到自身的路径长度定义为 0。</li>
+<li>
+<p>在带权图中，对于任意三个顶点 <span class="arithmatex">\( u \)</span>、<span class="arithmatex">\( v \)</span>、<span class="arithmatex">\( w \)</span>，最短路径满足：  </p>
+<div class="arithmatex">\[
+\text{dist}(u, w) \leq \text{dist}(u, v) + \text{dist}(v, w)
+\]</div>
+</li>
+</ul>
+<p>其中 <span class="arithmatex">\( \text{dist}(x, y) \)</span> 表示 <span class="arithmatex">\( x \)</span> 到 <span class="arithmatex">\( y \)</span> 的最短路径长度。</p>
+<h3 id="2-示例图">2. 示例图</h3>
+<p>PPT 中给出了两个示例有向图，展示正权和负权边的情况：</p>
+<p><img alt="alt text" src="../image-7.png"/></p>
+<p><strong>负权边示例</strong>：边 <span class="arithmatex">\( v2 \to v5 \)</span> 的权重从 10 变为 -10，可能影响最短路径计算。</p>
+<h2 id="二无权最短路径算法-unweighted-shortest-paths">二、无权最短路径算法 (Unweighted Shortest Paths)</h2>
+<h3 id="1-核心思想">1. 核心思想</h3>
+<p>无权图中，边的权重均视为 1，因此最短路径等价于 <strong>最少边数</strong> 的路径。采用 <strong>广度优先搜索 (BFS)</strong> 的思想，按距离递增的顺序探索顶点。</p>
+<h3 id="2-数据结构">2. 数据结构</h3>
+<p>使用一个表<code>Table[i]</code>存储每个顶点 <span class="arithmatex">\( v_i \)</span> 的信息：</p>
+<ul>
+<li><strong>Dist</strong>：从起点 <span class="arithmatex">\( s \)</span> 到 <span class="arithmatex">\( v_i \)</span> 的距离（初始为 <span class="arithmatex">\( \infty \)</span>，起点为 0）</li>
+<li><strong>Known</strong>：是否已确定最短路径（1 为已确定，0 为未确定）</li>
+<li><strong>Path</strong>：记录路径上的前驱顶点（初始为 0）</li>
+</ul>
+<h3 id="3-基本算法">3. 基本算法</h3>
+<p>以下是无权最短路径的伪代码实现：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Unweighted</span><span class="p">(</span><span class="n">Table</span><span class="w"> </span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">CurrDist</span><span class="p">;</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="n">Vertex</span><span class="w"> </span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="p">;</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">CurrDist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">CurrDist</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NumVertex</span><span class="p">;</span><span class="w"> </span><span class="n">CurrDist</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">each</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="n">V</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">T</span><span class="p">[</span><span class="n">V</span><span class="p">].</span><span class="n">Known</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">T</span><span class="p">[</span><span class="n">V</span><span class="p">].</span><span class="n">Dist</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CurrDist</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">                </span><span class="n">T</span><span class="p">[</span><span class="n">V</span><span class="p">].</span><span class="n">Known</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">each</span><span class="w"> </span><span class="n">W</span><span class="w"> </span><span class="n">adjacent</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">V</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">W</span><span class="p">].</span><span class="n">Dist</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Infinity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">                        </span><span class="n">T</span><span class="p">[</span><span class="n">W</span><span class="p">].</span><span class="n">Dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CurrDist</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">                        </span><span class="n">T</span><span class="p">[</span><span class="n">W</span><span class="p">].</span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">;</span>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">                    </span><span class="p">}</span>
+<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">                </span><span class="p">}</span>
+<a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">            </span><span class="p">}</span>
+<a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">        </span><span class="p">}</span>
+<a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>算法步骤</strong>：</p>
+<ul>
+<li>从距离 0 开始（即起点 <span class="arithmatex">\( s \)</span>），逐层处理距离为 <span class="arithmatex">\( CurrDist \)</span> 的顶点。</li>
+<li>对于每个未处理（Known = 0）且距离为 <span class="arithmatex">\( CurrDist \)</span> 的顶点 <span class="arithmatex">\( V \)</span>：<ul>
+<li>标记为已处理（Known = true）。</li>
+<li>检查 <span class="arithmatex">\( V \)</span> 的所有邻接顶点 <span class="arithmatex">\( W \)</span>，若 <span class="arithmatex">\( W \)</span> 的距离为 <span class="arithmatex">\( \infty \)</span>，更新为 <span class="arithmatex">\( CurrDist + 1 \)</span>，并记录前驱为 <span class="arithmatex">\( V \)</span>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>时间复杂度</strong>：</p>
+<ul>
+<li>最坏情况：<span class="arithmatex">\( O(|V|^2) \)</span>，因为需要扫描所有顶点多次。</li>
+<li>适合稠密图。</li>
+</ul>
+<h3 id="4-改进版算法基于队列">4. 改进版算法（基于队列）</h3>
+<p>通过使用队列优化，减少不必要的扫描：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Unweighted</span><span class="p">(</span><span class="n">Table</span><span class="w"> </span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="n">Queue</span><span class="w"> </span><span class="n">Q</span><span class="p">;</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="n">Vertex</span><span class="w"> </span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="p">;</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateQueue</span><span class="p">(</span><span class="n">NumVertex</span><span class="p">);</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="n">MakeEmpty</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="n">Enqueue</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span><span class="w"> </span><span class="cm">/* Enqueue the source vertex */</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">IsEmpty</span><span class="p">(</span><span class="n">Q</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">        </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dequeue</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="n">T</span><span class="p">[</span><span class="n">V</span><span class="p">].</span><span class="n">Known</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="cm">/* optional */</span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">each</span><span class="w"> </span><span class="n">W</span><span class="w"> </span><span class="n">adjacent</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">V</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">W</span><span class="p">].</span><span class="n">Dist</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Infinity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">                </span><span class="n">T</span><span class="p">[</span><span class="n">W</span><span class="p">].</span><span class="n">Dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="p">[</span><span class="n">V</span><span class="p">].</span><span class="n">Dist</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="c1">// 加1是因为无权，边都视为1</span>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">                </span><span class="n">T</span><span class="p">[</span><span class="n">W</span><span class="p">].</span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">;</span>
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">                </span><span class="n">Enqueue</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span>
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">            </span><span class="p">}</span>
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">        </span><span class="p">}</span>
+<a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">    </span><span class="n">DisposeQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span>
+<a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>改进点</strong>：</p>
+<ul>
+<li>使用队列 <span class="arithmatex">\( Q \)</span> 存储待处理的顶点，从起点 <span class="arithmatex">\( s \)</span> 开始。</li>
+<li>出队顶点 <span class="arithmatex">\( V \)</span>，处理其邻接顶点 <span class="arithmatex">\( W \)</span>，若 <span class="arithmatex">\( W \)</span> 未访问（Dist = <span class="arithmatex">\( \infty \)</span>），更新距离并入队。</li>
+</ul>
+<p><strong>时间复杂度</strong>：</p>
+<ul>
+<li><span class="arithmatex">\( O(|V| + |E|) \)</span>，因为每个顶点入队一次，每条边处理一次。</li>
+<li>适合稀疏图。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">示例运行</p>
+<p><img alt="alt text" src="../image-8.png"/></p>
+<p>以起点 <span class="arithmatex">\( v3 \)</span> 为例，改进版算法的执行过程如下：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>队列 Q</th>
+<th>Dist 更新</th>
+<th>Path 更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>v3</td>
+<td>v3: 0</td>
+<td>v3: 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>v1, v6</td>
+<td>v1: 1, v6: 1</td>
+<td>v1: v3, v6: v3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>v6, v2, v4</td>
+<td>v2: 2, v4: 2</td>
+<td>v2: v1, v4: v1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>v2, v4</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>4</td>
+<td>v4, v5</td>
+<td>v5: 3</td>
+<td>v5: v2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>v5, v7</td>
+<td>v7: 3</td>
+<td>v7: v4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>v7</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>最终结果：</p>
+<table>
+<thead>
+<tr>
+<th>顶点</th>
+<th>Dist</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td>1</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>v2</td>
+<td>2</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>v3</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>v4</td>
+<td>2</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>v5</td>
+<td>3</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>v6</td>
+<td>1</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>v7</td>
+<td>3</td>
+<td>v4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="三dijkstra-算法-weighted-shortest-paths">三、Dijkstra 算法 (Weighted Shortest Paths)</h2>
+<h3 id="1-核心思想_1">1. 核心思想</h3>
+<p>Dijkstra 算法用于 <strong>非负权边</strong> 的加权图，采用 <strong>贪心策略</strong>，每次选择距离起点最近的未处理顶点，更新其邻接顶点的距离。</p>
+<p><strong>关键概念</strong>：</p>
+<ul>
+<li><span class="arithmatex">\( S \)</span>: 已找到最短路径的顶点集合（初始为 <span class="arithmatex">\( \{s\} \)</span>）。</li>
+<li>
+<p><span class="arithmatex">\( distance[u] \)</span>: 从 <span class="arithmatex">\( s \)</span> 到 <span class="arithmatex">\( u \)</span> 的最短路径长度（仅通过 <span class="arithmatex">\( S \)</span> 中的顶点）。</p>
+<div class="arithmatex">\[
+distance'[u_2] = distance[u_1] + c(u_1, u_2)
+\]</div>
+</li>
+</ul>
+<p><strong>更新规则</strong>：若发现通过新加入的顶点 <span class="arithmatex">\( u_1 \)</span> 到 <span class="arithmatex">\( u_2 \)</span> 的路径更短，则更新。</p>
+<h3 id="2-伪代码实现">2. 伪代码实现</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="cp">#define inf 999999</span>
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="cp">#define MAX 100007</span>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kt">bool</span><span class="w"> </span><span class="n">visited</span><span class="p">[</span><span class="n">MAX</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="nb">false</span><span class="p">};</span>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">//源顶点S</span>
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Dijkstra</span><span class="p">(</span><span class="n">Graph</span><span class="w"> </span><span class="o">*</span><span class="n">G</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">){</span>
+<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="c1">//创建优先队列</span>
+<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="n">Queue</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="p">;</span>
+<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="c1">//初始化队列</span>
+<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">    </span><span class="n">InitQueue</span><span class="p">(</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="p">);</span>
+<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">distance</span><span class="p">[</span><span class="n">MAX</span><span class="p">],</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">    </span><span class="c1">//for(i = 0;i &lt;= MAX;i ++){</span>
+<a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">s</span><span class="p">){</span>
+<a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">            </span><span class="c1">//如果不是源顶点，就赋值为“无穷大”，</span>
+<a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">            </span><span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inf</span><span class="p">;</span>
+<a href="#__codelineno-2-16" id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">        </span><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+<a href="#__codelineno-2-17" id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">            </span><span class="n">distance</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a href="#__codelineno-2-18" id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">            </span><span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a href="#__codelineno-2-19" id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">        </span><span class="p">}</span>
+<a href="#__codelineno-2-20" id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">    </span><span class="c1">//}</span>
+<a href="#__codelineno-2-21" id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">    </span><span class="c1">//w就是新邻居捏</span>
+<a href="#__codelineno-2-22" id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">new_distance</span><span class="p">;</span>
+<a href="#__codelineno-2-23" id="__codelineno-2-23" name="__codelineno-2-23"></a>
+<a href="#__codelineno-2-24" id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">    </span><span class="c1">//s入队列</span>
+<a href="#__codelineno-2-25" id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">    </span><span class="n">EnQueue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
+<a href="#__codelineno-2-26" id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">    </span><span class="n">visited</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a href="#__codelineno-2-27" id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">    </span><span class="c1">//IsEmpty判断队列是否为空</span>
+<a href="#__codelineno-2-28" id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="n">IsEmpty</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="p">){</span>
+<a href="#__codelineno-2-29" id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeQueue</span><span class="p">(</span><span class="n">q</span><span class="p">);</span>
+<a href="#__codelineno-2-30" id="__codelineno-2-30" name="__codelineno-2-30"></a><span class="w">        </span><span class="c1">//FirstNeighbor(G, v):求图G中顶点v的第一个邻接点，</span>
+<a href="#__codelineno-2-31" id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="w">        </span><span class="c1">//若有则返回顶点号，否则返回-1。</span>
+<a href="#__codelineno-2-32" id="__codelineno-2-32" name="__codelineno-2-32"></a><span class="w">        </span><span class="c1">//NextNeighbor(G, v, w):假设图G中顶点w是顶点v的一个邻接点，返回除w和已访问外的顶点v</span>
+<a href="#__codelineno-2-33" id="__codelineno-2-33" name="__codelineno-2-33"></a><span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FirstNeighbor</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">);</span><span class="n">w</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NextNeighbor</span><span class="p">(</span><span class="n">G</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">)){</span>
+<a href="#__codelineno-2-34" id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="w">            </span><span class="c1">//calculate_distance实现两顶点间权的读取</span>
+<a href="#__codelineno-2-35" id="__codelineno-2-35" name="__codelineno-2-35"></a><span class="w">            </span><span class="n">new_distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">distance</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
+<a href="#__codelineno-2-36" id="__codelineno-2-36" name="__codelineno-2-36"></a><span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">new_distance</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">distance</span><span class="p">[</span><span class="n">w</span><span class="p">]){</span>
+<a href="#__codelineno-2-37" id="__codelineno-2-37" name="__codelineno-2-37"></a><span class="w">                </span><span class="n">distance</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_distance</span><span class="p">;</span>
+<a href="#__codelineno-2-38" id="__codelineno-2-38" name="__codelineno-2-38"></a><span class="w">            </span><span class="p">}</span>
+<a href="#__codelineno-2-39" id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">visited</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-2-40" id="__codelineno-2-40" name="__codelineno-2-40"></a><span class="w">                </span><span class="n">visited</span><span class="p">[</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a href="#__codelineno-2-41" id="__codelineno-2-41" name="__codelineno-2-41"></a><span class="w">                </span><span class="n">EnQueue</span><span class="p">(</span><span class="n">w</span><span class="p">);</span>
+<a href="#__codelineno-2-42" id="__codelineno-2-42" name="__codelineno-2-42"></a><span class="w">            </span><span class="p">}</span>
+<a href="#__codelineno-2-43" id="__codelineno-2-43" name="__codelineno-2-43"></a><span class="w">        </span><span class="p">}</span>
+<a href="#__codelineno-2-44" id="__codelineno-2-44" name="__codelineno-2-44"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-2-45" id="__codelineno-2-45" name="__codelineno-2-45"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>算法步骤</strong>：由于是单源，所以记源顶点为S。</p>
+<ol>
+<li>
+<p><strong>初始化</strong> </p>
+<ul>
+<li>创建一个集合<code>visited</code>，这个是记录已经找到最短路径的节点。开始时，初始化为空的就好。  </li>
+<li>创建一个优先队列（如最小堆），将源节点加入队列。  </li>
+<li>创建一个数组<code>distance[i]</code>，用于存储从源节点到其他节点的当前已知最短距离。将<code>distance[S]</code>初始化为0；将<strong>优先队列中的顶点对应的距离</strong>，设置为<strong>源到该顶点的权重</strong>；而<strong>除优先队列以外的其他所有节点的距离初始化为无穷大</strong>。  </li>
+</ul>
+</li>
+<li>
+<p><strong>从优先队列中取出相邻距离最小的节点</strong> </p>
+<ul>
+<li>从优先队列中取出相邻距离最小的节点<code>u</code>。（如果队列为空，则算法结束。）  </li>
+<li>将节点<code>u</code>标记为已访问（将其添加到<code>visited</code>集合中）。  </li>
+</ul>
+</li>
+<li>
+<p><strong>更新未访问邻居的距离</strong>：遍历节点<code>u</code>的所有邻居<code>v</code>，如果<code>distance[v]</code>是无穷大或其他值，则有： </p>
+<ul>
+<li>计算通过节点<code>u</code>到达节点<code>v</code>的距离，即<code>new_distance = distance[u] + weight(u, v)</code>。 </li>
+<li>如果<code>new_distance</code>小于当前已知的<code>distance[v]</code>，则更新<code>distance[v]</code>为<code>new_distance</code>。  </li>
+<li>如果节点<code>v</code>尚未在优先队列中，或者其当前优先级高于新计算的距离，则将节点<code>v</code>（及其新距离）加入优先队列。  </li>
+</ul>
+</li>
+<li>
+<p><strong>重复</strong>：重复步骤2和3，直到优先队列为空，即所有节点都已从队列中取出并被标记为已访问。  </p>
+</li>
+<li>
+<p><strong>结果</strong>：<code>distance[]</code>数组现在得到了从源节点到图中所有其他节点的最短距离。 </p>
+</li>
+</ol>
+<p><strong>限制</strong>：不适用于负权边（可能导致错误结果）。</p>
+<h3 id="3-时间复杂度">3. 时间复杂度</h3>
+<ul>
+<li>
+<p><strong>实现 1</strong>：每次扫描表选择最小距离顶点，复杂度 <span class="arithmatex">\( O(|V|) \)</span>。（适合稠密图）</p>
+<ul>
+<li><strong>初始化</strong>：设置 <span class="arithmatex">\( V \)</span> 个顶点的距离，时间复杂度为 <span class="arithmatex">\( O(V) \)</span>。</li>
+<li>
+<p><strong>选择最小距离顶点</strong>：每次需要扫描所有未处理顶点，初始时有 <span class="arithmatex">\( V \)</span> 个顶点，之后逐个减少。总共执行 <span class="arithmatex">\( V \)</span> 次选择，第一次扫描 <span class="arithmatex">\( V \)</span> 个元素，第二次扫描 <span class="arithmatex">\( V-1 \)</span> 个，……，最后一次扫描 1 个。总扫描次数为：</p>
+<div class="arithmatex">\[
+\sum_{i=1}^{V} i = \frac{V (V + 1)}{2} = O(V^2)
+\]</div>
+</li>
+<li>
+<p><strong>更新距离</strong>：每次处理一个顶点 <span class="arithmatex">\( u \)</span> 时，检查其所有邻接顶点。每个顶点最多被处理一次，边数为 <span class="arithmatex">\( E \)</span>，因此总更新操作的次数为 <span class="arithmatex">\( O(E) \)</span>。每次更新是 <span class="arithmatex">\( O(1) \)</span> 的，因此总时间为 <span class="arithmatex">\( O(E) \)</span>。</p>
+</li>
+<li><strong>总时间复杂度</strong>：<span class="arithmatex">\( O(V^2 + E) \)</span>。在稀疏图中（<span class="arithmatex">\( E \)</span> 远小于 <span class="arithmatex">\( V^2 \)</span>），主项为 <span class="arithmatex">\( O(V^2) \)</span>；在稠密图中（<span class="arithmatex">\( E \approx V^2 \)</span>），复杂度仍为 <span class="arithmatex">\( O(V^2) \)</span>。</li>
+</ul>
+</li>
+<li>
+<p><strong>实现 2</strong>：使用优先队列（如最小堆）。（适合稀疏图）</p>
+<ul>
+<li><strong>初始化</strong>：将所有 <span class="arithmatex">\( V \)</span> 个顶点插入优先队列，时间复杂度为 <span class="arithmatex">\( O(V) \)</span>。</li>
+<li><strong>提取最小元素</strong>：每次从二叉堆中提取最小元素，操作时间复杂度为 <span class="arithmatex">\( O(\log V) \)</span>。总共执行 <span class="arithmatex">\( V \)</span> 次，时间复杂度为 <span class="arithmatex">\( O(V \log V) \)</span>。</li>
+<li><strong>减少键值（更新距离）</strong>：每次处理一个顶点时，可能需要更新其所有邻接顶点的距离。每个顶点最多被处理一次，边数为 <span class="arithmatex">\( E \)</span>，因此减少键值操作的总次数不超过 <span class="arithmatex">\( E \)</span>。在二叉堆中，减少键值的时间复杂度为 <span class="arithmatex">\( O(\log V) \)</span>，总时间复杂度为 <span class="arithmatex">\( O(E \log V) \)</span>。</li>
+<li><strong>总时间复杂度</strong>：<span class="arithmatex">\( O((V + E) \log V) \)</span>，其中 <span class="arithmatex">\( V \)</span> 是顶点数，<span class="arithmatex">\( E \)</span> 是边数。</li>
+</ul>
+</li>
+<li>
+<p><strong>实现 3</strong>：使用斐波那契堆。（适合稠密图）</p>
+<ul>
+<li><strong>初始化</strong>：将 <span class="arithmatex">\( V \)</span> 个顶点插入斐波那契堆，时间复杂度为 <span class="arithmatex">\( O(V) \)</span>。</li>
+<li><strong>提取最小元素</strong>：每次提取最小元素，均摊时间复杂度为 <span class="arithmatex">\( O(\log V) \)</span>。总共执行 <span class="arithmatex">\( V \)</span> 次，时间复杂度为 <span class="arithmatex">\( O(V \log V) \)</span>。</li>
+<li><strong>减少键值（更新距离）</strong>：斐波那契堆的减少键值操作的均摊时间复杂度为 <span class="arithmatex">\( O(1) \)</span>。由于每个顶点可能触发最多 <span class="arithmatex">\( E \)</span> 次减少键值操作（对应图中的边），总时间复杂度为 <span class="arithmatex">\( O(E) \)</span>。</li>
+<li><strong>总时间复杂度</strong>：<span class="arithmatex">\( O(V \log V + E) \)</span>，其中均摊分析确保了减少键值的 <span class="arithmatex">\( O(1) \)</span> 优势。</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>数据结构</th>
+<th>提取最小元素</th>
+<th>减少键值</th>
+<th>总时间复杂度</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>二叉堆</strong></td>
+<td><span class="arithmatex">\( O(\log V) \)</span></td>
+<td><span class="arithmatex">\( O(\log V) \)</span></td>
+<td><span class="arithmatex">\( O((V + E) \log V) \)</span></td>
+<td>简单实现，中小规模图，通用场景</td>
+</tr>
+<tr>
+<td><strong>斐波那契堆</strong></td>
+<td><span class="arithmatex">\( O(\log V) \)</span></td>
+<td><span class="arithmatex">\( O(1) \)</span></td>
+<td><span class="arithmatex">\( O(V \log V + E) \)</span></td>
+<td>大规模图，频繁更新距离，优化场景</td>
+</tr>
+<tr>
+<td><strong>线性扫描</strong></td>
+<td><span class="arithmatex">\( O(V) \)</span></td>
+<td><span class="arithmatex">\( O(1) \)</span></td>
+<td><span class="arithmatex">\( O(V^2 + E) \)</span></td>
+<td>顶点数少、图稠密、简单实现场景</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title"> Dijkstra 算法示例</p>
+<p>还是以这个图为例，不过我们这次从<span class="arithmatex">\(v_1\)</span>出发。</p>
+<p><img alt="alt text" src="../image-9.png"/></p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>队列/当前顶点</th>
+<th>Dist 更新</th>
+<th>Path 更新</th>
+<th>Visited 更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><span class="arithmatex">\( v_1 \)</span></td>
+<td><span class="arithmatex">\( v_1: 0 \)</span></td>
+<td><span class="arithmatex">\( v_1: -1 \)</span></td>
+<td><span class="arithmatex">\( v_1: 1 \)</span></td>
+</tr>
+<tr>
+<td>1</td>
+<td><span class="arithmatex">\( v_4 \)</span></td>
+<td><span class="arithmatex">\( v_4: 1, v_2: 2 \)</span></td>
+<td><span class="arithmatex">\( v_4: v_1, v_2: v_1 \)</span></td>
+<td><span class="arithmatex">\( v_4: 1 \)</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="arithmatex">\( v_2 \)</span></td>
+<td><span class="arithmatex">\( v_3: 3, v_5: 3, v_6: 9, v_7: 5 \)</span></td>
+<td><span class="arithmatex">\( v_3: v_4, v_5: v_4, v_6: v_4, v_7: v_4 \)</span></td>
+<td><span class="arithmatex">\( v_2: 1 \)</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td><span class="arithmatex">\( v_3 \)</span></td>
+<td>-</td>
+<td>-</td>
+<td><span class="arithmatex">\( v_3: 1 \)</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td><span class="arithmatex">\( v_5 \)</span></td>
+<td>-</td>
+<td>-</td>
+<td><span class="arithmatex">\( v_5: 1 \)</span></td>
+</tr>
+<tr>
+<td>5</td>
+<td><span class="arithmatex">\( v_7 \)</span></td>
+<td><span class="arithmatex">\( v_6: 6 \)</span></td>
+<td><span class="arithmatex">\( v_6: v_7 \)</span></td>
+<td><span class="arithmatex">\( v_7: 1 \)</span></td>
+</tr>
+<tr>
+<td>6</td>
+<td><span class="arithmatex">\( v_6 \)</span></td>
+<td>-</td>
+<td>-</td>
+<td><span class="arithmatex">\( v_6: 1 \)</span></td>
+</tr>
+</tbody>
+</table>
+<p>最终结果：</p>
+<table>
+<thead>
+<tr>
+<th>顶点</th>
+<th>Dist</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>v2</td>
+<td>2</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>v3</td>
+<td>3</td>
+<td>v7</td>
+</tr>
+<tr>
+<td>v4</td>
+<td>1</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>v5</td>
+<td>3</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>v6</td>
+<td>6</td>
+<td>v4</td>
+</tr>
+<tr>
+<td>v7</td>
+<td>5</td>
+<td>v6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="四负权边处理-graphs-with-negative-edge-costs">四、负权边处理 (Graphs with Negative Edge Costs)</h2>
+<h3 id="1-简单想法的失败">1. 简单想法的失败</h3>
+<ul>
+<li><strong>错误方案</strong>：将所有边权重加上一个常数 <span class="arithmatex">\( \Delta \)</span> 以消除负权边。</li>
+<li><strong>问题</strong>：改变路径权重比例（比如有的最短路径要走3条边，而有的只走2条，每条边加一个常数显然是不对的），可能导致最短路径变化。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">最短路径性质例题</p>
+<p><strong>（FDS HW9）</strong>Let P be the shortest path from S to T. If the weight of every edge in the graph is incremented by 2, P will still be the shortest path from S to T. (T / F)</p>
+<p><strong>答案：</strong> </p>
+<p>不一定。路径P可能不再保持最短路径的性质。</p>
+<p><strong>解析：</strong> </p>
+<ol>
+<li>
+<p><strong>原最短路径的特性</strong> </p>
+<p>在原图中，P的路径总权重是所有S到T路径中最小的。</p>
+</li>
+<li>
+<p><strong>权重增加后的影响</strong> </p>
+<ul>
+<li>设P包含k条边，则P的新权重 = 原权重 + 2k</li>
+<li>其他路径Q包含m条边，新权重 = 原权重 + 2m</li>
+<li>如果原图中P比Q短很多（原权重差&gt;2(m-k)），P仍保持最短</li>
+<li>但如果存在另一条路径Q，在原图中稍长于P但边数少很多（m&lt;&lt;k），增加权重后Q可能变得更优</li>
+</ul>
+</li>
+<li>
+<p><strong>反例说明</strong> </p>
+<ul>
+<li>路径P：2条边，每边权重1 → 总权重2</li>
+<li>路径Q：1条边，权重3 → 总权重3</li>
+</ul>
+<p>原本P是最短路径，但是增加2后：</p>
+<ul>
+<li>P：2×(1+2)=6</li>
+<li>Q：3+2=5</li>
+</ul>
+<p>此时Q成为新的最短路径。</p>
+</li>
+</ol>
+</div>
+<h3 id="2-负权边算法">2. 负权边算法</h3>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">WeightedNegative</span><span class="p">(</span><span class="n">Table</span><span class="w"> </span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">    </span><span class="n">Vertex</span><span class="w"> </span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="p">;</span><span class="w">                </span><span class="c1">// V 和 W分别表示当前处理的顶点和其邻接顶点</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="n">Queue</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateQueue</span><span class="p">(</span><span class="n">NumVertex</span><span class="p">);</span><span class="w"> </span><span class="c1">// 创建一个队列 Q</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="n">MakeEmpty</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span><span class="w">               </span><span class="c1">// 清空队列 Q，准备使用</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="n">Enqueue</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span><span class="w">              </span><span class="c1">// 将源点 S 入队，作为起点开始松弛</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">IsEmpty</span><span class="p">(</span><span class="n">Q</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">       </span><span class="c1">// 当队列非空时，持续执行松弛操作</span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">        </span><span class="n">V</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dequeue</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span><span class="w">         </span><span class="c1">// 从队列头部取出当前处理的顶点 V</span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">each</span><span class="w"> </span><span class="n">W</span><span class="w"> </span><span class="n">adjacent</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">V</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 遍历 V 的所有邻接顶点 W</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">V</span><span class="p">].</span><span class="n">Dist</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Cvw</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">T</span><span class="p">[</span><span class="n">W</span><span class="p">].</span><span class="n">Dist</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 如果通过 V 到 W 的距离小于当前 T[W].Dist</span>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">                </span><span class="n">T</span><span class="p">[</span><span class="n">W</span><span class="p">].</span><span class="n">Dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="p">[</span><span class="n">V</span><span class="p">].</span><span class="n">Dist</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Cvw</span><span class="p">;</span><span class="w"> </span><span class="c1">// 更新 W 的距离为 V 的距离加上边权重 Cvw</span>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">                </span><span class="n">T</span><span class="p">[</span><span class="n">W</span><span class="p">].</span><span class="n">Path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">;</span><span class="w">         </span><span class="c1">// 更新 W 的前驱为 V</span>
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">W</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">Q</span><span class="p">)</span><span class="w"> </span><span class="c1">// 如果 W 不在队列中</span>
+<a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">                    </span><span class="n">Enqueue</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="p">);</span><span class="w">      </span><span class="c1">// 将 W 入队，以便后续松弛其邻接顶点</span>
+<a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="w">            </span><span class="p">}</span>
+<a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="w">        </span><span class="p">}</span>
+<a href="#__codelineno-3-16" id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="w">    </span><span class="p">}</span>
+<a href="#__codelineno-3-17" id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="w">    </span><span class="n">DisposeQueue</span><span class="p">(</span><span class="n">Q</span><span class="p">);</span><span class="w">            </span><span class="c1">// 释放队列 Q 的内存</span>
+<a href="#__codelineno-3-18" id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>时间复杂度</strong>：<span class="arithmatex">\( O(|V| \cdot |E|) \)</span>，适合稀疏图。</p>
+<div class="admonition example">
+<p class="admonition-title">负权边例子</p>
+<p>假设图为：</p>
+<ul>
+<li><span class="arithmatex">\( S \to A: 4 \)</span></li>
+<li><span class="arithmatex">\( S \to B: 2 \)</span></li>
+<li><span class="arithmatex">\( A \to B: -2.5 \)</span></li>
+<li><span class="arithmatex">\( B \to C: 3 \)</span></li>
+</ul>
+<p>初始化：</p>
+<ul>
+<li><span class="arithmatex">\( T[S].Dist = 0, T[A].Dist = \infty, T[B].Dist = \infty, T[C].Dist = \infty \)</span></li>
+<li>入队 <span class="arithmatex">\( S \)</span>。</li>
+</ul>
+<p>步骤：</p>
+<ol>
+<li>处理 <span class="arithmatex">\( S \)</span>: 更新 <span class="arithmatex">\( A: 4 \)</span>, <span class="arithmatex">\( B: 2 \)</span>，入队 <span class="arithmatex">\( A, B \)</span>。</li>
+<li>处理 <span class="arithmatex">\( B \)</span>: 更新 <span class="arithmatex">\( C: 5 \)</span>，入队 <span class="arithmatex">\( C \)</span>。</li>
+<li>处理 <span class="arithmatex">\( A \)</span>: 更新 <span class="arithmatex">\( B: 1.5 \)</span> (更好)，入队 <span class="arithmatex">\( B \)</span>。</li>
+<li>处理 <span class="arithmatex">\( B \)</span>: 更新 <span class="arithmatex">\( C: 4.5 \)</span>。</li>
+<li>处理 <span class="arithmatex">\( C \)</span>: 无更新。</li>
+</ol>
+<p>结果：<span class="arithmatex">\( S: 0, A: 4, B: 1.5, C: 4.5 \)</span>。</p>
+</div>
+<h2 id="五无环图最短路径-acyclic-graphs">五、无环图最短路径 (Acyclic Graphs)</h2>
+<p>若图是 <strong>无环图</strong>（DAG），可按 <strong>拓扑排序</strong> 顺序处理顶点。</p>
+<div class="admonition example">
+<p class="admonition-title">AOE网络</p>
+<p><img alt="alt text" src="../image-10.png"/></p>
+<p><img alt="alt text" src="../image-11.png"/></p>
+<ol>
+<li>
+<p>早期完成时间 (EC)</p>
+<ul>
+<li><strong>公式</strong>：<span class="arithmatex">\( EC[w] = \max_{(v,w) \in E} \{ EC[v] + C_{v,w} \} \)</span></li>
+<li>从起点 <span class="arithmatex">\( v_0 \)</span> 开始，<span class="arithmatex">\( EC[v_0] = 0 \)</span>；对于任意节点 <span class="arithmatex">\( w \)</span>，其早期完成时间是所有前驱 <span class="arithmatex">\( v \)</span> 的 <span class="arithmatex">\( EC[v] + C_{v,w} \)</span> 中的最大值。</li>
+<li><strong>意义</strong>：表示在不延误项目的前提下，事件 <span class="arithmatex">\( w \)</span> 最早可能完成的时间。</li>
+</ul>
+</li>
+<li>
+<p>晚期完成时间 (LC)</p>
+<ul>
+<li><strong>公式</strong>：<span class="arithmatex">\( LC[v] = \min_{(v,w) \in E} \{ LC[w] - C_{v,w} \} \)</span></li>
+<li>从终点 <span class="arithmatex">\( v_8 \)</span> 开始，<span class="arithmatex">\( LC[v_8] \)</span> 通常设为 <span class="arithmatex">\( EC[v_8] \)</span>（项目截止时间）；对于任意节点 <span class="arithmatex">\( v \)</span>，其晚期完成时间是所有后继 <span class="arithmatex">\( w \)</span> 的 <span class="arithmatex">\( LC[w] - C_{v,w} \)</span> 中的最小值。</li>
+<li><strong>意义</strong>：表示事件 <span class="arithmatex">\( v \)</span> 最晚完成的时间，而不延误整个项目。</li>
+</ul>
+</li>
+<li>
+<p>Slack Time (松弛时间)</p>
+<ul>
+<li><strong>公式</strong>：<span class="arithmatex">\( \text{Slack Time of } &lt;v,w&gt; = LC[w] - EC[v] - C_{v,w} \)</span></li>
+<li>表示活动 <span class="arithmatex">\( &lt;v,w&gt; \)</span> 的浮动时间，即在不影响项目进度的前提下，该活动可以推迟的时间。</li>
+<li><strong>零松弛边</strong>：<span class="arithmatex">\( \text{Slack Time} = 0 \)</span> 的边属于关键路径。</li>
+</ul>
+</li>
+<li>
+<p>关键路径 (Critical Path)</p>
+<ul>
+<li><strong>定义</strong>：由全部零松弛边的路径组成，确定项目的最短完成时间。</li>
+<li><strong>重要性</strong>：关键路径上的活动若延误，将直接延长项目总工期。</li>
+</ul>
+</li>
+</ol>
+</div>
+<p><strong>时间复杂度</strong>：<span class="arithmatex">\( O(|V| + |E|) \)</span>。</p>
+<h2 id="六全对最短路径问题-all-pairs-shortest-path-problem">六、全对最短路径问题 (All-Pairs Shortest Path Problem)</h2>
+<ul>
+<li><strong>方法 1</strong>：对每个顶点运行单源最短路径算法。<ul>
+<li>时间复杂度：<span class="arithmatex">\( O(|V|^3) - \text{works fast on sparse graph} \)</span>。</li>
+</ul>
+</li>
+<li><strong>方法 2</strong>：Floyd-Warshall 算法。<ul>
+<li>时间复杂度：<span class="arithmatex">\( O(|V|^3) \)</span>。</li>
+</ul>
+</li>
+</ul>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright 2024 by estruswent
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+<script src="../../style/javascripts/mathjax.js"></script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

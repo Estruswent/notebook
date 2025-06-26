@@ -14,11 +14,15 @@ nav:
     - 数据结构基础:  
       - "时间复杂度": "数据结构基础/TimeComplexity.md"
       - "双向链表": "数据结构基础/DoublyLinkedList.md"
-      - "图": "数据结构基础/Graph.md"
-      - "排序问题": "数据结构基础/Sort.md"
+      - "排序问题（上）": "数据结构基础/Sort2.md"
+      - "排序问题（下）": "数据结构基础/Sort1.md"
       - "树、二叉树与线索二叉树": "数据结构基础/Tree.md"
       - "优先队列（堆）": "数据结构基础/PriorityQueues.md"
       - "并查集": "数据结构基础/DisjointSet.md"
+      - "图：基本概念": "数据结构基础/Graph_new.md"
+      - "图：最短路径算法": "数据结构基础/ShortestPathAlgorithm.md"
+      - "图：网络流与最小生成树": "数据结构基础/MST.md"
+      - "图：深度优先搜索": "数据结构基础/DFS.md"
       - "待完成": "数据结构基础/unfinished.md"
     - 数据库系统:
       - "Lecture1: Introduction": "数据库系统/Lecture1.md"
@@ -43,6 +47,9 @@ nav:
       - "Lecture3: Object Interactive": "面向对象程序设计/Lecture3.md"
       - "Lecture4: Copy Constructor": "面向对象程序设计/Lecture4.md"
       - "Lecture5: Inheritance": "面向对象程序设计/Lecture5.md"
+    - 脑机接口算法及实践:
+      - "Lecture0: Introduction": "脑机接口算法及实践/Lecture0.md"
+      - "Lecture1: Python EEG Signal": "脑机接口算法及实践/Lecture1.md"
   - Writing:
       - "Latex Introduction": "写作/latex.md"
   - Others:
@@ -74,6 +81,8 @@ theme:
     - navigation.tabs.sticky
 
 markdown_extensions:
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.arithmatex:
       generic: true
   - admonition # 注解
@@ -97,6 +106,9 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.highlight:
       anchor_linenums: true
+  - toc:
+      title: index
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
 
 extra_javascript:
   - 'style/javascripts/mathjax.js'
@@ -111,6 +123,8 @@ extra_css:
 plugins:
   - search
   - mermaid2
+
+
 
 language:
   - 'zh'

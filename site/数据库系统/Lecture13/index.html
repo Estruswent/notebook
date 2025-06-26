@@ -226,16 +226,16 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Graph/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort2/">
 <span class="md-ellipsis">
-    图
+    排序问题（上）
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort/">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort1/">
 <span class="md-ellipsis">
-    排序问题
+    排序问题（下）
   </span>
 </a>
 </li>
@@ -257,6 +257,34 @@
 <a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DisjointSet/">
 <span class="md-ellipsis">
     并查集
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Graph_new/">
+<span class="md-ellipsis">
+    图：基本概念
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/ShortestPathAlgorithm/">
+<span class="md-ellipsis">
+    图：最短路径算法
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/MST/">
+<span class="md-ellipsis">
+    图：网络流与最小生成树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DFS/">
+<span class="md-ellipsis">
+    图：深度优先搜索
   </span>
 </a>
 </li>
@@ -381,14 +409,14 @@
     Lecture13: Transaction
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<nav aria-label="index" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      index
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#transaction-concept">
+<a class="md-nav__link" href="#一事务概念-transaction-concept">
 <span class="md-ellipsis">
       一、事务概念 (Transaction Concept)
     </span>
@@ -396,21 +424,21 @@
 <nav aria-label="一、事务概念 (Transaction Concept)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#11">
+<a class="md-nav__link" href="#11-事务定义">
 <span class="md-ellipsis">
       1.1 事务定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#12-acid">
+<a class="md-nav__link" href="#12-acid-属性">
 <span class="md-ellipsis">
       1.2 ACID 属性
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#13">
+<a class="md-nav__link" href="#13-事务执行中的问题">
 <span class="md-ellipsis">
       1.3 事务执行中的问题
     </span>
@@ -420,7 +448,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#concurrent-executions">
+<a class="md-nav__link" href="#二并发执行-concurrent-executions">
 <span class="md-ellipsis">
       二、并发执行 (Concurrent Executions)
     </span>
@@ -428,21 +456,21 @@
 <nav aria-label="二、并发执行 (Concurrent Executions)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#21">
+<a class="md-nav__link" href="#21-并发执行的优势">
 <span class="md-ellipsis">
       2.1 并发执行的优势
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22">
+<a class="md-nav__link" href="#22-并发控制">
 <span class="md-ellipsis">
       2.2 并发控制
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#23">
+<a class="md-nav__link" href="#23-并发异常">
 <span class="md-ellipsis">
       2.3 并发异常
     </span>
@@ -452,7 +480,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#serializability">
+<a class="md-nav__link" href="#三串行化-serializability">
 <span class="md-ellipsis">
       三、串行化 (Serializability)
     </span>
@@ -460,28 +488,28 @@
 <nav aria-label="三、串行化 (Serializability)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#31-schedule">
+<a class="md-nav__link" href="#31-调度-schedule">
 <span class="md-ellipsis">
       3.1 调度 (Schedule)
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#32">
+<a class="md-nav__link" href="#32-串行化定义">
 <span class="md-ellipsis">
       3.2 串行化定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#33">
+<a class="md-nav__link" href="#33-示例调度">
 <span class="md-ellipsis">
       3.3 示例调度
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#34-conflict-serializability">
+<a class="md-nav__link" href="#34-冲突串行化-conflict-serializability">
 <span class="md-ellipsis">
       3.4 冲突串行化 (Conflict Serializability)
     </span>
@@ -489,35 +517,35 @@
 <nav aria-label="3.4 冲突串行化 (Conflict Serializability)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#341">
+<a class="md-nav__link" href="#341-定义">
 <span class="md-ellipsis">
       3.4.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#342">
+<a class="md-nav__link" href="#342-冲突等价">
 <span class="md-ellipsis">
       3.4.2 冲突等价
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#343">
+<a class="md-nav__link" href="#343-示例分析">
 <span class="md-ellipsis">
       3.4.3 示例分析
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#344">
+<a class="md-nav__link" href="#344-前趋图测试">
 <span class="md-ellipsis">
       3.4.4 前趋图测试
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#345">
+<a class="md-nav__link" href="#345-图表示例">
 <span class="md-ellipsis">
       3.4.5 图表示例
     </span>
@@ -527,7 +555,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#35-view-serializability">
+<a class="md-nav__link" href="#35-视图串行化-view-serializability">
 <span class="md-ellipsis">
       3.5 视图串行化 (View Serializability)
     </span>
@@ -535,21 +563,21 @@
 <nav aria-label="3.5 视图串行化 (View Serializability)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#351">
+<a class="md-nav__link" href="#351-定义">
 <span class="md-ellipsis">
       3.5.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#352">
+<a class="md-nav__link" href="#352-视图等价示例">
 <span class="md-ellipsis">
       3.5.2 视图等价示例
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#353">
+<a class="md-nav__link" href="#353-视图串行化的意义">
 <span class="md-ellipsis">
       3.5.3 视图串行化的意义
     </span>
@@ -562,7 +590,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#testing-for-serializability">
+<a class="md-nav__link" href="#四测试串行化-testing-for-serializability">
 <span class="md-ellipsis">
       四、测试串行化 (Testing for Serializability)
     </span>
@@ -570,14 +598,14 @@
 <nav aria-label="四、测试串行化 (Testing for Serializability)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#42">
+<a class="md-nav__link" href="#42-冲突串行化测试">
 <span class="md-ellipsis">
       4.2 冲突串行化测试
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#43">
+<a class="md-nav__link" href="#43-视图串行化测试">
 <span class="md-ellipsis">
       4.3 视图串行化测试
     </span>
@@ -587,7 +615,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#recoverability">
+<a class="md-nav__link" href="#五可恢复性-recoverability">
 <span class="md-ellipsis">
       五、可恢复性 (Recoverability)
     </span>
@@ -595,14 +623,14 @@
 <nav aria-label="五、可恢复性 (Recoverability)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#51">
+<a class="md-nav__link" href="#51-可恢复调度">
 <span class="md-ellipsis">
       5.1 可恢复调度
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#52-cascading-rollbacks">
+<a class="md-nav__link" href="#52-级联回滚-cascading-rollbacks">
 <span class="md-ellipsis">
       5.2 级联回滚 (Cascading Rollbacks)
     </span>
@@ -610,28 +638,28 @@
 <nav aria-label="5.2 级联回滚 (Cascading Rollbacks)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#521">
+<a class="md-nav__link" href="#521-定义">
 <span class="md-ellipsis">
       5.2.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#522">
+<a class="md-nav__link" href="#522-机制">
 <span class="md-ellipsis">
       5.2.2 机制
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#523">
+<a class="md-nav__link" href="#523-示例分析">
 <span class="md-ellipsis">
       5.2.3 示例分析
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#524">
+<a class="md-nav__link" href="#524-前趋图视角">
 <span class="md-ellipsis">
       5.2.4 前趋图视角
     </span>
@@ -641,7 +669,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#53-cascadeless-schedules">
+<a class="md-nav__link" href="#53-无级联调度-cascadeless-schedules">
 <span class="md-ellipsis">
       5.3 无级联调度 (Cascadeless Schedules)
     </span>
@@ -649,35 +677,35 @@
 <nav aria-label="5.3 无级联调度 (Cascadeless Schedules)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#531">
+<a class="md-nav__link" href="#531-定义">
 <span class="md-ellipsis">
       5.3.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#532">
+<a class="md-nav__link" href="#532-可恢复性保证">
 <span class="md-ellipsis">
       5.3.2 可恢复性保证
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#533">
+<a class="md-nav__link" href="#533-示例分析">
 <span class="md-ellipsis">
       5.3.3 示例分析
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#534">
+<a class="md-nav__link" href="#534-对比级联调度">
 <span class="md-ellipsis">
       5.3.4 对比级联调度
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#535">
+<a class="md-nav__link" href="#535-实现方法">
 <span class="md-ellipsis">
       5.3.5 实现方法
     </span>
@@ -687,7 +715,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#54">
+<a class="md-nav__link" href="#54-图表辅助理解">
 <span class="md-ellipsis">
       5.4 图表辅助理解
     </span>
@@ -697,7 +725,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#implementation-of-isolation">
+<a class="md-nav__link" href="#六隔离性实现-implementation-of-isolation">
 <span class="md-ellipsis">
       六、隔离性实现 (Implementation of Isolation)
     </span>
@@ -705,28 +733,28 @@
 <nav aria-label="六、隔离性实现 (Implementation of Isolation)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#61">
+<a class="md-nav__link" href="#61-并发控制">
 <span class="md-ellipsis">
       6.1 并发控制
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#62-sql">
+<a class="md-nav__link" href="#62-sql-隔离级别">
 <span class="md-ellipsis">
       6.2 SQL 隔离级别
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#63">
+<a class="md-nav__link" href="#63-弱一致性">
 <span class="md-ellipsis">
       6.3 弱一致性
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#64-predicate-locks">
+<a class="md-nav__link" href="#64-谓词锁-predicate-locks">
 <span class="md-ellipsis">
       6.4 谓词锁 (Predicate Locks)
     </span>
@@ -734,21 +762,21 @@
 <nav aria-label="6.4 谓词锁 (Predicate Locks)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#641">
+<a class="md-nav__link" href="#641-问题背景幻读与元组级锁的局限">
 <span class="md-ellipsis">
       6.4.1 问题背景：幻读与元组级锁的局限
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#642">
+<a class="md-nav__link" href="#642-示例分析">
 <span class="md-ellipsis">
       6.4.2 示例分析
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#643">
+<a class="md-nav__link" href="#643-谓词锁的定义">
 <span class="md-ellipsis">
       6.4.3 谓词锁的定义
     </span>
@@ -839,6 +867,37 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-ellipsis">
+    脑机接口算法及实践
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            脑机接口算法及实践
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Python EEG Signal
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </li>
@@ -905,14 +964,14 @@
 <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<nav aria-label="index" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      index
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#transaction-concept">
+<a class="md-nav__link" href="#一事务概念-transaction-concept">
 <span class="md-ellipsis">
       一、事务概念 (Transaction Concept)
     </span>
@@ -920,21 +979,21 @@
 <nav aria-label="一、事务概念 (Transaction Concept)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#11">
+<a class="md-nav__link" href="#11-事务定义">
 <span class="md-ellipsis">
       1.1 事务定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#12-acid">
+<a class="md-nav__link" href="#12-acid-属性">
 <span class="md-ellipsis">
       1.2 ACID 属性
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#13">
+<a class="md-nav__link" href="#13-事务执行中的问题">
 <span class="md-ellipsis">
       1.3 事务执行中的问题
     </span>
@@ -944,7 +1003,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#concurrent-executions">
+<a class="md-nav__link" href="#二并发执行-concurrent-executions">
 <span class="md-ellipsis">
       二、并发执行 (Concurrent Executions)
     </span>
@@ -952,21 +1011,21 @@
 <nav aria-label="二、并发执行 (Concurrent Executions)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#21">
+<a class="md-nav__link" href="#21-并发执行的优势">
 <span class="md-ellipsis">
       2.1 并发执行的优势
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22">
+<a class="md-nav__link" href="#22-并发控制">
 <span class="md-ellipsis">
       2.2 并发控制
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#23">
+<a class="md-nav__link" href="#23-并发异常">
 <span class="md-ellipsis">
       2.3 并发异常
     </span>
@@ -976,7 +1035,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#serializability">
+<a class="md-nav__link" href="#三串行化-serializability">
 <span class="md-ellipsis">
       三、串行化 (Serializability)
     </span>
@@ -984,28 +1043,28 @@
 <nav aria-label="三、串行化 (Serializability)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#31-schedule">
+<a class="md-nav__link" href="#31-调度-schedule">
 <span class="md-ellipsis">
       3.1 调度 (Schedule)
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#32">
+<a class="md-nav__link" href="#32-串行化定义">
 <span class="md-ellipsis">
       3.2 串行化定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#33">
+<a class="md-nav__link" href="#33-示例调度">
 <span class="md-ellipsis">
       3.3 示例调度
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#34-conflict-serializability">
+<a class="md-nav__link" href="#34-冲突串行化-conflict-serializability">
 <span class="md-ellipsis">
       3.4 冲突串行化 (Conflict Serializability)
     </span>
@@ -1013,35 +1072,35 @@
 <nav aria-label="3.4 冲突串行化 (Conflict Serializability)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#341">
+<a class="md-nav__link" href="#341-定义">
 <span class="md-ellipsis">
       3.4.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#342">
+<a class="md-nav__link" href="#342-冲突等价">
 <span class="md-ellipsis">
       3.4.2 冲突等价
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#343">
+<a class="md-nav__link" href="#343-示例分析">
 <span class="md-ellipsis">
       3.4.3 示例分析
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#344">
+<a class="md-nav__link" href="#344-前趋图测试">
 <span class="md-ellipsis">
       3.4.4 前趋图测试
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#345">
+<a class="md-nav__link" href="#345-图表示例">
 <span class="md-ellipsis">
       3.4.5 图表示例
     </span>
@@ -1051,7 +1110,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#35-view-serializability">
+<a class="md-nav__link" href="#35-视图串行化-view-serializability">
 <span class="md-ellipsis">
       3.5 视图串行化 (View Serializability)
     </span>
@@ -1059,21 +1118,21 @@
 <nav aria-label="3.5 视图串行化 (View Serializability)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#351">
+<a class="md-nav__link" href="#351-定义">
 <span class="md-ellipsis">
       3.5.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#352">
+<a class="md-nav__link" href="#352-视图等价示例">
 <span class="md-ellipsis">
       3.5.2 视图等价示例
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#353">
+<a class="md-nav__link" href="#353-视图串行化的意义">
 <span class="md-ellipsis">
       3.5.3 视图串行化的意义
     </span>
@@ -1086,7 +1145,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#testing-for-serializability">
+<a class="md-nav__link" href="#四测试串行化-testing-for-serializability">
 <span class="md-ellipsis">
       四、测试串行化 (Testing for Serializability)
     </span>
@@ -1094,14 +1153,14 @@
 <nav aria-label="四、测试串行化 (Testing for Serializability)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#42">
+<a class="md-nav__link" href="#42-冲突串行化测试">
 <span class="md-ellipsis">
       4.2 冲突串行化测试
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#43">
+<a class="md-nav__link" href="#43-视图串行化测试">
 <span class="md-ellipsis">
       4.3 视图串行化测试
     </span>
@@ -1111,7 +1170,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#recoverability">
+<a class="md-nav__link" href="#五可恢复性-recoverability">
 <span class="md-ellipsis">
       五、可恢复性 (Recoverability)
     </span>
@@ -1119,14 +1178,14 @@
 <nav aria-label="五、可恢复性 (Recoverability)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#51">
+<a class="md-nav__link" href="#51-可恢复调度">
 <span class="md-ellipsis">
       5.1 可恢复调度
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#52-cascading-rollbacks">
+<a class="md-nav__link" href="#52-级联回滚-cascading-rollbacks">
 <span class="md-ellipsis">
       5.2 级联回滚 (Cascading Rollbacks)
     </span>
@@ -1134,28 +1193,28 @@
 <nav aria-label="5.2 级联回滚 (Cascading Rollbacks)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#521">
+<a class="md-nav__link" href="#521-定义">
 <span class="md-ellipsis">
       5.2.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#522">
+<a class="md-nav__link" href="#522-机制">
 <span class="md-ellipsis">
       5.2.2 机制
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#523">
+<a class="md-nav__link" href="#523-示例分析">
 <span class="md-ellipsis">
       5.2.3 示例分析
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#524">
+<a class="md-nav__link" href="#524-前趋图视角">
 <span class="md-ellipsis">
       5.2.4 前趋图视角
     </span>
@@ -1165,7 +1224,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#53-cascadeless-schedules">
+<a class="md-nav__link" href="#53-无级联调度-cascadeless-schedules">
 <span class="md-ellipsis">
       5.3 无级联调度 (Cascadeless Schedules)
     </span>
@@ -1173,35 +1232,35 @@
 <nav aria-label="5.3 无级联调度 (Cascadeless Schedules)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#531">
+<a class="md-nav__link" href="#531-定义">
 <span class="md-ellipsis">
       5.3.1 定义
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#532">
+<a class="md-nav__link" href="#532-可恢复性保证">
 <span class="md-ellipsis">
       5.3.2 可恢复性保证
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#533">
+<a class="md-nav__link" href="#533-示例分析">
 <span class="md-ellipsis">
       5.3.3 示例分析
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#534">
+<a class="md-nav__link" href="#534-对比级联调度">
 <span class="md-ellipsis">
       5.3.4 对比级联调度
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#535">
+<a class="md-nav__link" href="#535-实现方法">
 <span class="md-ellipsis">
       5.3.5 实现方法
     </span>
@@ -1211,7 +1270,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#54">
+<a class="md-nav__link" href="#54-图表辅助理解">
 <span class="md-ellipsis">
       5.4 图表辅助理解
     </span>
@@ -1221,7 +1280,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#implementation-of-isolation">
+<a class="md-nav__link" href="#六隔离性实现-implementation-of-isolation">
 <span class="md-ellipsis">
       六、隔离性实现 (Implementation of Isolation)
     </span>
@@ -1229,28 +1288,28 @@
 <nav aria-label="六、隔离性实现 (Implementation of Isolation)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#61">
+<a class="md-nav__link" href="#61-并发控制">
 <span class="md-ellipsis">
       6.1 并发控制
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#62-sql">
+<a class="md-nav__link" href="#62-sql-隔离级别">
 <span class="md-ellipsis">
       6.2 SQL 隔离级别
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#63">
+<a class="md-nav__link" href="#63-弱一致性">
 <span class="md-ellipsis">
       6.3 弱一致性
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#64-predicate-locks">
+<a class="md-nav__link" href="#64-谓词锁-predicate-locks">
 <span class="md-ellipsis">
       6.4 谓词锁 (Predicate Locks)
     </span>
@@ -1258,21 +1317,21 @@
 <nav aria-label="6.4 谓词锁 (Predicate Locks)" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#641">
+<a class="md-nav__link" href="#641-问题背景幻读与元组级锁的局限">
 <span class="md-ellipsis">
       6.4.1 问题背景：幻读与元组级锁的局限
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#642">
+<a class="md-nav__link" href="#642-示例分析">
 <span class="md-ellipsis">
       6.4.2 示例分析
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#643">
+<a class="md-nav__link" href="#643-谓词锁的定义">
 <span class="md-ellipsis">
       6.4.3 谓词锁的定义
     </span>
@@ -1292,8 +1351,8 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="lecture-13-transactions">Lecture 13: Transactions</h1>
-<h2 id="transaction-concept">一、事务概念 (Transaction Concept)</h2>
-<h3 id="11">1.1 事务定义</h3>
+<h2 id="一事务概念-transaction-concept">一、事务概念 (Transaction Concept)</h2>
+<h3 id="11-事务定义">1.1 事务定义</h3>
 <ul>
 <li><strong>事务</strong> 是一组程序执行单元，涉及对数据库中多个数据项的访问和可能的更新。</li>
 <li><strong>示例</strong>：从账户 A 转账 50 美元到账户 B：
@@ -1310,7 +1369,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="12-acid">1.2 ACID 属性</h3>
+<h3 id="12-acid-属性">1.2 ACID 属性</h3>
 <p>数据库系统必须保证事务的以下属性以维护数据完整性：</p>
 <ul>
 <li><strong>原子性 (Atomicity)</strong>：<ul>
@@ -1335,25 +1394,25 @@
 </ul>
 </li>
 </ul>
-<h3 id="13">1.3 事务执行中的问题</h3>
+<h3 id="13-事务执行中的问题">1.3 事务执行中的问题</h3>
 <ul>
 <li><strong>原子性问题</strong>：部分执行的事务更新不应反映到数据库。</li>
 <li><strong>隔离性问题</strong>：并发执行可能导致中间状态可见。</li>
 <li><strong>一致性问题</strong>：错误的事务逻辑可能破坏数据库一致性。</li>
 </ul>
-<h2 id="concurrent-executions">二、并发执行 (Concurrent Executions)</h2>
-<h3 id="21">2.1 并发执行的优势</h3>
+<h2 id="二并发执行-concurrent-executions">二、并发执行 (Concurrent Executions)</h2>
+<h3 id="21-并发执行的优势">2.1 并发执行的优势</h3>
 <ul>
 <li><strong>提高资源利用率</strong>：一个事务用 CPU 时，另一个可访问磁盘。</li>
 <li><strong>缩短响应时间</strong>：短事务无需等待长事务完成。</li>
 <li><strong>提高吞吐量</strong>：单位时间内处理更多事务。</li>
 </ul>
-<h3 id="22">2.2 并发控制</h3>
+<h3 id="22-并发控制">2.2 并发控制</h3>
 <ul>
 <li><strong>并发控制机制</strong>：确保隔离性，防止数据不一致。</li>
 <li>具体方案将在后续章节详细讨论。</li>
 </ul>
-<h3 id="23">2.3 并发异常</h3>
+<h3 id="23-并发异常">2.3 并发异常</h3>
 <p>并发执行若无控制，可能导致以下问题：</p>
 <ul>
 <li><strong>丢失更新 (Lost Update)</strong>：</li>
@@ -1375,8 +1434,8 @@
 </ul>
 <p><img alt="alt text" src="../image-40.png"/></p>
 <p>T1 两次查询结果记录数不同，因 T2 插入了新记录。</p>
-<h2 id="serializability">三、串行化 (Serializability)</h2>
-<h3 id="31-schedule">3.1 调度 (Schedule)</h3>
+<h2 id="三串行化-serializability">三、串行化 (Serializability)</h2>
+<h3 id="31-调度-schedule">3.1 调度 (Schedule)</h3>
 <ul>
 <li><strong>调度</strong>：指定并发事务指令执行顺序的序列。</li>
 <li><strong>串行调度</strong>：事务按顺序逐一执行，无并发。</li>
@@ -1391,7 +1450,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="32">3.2 串行化定义</h3>
+<h3 id="32-串行化定义">3.2 串行化定义</h3>
 <ul>
 <li><strong>串行化</strong>：一个（可能是并发的）调度如果等价于某个串行调度，则称其为可串行化的；一个调度等价于某个串行调度。</li>
 <li><strong>假设</strong>：每个事务单独执行时保持数据库一致性。</li>
@@ -1401,7 +1460,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="33">3.3 示例调度</h3>
+<h3 id="33-示例调度">3.3 示例调度</h3>
 <ul>
 <li><strong>Schedule 1 (串行调度 T1 → T2)</strong>：</li>
 </ul>
@@ -1410,8 +1469,8 @@
 <li><strong>Schedule 3 (并发但串行化)</strong>：</li>
 </ul>
 <p><img alt="alt text" src="../image-42.png"/></p>
-<h3 id="34-conflict-serializability">3.4 冲突串行化 (Conflict Serializability)</h3>
-<h4 id="341">3.4.1 定义</h4>
+<h3 id="34-冲突串行化-conflict-serializability">3.4 冲突串行化 (Conflict Serializability)</h3>
+<h4 id="341-定义">3.4.1 定义</h4>
 <ul>
 <li><strong>冲突串行化</strong>是指一个调度（schedule）可以通过交换非冲突指令，转换为某个串行调度（serial schedule，即事务按顺序逐一执行的调度），且保持冲突操作的顺序不变。</li>
 <li><strong>冲突指令</strong>：两个指令冲突，当且仅当：</li>
@@ -1426,13 +1485,13 @@
 </ol>
 </li>
 </ul>
-<h4 id="342">3.4.2 冲突等价</h4>
+<h4 id="342-冲突等价">3.4.2 冲突等价</h4>
 <ul>
 <li><strong>冲突等价</strong>：如果调度 S 可以通过一系列非冲突指令的交换，转换为调度 S'，则 S 和 S' 是冲突等价的。</li>
 <li><strong>关键点</strong>：交换非冲突指令不会改变事务的结果，因为非冲突指令的执行顺序无关紧要。</li>
 <li><strong>目标</strong>：通过交换，将并发调度转换为某个串行调度（如 T1 → T2 或 T2 → T1）。</li>
 </ul>
-<h4 id="343">3.4.3 示例分析</h4>
+<h4 id="343-示例分析">3.4.3 示例分析</h4>
 <p>考虑以下调度（Schedule 3）：</p>
 <p><img alt="alt text" src="../image-43.png"/></p>
 <p><strong>分析</strong>：</p>
@@ -1462,7 +1521,7 @@
 <p><strong>结论</strong>：Schedule 3 是冲突串行化的，等价于串行调度 T1 → T2。</p>
 </li>
 </ul>
-<h4 id="344">3.4.4 前趋图测试</h4>
+<h4 id="344-前趋图测试">3.4.4 前趋图测试</h4>
 <ul>
 <li><strong>前趋图</strong>：用于测试冲突串行化。<ul>
 <li>节点：每个事务（如 T1, T2）。</li>
@@ -1479,12 +1538,12 @@
 </li>
 </ul>
 <p>T1 的 <code>write(A)</code> 先于 T2 的 <code>read(A)</code>，T1 的 <code>write(B)</code> 先于 T2 的 <code>read(B)</code>，故 T1 → T2，无环，确认冲突串行化。</p>
-<h4 id="345">3.4.5 图表示例</h4>
+<h4 id="345-图表示例">3.4.5 图表示例</h4>
 <p>以下是一个更复杂的调度：</p>
 <p><img alt="alt text" src="../image-44.png"/></p>
 <p><strong>结论</strong>：有环，调度不是冲突串行化的。</p>
-<h3 id="35-view-serializability">3.5 视图串行化 (View Serializability)</h3>
-<h4 id="351">3.5.1 定义</h4>
+<h3 id="35-视图串行化-view-serializability">3.5 视图串行化 (View Serializability)</h3>
+<h4 id="351-定义">3.5.1 定义</h4>
 <ul>
 <li><strong>视图串行化</strong>：一个调度 S 是视图串行化的，如果它与某个串行调度 S' <strong>视图等价</strong>，即两者的执行结果在以下方面相同：<ol>
 <li><strong>初始读</strong>：每个数据项的<strong>首次读取</strong>来自同一事务。</li>
@@ -1498,7 +1557,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="352">3.5.2 视图等价示例</h4>
+<h4 id="352-视图等价示例">3.5.2 视图等价示例</h4>
 <p>考虑以下调度：</p>
 <p><img alt="alt text" src="../image-45.png"/></p>
 <ul>
@@ -1517,45 +1576,45 @@
     T27 --&gt; T29
 </code></pre>
 <p><strong>结果</strong>：存在环（T27 → T28 → T27），说明调度可能<strong>非冲突串行化</strong>。</p>
-<h4 id="353">3.5.3 视图串行化的意义</h4>
+<h4 id="353-视图串行化的意义">3.5.3 视图串行化的意义</h4>
 <ul>
 <li><strong>优势</strong>：允许更多并发调度，尤其是包含盲写的场景。</li>
 <li><strong>缺点</strong>：测试视图串行化是 NP 完全问题，计算复杂，实际数据库中较少直接使用。</li>
 <li><strong>关系</strong>：所有冲突串行化调度都是视图串行化的，但反之不一定。</li>
 </ul>
-<h2 id="testing-for-serializability">四、测试串行化 (Testing for Serializability)</h2>
+<h2 id="四测试串行化-testing-for-serializability">四、测试串行化 (Testing for Serializability)</h2>
 <p>我们一般用前趋图来测试</p>
-<h3 id="42">4.2 冲突串行化测试</h3>
+<h3 id="42-冲突串行化测试">4.2 冲突串行化测试</h3>
 <ul>
 <li><strong>条件</strong>：前趋图<strong>无环</strong>。</li>
 <li><strong>算法</strong>：循环检测，复杂度 O(n²) 或 O(n+e)。</li>
 <li><strong>结果</strong>：若无环，可通过拓扑排序得到串行顺序，如 T5 → T1 → T4。</li>
 </ul>
-<h3 id="43">4.3 视图串行化测试</h3>
+<h3 id="43-视图串行化测试">4.3 视图串行化测试</h3>
 <ul>
 <li><strong>复杂度</strong>：NP 完全问题，无高效算法。</li>
 <li><strong>方法</strong>：检查充分条件即可。</li>
 </ul>
-<h2 id="recoverability">五、可恢复性 (Recoverability)</h2>
-<h3 id="51">5.1 可恢复调度</h3>
+<h2 id="五可恢复性-recoverability">五、可恢复性 (Recoverability)</h2>
+<h3 id="51-可恢复调度">5.1 可恢复调度</h3>
 <p><strong>定义</strong>：若 <span class="arithmatex">\(T_j\)</span> 读取 <span class="arithmatex">\(T_i\)</span> 写入的数据，则 <span class="arithmatex">\(T_i\)</span> 须在 <span class="arithmatex">\(T_j\)</span> 提交前提交。</p>
 <p><strong>不可恢复示例</strong>：</p>
 <p><img alt="alt text" src="../image-46.png"/></p>
 <p>如果事务T8需要中止，即便 T8 回滚后，T9 已提交，无法恢复。</p>
-<h3 id="52-cascading-rollbacks">5.2 级联回滚 (Cascading Rollbacks)</h3>
-<h4 id="521">5.2.1 定义</h4>
+<h3 id="52-级联回滚-cascading-rollbacks">5.2 级联回滚 (Cascading Rollbacks)</h3>
+<h4 id="521-定义">5.2.1 定义</h4>
 <ul>
 <li><strong>级联回滚</strong>是指当一个事务（例如 <span class="arithmatex">\(T_i\)</span>）失败并回滚（abort）时，因其他事务（例如 <span class="arithmatex">\(T_j\)</span>）读取了 <span class="arithmatex">\(T_i\)</span> 的未提交数据（脏数据），这些依赖事务也必须回滚，形成连锁反应。</li>
 <li><strong>原因</strong>：事务间未提交数据的依赖性破坏了数据库的一致性。</li>
 <li><strong>影响</strong>：级联回滚可能导致大量事务回滚，增加系统开销并延长恢复时间。</li>
 </ul>
-<h4 id="522">5.2.2 机制</h4>
+<h4 id="522-机制">5.2.2 机制</h4>
 <ul>
 <li>当事务 <span class="arithmatex">\(T_i\)</span> 回滚时，数据库系统需检查哪些事务读取了 <span class="arithmatex">\(T_i\)</span> 的未提交写操作。</li>
 <li>如果 <span class="arithmatex">\(T_j\)</span> 读取了 <span class="arithmatex">\(T_i\)</span> 的数据，且 <span class="arithmatex">\(T_i\)</span> 回滚，<span class="arithmatex">\(T_j\)</span> 的结果可能基于无效数据，因此 <span class="arithmatex">\(T_j\)</span> 也需回滚。</li>
 <li>该过程可能进一步触发更多事务的回滚，形成“级联”效应。</li>
 </ul>
-<h4 id="523">5.2.3 示例分析</h4>
+<h4 id="523-示例分析">5.2.3 示例分析</h4>
 <p>考虑以下调度：</p>
 <p><img alt="alt text" src="../image-47.png"/></p>
 <ul>
@@ -1575,7 +1634,7 @@
 <li><strong>结果</strong>：T10、T11、T12 全部回滚，形成了级联回滚。</li>
 <li><strong>问题</strong>：若 T11 和 T12 已执行大量操作，回滚成本高，影响系统性能。</li>
 </ul>
-<h4 id="524">5.2.4 前趋图视角</h4>
+<h4 id="524-前趋图视角">5.2.4 前趋图视角</h4>
 <ul>
 <li>构建依赖关系：<ul>
 <li>T10 → T11（T11 读 T10 的 A）。</li>
@@ -1591,20 +1650,20 @@
 </li>
 </ul>
 <p>T10 的回滚触发 T11 和 T12 的依赖回滚，形成级联。</p>
-<h3 id="53-cascadeless-schedules">5.3 无级联调度 (Cascadeless Schedules)</h3>
-<h4 id="531">5.3.1 定义</h4>
+<h3 id="53-无级联调度-cascadeless-schedules">5.3 无级联调度 (Cascadeless Schedules)</h3>
+<h4 id="531-定义">5.3.1 定义</h4>
 <ul>
 <li><strong>无级联调度</strong>是指事务 <span class="arithmatex">\(T_j\)</span> 只能读取已由事务 <span class="arithmatex">\(T_i\)</span> 提交（commit）的数据。</li>
 <li><strong>约束</strong>：任何读操作（<code>read(Q)</code>）必须发生在写操作（<code>write(Q)</code>）的提交之后。</li>
 <li><strong>特点</strong>：无级联调度天然避免级联回滚，且一定是可恢复的调度。</li>
 </ul>
-<h4 id="532">5.3.2 可恢复性保证</h4>
+<h4 id="532-可恢复性保证">5.3.2 可恢复性保证</h4>
 <ul>
 <li><strong>可恢复调度</strong>：如果 <span class="arithmatex">\(T_j\)</span> 读取了 <span class="arithmatex">\(T_i\)</span> 的数据，<span class="arithmatex">\(T_i\)</span> 必须在 <span class="arithmatex">\(T_j\)</span> 提交前提交。</li>
 <li>无级联调度满足这一条件，因为 <span class="arithmatex">\(T_j\)</span> 只读已提交数据，<span class="arithmatex">\(T_i\)</span> 的回滚不会影响 <span class="arithmatex">\(T_j\)</span>。</li>
 <li><strong>数学表示</strong>：若 S 是一个无级联调度，则对所有 <span class="arithmatex">\(T_i\)</span> 和 <span class="arithmatex">\(T_j\)</span>，若 <span class="arithmatex">\(T_j\)</span> 读 <span class="arithmatex">\(T_i\)</span> 的 <code>write(Q)</code>，则 <span class="arithmatex">\(T_i\)</span> 的 <code>commit</code> 必在 <span class="arithmatex">\(T_j\)</span> 的 <code>read(Q)</code> 之前。</li>
 </ul>
-<h4 id="533">5.3.3 示例分析</h4>
+<h4 id="533-示例分析">5.3.3 示例分析</h4>
 <p>考虑以下无级联调度：
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>| T10     | T11     | T12     |
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>|---------|---------|---------|
@@ -1632,19 +1691,19 @@
 </li>
 <li><strong>结果</strong>：调度是可恢复的，且避免了级联回滚。</li>
 </ul>
-<h4 id="534">5.3.4 对比级联调度</h4>
+<h4 id="534-对比级联调度">5.3.4 对比级联调度</h4>
 <ul>
 <li><strong>级联调度</strong>（如 5.2 示例）：T10 回滚导致 T11 和 T12 回滚。</li>
 <li><strong>无级联调度</strong>：T10 回滚仅影响 T10 本身，其他事务不受影响。</li>
 <li><strong>效率</strong>：无级联调度减少了回滚开销，适合高并发场景。</li>
 </ul>
-<h4 id="535">5.3.5 实现方法</h4>
+<h4 id="535-实现方法">5.3.5 实现方法</h4>
 <ul>
 <li><strong>锁定协议</strong>：使用两阶段锁定（2PL），确保写操作提交前不释放锁，其他事务无法读未提交数据。</li>
 <li><strong>时间戳</strong>：通过时间戳排序，确保读操作只访问已提交版本。</li>
 <li><strong>多版本控制</strong>：维护数据多个版本，事务读取已提交的快照。</li>
 </ul>
-<h3 id="54">5.4 图表辅助理解</h3>
+<h3 id="54-图表辅助理解">5.4 图表辅助理解</h3>
 <p>以下是一个时间线图，展示级联回滚与无级联调度的差异：</p>
 <pre class="mermaid"><code>sequenceDiagram
     participant T10
@@ -1676,8 +1735,8 @@
 <li><strong>级联回滚</strong>：T10 回滚触发 T11 和 T12 回滚。</li>
 <li><strong>无级联调度</strong>：每个事务只读已提交数据，独立回滚。</li>
 </ul>
-<h2 id="implementation-of-isolation">六、隔离性实现 (Implementation of Isolation)</h2>
-<h3 id="61">6.1 并发控制</h3>
+<h2 id="六隔离性实现-implementation-of-isolation">六、隔离性实现 (Implementation of Isolation)</h2>
+<h3 id="61-并发控制">6.1 并发控制</h3>
 <ul>
 <li><strong>目标</strong>：确保调度是串行化的、可恢复的、最好无级联。</li>
 <li><strong>协议</strong>：<ul>
@@ -1698,7 +1757,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="62-sql">6.2 SQL 隔离级别</h3>
+<h3 id="62-sql-隔离级别">6.2 SQL 隔离级别</h3>
 <ul>
 <li><strong>Serializable</strong>：默认，最高隔离。</li>
 <li><strong>Repeatable Read</strong>：重复读一致，但可能有幻读。</li>
@@ -1710,14 +1769,14 @@
 </ul>
 </li>
 </ul>
-<h3 id="63">6.3 弱一致性</h3>
+<h3 id="63-弱一致性">6.3 弱一致性</h3>
 <ul>
 <li><strong>场景</strong>：如统计查询可接受近似值。</li>
 <li><strong>优点</strong>：提升性能。</li>
 <li><strong>注意</strong>：某些系统默认非串行化（如 Oracle 的快照隔离）。</li>
 </ul>
-<h3 id="64-predicate-locks">6.4 谓词锁 (Predicate Locks)</h3>
-<h4 id="641">6.4.1 问题背景：幻读与元组级锁的局限</h4>
+<h3 id="64-谓词锁-predicate-locks">6.4 谓词锁 (Predicate Locks)</h3>
+<h4 id="641-问题背景幻读与元组级锁的局限">6.4.1 问题背景：幻读与元组级锁的局限</h4>
 <ul>
 <li><strong>幻读问题</strong>：在并发执行中，一个事务 T1 执行查询（如 <code>SELECT</code>），另一个事务 T2 插入或删除匹配查询条件的数据，导致 T1 重复查询时看到不同结果（“幻影”记录）。</li>
 <li><strong>元组级锁的不足</strong>：<ul>
@@ -1727,7 +1786,7 @@
 </li>
 <li><strong>后果</strong>：幻读违反了隔离性（Isolation），特别是 Serializable 隔离级别的要求。</li>
 </ul>
-<h4 id="642">6.4.2 示例分析</h4>
+<h4 id="642-示例分析">6.4.2 示例分析</h4>
 <p>考虑以下并发场景（基于课件中的示例）：
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">-- T1: 查询 salary &gt; 90000 的记录</span>
 <a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">T1</span><span class="p">:</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">instructor</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">90000</span><span class="p">;</span>
@@ -1752,7 +1811,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="643">6.4.3 谓词锁的定义</h4>
+<h4 id="643-谓词锁的定义">6.4.3 谓词锁的定义</h4>
 <ul>
 <li><strong>谓词锁</strong>：一种高级锁机制，锁定满足特定条件的记录集（谓词），而不仅是具体的元组。</li>
 <li><strong>谓词</strong>：查询条件（如 <code>WHERE salary &gt; 90000</code>），表示一组可能满足条件的记录。</li>

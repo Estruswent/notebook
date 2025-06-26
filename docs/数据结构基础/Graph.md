@@ -1,10 +1,3 @@
----
-profileName: Estruswent
-postId: "1759"
-postType: post
-categories:
-  - 40
----
 # New Words
 nonempty 非空的
 vertice  顶点[pl]

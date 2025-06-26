@@ -7,11 +7,9 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="This is E5trusw3nt's Notebook" name="description"/>
 <meta content="E5trusw3nt" name="author"/>
-<link href="../Graph/" rel="prev"/>
-<link href="../Tree/" rel="next"/>
 <link href="../../style/images/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.34" name="generator"/>
-<title>排序问题 - E5trusw3nt's Notebook</title>
+<title>一、插入排序(insertion sort) - E5trusw3nt's Notebook</title>
 <link href="../../assets/stylesheets/main.35f28582.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -29,7 +27,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#insertion-sort">
+<a class="md-skip" href="#一插入排序insertion-sort">
           Skip to content
         </a>
 </div>
@@ -53,7 +51,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              排序问题
+              一、插入排序(insertion sort)
             
           </span>
 </div>
@@ -124,7 +122,7 @@
 
       </a>
 </li>
-<li class="md-tabs__item md-tabs__item--active">
+<li class="md-tabs__item">
 <a class="md-tabs__link" href="../TimeComplexity/">
           
   
@@ -183,29 +181,29 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
 <span class="md-ellipsis">
     Computer Science
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
             Computer Science
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
 <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
 <span class="md-ellipsis">
     数据结构基础
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_2_1">
 <span class="md-nav__icon md-icon"></span>
             数据结构基础
@@ -226,72 +224,18 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Graph/">
+<a class="md-nav__link" href="../Sort2/">
 <span class="md-ellipsis">
-    图
+    排序问题（上）
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Sort1/">
 <span class="md-ellipsis">
-    排序问题
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
-<span class="md-ellipsis">
-    排序问题
+    排序问题（下）
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-<span class="md-ellipsis">
-      （伪）代码实现
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
-<span class="md-ellipsis">
-      复杂度分析
-    </span>
-</a>
-<nav aria-label="复杂度分析" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
-<span class="md-ellipsis">
-      时间复杂度
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
-<span class="md-ellipsis">
-      空间复杂度
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
-<span class="md-ellipsis">
-      稳定性分析
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../Tree/">
@@ -311,6 +255,34 @@
 <a class="md-nav__link" href="../DisjointSet/">
 <span class="md-ellipsis">
     并查集
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Graph_new/">
+<span class="md-ellipsis">
+    图：基本概念
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ShortestPathAlgorithm/">
+<span class="md-ellipsis">
+    图：最短路径算法
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../MST/">
+<span class="md-ellipsis">
+    图：网络流与最小生成树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../DFS/">
+<span class="md-ellipsis">
+    图：深度优先搜索
   </span>
 </a>
 </li>
@@ -505,6 +477,37 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-ellipsis">
+    脑机接口算法及实践
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            脑机接口算法及实践
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Python EEG Signal
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </li>
@@ -571,21 +574,21 @@
 <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<nav aria-label="index" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      index
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
+<a class="md-nav__link" href="#伪代码实现">
 <span class="md-ellipsis">
       （伪）代码实现
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
+<a class="md-nav__link" href="#复杂度分析">
 <span class="md-ellipsis">
       复杂度分析
     </span>
@@ -593,14 +596,14 @@
 <nav aria-label="复杂度分析" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
+<a class="md-nav__link" href="#时间复杂度">
 <span class="md-ellipsis">
       时间复杂度
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
+<a class="md-nav__link" href="#空间复杂度">
 <span class="md-ellipsis">
       空间复杂度
     </span>
@@ -610,7 +613,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
+<a class="md-nav__link" href="#稳定性分析">
 <span class="md-ellipsis">
       稳定性分析
     </span>
@@ -623,9 +626,9 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="insertion-sort">一、插入排序(insertion sort)</h1>
+<h1 id="一插入排序insertion-sort">一、插入排序(insertion sort)</h1>
 <p>类比打斗地主时一把摸起来的大堆扑克牌，排序方式差不多。</p>
-<h2 id="_1">（伪）代码实现</h2>
+<h2 id="伪代码实现">（伪）代码实现</h2>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">InsertionSort</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">ElementType</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">P</span><span class="p">;</span>
 <a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="n">ElementType</span><span class="w">  </span><span class="n">Tmp</span><span class="p">;</span>
@@ -639,19 +642,19 @@
 <a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a>
 <a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="_2">复杂度分析</h2>
-<h3 id="_3">时间复杂度</h3>
+<h2 id="复杂度分析">复杂度分析</h2>
+<h3 id="时间复杂度">时间复杂度</h3>
 <p>最好情况：已经排好了！<span class="arithmatex">\(O(N)\)</span>
 最坏情况：完全反转的。<span class="arithmatex">\(O(N^2)\)</span>
 一般情况：<span class="arithmatex">\(O(I + N)\)</span>，I表示反转(inversion)的数有多少对。
 反转：序号大而对应数据小。比如34, 8, 64, 51, 32, 21有9对反转，分别为
 (34, 8) (34, 32) (34, 21) (64, 51) (64, 32) (64, 21) (51, 32) (51, 21) (32, 21)</p>
-<h3 id="_4">空间复杂度</h3>
+<h3 id="空间复杂度">空间复杂度</h3>
 <p><span class="arithmatex">\(O(1)\)</span></p>
-<h2 id="_5">稳定性分析</h2>
+<h2 id="稳定性分析">稳定性分析</h2>
 <p>不改变其他序列，所以是稳定的</p>
-<h1 id="shell-sort">二、希尔排序(shell sort)</h1>
-<h2 id="_6">代码实现</h2>
+<h1 id="二希尔排序shell-sort">二、希尔排序(shell sort)</h1>
+<h2 id="代码实现">代码实现</h2>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">shellSort</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="c1">// 为了找到最大的希尔排序间隔，先将其初始化为数组长度</span>
 <a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">gap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -668,16 +671,16 @@
 <a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">    </span><span class="p">}</span>
 <a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="_7">复杂度分析</h2>
-<h3 id="_8">时间复杂度</h3>
+<h2 id="复杂度分析_1">复杂度分析</h2>
+<h3 id="时间复杂度_1">时间复杂度</h3>
 <p>时间复杂度为<span class="arithmatex">\(O(N^{1.5})\)</span>，时间复杂度的下界为<span class="arithmatex">\(O(N*logN)\)</span>，上界（最坏）为<span class="arithmatex">\(\Theta (N^2)\)</span>。</p>
-<h3 id="_9">空间复杂度</h3>
+<h3 id="空间复杂度_1">空间复杂度</h3>
 <p><span class="arithmatex">\(O(1)\)</span></p>
-<h2 id="_10">稳定性分析</h2>
+<h2 id="稳定性分析_1">稳定性分析</h2>
 <p>不稳定的</p>
-<h1 id="heapsort">三、堆排序(heapsort)</h1>
+<h1 id="三堆排序heapsort">三、堆排序(heapsort)</h1>
 <p><a href="https://www.youtube.com/watch?v=mgUiY8CVDhU">Heap sort visualization | What is heap sort and How does it work?? - YouTube</a>该视频的图解很清晰</p>
-<h2 id="_11">代码实现</h2>
+<h2 id="代码实现_1">代码实现</h2>
 <p>```C
  void heapify(int arr[], int n, int i) {
     int largest = i; // Initialize largest as root
@@ -786,12 +789,12 @@
 <a href="#__codelineno-2-71" id="__codelineno-2-71" name="__codelineno-2-71"></a>    } 
 <a href="#__codelineno-2-72" id="__codelineno-2-72" name="__codelineno-2-72"></a>}
 </code></pre></div></p>
-<h2 id="_12">复杂度分析</h2>
-<h3 id="_13">时间复杂度</h3>
+<h2 id="复杂度分析_2">复杂度分析</h2>
+<h3 id="时间复杂度_2">时间复杂度</h3>
 <p><span class="arithmatex">\(O(N \log N)\)</span></p>
-<h3 id="_14">空间复杂度</h3>
+<h3 id="空间复杂度_2">空间复杂度</h3>
 <p>需要总共长度为N的若干数组，故空间复杂度为<span class="arithmatex">\(O(N)\)</span></p>
-<h2 id="_15">稳定性分析</h2>
+<h2 id="稳定性分析_2">稳定性分析</h2>
 <p>稳定的（它不会改变相等元素的排序）</p>
 </article>
 </div>

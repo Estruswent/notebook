@@ -8,7 +8,7 @@
 <meta content="This is E5trusw3nt's Notebook" name="description"/>
 <meta content="E5trusw3nt" name="author"/>
 <link href="../PriorityQueues/" rel="prev"/>
-<link href="../unfinished/" rel="next"/>
+<link href="../Graph_new/" rel="next"/>
 <link href="../../style/images/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.5.34" name="generator"/>
 <title>并查集 - E5trusw3nt's Notebook</title>
@@ -29,7 +29,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#disjoint-set-adt">
+<a class="md-skip" href="#并查集disjoint-set-adt">
           Skip to content
         </a>
 </div>
@@ -226,16 +226,16 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Graph/">
+<a class="md-nav__link" href="../Sort2/">
 <span class="md-ellipsis">
-    图
+    排序问题（上）
   </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Sort/">
+<a class="md-nav__link" href="../Sort1/">
 <span class="md-ellipsis">
-    排序问题
+    排序问题（下）
   </span>
 </a>
 </li>
@@ -266,14 +266,14 @@
     并查集
   </span>
 </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<nav aria-label="index" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      index
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
+<a class="md-nav__link" href="#一基本概念">
 <span class="md-ellipsis">
       一、基本概念
     </span>
@@ -281,14 +281,14 @@
 <nav aria-label="一、基本概念" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1">
+<a class="md-nav__link" href="#1-等价关系与等价类">
 <span class="md-ellipsis">
       1. 等价关系与等价类
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2">
+<a class="md-nav__link" href="#2-动态等价问题">
 <span class="md-ellipsis">
       2. 动态等价问题
     </span>
@@ -298,25 +298,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
+<a class="md-nav__link" href="#二初始化数组表示">
 <span class="md-ellipsis">
       二、初始化：数组表示
     </span>
 </a>
-<nav aria-label="二、初始化：数组表示" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#1_1">
-<span class="md-ellipsis">
-      1. 数据结构
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#union-by-size">
+<a class="md-nav__link" href="#三合并优化按大小合并union-by-size">
 <span class="md-ellipsis">
       三、合并优化：按大小合并（Union-by-Size）
     </span>
@@ -324,14 +313,14 @@
 <nav aria-label="三、合并优化：按大小合并（Union-by-Size）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_2">
+<a class="md-nav__link" href="#1-规则">
 <span class="md-ellipsis">
       1. 规则
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2_1">
+<a class="md-nav__link" href="#2-代码实现">
 <span class="md-ellipsis">
       2. 代码实现
     </span>
@@ -339,21 +328,21 @@
 <nav aria-label="2. 代码实现" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#21-find">
+<a class="md-nav__link" href="#21-find函数迭代版">
 <span class="md-ellipsis">
       2.1 Find函数迭代版
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22-find">
+<a class="md-nav__link" href="#22-find函数递归版">
 <span class="md-ellipsis">
       2.2 Find函数递归版
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#23-union">
+<a class="md-nav__link" href="#23-union函数">
 <span class="md-ellipsis">
       2.3 Union函数
     </span>
@@ -363,7 +352,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3">
+<a class="md-nav__link" href="#3-操作示例">
 <span class="md-ellipsis">
       3. 操作示例
     </span>
@@ -373,7 +362,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#path-compression">
+<a class="md-nav__link" href="#四路径压缩path-compression">
 <span class="md-ellipsis">
       四、路径压缩（Path Compression）
     </span>
@@ -381,21 +370,21 @@
 <nav aria-label="四、路径压缩（Path Compression）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_3">
+<a class="md-nav__link" href="#1-目标">
 <span class="md-ellipsis">
       1. 目标
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2_2">
+<a class="md-nav__link" href="#2-实现方法">
 <span class="md-ellipsis">
       2. 实现方法
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3_1">
+<a class="md-nav__link" href="#3-示例">
 <span class="md-ellipsis">
       3. 示例
     </span>
@@ -405,21 +394,21 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
+<a class="md-nav__link" href="#五时间复杂度分析">
 <span class="md-ellipsis">
       五、时间复杂度分析
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
+<a class="md-nav__link" href="#六实例演练">
 <span class="md-ellipsis">
       六、实例演练
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
+<a class="md-nav__link" href="#七常见问题答疑">
 <span class="md-ellipsis">
       七、常见问题答疑
     </span>
@@ -427,21 +416,21 @@
 <nav aria-label="七、常见问题答疑" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_4">
+<a class="md-nav__link" href="#1-为什么要按大小合并">
 <span class="md-ellipsis">
       1. 为什么要按大小合并？
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2_3">
+<a class="md-nav__link" href="#2-路径压缩会破坏树的高度吗">
 <span class="md-ellipsis">
       2. 路径压缩会破坏树的高度吗？
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3_2">
+<a class="md-nav__link" href="#3-如何判断两个元素是否属于同一集合">
 <span class="md-ellipsis">
       3. 如何判断两个元素是否属于同一集合？
     </span>
@@ -452,6 +441,34 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Graph_new/">
+<span class="md-ellipsis">
+    图：基本概念
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ShortestPathAlgorithm/">
+<span class="md-ellipsis">
+    图：最短路径算法
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../MST/">
+<span class="md-ellipsis">
+    图：网络流与最小生成树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../DFS/">
+<span class="md-ellipsis">
+    图：深度优先搜索
+  </span>
+</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../unfinished/">
@@ -644,6 +661,37 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-ellipsis">
+    脑机接口算法及实践
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            脑机接口算法及实践
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Python EEG Signal
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
 </ul>
 </nav>
 </li>
@@ -710,14 +758,14 @@
 <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<nav aria-label="index" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      index
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
+<a class="md-nav__link" href="#一基本概念">
 <span class="md-ellipsis">
       一、基本概念
     </span>
@@ -725,14 +773,14 @@
 <nav aria-label="一、基本概念" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1">
+<a class="md-nav__link" href="#1-等价关系与等价类">
 <span class="md-ellipsis">
       1. 等价关系与等价类
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2">
+<a class="md-nav__link" href="#2-动态等价问题">
 <span class="md-ellipsis">
       2. 动态等价问题
     </span>
@@ -742,25 +790,14 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_2">
+<a class="md-nav__link" href="#二初始化数组表示">
 <span class="md-ellipsis">
       二、初始化：数组表示
     </span>
 </a>
-<nav aria-label="二、初始化：数组表示" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#1_1">
-<span class="md-ellipsis">
-      1. 数据结构
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#union-by-size">
+<a class="md-nav__link" href="#三合并优化按大小合并union-by-size">
 <span class="md-ellipsis">
       三、合并优化：按大小合并（Union-by-Size）
     </span>
@@ -768,14 +805,14 @@
 <nav aria-label="三、合并优化：按大小合并（Union-by-Size）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_2">
+<a class="md-nav__link" href="#1-规则">
 <span class="md-ellipsis">
       1. 规则
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2_1">
+<a class="md-nav__link" href="#2-代码实现">
 <span class="md-ellipsis">
       2. 代码实现
     </span>
@@ -783,21 +820,21 @@
 <nav aria-label="2. 代码实现" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#21-find">
+<a class="md-nav__link" href="#21-find函数迭代版">
 <span class="md-ellipsis">
       2.1 Find函数迭代版
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#22-find">
+<a class="md-nav__link" href="#22-find函数递归版">
 <span class="md-ellipsis">
       2.2 Find函数递归版
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#23-union">
+<a class="md-nav__link" href="#23-union函数">
 <span class="md-ellipsis">
       2.3 Union函数
     </span>
@@ -807,7 +844,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3">
+<a class="md-nav__link" href="#3-操作示例">
 <span class="md-ellipsis">
       3. 操作示例
     </span>
@@ -817,7 +854,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#path-compression">
+<a class="md-nav__link" href="#四路径压缩path-compression">
 <span class="md-ellipsis">
       四、路径压缩（Path Compression）
     </span>
@@ -825,21 +862,21 @@
 <nav aria-label="四、路径压缩（Path Compression）" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_3">
+<a class="md-nav__link" href="#1-目标">
 <span class="md-ellipsis">
       1. 目标
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2_2">
+<a class="md-nav__link" href="#2-实现方法">
 <span class="md-ellipsis">
       2. 实现方法
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3_1">
+<a class="md-nav__link" href="#3-示例">
 <span class="md-ellipsis">
       3. 示例
     </span>
@@ -849,21 +886,21 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_3">
+<a class="md-nav__link" href="#五时间复杂度分析">
 <span class="md-ellipsis">
       五、时间复杂度分析
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_4">
+<a class="md-nav__link" href="#六实例演练">
 <span class="md-ellipsis">
       六、实例演练
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_5">
+<a class="md-nav__link" href="#七常见问题答疑">
 <span class="md-ellipsis">
       七、常见问题答疑
     </span>
@@ -871,21 +908,21 @@
 <nav aria-label="七、常见问题答疑" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1_4">
+<a class="md-nav__link" href="#1-为什么要按大小合并">
 <span class="md-ellipsis">
       1. 为什么要按大小合并？
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2_3">
+<a class="md-nav__link" href="#2-路径压缩会破坏树的高度吗">
 <span class="md-ellipsis">
       2. 路径压缩会破坏树的高度吗？
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3_2">
+<a class="md-nav__link" href="#3-如何判断两个元素是否属于同一集合">
 <span class="md-ellipsis">
       3. 如何判断两个元素是否属于同一集合？
     </span>
@@ -901,9 +938,9 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="disjoint-set-adt">并查集（Disjoint Set ADT）</h1>
-<h2 id="_1">一、基本概念</h2>
-<h3 id="1">1. 等价关系与等价类</h3>
+<h1 id="并查集disjoint-set-adt">并查集（Disjoint Set ADT）</h1>
+<h2 id="一基本概念">一、基本概念</h2>
+<h3 id="1-等价关系与等价类">1. 等价关系与等价类</h3>
 <ul>
 <li><strong>等价关系</strong>：若一个关系满足以下三条性质：  <ul>
 <li><strong>自反性</strong>(reflexive)：元素与自己相关（如 <code>a ~ a</code>）。  </li>
@@ -913,15 +950,14 @@
 </li>
 <li><strong>等价类</strong>：所有互相等价的元素构成的集合。例如，若 <code>1 ~ 3</code> 且 <code>3 ~ 5</code>，则 <code>{1, 3, 5}</code> 是一个等价类。  </li>
 </ul>
-<h3 id="2">2. 动态等价问题</h3>
+<h3 id="2-动态等价问题">2. 动态等价问题</h3>
 <p><strong>问题描述</strong>：给定一组元素和若干等价关系，动态合并等价类，并快速判断两个元素是否属于同一类。（这么一说肯定很抽象，但是不急，请慢慢看下方）</p>
 <p><strong>核心操作</strong>：</p>
 <ul>
 <li><code>Union(a, b)</code>：合并 <code>a</code> 和 <code>b</code> 所在的集合。  </li>
 <li><code>Find(a)</code>：查找 <code>a</code> 所在集合的根节点（代表元素）。  </li>
 </ul>
-<h2 id="_2">二、初始化：数组表示</h2>
-<h3 id="1_1">1. 数据结构</h3>
+<h2 id="二初始化数组表示">二、初始化：数组表示</h2>
 <p><strong>数组 <code>parent[]</code></strong>：存储每个元素的父节点。  </p>
 <p><strong>初始化</strong>：每个元素独立为一个集合，<code>parent[i] = -1</code>（负数表示根节点，绝对值表示集合大小）。  </p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="cp">#define MAX_SIZE 100007</span>
@@ -933,15 +969,15 @@
 <a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="p">}</span><span class="w">  </span>
 <a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="p">}</span><span class="w">  </span>
 </code></pre></div>
-<h2 id="union-by-size">三、合并优化：按大小合并（Union-by-Size）</h2>
-<h3 id="1_2">1. 规则</h3>
+<h2 id="三合并优化按大小合并union-by-size">三、合并优化：按大小合并（Union-by-Size）</h2>
+<h3 id="1-规则">1. 规则</h3>
 <ul>
 <li><strong>合并策略</strong>：将较小的树作为子树挂到较大的树下。  </li>
 <li><strong>优势</strong>：避免树过高，保证 <code>Find</code> 操作的时间复杂度为 <code>O(log N)</code>。</li>
 <li><strong>规律</strong>：根节点一般为<strong>负值</strong>，且其<strong>绝对值为树的大小</strong>；子节点一般为<strong>正值</strong>，且<strong>其值对应的是其父节点</strong>。</li>
 </ul>
-<h3 id="2_1">2. 代码实现</h3>
-<h4 id="21-find">2.1 <code>Find</code>函数迭代版</h4>
+<h3 id="2-代码实现">2. 代码实现</h3>
+<h4 id="21-find函数迭代版">2.1 <code>Find</code>函数迭代版</h4>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">Find</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="c1">// 不断向上查找父节点，直到找到根（parent[root] &lt; 0）  </span>
 <a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
@@ -950,7 +986,7 @@
 <a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">  </span>
 <a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="p">}</span>
 </code></pre></div>
-<h4 id="22-find">2.2 <code>Find</code>函数递归版</h4>
+<h4 id="22-find函数递归版">2.2 <code>Find</code>函数递归版</h4>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">Find</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
 <a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w">  </span><span class="c1">// 找到根节点  </span>
@@ -960,7 +996,7 @@
 <a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">];</span><span class="w">  </span>
 <a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="p">}</span><span class="w">  </span>
 </code></pre></div>
-<h4 id="23-union">2.3 <code>Union</code>函数</h4>
+<h4 id="23-union函数">2.3 <code>Union</code>函数</h4>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Union</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
 <a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rootA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Find</span><span class="p">(</span><span class="n">a</span><span class="p">);</span><span class="w">  </span>
 <a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rootB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Find</span><span class="p">(</span><span class="n">b</span><span class="p">);</span><span class="c1">// Find 函数主要实现找到根节点</span>
@@ -977,7 +1013,7 @@
 <a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="w">    </span><span class="p">}</span><span class="w">  </span>
 <a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="p">}</span><span class="w">  </span>
 </code></pre></div>
-<h3 id="3">3. 操作示例</h3>
+<h3 id="3-操作示例">3. 操作示例</h3>
 <p>初始集合 <code>{1, 2, 3, 4}</code>：</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">parent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="w">  </span>
 <a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">parent</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="w">  </span>
@@ -1009,10 +1045,10 @@
 <p>执行 <code>Find(3)</code> 后会得到：</p>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>1
 </code></pre></div>
-<h2 id="path-compression">四、路径压缩（Path Compression）</h2>
-<h3 id="1_3">1. 目标</h3>
+<h2 id="四路径压缩path-compression">四、路径压缩（Path Compression）</h2>
+<h3 id="1-目标">1. 目标</h3>
 <p>缩短查找路径，使后续 <code>Find</code> 操作更快。  </p>
-<h3 id="2_2">2. 实现方法</h3>
+<h3 id="2-实现方法">2. 实现方法</h3>
 <ul>
 <li><strong>递归版</strong>：在 <code>Find</code> 过程中将节点的父节点直接指向根。</li>
 </ul>
@@ -1036,13 +1072,13 @@
 <a href="#__codelineno-11-10" id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">root</span><span class="p">;</span><span class="w">  </span>
 <a href="#__codelineno-11-11" id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="p">}</span><span class="w">  </span>
 </code></pre></div>
-<h3 id="3_1">3. 示例</h3>
+<h3 id="3-示例">3. 示例</h3>
 <p>查找路径 <code>3 → 2 → 1 → 根</code>，压缩后变为：<br/>
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>3 → 根  
 <a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a>2 → 根  
 <a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a>1 → 根  
 </code></pre></div></p>
-<h2 id="_3">五、时间复杂度分析</h2>
+<h2 id="五时间复杂度分析">五、时间复杂度分析</h2>
 <table>
 <thead>
 <tr>
@@ -1074,7 +1110,7 @@
 <p><strong>阿克曼函数反函数 α(N)</strong>：几乎为常数（在真实数据中不超过 5）。  </p>
 </div>
 <hr/>
-<h2 id="_4">六、实例演练</h2>
+<h2 id="六实例演练">六、实例演练</h2>
 <p><strong>题目</strong>：初始集合 <code>{1, 2, 3, 4, 5}</code>，依次执行：<br/>
 <code>Union(1, 2)</code>、<code>Union(3, 4)</code>、<code>Union(1, 3)</code>、<code>Find(4)</code>。  </p>
 <p><strong>步骤</strong>：<br/>
@@ -1082,12 +1118,12 @@
 2. <code>Union(3, 4)</code> → 树根为 3，大小 2。<br/>
 3. <code>Union(1, 3)</code> → 合并后根为 1（更大树），大小 4。<br/>
 4. <code>Find(4)</code> → 路径压缩后 <code>4 → 1</code>。  </p>
-<h2 id="_5">七、常见问题答疑</h2>
-<h3 id="1_4">1. 为什么要按大小合并？</h3>
+<h2 id="七常见问题答疑">七、常见问题答疑</h2>
+<h3 id="1-为什么要按大小合并">1. 为什么要按大小合并？</h3>
 <p>避免树退化成链表，保证树的高度平衡。  </p>
-<h3 id="2_3">2. 路径压缩会破坏树的高度吗？</h3>
+<h3 id="2-路径压缩会破坏树的高度吗">2. 路径压缩会破坏树的高度吗？</h3>
 <p>会的，但“按秩合并”中的“秩”可以理解为估计高度，实际影响不大。  </p>
-<h3 id="3_2">3. 如何判断两个元素是否属于同一集合？</h3>
+<h3 id="3-如何判断两个元素是否属于同一集合">3. 如何判断两个元素是否属于同一集合？</h3>
 <p>检查它们的根节点是否相同：<code>Find(a) == Find(b)</code>。  </p>
 </article>
 </div>

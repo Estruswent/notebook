@@ -1,0 +1,927 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="This is E5trusw3nt's Notebook" name="description"/>
+<meta content="E5trusw3nt" name="author"/>
+<link href="../DoublyLinkedList/" rel="prev"/>
+<link href="../Sort1/" rel="next"/>
+<link href="../../style/images/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.5.34" name="generator"/>
+<title>排序问题（上） - E5trusw3nt's Notebook</title>
+<link href="../../assets/stylesheets/main.35f28582.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../style/css/img.css" rel="stylesheet"/>
+<link href="../../style/css/code.css" rel="stylesheet"/>
+<link href="../../style/css/table.css" rel="stylesheet"/>
+<link href="../../style/css/fonts.css" rel="stylesheet"/>
+<link href="../../style/css/mermaid.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="black" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#插入排序">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="E5trusw3nt's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../style/images/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            E5trusw3nt's Notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              排序问题（上）
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="black" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        
+  
+    
+  
+  首页
+
+      </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../TimeComplexity/">
+          
+  
+  Computer Science
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E5%86%99%E4%BD%9C/latex/">
+          
+  
+  Writing
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E5%85%B6%E5%AE%83/Matplotlib/">
+          
+  
+  Others
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="E5trusw3nt's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../style/images/logo.png"/>
+</a>
+    E5trusw3nt's Notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    首页
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-ellipsis">
+    Computer Science
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            Computer Science
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+<span class="md-ellipsis">
+    数据结构基础
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_1">
+<span class="md-nav__icon md-icon"></span>
+            数据结构基础
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../TimeComplexity/">
+<span class="md-ellipsis">
+    时间复杂度
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../DoublyLinkedList/">
+<span class="md-ellipsis">
+    双向链表
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    排序问题（上）
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    排序问题（上）
+  </span>
+</a>
+<nav aria-label="index" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      index
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-排序简介">
+<span class="md-ellipsis">
+      1. 排序简介
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-插入排序">
+<span class="md-ellipsis">
+      2. 插入排序
+    </span>
+</a>
+<nav aria-label="2. 插入排序" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-什么是插入排序">
+<span class="md-ellipsis">
+      2.1 什么是插入排序？
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-它是如何工作的">
+<span class="md-ellipsis">
+      2.2 它是如何工作的？
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-时间复杂度">
+<span class="md-ellipsis">
+      2.3 时间复杂度
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-逆序对深入理解">
+<span class="md-ellipsis">
+      3. 逆序对：深入理解
+    </span>
+</a>
+<nav aria-label="3. 逆序对：深入理解" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-什么是逆序对">
+<span class="md-ellipsis">
+      3.1 什么是逆序对？
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32-逆序对与插入排序">
+<span class="md-ellipsis">
+      3.2 逆序对与插入排序
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-简单排序算法的下界">
+<span class="md-ellipsis">
+      4. 简单排序算法的下界
+    </span>
+</a>
+<nav aria-label="4. 简单排序算法的下界" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-逆序对的平均数量">
+<span class="md-ellipsis">
+      4.1 逆序对的平均数量
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-下界定理">
+<span class="md-ellipsis">
+      4.2 下界定理
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43-这意味着什么">
+<span class="md-ellipsis">
+      4.3 这意味着什么？
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-突破限制加速排序">
+<span class="md-ellipsis">
+      5. 突破限制：加速排序
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Sort1/">
+<span class="md-ellipsis">
+    排序问题（下）
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Tree/">
+<span class="md-ellipsis">
+    树、二叉树与线索二叉树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../PriorityQueues/">
+<span class="md-ellipsis">
+    优先队列（堆）
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../DisjointSet/">
+<span class="md-ellipsis">
+    并查集
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Graph_new/">
+<span class="md-ellipsis">
+    图：基本概念
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../ShortestPathAlgorithm/">
+<span class="md-ellipsis">
+    图：最短路径算法
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../MST/">
+<span class="md-ellipsis">
+    图：网络流与最小生成树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../DFS/">
+<span class="md-ellipsis">
+    图：深度优先搜索
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../unfinished/">
+<span class="md-ellipsis">
+    待完成
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    数据库系统
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: relations models and algebra
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture4/">
+<span class="md-ellipsis">
+    Lecture4: Immediate SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture5/">
+<span class="md-ellipsis">
+    Lecture5: Advanced SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture6/">
+<span class="md-ellipsis">
+    Lecture6: Database Design using the E-R Model
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture7/">
+<span class="md-ellipsis">
+    Lecture7: Normalization
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture8/">
+<span class="md-ellipsis">
+    Lecture8: Physical Storage System
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture9/">
+<span class="md-ellipsis">
+    Lecture9: Data Storage Structure
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture10/">
+<span class="md-ellipsis">
+    Lecture10: Index
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture11/">
+<span class="md-ellipsis">
+    Lecture11: Query Processing
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture12/">
+<span class="md-ellipsis">
+    Lecture12: Query Optimization
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture13/">
+<span class="md-ellipsis">
+    Lecture13: Transaction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture14/">
+<span class="md-ellipsis">
+    Lecture14: Concurrency Control
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture15/">
+<span class="md-ellipsis">
+    Lecture15: Recovery System
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-ellipsis">
+    面向对象程序设计
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Course Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Using Objects
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: Class
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: Object Interactive
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture4/">
+<span class="md-ellipsis">
+    Lecture4: Copy Constructor
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture5/">
+<span class="md-ellipsis">
+    Lecture5: Inheritance
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-ellipsis">
+    脑机接口算法及实践
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            脑机接口算法及实践
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Python EEG Signal
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Writing
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            Writing
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%86%99%E4%BD%9C/latex/">
+<span class="md-ellipsis">
+    Latex Introduction
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Others
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%85%B6%E5%AE%83/Matplotlib/">
+<span class="md-ellipsis">
+    Matplotlib入门
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%85%B6%E5%AE%83/Explorer%E4%B8%8D%E8%A7%81%E4%BA%86/">
+<span class="md-ellipsis">
+    Windows上的子系统“消失不见”
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="index" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      index
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-排序简介">
+<span class="md-ellipsis">
+      1. 排序简介
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-插入排序">
+<span class="md-ellipsis">
+      2. 插入排序
+    </span>
+</a>
+<nav aria-label="2. 插入排序" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-什么是插入排序">
+<span class="md-ellipsis">
+      2.1 什么是插入排序？
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-它是如何工作的">
+<span class="md-ellipsis">
+      2.2 它是如何工作的？
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-时间复杂度">
+<span class="md-ellipsis">
+      2.3 时间复杂度
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-逆序对深入理解">
+<span class="md-ellipsis">
+      3. 逆序对：深入理解
+    </span>
+</a>
+<nav aria-label="3. 逆序对：深入理解" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-什么是逆序对">
+<span class="md-ellipsis">
+      3.1 什么是逆序对？
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32-逆序对与插入排序">
+<span class="md-ellipsis">
+      3.2 逆序对与插入排序
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-简单排序算法的下界">
+<span class="md-ellipsis">
+      4. 简单排序算法的下界
+    </span>
+</a>
+<nav aria-label="4. 简单排序算法的下界" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-逆序对的平均数量">
+<span class="md-ellipsis">
+      4.1 逆序对的平均数量
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-下界定理">
+<span class="md-ellipsis">
+      4.2 下界定理
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43-这意味着什么">
+<span class="md-ellipsis">
+      4.3 这意味着什么？
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-突破限制加速排序">
+<span class="md-ellipsis">
+      5. 突破限制：加速排序
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="插入排序">插入排序</h1>
+<h2 id="1-排序简介">1. 排序简介</h2>
+<p>排序是计算机科学中最基本的内容之一。想象一下，你有一堆考试卷子，需要按学生姓名的字母顺序排列，这就是排序！排序的核心是将一组数据（如数字或名字）按照特定顺序（通常是升序或降序）排列。为什么要排序？因为有序数据可以加速搜索（比如二分查找），还能让信息组织得更清晰。</p>
+<p>我们聚焦于<strong>基于比较的排序</strong>，即仅使用比较运算符（如<code>&gt;</code>和<code>&lt;</code>）来决定元素的顺序。没有像哈希啥的高级技巧，只有纯粹的比较操作。我们还关注<strong>内部排序</strong>，意味着所有数据都在主内存（RAM）中处理，暂时不用考虑外部存储（如硬盘）。</p>
+<p>以下是一个排序算法的基本函数签名（为简单起见，假设输入是整数数组）：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="n">X_Sort</span><span class="p">(</span><span class="n">ElementType</span><span class="w"> </span><span class="n">A</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="cm">/* N 是元素数量 */</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="cm">/* ElementType 这里假设为 int */</span>
+</code></pre></div>
+<h2 id="2-插入排序">2. 插入排序</h2>
+<h3 id="21-什么是插入排序">2.1 什么是插入排序？</h3>
+<p>插入排序非常直观，就像整理一手扑克牌。你从一张牌开始（已经“有序”），然后拿起下一张牌，插入到已排序的牌中正确的位置，重复这个过程直到所有牌都排好序。简单吧？</p>
+<p>以下是插入排序代码：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">InsertionSort</span><span class="p">(</span><span class="n">ElementType</span><span class="w"> </span><span class="n">A</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">)</span><span class="w"> </span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="p">{</span><span class="w"> </span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">P</span><span class="p">;</span><span class="w"> </span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="n">ElementType</span><span class="w"> </span><span class="n">Tmp</span><span class="p">;</span><span class="w"> </span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">P</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">P</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">        </span><span class="n">Tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">P</span><span class="p">];</span><span class="w">  </span><span class="cm">/* 下一张待插入的牌 */</span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">Tmp</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">--</span><span class="p">)</span><span class="w"> </span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">            </span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span><span class="w"> </span><span class="cm">/* 将已排序的牌向右移动，腾出位置 */</span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Tmp</span><span class="p">;</span><span class="w">  </span><span class="cm">/* 将新牌插入到正确位置 */</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="p">}</span><span class="w">  </span><span class="cm">/* P循环结束 */</span>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="22-它是如何工作的">2.2 它是如何工作的？</h3>
+<p>我们一步步拆解：</p>
+<ul>
+<li><strong>从小处着手</strong>：第一个元素（<code>A[0]</code>）被认为已排序。</li>
+<li><strong>挑选并插入</strong>：从<code>A[1]</code>到<code>A[N-1]</code>的每个元素：<ul>
+<li>将当前元素存入<code>Tmp</code>（就像拿起一张牌）。</li>
+<li>将已排序部分（从0到P-1）中比<code>Tmp</code>大的元素向右移一位。</li>
+<li>将<code>Tmp</code>插入到合适的位置（左边都比它小，右边都比它大）。</li>
+</ul>
+</li>
+<li><strong>重复</strong>：持续进行直到整个数组有序。</li>
+</ul>
+<p><strong>示例</strong>：排序 <code>[5, 2, 4, 6, 1, 3]</code><br/>
+- 第1轮：<code>[5, 2, 4, 6, 1, 3]</code> → <code>[2, 5, 4, 6, 1, 3]</code>（插入2）<br/>
+- 第2轮：<code>[2, 5, 4, 6, 1, 3]</code> → <code>[2, 4, 5, 6, 1, 3]</code>（插入4）<br/>
+- 第3轮：<code>[2, 4, 5, 6, 1, 3]</code> → <code>[2, 4, 5, 6, 1, 3]</code>（插入6）<br/>
+- 第4轮：<code>[2, 4, 5, 6, 1, 3]</code> → <code>[1, 2, 4, 5, 6, 3]</code>（插入1）<br/>
+- 第5轮：<code>[1, 2, 4, 5, 6, 3]</code> → <code>[1, 2, 3, 4, 5, 6]</code>（插入3）  </p>
+<h3 id="23-时间复杂度">2.3 时间复杂度</h3>
+<ul>
+<li><strong>最坏情况</strong>：如果数组是逆序的（例如<code>[6, 5, 4, 3, 2, 1]</code>），每次插入都需要移动几乎整个已排序部分。平均每次移动约N/2个元素，循环N次，总时间为<strong>O(N²)</strong>。</li>
+<li><strong>最佳情况</strong>：如果数组已经有序（例如<code>[1, 2, 3, 4, 5, 6]</code>），每次插入只需比较一次，不需移动元素，仅需N次比较，因此时间为<strong>O(N)</strong>。</li>
+</ul>
+<p>所以，插入排序在小型或接近有序的列表上表现很好，但在大型、混乱的列表上就慢得让人抓狂。</p>
+<h2 id="3-逆序对深入理解">3. 逆序对：深入理解</h2>
+<h3 id="31-什么是逆序对">3.1 什么是逆序对？</h3>
+<p><strong>逆序对</strong>（inversion）是指数组中两个元素顺序错误的配对。形式上，对于索引<code>i</code>和<code>j</code>，如果<code>i &lt; j</code>但<code>A[i] &gt; A[j]</code>，这就是一个逆序对。可以把它看成排序需要修复的“错误”。</p>
+<p><strong>示例</strong>：数组<code>[34, 8, 64, 51, 32, 21]</code><br/>
+列出所有逆序对：<br/>
+- <code>(34, 8)</code>、<code>(34, 32)</code>、<code>(34, 21)</code><br/>
+- <code>(64, 51)</code>、<code>(64, 32)</code>、<code>(64, 21)</code><br/>
+- <code>(51, 32)</code>、<code>(51, 21)</code><br/>
+- <code>(32, 21)</code><br/>
+共<strong>9个逆序对</strong>。</p>
+<h3 id="32-逆序对与插入排序">3.2 逆序对与插入排序</h3>
+<p>有趣的是，插入排序每次交换两个相邻的逆序元素时，恰好修复<strong>一个逆序对</strong>。所以，逆序对的数量直接决定了插入排序的工作量。</p>
+<ul>
+<li><strong>逆序对与时间复杂度</strong>：如果数组有<code>I</code>个逆序对，插入排序的时间复杂度为<strong>O(I + N)</strong>。这里的<code>N</code>来自外层循环（检查每个元素），<code>I</code>是总的移动次数（每个逆序对对应一次移动）。</li>
+<li><strong>为什么接近有序时更快</strong>：如果列表几乎有序，<code>I</code>很小，时间接近<code>O(N)</code>。但如果是逆序排列，<code>I</code>最大可达<code>N(N-1)/2</code>，时间回到<code>O(N²)</code>。</li>
+</ul>
+<h2 id="4-简单排序算法的下界">4. 简单排序算法的下界</h2>
+<h3 id="41-逆序对的平均数量">4.1 逆序对的平均数量</h3>
+<p><strong>定理</strong>：对于<code>N</code>个不同数字的数组，平均逆序对数量为<strong>N(N-1)/4</strong>。<br/>
+- 为什么？在随机排列中，任意一对元素有50%的概率是逆序的。总共有<code>N(N-1)/2</code>个可能的配对，所以平均逆序对数是<code>(1/2) * N(N-1)/2 = N(N-1)/4</code>。<br/>
+- 示例：当<code>N = 4</code>，平均逆序对数 = <code>4*3/4 = 3</code>。</p>
+<h3 id="42-下界定理">4.2 下界定理</h3>
+<p><strong>定理</strong>：任何仅通过交换相邻元素的排序算法，平均时间复杂度为<strong>Ω(N²)</strong>。<br/>
+- 证明概要：由于每次交换只修复一个逆序对，而平均有<code>N(N-1)/4 ≈ N²/4</code>个逆序对，至少需要这么多交换。因此，时间复杂度是二次方的。</p>
+<h3 id="43-这意味着什么">4.3 这意味着什么？</h3>
+<p>对于像插入排序或冒泡排序这样仅交换相邻元素的“简单”算法，平均时间复杂度注定是<strong>O(N²)</strong>。无论我们多聪明，只要局限于相邻交换，就逃不出这个下界。</p>
+<h2 id="5-突破限制加速排序">5. 突破限制：加速排序</h2>
+<p>那么，如何让排序比<code>O(N²)</code>更快？提示是：<strong>交换相距较远的元素</strong>。如果我们能通过一次交换修复多个逆序对，就能打破<code>N²</code>的限制。这引出了更高级的算法：</p>
+<ul>
+<li><strong>归并排序</strong>：将数组分割，分别排序，然后合并，时间复杂度为<strong>O(N log N)</strong>。</li>
+<li><strong>快速排序</strong>：选择一个枢纽，分区数组，然后递归处理，平均时间为<strong>O(N log N)</strong>。</li>
+</ul>
+<p>这些算法不再只调整相邻元素，而是通过大规模重组来一次性修复大量逆序对。</p>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright 2024 by estruswent
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+<script src="../../style/javascripts/mathjax.js"></script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

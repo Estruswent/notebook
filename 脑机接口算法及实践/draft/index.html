@@ -505,6 +505,13 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: SSVEP
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -1233,6 +1240,411 @@ plot_sensors()</p>
 <p>REST重参考</p>
 <p>插值坏导：基于周围正常的信息，通过插值修复“坏”的数据。</p>
 <p>ICA：分离混合信号中的独立源成分，除去伪迹。</p>
+<p>感谢你提供的Markdown语法标准！以下是对之前笔记的修改版本，确保符合你列出的列表语法规则，包括：</p>
+<ol>
+<li>列表下的子列表使用四格缩进。</li>
+<li>列表下的行间数学公式使用四格缩进，并与前后列表保持空行。</li>
+<li>列表与前后文字之间添加空行。</li>
+</ol>
+<p>以下是修改后的Markdown笔记，内容保持不变，仅调整格式以符合要求。所有子列表、数学公式和列表间距已按标准修正。</p>
+<h1 id="第三讲ssvep范式及其应用">第三讲：SSVEP范式及其应用</h1>
+<h2 id="一概述">一、概述</h2>
+<p>本讲由浙江大学脑机智能全国重点实验室的汪佳衡主讲，聚焦于<strong>稳态视觉诱发电位（SSVEP）</strong>范式及其在脑机接口（BCI）中的应用。讲座分为三个主要部分：</p>
+<ul>
+<li>SSVEP范式：介绍SSVEP、信号分析及解码算法（CCA）。</li>
+<li>打字机：基于SSVEP的打字系统的架构与实现。</li>
+<li>小车控制：SSVEP在机器人小车控制中的应用。</li>
+</ul>
+<p><strong>参考文献</strong>：Chen, Xiaogang et al. “High-speed spelling with a noninvasive brain–computer interface.” <em>Proceedings of the National Academy of Sciences</em> 112 (2015): E6058–E6067.</p>
+<h2 id="二ssvep范式">二、SSVEP范式</h2>
+<h3 id="1-ssvep简介">1. SSVEP简介</h3>
+<p><strong>稳态视觉诱发电位（SSVEP）</strong>是一种由特定频率闪烁的视觉刺激引发的脑电信号。当用户注视某一频率的刺激（如8 Hz闪烁光），大脑会在相同频率产生电反应，可通过脑电图（EEG）检测。这使得SSVEP成为脑机接口的可靠方法，适用于高速打字和设备控制等场景。</p>
+<ul>
+<li>主要特点：<ul>
+<li>非侵入式：使用头皮电极测量脑电活动。</li>
+<li>高信噪比：频率特异性响应易于检测。</li>
+<li>应用领域：打字系统、机器人控制等。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-ssvep信号分析">2. SSVEP信号分析</h3>
+<p>SSVEP信号通常在频域上分析，使用<strong>傅里叶变换</strong>识别与视觉刺激对应的主频率。</p>
+<ul>
+<li>
+<p>数据结构：</p>
+<ul>
+<li>EEG数据表示为三维矩阵：<strong>通道 × 时间点 × 试次</strong>。</li>
+<li>每个试次对应用户注视特定频率刺激（如8 Hz、10 Hz、12 Hz或14 Hz）。</li>
+</ul>
+</li>
+<li>
+<p>频率分析：</p>
+<ul>
+<li>通过<strong>傅里叶变换</strong>将时域EEG信号转换为频域，显示刺激频率的峰值（如8 Hz、10 Hz）。</li>
+<li>示例：用户注视8 Hz刺激时，EEG频谱中出现明显的8 Hz成分。</li>
+</ul>
+</li>
+<li>
+<p>视觉刺激：</p>
+<ul>
+<li>常用频率：8 Hz、10 Hz、12 Hz、14 Hz。</li>
+<li>每个频率对应脑机接口系统中的特定命令或输入。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-ssvep解码算法">3. SSVEP解码算法</h3>
+<p>主要解码方法为<strong>典型相关分析（CCA）</strong>，广泛用于识别SSVEP系统中用户注视的目标刺激频率。</p>
+<h4 id="31-cca简介">3.1 CCA简介</h4>
+<p><strong>典型相关分析（CCA）</strong>是一种多元统计方法，通过寻找两组变量的线性组合，最大化它们之间的相关性。在SSVEP中，CCA用于关联EEG信号与参考信号（刺激频率的正弦波），以确定用户注视的频率。</p>
+<ul>
+<li>
+<p>目的：</p>
+<ul>
+<li>通过最大化EEG信号与参考信号的相关性，识别目标刺激频率。</li>
+<li>从噪声EEG信号中提取有意义的特征。</li>
+</ul>
+</li>
+<li>
+<p>核心概念：</p>
+<ul>
+<li>对于两组变量 <span class="arithmatex">\( X \)</span>（EEG信号）和 <span class="arithmatex">\( Y \)</span>（参考信号），CCA寻找线性组合 <span class="arithmatex">\( U = XW_x \)</span> 和 <span class="arithmatex">\( V = YW_y \)</span>，使 <span class="arithmatex">\( U \)</span> 和 <span class="arithmatex">\( V \)</span> 的相关性最大。</li>
+<li>产生的<strong>典型变量</strong>总结了EEG与刺激频率之间的关系。</li>
+</ul>
+</li>
+<li>
+<p>参考资料：</p>
+<ul>
+<li>算法代码：<a href="https://github.com/TBC-TJU/MetaBCI">MetaBCI GitHub</a>。</li>
+<li>CCA理论：<a href="https://www.cnblogs.com/pinard/p/6288716.html">Pinard的博客</a>。</li>
+<li>课件：赵春晖，《实用多元统计分析》。</li>
+</ul>
+</li>
+</ul>
+<h4 id="32-cca数学推导">3.2 CCA数学推导</h4>
+<p>CCA的数学基础在于优化两组变量之间的相关性。以下是CCA过程的详细数学推导。</p>
+<ul>
+<li>
+<p>问题设定：</p>
+<ul>
+<li>设 <span class="arithmatex">\( X \in \mathbb{R}^{m \times T} \)</span> 表示EEG信号（m个通道，T个时间点）。</li>
+<li>设 <span class="arithmatex">\( Y \in \mathbb{R}^{k \times T} \)</span> 表示参考信号（k个刺激频率的正弦波，T个时间点）。</li>
+<li>目标：找到权重向量 <span class="arithmatex">\( W_x \)</span> 和 <span class="arithmatex">\( W_y \)</span>，使 <span class="arithmatex">\( U = X^T W_x \)</span> 和 <span class="arithmatex">\( V = Y^T W_y \)</span> 的相关性最大。</li>
+</ul>
+</li>
+<li>
+<p>优化目标：</p>
+<div class="arithmatex">\[
+\rho(U, V) = \frac{\text{cov}(U, V)}{\sqrt{\text{var}(U) \cdot \text{var}(V)}}
+\]</div>
+<p>代入 <span class="arithmatex">\( U = X^T W_x \)</span> 和 <span class="arithmatex">\( V = Y^T W_y \)</span>：</p>
+<div class="arithmatex">\[
+\rho(W_x, W_y) = \frac{W_x^T C_{xy} W_y}{\sqrt{(W_x^T C_{xx} W_x)(W_y^T C_{yy} W_y)}}
+\]</div>
+<p>其中：
+- <span class="arithmatex">\( C_{xy} = \text{cov}(X, Y) \)</span>：交叉协方差矩阵。
+- <span class="arithmatex">\( C_{xx} = \text{cov}(X, X) \)</span>：<span class="arithmatex">\( X \)</span> 的协方差矩阵。
+- <span class="arithmatex">\( C_{yy} = \text{cov}(Y, Y) \)</span>：<span class="arithmatex">\( Y \)</span> 的协方差矩阵。</p>
+</li>
+<li>
+<p>约束条件：</p>
+<ul>
+<li>为避免平凡解，约束 <span class="arithmatex">\( W_x^T C_{xx} W_x = 1 \)</span> 和 <span class="arithmatex">\( W_y^T C_{yy} W_y = 1 \)</span>。</li>
+<li>
+<p>优化问题为：</p>
+<div class="arithmatex">\[
+\max_{W_x, W_y} W_x^T C_{xy} W_y \quad \text{subject to} \quad W_x^T C_{xx} W_x = 1, \quad W_y^T C_{yy} W_y = 1
+\]</div>
+</li>
+</ul>
+</li>
+<li>
+<p>SVD求解：</p>
+<ul>
+<li>通过<strong>奇异值分解（SVD）</strong>解决优化问题。</li>
+<li>
+<p>定义矩阵：</p>
+<div class="arithmatex">\[
+K = C_{xx}^{-1/2} C_{xy} C_{yy}^{-1/2}
+\]</div>
+</li>
+<li>
+<p>对 <span class="arithmatex">\( K \)</span> 进行SVD分解：</p>
+<div class="arithmatex">\[
+K = U \Sigma V^T
+\]</div>
+<p>其中，<span class="arithmatex">\( \Sigma \)</span> 包含奇异值（典型相关系数），<span class="arithmatex">\( U, V \)</span> 为左右奇异向量。
+    - 权重向量为：</p>
+<div class="arithmatex">\[
+W_x = C_{xx}^{-1/2} U, \quad W_y = C_{yy}^{-1/2} V
+\]</div>
+</li>
+<li>
+<p>最大奇异值对应最大相关系数，指示目标刺激频率。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>迭代过程：</p>
+<ul>
+<li>找到第一对典型变量后，CCA继续选择与前面对不相关的其他线性组合对，提取所有相关性。</li>
+<li><strong>典型相关系数</strong>衡量EEG与参考信号之间的关系强度。</li>
+</ul>
+</li>
+<li>
+<p>实际实现：</p>
+<ul>
+<li>CCA将EEG信号与每个刺激频率（例如8 Hz、10 Hz、12 Hz、14 Hz）的参考信号进行比较。</li>
+<li>选择相关系数最高的频率作为用户的目标。</li>
+</ul>
+</li>
+</ul>
+<h4 id="33-cca算法步骤">3.3 CCA算法步骤</h4>
+<ul>
+<li>准备EEG数据：收集多通道、时间点的EEG信号。</li>
+<li>生成参考信号：创建对应刺激频率的正弦波（如8 Hz、10 Hz）。</li>
+<li>计算协方差矩阵：计算 <span class="arithmatex">\( C_{xx} \)</span>、<span class="arithmatex">\( C_{xy} \)</span> 和 <span class="arithmatex">\( C_{yy} \)</span>。</li>
+<li>执行SVD：分解 <span class="arithmatex">\( K \)</span> 以获得 <span class="arithmatex">\( W_x \)</span>、<span class="arithmatex">\( W_y \)</span> 和相关系数。</li>
+<li>选择目标频率：选择相关系数最高的频率。</li>
+</ul>
+<h4 id="34-问答">3.4 问答</h4>
+<ul>
+<li>常见问题包括CCA在噪声EEG环境中的鲁棒性以及与PSDA（功率谱密度分析）等方法的计算效率比较。</li>
+</ul>
+<h3 id="4-打字机">4. 打字机</h3>
+<h4 id="41-工程准备">4.1 工程准备</h4>
+<p>打字机是一个基于SSVEP的高速打字脑机接口应用，包含以下模块：</p>
+<ul>
+<li>UI模块：显示不同频率闪烁的字母刺激。</li>
+<li>信号采集模块：使用LSL（实验室流层协议）采集EEG数据。</li>
+<li>解码模块：使用CCA处理EEG数据，识别目标字母。</li>
+<li>校准阶段：训练系统识别用户特有的EEG模式。</li>
+<li>
+<p>反馈阶段：为用户提供实时反馈。</p>
+</li>
+<li>
+<p>第三方库：</p>
+<ul>
+<li>PyQt：用于GUI开发。</li>
+<li>Pylsl：用于EEG数据流传输。</li>
+<li>Scipy、Sklearn、Numpy：用于信号处理和CCA实现。</li>
+</ul>
+</li>
+</ul>
+<h4 id="42-工程架构">4.2 工程架构</h4>
+<p>系统采用模块化架构，包含以下组件：</p>
+<ul>
+<li>播放器（Player）：管理用户界面和刺激呈现。</li>
+<li>刺激器（Stimulator）：生成特定频率的闪烁刺激。</li>
+<li>客户端（Client）：处理用户输入并与服务器通信。</li>
+<li>服务器（Server）：处理EEG数据并发送命令。</li>
+<li>信号采集（Signal Acquisition）：通过硬件采集EEG信号。</li>
+<li>
+<p>解码器（Decoder）：应用CCA解码目标频率。</p>
+</li>
+<li>
+<p>通信：</p>
+<ul>
+<li>使用TCP/IP进行客户端-服务器通信。</li>
+<li>数据格式：包头（4字节，存储包体长度）+ 包体（JSON字符串）。</li>
+<li>示例JSON：<code>{ "type": 1, "pred": { "type": 1, "value": 0.8 }, "state": 12 }</code>。</li>
+<li>字段：<ul>
+<li><code>state</code>：系统阶段（整数）。</li>
+<li><code>type</code>：命令类型（整数）。</li>
+<li><code>pred.value</code>：置信度（0-1浮点数）。</li>
+<li><code>pred.type</code>：解码类别（整数）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="43-模块分析">4.3 模块分析</h4>
+<ul>
+<li>刺激器模块：生成不同频率的视觉刺激。</li>
+<li>播放器模块：控制刺激显示和用户交互。</li>
+<li>客户端模块：管理UI与服务器的通信。</li>
+<li>解码器模块：实现CCA以解码EEG信号。</li>
+<li>复合输入模块（CompositeInlet）：整合多数据流（如EEG和时间戳）。</li>
+<li>服务器模块：协调信号采集和解码，发出命令。</li>
+</ul>
+<h4 id="44-问答">4.4 问答</h4>
+<ul>
+<li>关键问题包括系统延迟、用户训练需求和扩展到更复杂输入的可行性 Departments。</li>
+</ul>
+<h3 id="5-小车控制">5. 小车控制</h3>
+<h4 id="51-小车简介">5.1 小车简介</h4>
+<p>小车控制应用使用SSVEP控制机器人小车，具体为<strong>大疆RoboMaster-EP</strong>，一个教育机器人平台。</p>
+<ul>
+<li>参考资料：<a href="https://github.com/dji-sdk/RoboMaster-SDK">RoboMaster SDK</a>。</li>
+</ul>
+<h4 id="52-工程准备">5.2 工程准备</h4>
+<ul>
+<li>UI模块：显示控制刺激（如方向命令）。</li>
+<li>控制模块：将解码的EEG信号转换为小车运动。</li>
+<li>采集模块：采集EEG数据。</li>
+<li>第三方库：<ul>
+<li>Pygame：用于UI和控制逻辑。</li>
+<li>Robomaster：用于与机器人交互。</li>
+<li>Pylsl、Sklearn：用于EEG采集和解码。</li>
+</ul>
+</li>
+<li>反馈阶段：提供小车运动的实时反馈。</li>
+</ul>
+<h4 id="53-工程架构">5.3 工程架构</h4>
+<ul>
+<li>关键挑战：实现小车的连续控制（如距离、速度）。</li>
+<li>组件：<ul>
+<li>客户端模块：向小车发送用户命令。</li>
+<li>EEG模块：处理EEG信号以进行解码。</li>
+<li>控制函数：将解码频率映射到小车运动。</li>
+<li>解码器模块：使用CCA解读EEG数据。</li>
+</ul>
+</li>
+</ul>
+<h4 id="54-运行流程图">5.4 运行流程图</h4>
+<ul>
+<li>键盘事件：模拟用户输入以进行测试。</li>
+<li>指令控制：发出运动命令（如前进、转弯）。</li>
+<li>视频绘制：显示实时小车反馈。</li>
+<li>方块绘制：可视化刺激。</li>
+<li>显示更新：刷新用户界面。</li>
+<li>EEG线程：处理实时EEG数据。</li>
+<li>摄像头线程：处理摄像头反馈。</li>
+<li>运行状态：检查系统是否活跃。</li>
+</ul>
+<h4 id="55-问答">5.5 问答</h4>
+<ul>
+<li>问题聚焦于控制精度、实时性能和用户疲劳。</li>
+</ul>
+<h4 id="56-人车合一">5.6 人车合一</h4>
+<ul>
+<li>演示：展示基于SSVEP的实时EEG解码和小车运动执行。</li>
+</ul>
+<h3 id="6-总结图解">6. 总结图解</h3>
+<pre class="mermaid"><code>mindmap
+  root((SSVEP范式))
+    SSVEP基础
+      稳态视觉诱发电位
+      非侵入式脑机接口
+      频率响应
+    信号分析
+      EEG数据结构
+      傅里叶变换
+      刺激频率
+    解码算法
+      典型相关分析
+      数学公式
+      SVD求解
+    应用
+      打字系统
+        UI、采集、解码
+        客户端-服务器架构
+      小车控制
+        RoboMaster-EP
+        连续控制
+        EEG与摄像头线程
+</code></pre>
+<p>```</p>
+<p>是的，在SSVEP范式的典型相关分析（CCA）中，<span class="arithmatex">\( W_x \)</span> 和 <span class="arithmatex">\( W_y \)</span> 分别表示EEG信号和参考信号的权重向量，它们的维度确实是 <span class="arithmatex">\( m \times 1 \)</span> 和 <span class="arithmatex">\( k \times 1 \)</span>。以下是详细说明：</p>
+<h3 id="1-背景">1. 背景</h3>
+<p>在CCA的数学推导中：
+- <span class="arithmatex">\( X \in \mathbb{R}^{m \times T} \)</span> 表示EEG信号，其中 <span class="arithmatex">\( m \)</span> 是通道数，<span class="arithmatex">\( T \)</span> 是时间点数。
+- <span class="arithmatex">\( Y \in \mathbb{R}^{k \times T} \)</span> 表示参考信号（如正弦波），其中 <span class="arithmatex">\( k \)</span> 是参考信号的维度（通常与刺激频率的数量或正弦/余弦分量相关），<span class="arithmatex">\( T \)</span> 是时间点数。</p>
+<p>CCA的目标是找到权重向量 <span class="arithmatex">\( W_x \)</span> 和 <span class="arithmatex">\( W_y \)</span>，使得线性组合 <span class="arithmatex">\( U = X^T W_x \)</span> 和 <span class="arithmatex">\( V = Y^T W_y \)</span> 的相关性最大化。</p>
+<h3 id="2-权重向量的维度">2. 权重向量的维度</h3>
+<ul>
+<li><strong><span class="arithmatex">\( W_x \)</span></strong>：</li>
+<li><span class="arithmatex">\( X^T \)</span> 的维度是 <span class="arithmatex">\( T \times m \)</span>，因此 <span class="arithmatex">\( X^T W_x \)</span> 需要输出一个标量（或单维向量），以表示线性组合 <span class="arithmatex">\( U \)</span>。</li>
+<li>为使 <span class="arithmatex">\( X^T W_x \)</span> 成立，<span class="arithmatex">\( W_x \)</span> 必须是一个 <span class="arithmatex">\( m \times 1 \)</span> 的列向量。</li>
+<li>
+<p>因此，<span class="arithmatex">\( W_x \in \mathbb{R}^{m \times 1} \)</span>，其中 <span class="arithmatex">\( m \)</span> 是EEG通道数。</p>
+</li>
+<li>
+<p><strong><span class="arithmatex">\( W_y \)</span></strong>：</p>
+</li>
+<li>类似地，<span class="arithmatex">\( Y^T \)</span> 的维度是 <span class="arithmatex">\( T \times k \)</span>，因此 <span class="arithmatex">\( Y^T W_y \)</span> 也需要输出一个标量（或单维向量），表示线性组合 <span class="arithmatex">\( V \)</span>。</li>
+<li>为使 <span class="arithmatex">\( Y^T W_y \)</span> 成立，<span class="arithmatex">\( W_y \)</span> 必须是一个 <span class="arithmatex">\( k \times 1 \)</span> 的列向量。</li>
+<li>因此，<span class="arithmatex">\( W_y \in \mathbb{R}^{k \times 1} \)</span>，其中 <span class="arithmatex">\( k \)</span> 是参考信号的维度。</li>
+</ul>
+<h3 id="3-验证">3. 验证</h3>
+<p>在CCA的优化问题中，权重向量 <span class="arithmatex">\( W_x \)</span> 和 <span class="arithmatex">\( W_y \)</span> 用于线性组合：
+- <span class="arithmatex">\( U = X^T W_x \)</span>，其中 <span class="arithmatex">\( X^T \in \mathbb{R}^{T \times m} \)</span>，<span class="arithmatex">\( W_x \in \mathbb{R}^{m \times 1} \)</span>，结果 <span class="arithmatex">\( U \in \mathbb{R}^{T \times 1} \)</span>。
+- <span class="arithmatex">\( V = Y^T W_y \)</span>，其中 <span class="arithmatex">\( Y^T \in \mathbb{R}^{T \times k} \)</span>，<span class="arithmatex">\( W_y \in \mathbb{R}^{k \times 1} \)</span>，结果 <span class="arithmatex">\( V \in \mathbb{R}^{T \times 1} \)</span>。</p>
+<p>这些线性组合 <span class="arithmatex">\( U \)</span> 和 <span class="arithmatex">\( V \)</span> 是时间序列，用于计算相关系数。因此，<span class="arithmatex">\( W_x \)</span> 和 <span class="arithmatex">\( W_y \)</span> 的维度必须分别为 <span class="arithmatex">\( m \times 1 \)</span> 和 <span class="arithmatex">\( k \times 1 \)</span>，以满足矩阵运算的要求。</p>
+<h3 id="4-实际意义">4. 实际意义</h3>
+<ul>
+<li><span class="arithmatex">\( W_x \)</span>：表示EEG通道的权重，决定每个通道对最终线性组合的贡献。</li>
+<li><span class="arithmatex">\( W_y \)</span>：表示参考信号的权重，决定每个正弦/余弦分量对线性组合的贡献。</li>
+<li>在SVD求解中，<span class="arithmatex">\( W_x = C_{xx}^{-1/2} U \)</span> 和 <span class="arithmatex">\( W_y = C_{yy}^{-1/2} V \)</span>，其中 <span class="arithmatex">\( U \)</span> 和 <span class="arithmatex">\( V \)</span> 是奇异向量，维度分别为 <span class="arithmatex">\( m \times 1 \)</span> 和 <span class="arithmatex">\( k \times 1 \)</span>，进一步确认了 <span class="arithmatex">\( W_x \)</span> 和 <span class="arithmatex">\( W_y \)</span> 的维度。</li>
+</ul>
+<h3 id="5-总结">5. 总结</h3>
+<p>你的理解是正确的：
+- <span class="arithmatex">\( W_x \in \mathbb{R}^{m \times 1} \)</span>，其中 <span class="arithmatex">\( m \)</span> 是EEG通道数。
+- <span class="arithmatex">\( W_y \in \mathbb{R}^{k \times 1} \)</span>，其中 <span class="arithmatex">\( k \)</span> 是参考信号的维度。</p>
+<p>在SSVEP范式的典型相关分析（CCA）中，最大奇异值对应最大相关系数，这一相关系数来源于对矩阵 <span class="arithmatex">\( K \)</span> 的奇异值分解（SVD）。具体来说，最大奇异值出现在矩阵 <span class="arithmatex">\( \Sigma \)</span> 的对角线上，它是矩阵 <span class="arithmatex">\( K \)</span> 的SVD分解结果的一部分。以下是详细解释，结合笔记中的内容，明确最大奇异值对应的矩阵部分。</p>
+<h3 id="1-笔记中的相关内容">1. 笔记中的相关内容</h3>
+<p>在笔记的“3.2 CCA数学推导”部分，CCA的优化问题通过SVD求解，涉及以下关键步骤：</p>
+<ul>
+<li>定义矩阵：
+  [
+  K = C_{xx}^{-1/2} C_{xy} C_{yy}^{-1/2}
+  ]</li>
+<li>对 <span class="arithmatex">\( K \)</span> 进行SVD分解：
+  [
+  K = U \Sigma V^T
+  ]
+  其中：</li>
+<li><span class="arithmatex">\( \Sigma \)</span> 是一个对角矩阵，包含奇异值（singular values），这些奇异值就是<strong>典型相关系数</strong>。</li>
+<li><span class="arithmatex">\( U \)</span> 和 <span class="arithmatex">\( V \)</span> 分别是左奇异向量和右奇异向量。</li>
+<li>权重向量为：
+    [
+    W_x = C_{xx}^{-1/2} U, \quad W_y = C_{yy}^{-1/2} V
+    ]</li>
+<li>笔记明确指出：“最大奇异值对应最大相关系数，指示目标刺激频率。”</li>
+</ul>
+<p>因此，最大奇异值位于矩阵 <span class="arithmatex">\( \Sigma \)</span> 的对角线上，通常是 <span class="arithmatex">\( \Sigma \)</span> 的第一个对角元素（奇异值按降序排列）。</p>
+<h3 id="2-最大奇异值对应的矩阵部分">2. 最大奇异值对应的矩阵部分</h3>
+<ul>
+<li><strong>矩阵 <span class="arithmatex">\( \Sigma \)</span></strong>：</li>
+<li>在SVD分解 <span class="arithmatex">\( K = U \Sigma V^T \)</span> 中，<span class="arithmatex">\( \Sigma \)</span> 是一个对角矩阵，形如：
+    [
+    \Sigma = \begin{bmatrix}
+    \sigma_1 &amp; 0 &amp; \cdots &amp; 0 \
+    0 &amp; \sigma_2 &amp; \cdots &amp; 0 \
+    \vdots &amp; \vdots &amp; \ddots &amp; \vdots \
+    0 &amp; 0 &amp; \cdots &amp; \sigma_r
+    \end{bmatrix}
+    ]
+    其中，<span class="arithmatex">\( \sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r \geq 0 \)</span> 是奇异值，<span class="arithmatex">\( r = \min(m, k) \)</span>，<span class="arithmatex">\( m \)</span> 是EEG通道数，<span class="arithmatex">\( k \)</span> 是参考信号维度。</li>
+<li>
+<p><strong>最大奇异值</strong> <span class="arithmatex">\( \sigma_1 \)</span> 是 <span class="arithmatex">\( \Sigma \)</span> 的第一个对角元素，表示最大的典型相关系数。它对应于第一对典型变量（即 <span class="arithmatex">\( U \)</span> 和 <span class="arithmatex">\( V \)</span> 的第一列生成的 <span class="arithmatex">\( W_x \)</span> 和 <span class="arithmatex">\( W_y \)</span>），用于识别用户注视的目标刺激频率。</p>
+</li>
+<li>
+<p><strong>矩阵 <span class="arithmatex">\( K \)</span></strong>：</p>
+</li>
+<li><span class="arithmatex">\( K = C_{xx}^{-1/2} C_{xy} C_{yy}^{-1/2} \)</span> 是SVD分解的对象，其奇异值反映了EEG信号 <span class="arithmatex">\( X \)</span> 和参考信号 <span class="arithmatex">\( Y \)</span> 之间的相关性。</li>
+<li>最大奇异值 <span class="arithmatex">\( \sigma_1 \)</span> 是通过对 <span class="arithmatex">\( K \)</span> 进行SVD得到的，直接存储在 <span class="arithmatex">\( \Sigma \)</span> 的对角线上。</li>
+</ul>
+<h3 id="3-最大奇异值的意义">3. 最大奇异值的意义</h3>
+<ul>
+<li><strong>最大相关系数</strong>：在CCA中，<span class="arithmatex">\( \Sigma \)</span> 的对角元素（奇异值）是典型相关系数，最大奇异值 <span class="arithmatex">\( \sigma_1 \)</span> 表示EEG信号与某个参考信号（对应特定刺激频率，如8 Hz或10 Hz）之间的最强相关性。</li>
+<li><strong>目标频率识别</strong>：通过比较不同刺激频率的参考信号与EEG信号的相关系数（即 <span class="arithmatex">\( \Sigma \)</span> 的对角元素），选择最大值对应的频率作为用户注视的目标。</li>
+</ul>
+<h3 id="4-结合笔记的具体位置">4. 结合笔记的具体位置</h3>
+<p>在笔记的“3.2 CCA数学推导”中，明确提到：</p>
+<blockquote>
+<p>“对 <span class="arithmatex">\( K \)</span> 进行SVD分解：<span class="arithmatex">\( K = U \Sigma V^T \)</span>，其中，<span class="arithmatex">\( \Sigma \)</span> 包含奇异值（典型相关系数）……最大奇异值对应最大相关系数，指示目标刺激频率。”</p>
+</blockquote>
+<p>因此，最大奇异值具体对应于：
+- <strong>矩阵 <span class="arithmatex">\( \Sigma \)</span></strong> 的第一个对角元素 <span class="arithmatex">\( \sigma_1 \)</span>。
+- 它是SVD分解中矩阵 <span class="arithmatex">\( K \)</span> 的分解结果的一部分，用于量化EEG信号与参考信号之间的最大相关性。</p>
+<h3 id="5-补充说明">5. 补充说明</h3>
+<ul>
+<li><strong>维度</strong>：假设 <span class="arithmatex">\( m \)</span> 是EEG通道数，<span class="arithmatex">\( k \)</span> 是参考信号维度，<span class="arithmatex">\( K \in \mathbb{R}^{m \times k} \)</span>，则 <span class="arithmatex">\( \Sigma \in \mathbb{R}^{r \times r} \)</span>，其中 <span class="arithmatex">\( r = \min(m, k) \)</span>。最大奇异值 <span class="arithmatex">\( \sigma_1 \)</span> 总是位于 <span class="arithmatex">\( \Sigma \)</span> 的 (1,1) 位置。</li>
+<li><strong>实际应用</strong>：在SSVEP系统中，系统会为每个刺激频率（如8 Hz、10 Hz等）生成一个参考信号矩阵 <span class="arithmatex">\( Y \)</span>，分别计算 <span class="arithmatex">\( K \)</span> 和其SVD分解，比较所有频率的 <span class="arithmatex">\( \sigma_1 \)</span>，选择最大值对应的频率。</li>
+</ul>
+<h3 id="6-总结">6. 总结</h3>
+<p>最大奇异值对应于矩阵 <span class="arithmatex">\( \Sigma \)</span> 的第一个对角元素 <span class="arithmatex">\( \sigma_1 \)</span>，它是SVD分解 <span class="arithmatex">\( K = U \Sigma V^T \)</span> 的结果，反映了EEG信号与参考信号之间的最大相关系数。这一内容在笔记的“3.2 CCA数学推导”部分明确描述，位于SVD分解的公式中。</p>
+<p>如果你有进一步的问题或需要更详细的数学推导，请随时告诉我！</p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
@@ -1263,5 +1675,8 @@ plot_sensors()</p>
 <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
 <script src="../../style/javascripts/mathjax.js"></script>
 <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
-</body>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+window.mermaidConfig = {default: {
+    startOnLoad: false
+}};</script></body>
 </html>

@@ -50,6 +50,7 @@ nav:
     - 脑机接口算法及实践:
       - "Lecture0: Introduction": "脑机接口算法及实践/Lecture0.md"
       - "Lecture1: Python EEG Signal": "脑机接口算法及实践/Lecture1.md"
+      - "Lecture2: SSVEP": "脑机接口算法及实践/Lecture2.md"
   - Writing:
       - "Latex Introduction": "写作/latex.md"
   - Others:

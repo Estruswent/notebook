@@ -48,4 +48,39 @@ pre > code {
     color: #fc952f !important;  /* 颜色值 */
     /* 边框圆角化*/
     border-radius: 0.3em;
-  }
+}
+
+
+/* 浅色模式：覆盖高亮行变量 */
+[data-md-color-scheme="default"] {
+    --md-code-hl-color--light: #fefded; /* 柔和浅黄色背景 */
+    --md-code-hl-color: #ffeb3b; /* 阴影匹配背景 */    
+}
+
+/* 深色模式：覆盖高亮行变量 */
+[data-md-color-scheme="slate"] {
+    --md-code-hl-color--dark: #fcc0a5; /* 深橙棕色背景 */
+    --md-code-hl-color: #452110; /* 阴影匹配背景 */
+}
+
+/* 高亮行样式 */
+.md-typeset .highlight .hll {
+    background-color: var(--md-code-hl-color--light, --md-code-hl-color--dark);
+    box-shadow: 2px 0 0 0 var(--md-code-hl-color) inset;
+    margin: 0 -1.1764705882em;
+    padding: 0 1.1764705882em;
+}
+
+.md-typeset .highlight .hll .code pre {
+    color: var(--md-code-hl-special-color);
+}
+
+.md-typeset .highlighttable tr.highlight .linenos {
+    background-color: var(--md-code-hl-color--light, --md-code-hl-color--dark);
+    color: var(--md-code-hl-number-color);
+}
+
+/* 深色模式代码块背景 */
+[data-md-color-scheme="slate"] pre {
+    background-color: var(--md-code-bg-color);
+}

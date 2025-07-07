@@ -1,0 +1,1502 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="This is E5trusw3nt's Notebook" name="description"/>
+<meta content="E5trusw3nt" name="author"/>
+<link href="../Lecture3/" rel="prev"/>
+<link href="../../%E5%86%99%E4%BD%9C/latex/" rel="next"/>
+<link href="../../style/images/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.5.34" name="generator"/>
+<title>Lecture4: Attention and Emotion - E5trusw3nt's Notebook</title>
+<link href="../../assets/stylesheets/main.35f28582.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../style/css/img.css" rel="stylesheet"/>
+<link href="../../style/css/code.css" rel="stylesheet"/>
+<link href="../../style/css/table.css" rel="stylesheet"/>
+<link href="../../style/css/fonts.css" rel="stylesheet"/>
+<link href="../../style/css/mermaid.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="black" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#lecture-4-attention-detection-and-music-emotion-recognition">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="E5trusw3nt's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../style/images/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            E5trusw3nt's Notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Lecture4: Attention and Emotion
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="black" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+        
+  
+    
+  
+  首页
+
+      </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/TimeComplexity/">
+          
+  
+  Computer Science
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E5%86%99%E4%BD%9C/latex/">
+          
+  
+  Writing
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../%E5%85%B6%E5%AE%83/Matplotlib/">
+          
+  
+  Others
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="E5trusw3nt's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../style/images/logo.png"/>
+</a>
+    E5trusw3nt's Notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    首页
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-ellipsis">
+    Computer Science
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            Computer Science
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+<span class="md-ellipsis">
+    数据结构基础
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_1_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_1">
+<span class="md-nav__icon md-icon"></span>
+            数据结构基础
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/TimeComplexity/">
+<span class="md-ellipsis">
+    时间复杂度
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DoublyLinkedList/">
+<span class="md-ellipsis">
+    双向链表
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort2/">
+<span class="md-ellipsis">
+    排序问题（上）
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Sort1/">
+<span class="md-ellipsis">
+    排序问题（下）
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Tree/">
+<span class="md-ellipsis">
+    树、二叉树与线索二叉树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/PriorityQueues/">
+<span class="md-ellipsis">
+    优先队列（堆）
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DisjointSet/">
+<span class="md-ellipsis">
+    并查集
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/Graph_new/">
+<span class="md-ellipsis">
+    图：基本概念
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/ShortestPathAlgorithm/">
+<span class="md-ellipsis">
+    图：最短路径算法
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/MST/">
+<span class="md-ellipsis">
+    图：网络流与最小生成树
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/DFS/">
+<span class="md-ellipsis">
+    图：深度优先搜索
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/unfinished/">
+<span class="md-ellipsis">
+    待完成
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-ellipsis">
+    数据库系统
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: relations models and algebra
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture4/">
+<span class="md-ellipsis">
+    Lecture4: Immediate SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture5/">
+<span class="md-ellipsis">
+    Lecture5: Advanced SQL
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture6/">
+<span class="md-ellipsis">
+    Lecture6: Database Design using the E-R Model
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture7/">
+<span class="md-ellipsis">
+    Lecture7: Normalization
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture8/">
+<span class="md-ellipsis">
+    Lecture8: Physical Storage System
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture9/">
+<span class="md-ellipsis">
+    Lecture9: Data Storage Structure
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture10/">
+<span class="md-ellipsis">
+    Lecture10: Index
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture11/">
+<span class="md-ellipsis">
+    Lecture11: Query Processing
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture12/">
+<span class="md-ellipsis">
+    Lecture12: Query Optimization
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture13/">
+<span class="md-ellipsis">
+    Lecture13: Transaction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture14/">
+<span class="md-ellipsis">
+    Lecture14: Concurrency Control
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture15/">
+<span class="md-ellipsis">
+    Lecture15: Recovery System
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+<span class="md-ellipsis">
+    面向对象程序设计
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_3">
+<span class="md-nav__icon md-icon"></span>
+            面向对象程序设计
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Course Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Using Objects
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: Class
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: Object Interactive
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture4/">
+<span class="md-ellipsis">
+    Lecture4: Copy Constructor
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture5/">
+<span class="md-ellipsis">
+    Lecture5: Inheritance
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+<span class="md-ellipsis">
+    脑机接口算法及实践
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_4">
+<span class="md-nav__icon md-icon"></span>
+            脑机接口算法及实践
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture0/">
+<span class="md-ellipsis">
+    Lecture0: Introduction
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture1/">
+<span class="md-ellipsis">
+    Lecture1: Python EEG Signal
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture2/">
+<span class="md-ellipsis">
+    Lecture2: SSVEP
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../Lecture3/">
+<span class="md-ellipsis">
+    Lecture3: VR-EEG emotion perception
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Lecture4: Attention and Emotion
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    Lecture4: Attention and Emotion
+  </span>
+</a>
+<nav aria-label="index" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      index
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-多模态生理信号介绍">
+<span class="md-ellipsis">
+      1. 多模态生理信号介绍
+    </span>
+</a>
+<nav aria-label="1. 多模态生理信号介绍" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-脑电信号-eeg">
+<span class="md-ellipsis">
+      1.1 脑电信号 (EEG)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12-功能性近红外光谱成像-fnirs">
+<span class="md-ellipsis">
+      1.2 功能性近红外光谱成像 (fNIRS)
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-采集设备介绍">
+<span class="md-ellipsis">
+      2. 采集设备介绍
+    </span>
+</a>
+<nav aria-label="2. 采集设备介绍" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-全脑脑电帽---greentek">
+<span class="md-ellipsis">
+      2.1 全脑脑电帽 - GREENTEK
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-生物放大器---openbci">
+<span class="md-ellipsis">
+      2.2 生物放大器 - OpenBCI
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-便携式设备">
+<span class="md-ellipsis">
+      2.3 便携式设备
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-实验环节基于脑信号的注意力监测">
+<span class="md-ellipsis">
+      3. 实验环节：基于脑信号的注意力监测
+    </span>
+</a>
+<nav aria-label="3. 实验环节：基于脑信号的注意力监测" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-注意力概述">
+<span class="md-ellipsis">
+      3.1 注意力概述
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32-实验范式">
+<span class="md-ellipsis">
+      3.2 实验范式
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#33-实时注意力监测框架">
+<span class="md-ellipsis">
+      3.3 实时注意力监测框架
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#34-特征分析">
+<span class="md-ellipsis">
+      3.4 特征分析
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-基于脑信号的情绪识别">
+<span class="md-ellipsis">
+      4. 基于脑信号的情绪识别
+    </span>
+</a>
+<nav aria-label="4. 基于脑信号的情绪识别" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-情绪概述">
+<span class="md-ellipsis">
+      4.1 情绪概述
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-情绪解码流程">
+<span class="md-ellipsis">
+      4.2 情绪解码流程
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43-数据采集范式">
+<span class="md-ellipsis">
+      4.3 数据采集范式
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#44-特征分析">
+<span class="md-ellipsis">
+      4.4 特征分析
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-课堂实践任务">
+<span class="md-ellipsis">
+      5. 课堂实践任务
+    </span>
+</a>
+<nav aria-label="5. 课堂实践任务" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51-目标">
+<span class="md-ellipsis">
+      5.1 目标
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#52-实践内容">
+<span class="md-ellipsis">
+      5.2 实践内容
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#53-软件环境">
+<span class="md-ellipsis">
+      5.3 软件环境
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#54-实践任务">
+<span class="md-ellipsis">
+      5.4 实践任务
+    </span>
+</a>
+<nav aria-label="5.4 实践任务" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#541-任务一received_datapy">
+<span class="md-ellipsis">
+      5.4.1 任务一：received_data.py
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#542-任务二realtime_plotpy">
+<span class="md-ellipsis">
+      5.4.2 任务二：realtime_plot.py
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#543-任务三calc_band_powerpy">
+<span class="md-ellipsis">
+      5.4.3 任务三：calc_band_power.py
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Writing
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            Writing
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%86%99%E4%BD%9C/latex/">
+<span class="md-ellipsis">
+    Latex Introduction
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Others
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%85%B6%E5%AE%83/Matplotlib/">
+<span class="md-ellipsis">
+    Matplotlib入门
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../%E5%85%B6%E5%AE%83/Explorer%E4%B8%8D%E8%A7%81%E4%BA%86/">
+<span class="md-ellipsis">
+    Windows上的子系统“消失不见”
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="index" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      index
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-多模态生理信号介绍">
+<span class="md-ellipsis">
+      1. 多模态生理信号介绍
+    </span>
+</a>
+<nav aria-label="1. 多模态生理信号介绍" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-脑电信号-eeg">
+<span class="md-ellipsis">
+      1.1 脑电信号 (EEG)
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12-功能性近红外光谱成像-fnirs">
+<span class="md-ellipsis">
+      1.2 功能性近红外光谱成像 (fNIRS)
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-采集设备介绍">
+<span class="md-ellipsis">
+      2. 采集设备介绍
+    </span>
+</a>
+<nav aria-label="2. 采集设备介绍" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#21-全脑脑电帽---greentek">
+<span class="md-ellipsis">
+      2.1 全脑脑电帽 - GREENTEK
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#22-生物放大器---openbci">
+<span class="md-ellipsis">
+      2.2 生物放大器 - OpenBCI
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#23-便携式设备">
+<span class="md-ellipsis">
+      2.3 便携式设备
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-实验环节基于脑信号的注意力监测">
+<span class="md-ellipsis">
+      3. 实验环节：基于脑信号的注意力监测
+    </span>
+</a>
+<nav aria-label="3. 实验环节：基于脑信号的注意力监测" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-注意力概述">
+<span class="md-ellipsis">
+      3.1 注意力概述
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32-实验范式">
+<span class="md-ellipsis">
+      3.2 实验范式
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#33-实时注意力监测框架">
+<span class="md-ellipsis">
+      3.3 实时注意力监测框架
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#34-特征分析">
+<span class="md-ellipsis">
+      3.4 特征分析
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-基于脑信号的情绪识别">
+<span class="md-ellipsis">
+      4. 基于脑信号的情绪识别
+    </span>
+</a>
+<nav aria-label="4. 基于脑信号的情绪识别" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#41-情绪概述">
+<span class="md-ellipsis">
+      4.1 情绪概述
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#42-情绪解码流程">
+<span class="md-ellipsis">
+      4.2 情绪解码流程
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#43-数据采集范式">
+<span class="md-ellipsis">
+      4.3 数据采集范式
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#44-特征分析">
+<span class="md-ellipsis">
+      4.4 特征分析
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-课堂实践任务">
+<span class="md-ellipsis">
+      5. 课堂实践任务
+    </span>
+</a>
+<nav aria-label="5. 课堂实践任务" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#51-目标">
+<span class="md-ellipsis">
+      5.1 目标
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#52-实践内容">
+<span class="md-ellipsis">
+      5.2 实践内容
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#53-软件环境">
+<span class="md-ellipsis">
+      5.3 软件环境
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#54-实践任务">
+<span class="md-ellipsis">
+      5.4 实践任务
+    </span>
+</a>
+<nav aria-label="5.4 实践任务" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#541-任务一received_datapy">
+<span class="md-ellipsis">
+      5.4.1 任务一：received_data.py
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#542-任务二realtime_plotpy">
+<span class="md-ellipsis">
+      5.4.2 任务二：realtime_plot.py
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#543-任务三calc_band_powerpy">
+<span class="md-ellipsis">
+      5.4.3 任务三：calc_band_power.py
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="lecture-4-attention-detection-and-music-emotion-recognition">Lecture 4: Attention Detection and Music Emotion Recognition</h1>
+<h2 id="1-多模态生理信号介绍">1. 多模态生理信号介绍</h2>
+<h3 id="11-脑电信号-eeg">1.1 脑电信号 (EEG)</h3>
+<blockquote>
+<p>我们之前已经大致了解这是个什么概念了。</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>频段与特征</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>频段</th>
+<th>范围 (Hz)</th>
+<th>特征脑区</th>
+<th>与注意力的关系</th>
+<th>与情绪的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>δ (Delta)</td>
+<td>0.5–4</td>
+<td>额叶、中央、睡眠相关区</td>
+<td>睡眠时最强；清醒时过高→注意力低</td>
+<td>抑郁、慢性疲劳、脑损伤时增强</td>
+</tr>
+<tr>
+<td>θ (Theta)</td>
+<td>4–8</td>
+<td>额叶、颞叶、边缘系统</td>
+<td>微觉醒、沉思、分心或疲劳时增强</td>
+<td>情绪加工、悲伤、焦虑、创伤回忆等</td>
+</tr>
+<tr>
+<td>α (Alpha)</td>
+<td>8–13</td>
+<td>枕叶、顶叶、中后部</td>
+<td>放松但警觉状态，注意力内向</td>
+<td>α 左右不对称与情绪调节、自我调控相关</td>
+</tr>
+<tr>
+<td>β (Beta)</td>
+<td>13–30</td>
+<td>顶中央、额叶</td>
+<td>集中注意、主动任务执行时增强</td>
+<td>β 过高可能关联焦虑、紧张</td>
+</tr>
+<tr>
+<td>γ (Gamma)</td>
+<td>30–100</td>
+<td>额叶、联合区</td>
+<td>高级认知、集中注意、感知整合</td>
+<td>情绪体验、意识整合、正念冥想相关</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>最常用特征：频域特征（Power Spectral Density, PSD），通过原始数据（Raw data）计算功率（Power）。（Raw data -&gt; PSD -&gt; Power）</p>
+</li>
+</ul>
+<h3 id="12-功能性近红外光谱成像-fnirs">1.2 功能性近红外光谱成像 (fNIRS)</h3>
+<ul>
+<li><strong>定义</strong>：非侵入式脑功能成像技术，利用 700–900nm <strong>近红外光监测大脑皮层血氧浓度变化</strong>，间接反映神经活动。</li>
+<li><strong>工作原理</strong>：活跃神经元消耗更多氧气，导致局部血氧浓度变化（神经血管耦合），<strong>测量氧合血红蛋白（HbO）、脱氧血红蛋白（HbR）和总血红蛋白（HBT）浓度变化</strong>，来估计神经活动。</li>
+</ul>
+<h2 id="2-采集设备介绍">2. 采集设备介绍</h2>
+<h3 id="21-全脑脑电帽---greentek">2.1 全脑脑电帽 - GREENTEK</h3>
+<ul>
+<li><strong>型号</strong>：Gelfree S3 Cap</li>
+<li><strong>特点</strong>：使用<strong> NaCl 电解质溶液</strong>代替传统导电膏，减少准备时间和不适感。</li>
+</ul>
+<p><img alt="电帽" src="../image-43.png"/></p>
+<p><img alt="头盔" src="../image-24.png"/></p>
+<h3 id="22-生物放大器---openbci">2.2 生物放大器 - OpenBCI</h3>
+<ul>
+<li><strong>型号</strong>：Cyton + Daisy Biosensing Boards</li>
+<li><strong>参数</strong>：16 通道，采样率 200 Hz。</li>
+<li><strong>数据平台</strong>：OpenBCI GUI</li>
+</ul>
+<details class="example">
+<summary>实例图</summary>
+<p>看着挺大，我印象中其实不到一个巴掌大。</p>
+<p><img alt="alt text" src="../image-44.png"/></p>
+<p><img alt="alt text" src="../image-45.png"/></p>
+</details>
+<blockquote>
+<p>文档：<a href="https://docs.openbci.com/Software/OpenBCISoftware/GUIDocs/">https://docs.openbci.com/Software/OpenBCISoftware/GUIDocs/</a></p>
+</blockquote>
+<h3 id="23-便携式设备">2.3 便携式设备</h3>
+<ul>
+<li>
+<p><strong>EEG 参数</strong>：</p>
+<ul>
+<li>通道：FP1，FP2</li>
+<li>参考电极：左耳垂（A1）</li>
+<li>采样率：250 Hz</li>
+</ul>
+</li>
+<li>
+<p><strong>fNIRS 参数</strong>：</p>
+<ul>
+<li>光源：2 个（735 nm，850 nm）</li>
+<li>探测器：8 个（8 通道数据）</li>
+<li>采样率：25 Hz</li>
+</ul>
+</li>
+</ul>
+<p><img alt="alt text" src="../image-25.png"/></p>
+<blockquote>
+<p>实际体验：喷点酒精在额头上，接着一个头环戴上去，最后一个架子夹住左耳垂。</p>
+</blockquote>
+<h2 id="3-实验环节基于脑信号的注意力监测">3. 实验环节：基于脑信号的注意力监测</h2>
+<h3 id="31-注意力概述">3.1 注意力概述</h3>
+<p>作为<strong>核心认知功能</strong>，影响很大。</p>
+<h3 id="32-实验范式">3.2 实验范式</h3>
+<p><img alt="alt text" src="../image-26.png"/></p>
+<p>三个Task总计循环5次。在安静环境和嘈杂环境下分别进行上述实验，采集更接近真实情况的数据。</p>
+<h3 id="33-实时注意力监测框架">3.3 实时注意力监测框架</h3>
+<ul>
+<li><strong>EEG</strong>：高时间分辨率，捕捉快速电信号变化，反映注意力转移。</li>
+<li><strong>fNIRS</strong>：检测皮层血氧变化，定位大脑激活区域。</li>
+</ul>
+<p><img alt="alt text" src="../image-27.png"/></p>
+<h3 id="34-特征分析">3.4 特征分析</h3>
+<p>下面这张图展示了不同注意力状态下，EEG 五个频段（δ、θ、α、β、γ）的功率分布头图（topomap）变化情况，横向表示频段，纵向表示注意力状态，颜色表示归一化后的功率强度（0~1）。</p>
+<p><img alt="alt text" src="../image-46.png"/></p>
+<blockquote>
+<p>alpha波: 与注意“抑制”相关，注意力集中时<span class="arithmatex">\(\alpha\)</span>波被抑制，是<strong>最经典特征</strong>。</p>
+</blockquote>
+<h2 id="4-基于脑信号的情绪识别">4. 基于脑信号的情绪识别</h2>
+<h3 id="41-情绪概述">4.1 情绪概述</h3>
+<ul>
+<li><strong>定义</strong>：情绪是由神经生理变化引起的精神状态，与思想、感觉、行为及快乐/不快乐程度相关。</li>
+<li>
+<p><strong>情绪建模</strong>：</p>
+<ul>
+<li><strong>维度模型</strong>：如詹姆斯·罗素的环形情感分类模型（Arousal-Valence）。</li>
+<li><strong>离散模型</strong>：保罗·埃克曼的七类基本情绪（快乐、悲伤、愤怒、厌恶、惊讶、恐惧、蔑视）。</li>
+</ul>
+</li>
+</ul>
+<details class="example">
+<summary>情绪模型实例</summary>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">维度模型示例</label><label for="__tabbed_1_2">离散模型示例</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="alt text" src="../image-47.png"/></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="alt text" src="../image-48.png"/></p>
+</div>
+</div>
+</input></input></div>
+</details>
+<h3 id="42-情绪解码流程">4.2 情绪解码流程</h3>
+<p><img alt="alt text" src="../image-49.png"/></p>
+<blockquote>
+<p>参考文献：Guangyi Zhang and Ali Etemad. Rfnet: Riemannian fusion network for eeg-based brain-computer interfaces. arXiv preprint arXiv:2008.08633, 2020</p>
+</blockquote>
+<h3 id="43-数据采集范式">4.3 数据采集范式</h3>
+<p><img alt="alt text" src="../image-50.png"/></p>
+<h3 id="44-特征分析">4.4 特征分析</h3>
+<p><img alt="alt text" src="../image-51.png"/></p>
+<p>使用 topomap 热力图分析情绪与 EEG 频段能量的相关性：</p>
+<ul>
+<li>纵轴：情绪类别。</li>
+<li>横轴：EEG 频段（δ、θ、α、β、γ）。</li>
+<li>颜色：表示皮层每个电极位点的相关系数（R value），红色为正相关，蓝色为负相关，颜色越深表示相关越强。</li>
+</ul>
+<p>我们可以看到，情绪识别模型中，可以使用<strong>频段能量作为情绪状态的关键特征</strong>；负性情绪（如 Fear）特征更稳定，常<strong>与 gamma/beta 波负相关</strong>。</p>
+<blockquote>
+<p>参考文献：Chen, Jingjing, et al. "A large finer-grained affective computing EEG dataset." <em>Scientific Data</em> 10.1 (2023): 740.</p>
+</blockquote>
+<h2 id="5-课堂实践任务">5. 课堂实践任务</h2>
+<h3 id="51-目标">5.1 目标</h3>
+<ul>
+<li>体验 EEG 采集过程（设备穿戴、范式设计）。</li>
+<li>掌握 Python 基础语法及相关库（numpy, pylsl, mne）。</li>
+<li>熟悉 EEG 信号预处理流程。</li>
+<li>掌握 EEG 五个频带能量特征的计算。</li>
+</ul>
+<h3 id="52-实践内容">5.2 实践内容</h3>
+<ul>
+<li>选择采集设备，体验注意力监测/情绪识别数据采集。</li>
+<li>使用 <strong>pylsl</strong> 获取实时 EEG/fNIRS 数据（在线）。</li>
+<li>对实时数据进行预处理和可视化（在线）。</li>
+<li>提取 EEG 五个频带（δ、θ、α、β、γ）的能量特征并分析（离线）。</li>
+</ul>
+<h3 id="53-软件环境">5.3 软件环境</h3>
+<ul>
+<li>
+<p><strong>数据平台</strong>：</p>
+<ul>
+<li>全脑设备：OpenBCI GUI</li>
+<li>便携式设备：BioMultiLite</li>
+</ul>
+</li>
+<li>
+<p><strong>Python 环境</strong>：</p>
+</li>
+<li>
+<p>pylsl 1.17.6 </p>
+</li>
+<li>numpy 2.2.6</li>
+<li>pandas 2.3.0</li>
+<li>matplotlib 3.10.3</li>
+<li>scipy 1.15.3</li>
+<li>pyqt5 5.15.11</li>
+<li>mne 1.9.0</li>
+</ul>
+<details class="note">
+<summary> pylsl 库</summary>
+<ul>
+<li>
+<p><strong>功能</strong>：LabStreamingLayer 的 Python 接口，用于实时传输生理数据流（EEG、fNIRS 等）。</p>
+<ul>
+<li>发送数据：<code>Outlet</code></li>
+<li>接收数据：<code>Inlet</code></li>
+<li>流发现：<code>resolve_stream()</code> 或 <code>resolve_byprop()</code></li>
+<li>时间同步：自动校准系统时间。</li>
+</ul>
+</li>
+<li>
+<p><strong>参考资料</strong>：</p>
+<ul>
+<li>文档：<a href="https://labstreaminglayer.readthedocs.io/info/getting_started.html">https://labstreaminglayer.readthedocs.io/info/getting_started.html</a></li>
+<li>代码仓库：<a href="https://github.com/sccn/labstreaminglayer">https://github.com/sccn/labstreaminglayer</a></li>
+<li>示例：<a href="https://github.com/labstreaminglayer/pylsl/tree/main/src/pylsl/examples">https://github.com/labstreaminglayer/pylsl/tree/main/src/pylsl/examples</a></li>
+</ul>
+</li>
+</ul>
+</details>
+<h3 id="54-实践任务">5.4 实践任务</h3>
+<h4 id="541-任务一received_datapy">5.4.1 <strong>任务一：received_data.py</strong></h4>
+<ul>
+<li><strong>目标</strong>：使用 <code>pylsl.StreamInlet.pull_chunk()</code> 接收 EEG 数据，获取数据和时间戳，或使用 <code>dest_obj</code> 存入缓冲区。</li>
+<li><strong>重采样</strong>：使用 <code>scipy.signal.resample()</code> 调整数据至 250 Hz。</li>
+<li><strong>输出</strong>：打印 EEG 数据大小或未获取数据的提示。</li>
+<li>
+<p><strong>工具</strong>：</p>
+<p><img alt="alt text" src="../image-53.png"/></p>
+<p><img alt="alt text" src="../image-54.png"/></p>
+<ul>
+<li><code>pylsl.StreamInlet.pull_chunk()</code></li>
+<li><code>scipy.signal.resample()</code></li>
+</ul>
+</li>
+</ul>
+<p><img alt="alt text" src="../image-52.png"/></p>
+<p>这里给出我写的一个参考。</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span> <span class="nf">receive_data_in_chunks</span><span class="p">():</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Looking for an EEG stream..."</span><span class="p">)</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">streams</span> <span class="o">=</span> <span class="n">resolve_byprop</span><span class="p">(</span><span class="s2">"type"</span><span class="p">,</span> <span class="s2">"EEG"</span><span class="p">)</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="c1"># create a new inlet to read from stream</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="n">inlet</span> <span class="o">=</span> <span class="n">StreamInlet</span><span class="p">(</span><span class="n">streams</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="sd">"""</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="sd">    TODO:</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="sd">    1. Use inlet.pull_chunk() function to receive the EEG data. </span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="sd">        You can return two lists (samples and timestamps) or use parameter `dest_obj` to put EEG data directly into the buffer.</span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="sd">    2. Resample the data so that the data is 250 points per second using scipy.signal.resample()</span>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="sd">    3. Print sentences to demonstrate you eeg data shape if you get the eeg data successfully.</span>
+<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="sd">    """</span>
+<a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a>    <span class="c1"># Get stream info to determine sampling rate and number of channels</span>
+<a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a>    <span class="n">info</span> <span class="o">=</span> <span class="n">inlet</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a>    <span class="n">original_fs</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">nominal_srate</span><span class="p">()</span>  <span class="c1"># Original sampling rate</span>
+<a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="n">n_channels</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">channel_count</span><span class="p">()</span>  <span class="c1"># Number of EEG channels</span>
+<a href="#__codelineno-0-18" id="__codelineno-0-18" name="__codelineno-0-18"></a>    <span class="n">target_fs</span> <span class="o">=</span> <span class="mi">250</span>  <span class="c1"># Target sampling rate (Hz)</span>
+<a href="#__codelineno-0-19" id="__codelineno-0-19" name="__codelineno-0-19"></a>
+<a href="#__codelineno-0-20" id="__codelineno-0-20" name="__codelineno-0-20"></a>    <span class="c1"># Initialize lists to store samples and timestamps</span>
+<a href="#__codelineno-0-21" id="__codelineno-0-21" name="__codelineno-0-21"></a>    <span class="n">samples</span> <span class="o">=</span> <span class="p">[]</span>
+<a href="#__codelineno-0-22" id="__codelineno-0-22" name="__codelineno-0-22"></a>    <span class="n">timestamps</span> <span class="o">=</span> <span class="p">[]</span>
+<a href="#__codelineno-0-23" id="__codelineno-0-23" name="__codelineno-0-23"></a>
+<a href="#__codelineno-0-24" id="__codelineno-0-24" name="__codelineno-0-24"></a>    <span class="c1"># Pull chunk of EEG data</span>
+<a href="#__codelineno-0-25" id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="hll">    <span class="n">chunk</span><span class="p">,</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">inlet</span><span class="o">.</span><span class="n">pull_chunk</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+</span><a href="#__codelineno-0-26" id="__codelineno-0-26" name="__codelineno-0-26"></a>
+<a href="#__codelineno-0-27" id="__codelineno-0-27" name="__codelineno-0-27"></a>    <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>
+<a href="#__codelineno-0-28" id="__codelineno-0-28" name="__codelineno-0-28"></a>        <span class="c1"># Convert chunk to numpy array</span>
+<a href="#__codelineno-0-29" id="__codelineno-0-29" name="__codelineno-0-29"></a>        <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+<a href="#__codelineno-0-30" id="__codelineno-0-30" name="__codelineno-0-30"></a>        <span class="n">timestamps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<a href="#__codelineno-0-31" id="__codelineno-0-31" name="__codelineno-0-31"></a>
+<a href="#__codelineno-0-32" id="__codelineno-0-32" name="__codelineno-0-32"></a>        <span class="c1"># Check if data was received</span>
+<a href="#__codelineno-0-33" id="__codelineno-0-33" name="__codelineno-0-33"></a>        <span class="k">if</span> <span class="n">samples</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<a href="#__codelineno-0-34" id="__codelineno-0-34" name="__codelineno-0-34"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Received EEG data with shape: </span><span class="si">{</span><span class="n">samples</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a href="#__codelineno-0-35" id="__codelineno-0-35" name="__codelineno-0-35"></a>
+<a href="#__codelineno-0-36" id="__codelineno-0-36" name="__codelineno-0-36"></a>            <span class="c1"># Calculate number of samples for resampling</span>
+<a href="#__codelineno-0-37" id="__codelineno-0-37" name="__codelineno-0-37"></a>            <span class="n">duration</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">timestamps</span><span class="p">)</span> <span class="o">/</span> <span class="n">original_fs</span>
+<a href="#__codelineno-0-38" id="__codelineno-0-38" name="__codelineno-0-38"></a>            <span class="n">n_samples_new</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">duration</span> <span class="o">*</span> <span class="n">target_fs</span><span class="p">)</span>
+<a href="#__codelineno-0-39" id="__codelineno-0-39" name="__codelineno-0-39"></a>
+<a href="#__codelineno-0-40" id="__codelineno-0-40" name="__codelineno-0-40"></a>            <span class="c1"># Resample the data to 250 Hz</span>
+<a href="#__codelineno-0-41" id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="hll">            <span class="n">resampled_data</span> <span class="o">=</span> <span class="n">resample</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">n_samples_new</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><a href="#__codelineno-0-42" id="__codelineno-0-42" name="__codelineno-0-42"></a>
+<a href="#__codelineno-0-43" id="__codelineno-0-43" name="__codelineno-0-43"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Resampled EEG data to 250 Hz, new shape: </span><span class="si">{</span><span class="n">resampled_data</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a href="#__codelineno-0-44" id="__codelineno-0-44" name="__codelineno-0-44"></a>
+<a href="#__codelineno-0-45" id="__codelineno-0-45" name="__codelineno-0-45"></a>            <span class="k">return</span> <span class="n">resampled_data</span><span class="p">,</span> <span class="n">timestamps</span>
+<a href="#__codelineno-0-46" id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="k">else</span><span class="p">:</span>
+<a href="#__codelineno-0-47" id="__codelineno-0-47" name="__codelineno-0-47"></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">"No EEG data received in the chunk."</span><span class="p">)</span>
+<a href="#__codelineno-0-48" id="__codelineno-0-48" name="__codelineno-0-48"></a>            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+<a href="#__codelineno-0-49" id="__codelineno-0-49" name="__codelineno-0-49"></a>    <span class="k">else</span><span class="p">:</span>
+<a href="#__codelineno-0-50" id="__codelineno-0-50" name="__codelineno-0-50"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">"Failed to pull EEG data chunk."</span><span class="p">)</span>
+<a href="#__codelineno-0-51" id="__codelineno-0-51" name="__codelineno-0-51"></a>        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+<a href="#__codelineno-0-52" id="__codelineno-0-52" name="__codelineno-0-52"></a>
+<a href="#__codelineno-0-53" id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="k">pass</span>
+</code></pre></div>
+<h4 id="542-任务二realtime_plotpy">5.4.2 <strong>任务二：realtime_plot.py</strong></h4>
+<ul>
+<li><strong>目标</strong>：实现 EEG 数据预处理和实时可视化。</li>
+<li>
+<p><strong>预处理</strong>：</p>
+<ul>
+<li>
+<p>使用 <code>self.bandpass_filter()</code> 进行<strong>带通滤波</strong>（1–45 Hz，去除低频漂移和高频噪声）。</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># data：输入数据</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c1"># sfreq：采样频率（每秒样本数，单位：Hz）</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="c1"># l_freq=1.0：带通滤波器的低频截止频率（默认1.0 Hz），保留高于此频率的信号</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1"># h_freq=45.0：带通滤波器的高频截止频率（默认45.0 Hz），保留低于此频率的信号</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1"># order=4：滤波器的阶数（默认4），阶数越高，滤波器的过渡带越陡峭，但计算复杂度也越高</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="nd">@staticmethod</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="k">def</span> <span class="nf">bandpass_filter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">,</span> <span class="n">l_freq</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">h_freq</span><span class="o">=</span><span class="mf">45.0</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="c1"># 计算奈奎斯特频率（Nyquist frequency）</span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="n">nyq</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">sfreq</span>    
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="c1"># 将低频和高频截止频率归一化到奈奎斯特频率的范围</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a>    <span class="n">low</span> <span class="o">=</span> <span class="n">l_freq</span> <span class="o">/</span> <span class="n">nyq</span>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="n">high</span> <span class="o">=</span> <span class="n">h_freq</span> <span class="o">/</span> <span class="n">nyq</span>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a>    <span class="c1"># 巴特沃斯（Butterworth）带通滤波器：</span>
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a>    <span class="c1"># btype='band'：指定滤波器类型为带通（bandpass）</span>
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a>    <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">butter</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="p">[</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">],</span> <span class="n">btype</span><span class="o">=</span><span class="s1">'band'</span><span class="p">)</span>
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a>    <span class="k">return</span> <span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+</li>
+<li>
+<p>使用 <code>self.sliding_demean_fast()</code> <strong>消除基线偏移</strong>。</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nd">@staticmethod</span>
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1"># window_sec=0.5：滑动窗口的时长（默认0.5秒），用于计算局部均值</span>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">def</span> <span class="nf">sliding_demean_fast</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">window_sec</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="c1"># 将时间窗口（秒）转换为样本数。</span>
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>    <span class="c1"># 例如，若sfreq=250 Hz，window_sec=0.5秒，则：</span>
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a>    <span class="c1"># window_size = 250 * 0.5 = 125 个样本。</span>
+<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a>    <span class="n">window_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sfreq</span> <span class="o">*</span> <span class="n">window_sec</span><span class="p">)</span>
+<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a>    <span class="c1"># mode='nearest'：边界处理模式，边界处使用最近的有效值填充，以避免边缘效应</span>
+<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="n">baseline</span> <span class="o">=</span> <span class="n">uniform_filter1d</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">window_size</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'nearest'</span><span class="p">)</span>
+<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="c1"># 从原始数据data中减去计算得到的基线baseline，实现去均值处理</span>
+<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a>    <span class="c1"># 结果是移除低频基线漂移后的信号，保留信号的高频变化</span>
+<a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a>    <span class="k">return</span> <span class="n">data</span> <span class="o">-</span> <span class="n">baseline</span>
+</code></pre></div>
+<blockquote>
+<p><code>scipy.ndimage.uniform_filter1d()</code>可以高效的计算滑动窗口内的均值作为基线。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>实时拉取和绘制数据的函数<code>pull_and_plot</code>:从输入流（<code>inlet</code>）中获取数据，处理后绘制到图表上。</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">def</span> <span class="nf">pull_and_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plot_time</span><span class="p">,</span> <span class="n">plt</span><span class="p">):</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>    <span class="c1"># pull the data</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="n">_</span><span class="p">,</span> <span class="n">ts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inlet</span><span class="o">.</span><span class="n">pull_chunk</span><span class="p">(</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>        <span class="n">timeout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dest_obj</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="p">)</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a>    <span class="c1"># ts will be empty if no samples were pulled, a list of timestamps otherwise</span>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a>    <span class="k">if</span> <span class="n">ts</span><span class="p">:</span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a>        <span class="n">ts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a>        <span class="c1"># y的形状是(样本数, 通道数)，表示多通道信号数据</span>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a>        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">[</span><span class="mi">0</span> <span class="p">:</span> <span class="n">ts</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="p">:]</span>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a>
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="hll">        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bandpass_filter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">sfreq</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span> <span class="n">l_freq</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">h_freq</span><span class="o">=</span><span class="mf">45.0</span><span class="p">)</span>
+</span><a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="hll">        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sliding_demean_fast</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</span><a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a>
+<a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a>        <span class="c1"># this_x：用于存储合并后的时间戳（稍后计算）。</span>
+<a href="#__codelineno-3-16" id="__codelineno-3-16" name="__codelineno-3-16"></a>        <span class="c1"># old_offset和new_offset：用于确定旧数据和新数据的裁剪位置。</span>
+<a href="#__codelineno-3-17" id="__codelineno-3-17" name="__codelineno-3-17"></a>        <span class="n">this_x</span> <span class="o">=</span> <span class="kc">None</span>
+<a href="#__codelineno-3-18" id="__codelineno-3-18" name="__codelineno-3-18"></a>        <span class="n">old_offset</span> <span class="o">=</span> <span class="mi">0</span>
+<a href="#__codelineno-3-19" id="__codelineno-3-19" name="__codelineno-3-19"></a>        <span class="n">new_offset</span> <span class="o">=</span> <span class="mi">0</span>
+<a href="#__codelineno-3-20" id="__codelineno-3-20" name="__codelineno-3-20"></a>        <span class="c1"># 遍历所有通道（self.channel_count表示通道数量）</span>
+<a href="#__codelineno-3-21" id="__codelineno-3-21" name="__codelineno-3-21"></a>        <span class="k">for</span> <span class="n">ch_ix</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel_count</span><span class="p">):</span>
+<a href="#__codelineno-3-22" id="__codelineno-3-22" name="__codelineno-3-22"></a>            <span class="c1"># we don't pull an entire screen's worth of data, so we have to</span>
+<a href="#__codelineno-3-23" id="__codelineno-3-23" name="__codelineno-3-23"></a>            <span class="c1"># trim the old data and append the new data to it</span>
+<a href="#__codelineno-3-24" id="__codelineno-3-24" name="__codelineno-3-24"></a>            <span class="n">old_x</span><span class="p">,</span> <span class="n">old_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curves</span><span class="p">[</span><span class="n">ch_ix</span><span class="p">]</span><span class="o">.</span><span class="n">getData</span><span class="p">()</span>
+<a href="#__codelineno-3-25" id="__codelineno-3-25" name="__codelineno-3-25"></a>            <span class="c1"># the timestamps are identical for all channels, so we need to do</span>
+<a href="#__codelineno-3-26" id="__codelineno-3-26" name="__codelineno-3-26"></a>            <span class="c1"># this calculation only once</span>
+<a href="#__codelineno-3-27" id="__codelineno-3-27" name="__codelineno-3-27"></a>        <span class="k">if</span> <span class="n">ch_ix</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a href="#__codelineno-3-28" id="__codelineno-3-28" name="__codelineno-3-28"></a>                <span class="c1"># find the index of the first sample that's still visible,</span>
+<a href="#__codelineno-3-29" id="__codelineno-3-29" name="__codelineno-3-29"></a>                <span class="c1"># i.e. newer than the left border of the plot</span>
+<a href="#__codelineno-3-30" id="__codelineno-3-30" name="__codelineno-3-30"></a>                <span class="n">old_offset</span> <span class="o">=</span> <span class="n">old_x</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">plot_time</span><span class="p">)</span>
+<a href="#__codelineno-3-31" id="__codelineno-3-31" name="__codelineno-3-31"></a>                <span class="c1"># same for the new data, in case we pulled more data than</span>
+<a href="#__codelineno-3-32" id="__codelineno-3-32" name="__codelineno-3-32"></a>                <span class="c1"># can be shown at once</span>
+<a href="#__codelineno-3-33" id="__codelineno-3-33" name="__codelineno-3-33"></a>                <span class="n">new_offset</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">plot_time</span><span class="p">)</span>
+<a href="#__codelineno-3-34" id="__codelineno-3-34" name="__codelineno-3-34"></a>                <span class="c1"># append new timestamps to the trimmed old timestamps</span>
+<a href="#__codelineno-3-35" id="__codelineno-3-35" name="__codelineno-3-35"></a>                <span class="n">this_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">old_x</span><span class="p">[</span><span class="n">old_offset</span><span class="p">:],</span> <span class="n">ts</span><span class="p">[</span><span class="n">new_offset</span><span class="p">:]))</span>
+<a href="#__codelineno-3-36" id="__codelineno-3-36" name="__codelineno-3-36"></a>            <span class="c1"># append new data to the trimmed old data</span>
+<a href="#__codelineno-3-37" id="__codelineno-3-37" name="__codelineno-3-37"></a>            <span class="n">this_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">old_y</span><span class="p">[</span><span class="n">old_offset</span><span class="p">:],</span> <span class="n">y</span><span class="p">[</span><span class="n">new_offset</span><span class="p">:,</span> <span class="n">ch_ix</span><span class="p">]</span> <span class="o">-</span> <span class="n">ch_ix</span><span class="p">))</span>
+<a href="#__codelineno-3-38" id="__codelineno-3-38" name="__codelineno-3-38"></a>            <span class="c1"># replace the old data</span>
+<a href="#__codelineno-3-39" id="__codelineno-3-39" name="__codelineno-3-39"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">curves</span><span class="p">[</span><span class="n">ch_ix</span><span class="p">]</span><span class="o">.</span><span class="n">setData</span><span class="p">(</span><span class="n">this_x</span><span class="p">,</span> <span class="n">this_y</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li><strong>基线</strong>：信号中<strong>慢变、背景成分</strong>，不包含神经活动。</li>
+</ul>
+<h4 id="543-任务三calc_band_powerpy">5.4.3 任务三：calc_band_power.py</h4>
+<p><strong>目标</strong>：从全脑数据（test.npy）中提取五个频带（<span class="arithmatex">\(\alpha ,\beta ,\gamma ,\delta ,\theta \)</span>）的能量特征，保存到字典。</p>
+<blockquote>
+<p>这个是可以不用什么设备离线做的，就是个数据处理的步骤。</p>
+</blockquote>
+<p><img alt="alt text" src="../image-55.png"/></p>
+<p>结果代码（仅包含有<code>TODO</code>标签的代码）如下：</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">def</span> <span class="nf">calc_bandpower</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span> <span class="n">mne</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">RawArray</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="sd">"""</span>
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="sd">    Calculate the power of each channel in each frequency band</span>
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="sd">    :param raw: mne.io.RawArrray</span>
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="sd">    :param bands: Band definition dictionary, e.g. {'alpha': (8, 13), ...}</span>
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="sd">    :return: pandas.DataFrame, each row is a channel and each column is a frequency band</span>
+<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="sd">    """</span>
+<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>    <span class="k">if</span> <span class="n">bands</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a>        <span class="n">bands</span> <span class="o">=</span> <span class="p">{</span>
+<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a>            <span class="s1">'delta'</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a>            <span class="s1">'theta'</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a>            <span class="s1">'alpha'</span><span class="p">:</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span>
+<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>            <span class="s1">'beta'</span><span class="p">:</span>  <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+<a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a>            <span class="s1">'gamma'</span><span class="p">:</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">)</span>
+<a href="#__codelineno-4-15" id="__codelineno-4-15" name="__codelineno-4-15"></a>        <span class="p">}</span>
+<a href="#__codelineno-4-16" id="__codelineno-4-16" name="__codelineno-4-16"></a>
+<a href="#__codelineno-4-17" id="__codelineno-4-17" name="__codelineno-4-17"></a>    <span class="c1"># compute psd</span>
+<a href="#__codelineno-4-18" id="__codelineno-4-18" name="__codelineno-4-18"></a>    <span class="n">psds_obj</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">compute_psd</span><span class="p">(</span><span class="n">fmin</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">fmax</span><span class="o">=</span><span class="mf">45.</span><span class="p">,</span> <span class="n">n_fft</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a href="#__codelineno-4-19" id="__codelineno-4-19" name="__codelineno-4-19"></a>    <span class="n">psds_obj</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a href="#__codelineno-4-20" id="__codelineno-4-20" name="__codelineno-4-20"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<a href="#__codelineno-4-21" id="__codelineno-4-21" name="__codelineno-4-21"></a>    <span class="n">psds</span> <span class="o">=</span> <span class="n">psds_obj</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>  <span class="c1"># shape: (n_channels, n_freqs)</span>
+<a href="#__codelineno-4-22" id="__codelineno-4-22" name="__codelineno-4-22"></a>    <span class="n">freqs</span> <span class="o">=</span> <span class="n">psds_obj</span><span class="o">.</span><span class="n">freqs</span>
+<a href="#__codelineno-4-23" id="__codelineno-4-23" name="__codelineno-4-23"></a>
+<a href="#__codelineno-4-24" id="__codelineno-4-24" name="__codelineno-4-24"></a>    <span class="c1"># psds.shape = (n_channels, n_freqs)</span>
+<a href="#__codelineno-4-25" id="__codelineno-4-25" name="__codelineno-4-25"></a>    <span class="n">psds</span> <span class="o">=</span> <span class="n">psds</span> <span class="o">*</span> <span class="mf">1e12</span>  <span class="c1"># V^2/Hz → uV^2/Hz (optional)</span>
+<a href="#__codelineno-4-26" id="__codelineno-4-26" name="__codelineno-4-26"></a>
+<a href="#__codelineno-4-27" id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="w">    </span><span class="sd">"""</span>
+<a href="#__codelineno-4-28" id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="sd">    TODO</span>
+<a href="#__codelineno-4-29" id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="sd">    """</span>
+<a href="#__codelineno-4-30" id="__codelineno-4-30" name="__codelineno-4-30"></a>    <span class="c1"># DataFrame</span>
+<a href="#__codelineno-4-31" id="__codelineno-4-31" name="__codelineno-4-31"></a>    <span class="n">bandpower</span> <span class="o">=</span> <span class="p">{}</span>
+<a href="#__codelineno-4-32" id="__codelineno-4-32" name="__codelineno-4-32"></a>    <span class="k">for</span> <span class="n">band</span><span class="p">,</span> <span class="p">(</span><span class="n">fmin</span><span class="p">,</span> <span class="n">fmax</span><span class="p">)</span> <span class="ow">in</span> <span class="n">bands</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a href="#__codelineno-4-33" id="__codelineno-4-33" name="__codelineno-4-33"></a>        <span class="n">freq_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">freqs</span> <span class="o">&gt;=</span> <span class="n">fmin</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">freqs</span> <span class="o">&lt;=</span> <span class="n">fmax</span><span class="p">)</span>
+<a href="#__codelineno-4-34" id="__codelineno-4-34" name="__codelineno-4-34"></a>        <span class="n">bp</span> <span class="o">=</span> <span class="n">psds</span><span class="p">[:,</span> <span class="n">freq_mask</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a href="#__codelineno-4-35" id="__codelineno-4-35" name="__codelineno-4-35"></a>        <span class="n">bandpower</span><span class="p">[</span><span class="n">band</span><span class="p">]</span> <span class="o">=</span> <span class="n">bp</span>
+<a href="#__codelineno-4-36" id="__codelineno-4-36" name="__codelineno-4-36"></a>
+<a href="#__codelineno-4-37" id="__codelineno-4-37" name="__codelineno-4-37"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bandpower</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">raw</span><span class="o">.</span><span class="n">ch_names</span><span class="p">)</span>
+<a href="#__codelineno-4-38" id="__codelineno-4-38" name="__codelineno-4-38"></a>
+<a href="#__codelineno-4-39" id="__codelineno-4-39" name="__codelineno-4-39"></a>    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright 2024 by estruswent
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+<script src="../../style/javascripts/mathjax.js"></script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>

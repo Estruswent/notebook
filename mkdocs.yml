@@ -51,6 +51,8 @@ nav:
       - "Lecture0: Introduction": "脑机接口算法及实践/Lecture0.md"
       - "Lecture1: Python EEG Signal": "脑机接口算法及实践/Lecture1.md"
       - "Lecture2: SSVEP": "脑机接口算法及实践/Lecture2.md"
+      - "Lecture3: VR-EEG emotion perception": "脑机接口算法及实践/Lecture3.md"
+      - "Lecture4: Attention and Emotion": "脑机接口算法及实践/Lecture4.md"
   - Writing:
       - "Latex Introduction": "写作/latex.md"
   - Others:
@@ -107,6 +109,8 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.highlight:
       anchor_linenums: true
+      use_pygments: true  # 使用 Pygments 进行代码高亮
+
   - toc:
       title: index
       slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}

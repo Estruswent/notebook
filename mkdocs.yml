@@ -24,6 +24,9 @@ nav:
       - "图：网络流与最小生成树": "数据结构基础/MST.md"
       - "图：深度优先搜索": "数据结构基础/DFS.md"
       - "待完成": "数据结构基础/unfinished.md"
+    - 高级数据结构:
+      - "NP Completeness": "高级数据结构/NPC.md"
+      - "AVL & RB & Splay": "高级数据结构/BST.md"
     - 数据库系统:
       - "Lecture1: Introduction": "数据库系统/Lecture1.md"
       - "Lecture2: relations models and algebra": "数据库系统/Lecture2.md"
@@ -53,6 +56,9 @@ nav:
       - "Lecture2: SSVEP": "脑机接口算法及实践/Lecture2.md"
       - "Lecture3: VR-EEG emotion perception": "脑机接口算法及实践/Lecture3.md"
       - "Lecture4: Attention and Emotion": "脑机接口算法及实践/Lecture4.md"
+    - 计算机组成原理:
+      - 数据的表示和运算:
+        - "数制与编码": "计算机组成原理/数制与编码.md"
   - Writing:
       - "Latex Introduction": "写作/latex.md"
   - Others:

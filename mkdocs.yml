@@ -64,6 +64,8 @@ nav:
         - "Cache和主存的映射方式": "计算机组成原理/第三章：存储系统/Cache和主存的映射方式.md"
         - "Cache替换算法": "计算机组成原理/第三章：存储系统/Cache替换算法.md"
         - "Cache写策略": "计算机组成原理/第三章：存储系统/Cache写策略.md"
+      - 第四章：指令系统:
+        - "指令的基本格式": "计算机组成原理/第四章：指令系统/4.1.1+2+3  指令的基本格式.md"
   - Writing:
       - "Latex Introduction": "写作/latex.md"
   - Others:
@@ -90,9 +92,24 @@ theme:
       toggle:
         icon: material/weather-night #图标，月亮
         name: Switch to light mode
+  font:
+    text: JetBrains Mono, LXGW WenKai Mono GB Screen 
+    code: JetBrains Mono
   features: 
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.code.annotate
+    - content.footnote.tooltips
+    - header.autohide
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - navigation.tracking
+    - navigation.prune
+    - search.share
 
 markdown_extensions:
   - pymdownx.tabbed:

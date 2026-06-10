@@ -3,8 +3,8 @@
 
 /* 全局字体设置 */
 :root > * {
-  --md-text-font-family: "Roboto Slab", "Noto Sans SC", sans-serif; 
-  --md-heading-font-family: "Roboto Slab", "Noto Sans SC", sans-serif;
+  --md-text-font-family: "LXGW WenKai Mono GB Screen", "Roboto Slab", "Noto Sans SC"; 
+  --md-heading-font-family: "LXGW WenKai Mono GB Screen", "Roboto Slab", "Noto Sans SC";
 }
 
 .md-typeset h2 {
@@ -17,7 +17,7 @@
 
 /* 修改段落的粗度 */
 .md-typeset p {
-  font-family: "Noto Sans SC", "Roboto Slab",sans-serif;
+  font-family: "LXGW WenKai Mono GB Screen", "Noto Sans SC", "Roboto Slab";
   font-weight: 455!important;
 }
 

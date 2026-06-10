@@ -7,11 +7,11 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="This is E5trusw3nt's Notebook" name="description"/>
 <meta content="E5trusw3nt" name="author"/>
-<link href="../Cache%E5%92%8C%E4%B8%BB%E5%AD%98%E7%9A%84%E6%98%A0%E5%B0%84%E6%96%B9%E5%BC%8F/" rel="prev"/>
-<link href="../Cache%E5%86%99%E7%AD%96%E7%95%A5/" rel="next"/>
+<link href="../../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/Cache%E5%86%99%E7%AD%96%E7%95%A5/" rel="prev"/>
+<link href="../4.1.4%20%E6%89%A9%E5%B1%95%E6%93%8D%E4%BD%9C%E7%A0%81%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/" rel="next"/>
 <link href="../../../style/images/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
-<title>Cache替换算法 - E5trusw3nt's Notebook</title>
+<title>指令的基本格式 - E5trusw3nt's Notebook</title>
 <link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -29,7 +29,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#354-cache替换算法">
+<a class="md-skip" href="#41123-指令的基本格式">
           Skip to content
         </a>
 </div>
@@ -53,7 +53,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Cache替换算法
+              指令的基本格式
             
           </span>
 </div>
@@ -325,60 +325,49 @@
 <span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_6_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2_6_2" id="__nav_2_6_2_label" tabindex="0">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/Cache%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/">
 <span class="md-ellipsis">
     
   
     第三章：存储系统
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_6_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_6_3" id="__nav_2_6_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    第四章：指令系统
   
 
     
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_2_6_2_label" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_2_6_2">
+<nav aria-expanded="true" aria-labelledby="__nav_2_6_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_6_3">
 <span class="md-nav__icon md-icon"></span>
             
   
-    第三章：存储系统
+    第四章：指令系统
   
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Cache%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/">
-<span class="md-ellipsis">
-    
-  
-    Cache的基本原理
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../Cache%E5%92%8C%E4%B8%BB%E5%AD%98%E7%9A%84%E6%98%A0%E5%B0%84%E6%96%B9%E5%BC%8F/">
-<span class="md-ellipsis">
-    
-  
-    Cache和主存的映射方式
-  
-
-    
-  </span>
-</a>
-</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
     
   
-    Cache替换算法
+    指令的基本格式
   
 
     
@@ -389,7 +378,7 @@
 <span class="md-ellipsis">
     
   
-    Cache替换算法
+    指令的基本格式
   
 
     
@@ -411,74 +400,83 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#一为什么需要替换算法">
+<a class="md-nav__link" href="#一指令的定义">
 <span class="md-ellipsis">
       
-        一、为什么需要替换算法？
+        一、指令的定义
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#二本节总览">
+<a class="md-nav__link" href="#二指令格式">
 <span class="md-ellipsis">
       
-        二、本节总览
+        二、指令格式
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#三随机算法rand">
+<a class="md-nav__link" href="#三按地址码数目分类">
 <span class="md-ellipsis">
       
-        三、随机算法（RAND）
+        三、按地址码数目分类
       
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#四先进先出算法fifo">
-<span class="md-ellipsis">
-      
-        四、先进先出算法（FIFO）
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#五近期最少使用算法lru">
-<span class="md-ellipsis">
-      
-        五、近期最少使用算法（LRU）★
-      
-    </span>
-</a>
-<nav aria-label="五、近期最少使用算法（LRU）★" class="md-nav">
+<nav aria-label="三、按地址码数目分类" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lru的计数器规则">
+<a class="md-nav__link" href="#1-零地址指令">
 <span class="md-ellipsis">
       
-        LRU的计数器规则
+        1. 零地址指令
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#一个重要的结论">
+<a class="md-nav__link" href="#2-一地址指令">
 <span class="md-ellipsis">
       
-        一个重要的结论
+        2. 一地址指令
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lru的优缺点">
+<a class="md-nav__link" href="#3-二地址指令">
 <span class="md-ellipsis">
       
-        LRU的优缺点
+        3. 二地址指令
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-三地址指令">
+<span class="md-ellipsis">
+      
+        4. 三地址指令
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-四地址指令">
+<span class="md-ellipsis">
+      
+        5. 四地址指令
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-各类指令访存次数对比">
+<span class="md-ellipsis">
+      
+        6. 各类指令访存次数对比
       
     </span>
 </a>
@@ -487,65 +485,65 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#六最不经常使用算法lfu">
+<a class="md-nav__link" href="#四按指令长度分类">
 <span class="md-ellipsis">
       
-        六、最不经常使用算法（LFU）
+        四、按指令长度分类
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#七四种算法对比">
+<a class="md-nav__link" href="#五按操作码长度分类">
 <span class="md-ellipsis">
       
-        七、四种算法对比
+        五、按操作码长度分类
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#八考点总结">
+<a class="md-nav__link" href="#六按操作类型分类">
 <span class="md-ellipsis">
       
-        八、考点总结
+        六、按操作类型分类
       
     </span>
 </a>
-<nav aria-label="八、考点总结" class="md-nav">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点总结">
+<span class="md-ellipsis">
+      
+        考点总结
+      
+    </span>
+</a>
+<nav aria-label="考点总结" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#考点1lru的计数器规则">
+<a class="md-nav__link" href="#核心概念">
 <span class="md-ellipsis">
       
-        考点1：LRU的计数器规则
+        核心概念
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#考点2计数器位数">
+<a class="md-nav__link" href="#常见考点">
 <span class="md-ellipsis">
       
-        考点2：计数器位数
+        常见考点
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#考点3各算法的特点">
+<a class="md-nav__link" href="#易错点">
 <span class="md-ellipsis">
       
-        考点3：各算法的特点
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#考点4抖动现象">
-<span class="md-ellipsis">
-      
-        考点4：抖动现象
+        易错点
       
     </span>
 </a>
@@ -554,10 +552,10 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#九本节小结">
+<a class="md-nav__link" href="#本节小结">
 <span class="md-ellipsis">
       
-        九、本节小结
+        本节小结
       
     </span>
 </a>
@@ -566,11 +564,11 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../Cache%E5%86%99%E7%AD%96%E7%95%A5/">
+<a class="md-nav__link" href="../4.1.4%20%E6%89%A9%E5%B1%95%E6%93%8D%E4%BD%9C%E7%A0%81%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/">
 <span class="md-ellipsis">
     
   
-    Cache写策略
+    扩展操作码指令格式
   
 
     
@@ -579,19 +577,6 @@
 </li>
 </ul>
 </nav>
-</li>
-<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F/4.1.1%2B2%2B3%20%20%E6%8C%87%E4%BB%A4%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F/">
-<span class="md-ellipsis">
-    
-  
-    第四章：指令系统
-  
-
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</a>
 </li>
 </ul>
 </nav>
@@ -649,74 +634,83 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#一为什么需要替换算法">
+<a class="md-nav__link" href="#一指令的定义">
 <span class="md-ellipsis">
       
-        一、为什么需要替换算法？
+        一、指令的定义
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#二本节总览">
+<a class="md-nav__link" href="#二指令格式">
 <span class="md-ellipsis">
       
-        二、本节总览
+        二、指令格式
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#三随机算法rand">
+<a class="md-nav__link" href="#三按地址码数目分类">
 <span class="md-ellipsis">
       
-        三、随机算法（RAND）
+        三、按地址码数目分类
       
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#四先进先出算法fifo">
-<span class="md-ellipsis">
-      
-        四、先进先出算法（FIFO）
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#五近期最少使用算法lru">
-<span class="md-ellipsis">
-      
-        五、近期最少使用算法（LRU）★
-      
-    </span>
-</a>
-<nav aria-label="五、近期最少使用算法（LRU）★" class="md-nav">
+<nav aria-label="三、按地址码数目分类" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lru的计数器规则">
+<a class="md-nav__link" href="#1-零地址指令">
 <span class="md-ellipsis">
       
-        LRU的计数器规则
+        1. 零地址指令
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#一个重要的结论">
+<a class="md-nav__link" href="#2-一地址指令">
 <span class="md-ellipsis">
       
-        一个重要的结论
+        2. 一地址指令
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#lru的优缺点">
+<a class="md-nav__link" href="#3-二地址指令">
 <span class="md-ellipsis">
       
-        LRU的优缺点
+        3. 二地址指令
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-三地址指令">
+<span class="md-ellipsis">
+      
+        4. 三地址指令
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-四地址指令">
+<span class="md-ellipsis">
+      
+        5. 四地址指令
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-各类指令访存次数对比">
+<span class="md-ellipsis">
+      
+        6. 各类指令访存次数对比
       
     </span>
 </a>
@@ -725,65 +719,65 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#六最不经常使用算法lfu">
+<a class="md-nav__link" href="#四按指令长度分类">
 <span class="md-ellipsis">
       
-        六、最不经常使用算法（LFU）
+        四、按指令长度分类
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#七四种算法对比">
+<a class="md-nav__link" href="#五按操作码长度分类">
 <span class="md-ellipsis">
       
-        七、四种算法对比
+        五、按操作码长度分类
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#八考点总结">
+<a class="md-nav__link" href="#六按操作类型分类">
 <span class="md-ellipsis">
       
-        八、考点总结
+        六、按操作类型分类
       
     </span>
 </a>
-<nav aria-label="八、考点总结" class="md-nav">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点总结">
+<span class="md-ellipsis">
+      
+        考点总结
+      
+    </span>
+</a>
+<nav aria-label="考点总结" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#考点1lru的计数器规则">
+<a class="md-nav__link" href="#核心概念">
 <span class="md-ellipsis">
       
-        考点1：LRU的计数器规则
+        核心概念
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#考点2计数器位数">
+<a class="md-nav__link" href="#常见考点">
 <span class="md-ellipsis">
       
-        考点2：计数器位数
+        常见考点
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#考点3各算法的特点">
+<a class="md-nav__link" href="#易错点">
 <span class="md-ellipsis">
       
-        考点3：各算法的特点
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#考点4抖动现象">
-<span class="md-ellipsis">
-      
-        考点4：抖动现象
+        易错点
       
     </span>
 </a>
@@ -792,10 +786,10 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#九本节小结">
+<a class="md-nav__link" href="#本节小结">
 <span class="md-ellipsis">
       
-        九、本节小结
+        本节小结
       
     </span>
 </a>
@@ -807,97 +801,210 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/Estruswent/notebook/edit/master/docs/计算机组成原理/第三章：存储系统/Cache替换算法.md" rel="edit" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/Estruswent/notebook/edit/master/docs/计算机组成原理/第四章：指令系统/4.1.1+2+3  指令的基本格式.md" rel="edit" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
 </a>
-<a class="md-content__button md-icon" href="https://github.com/Estruswent/notebook/raw/master/docs/计算机组成原理/第三章：存储系统/Cache替换算法.md" title="View source of this page">
+<a class="md-content__button md-icon" href="https://github.com/Estruswent/notebook/raw/master/docs/计算机组成原理/第四章：指令系统/4.1.1+2+3  指令的基本格式.md" title="View source of this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
 </a>
-<h1 id="354-cache替换算法">3.5.4 Cache替换算法</h1>
+<h1 id="41123-指令的基本格式">4.1.1+2+3 指令的基本格式</h1>
 <h2 id="思维导图">思维导图</h2>
-<p><img alt="Cache替换算法思维导图" src="../cache_replace_images/page_28.png"/></p>
+<p><img alt="alt text" src="image.png"/></p>
 <hr/>
-<h2 id="一为什么需要替换算法">一、为什么需要替换算法？</h2>
-<p>前面讲过，当Cache满了之后，如果需要调入新的主存块，就必须选择Cache中的某一块替换出去。不同的替换策略会直接影响Cache的命中率。</p>
-<p>具体来说，替换算法要解决的问题是：<strong>Cache已满时，选择哪一块替换？</strong></p>
-<p>不同的映射方式对替换的要求也不同：</p>
+<h2 id="一指令的定义">一、指令的定义</h2>
+<p><strong>指令（又称机器指令）</strong> 是指示计算机执行某种操作的命令，是计算机运行的<strong>最小功能单位</strong>。</p>
+<p>一台计算机的所有指令的集合构成该机的<strong>指令系统</strong>，也称为<strong>指令集</strong>。一台计算机只能执行自己指令系统中的指令，不能执行其他系统的指令（如 x86、ARM 各自独立）。</p>
+<h2 id="二指令格式">二、指令格式</h2>
+<p>一条指令就是机器语言的一个语句，它是一组有意义的二进制代码。一条指令通常包括<strong>操作码字段</strong>和<strong>地址码字段</strong>两部分：</p>
+<p><img alt='指令格式结构图——操作码指明"做什么"，地址码指明"对谁操作"' src="../%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F_images/page_9.png"/></p>
 <ul>
-<li><strong>直接映射</strong>：不需要选择，主存块只能放到固定位置，直接替换即可</li>
-<li><strong>全相联映射</strong>：Cache满了需要在所有行中选择一块替换</li>
-<li><strong>组相联映射</strong>：Cache满了需要在对应分组内选择一块替换</li>
+<li><strong>操作码（OP）</strong>：指明"做什么"——停机中断、求反求补、加减乘除等</li>
+<li><strong>地址码（A）</strong>：指明"对谁进行操作"——不需要操作对象 / 需要1个 / 需要2个</li>
 </ul>
-<hr/>
-<h2 id="二本节总览">二、本节总览</h2>
-<p><img alt="Cache替换算法总览" src="../cache_replace_images/page_4.png"/></p>
-<p>本节介绍四种替换算法：随机算法（RAND）、先进先出算法（FIFO）、近期最少使用算法（LRU）、最不经常使用算法（LFU）。</p>
-<hr/>
-<h2 id="三随机算法rand">三、随机算法（RAND）</h2>
-<p><strong>随机算法</strong>：若Cache已满，则随机选择一块替换。</p>
-<p><img alt="随机算法示例" src="../cache_replace_images/page_5.png"/></p>
-<p>实现非常简单，随便选一个就行。但问题也很明显——完全没考虑局部性原理，命中率低，实际效果很不稳定。</p>
-<p>用PDF里的例子来说，4个Cache块，访问序列{1,2,3,4,1,2,5,1,2,3,4,5}，随机算法的命中率只有5/12，而且哪几次命中完全看运气。</p>
-<hr/>
-<h2 id="四先进先出算法fifo">四、先进先出算法（FIFO）</h2>
-<p><strong>先进先出算法</strong>：若Cache已满，则替换最先被调入Cache的块。</p>
-<p><img alt="FIFO算法示例" src="../cache_replace_images/page_6.png"/></p>
-<p>FIFO的实现也不复杂，最开始按#0→#1→#2→#3的顺序放入Cache，之后满了就轮流替换#0→#1→#2→#3。</p>
-<p>但FIFO有一个严重的问题——<strong>抖动现象</strong>。就是刚被替换出去的块，很快又被调入，然后又被替换，来回折腾。这说明FIFO依然没考虑局部性原理，最先被调入Cache的块也有可能是被频繁访问的。</p>
-<p>用同样的例子，FIFO的命中率只有2/12，比随机算法还差。</p>
-<hr/>
-<h2 id="五近期最少使用算法lru">五、近期最少使用算法（LRU）★</h2>
-<p><strong>近期最少使用算法</strong>：为每一个Cache块设置一个"计数器"，用于记录每个Cache块已经有多久没被访问了。当Cache满后替换"计数器"最大的。</p>
-<p><img alt="LRU算法示例" src="../cache_replace_images/page_20.png"/></p>
-<p>LRU是这一节最重要的算法，考研常考。它的核心思想基于<strong>局部性原理</strong>——近期被访问过的主存块，在不久的将来也很有可能被再次访问，因此淘汰最久没被访问过的块是合理的。</p>
-<h3 id="lru的计数器规则">LRU的计数器规则</h3>
-<p>每个Cache块的计数器初始为0，规则如下：</p>
-<p><strong>情况一：命中时</strong></p>
-<p>所命中的行的计数器清零，比其低的计数器加1，其余不变。</p>
-<p><strong>情况二：未命中且还有空闲行时</strong></p>
-<p>新装入的行的计数器置0，其余非空闲行全加1。</p>
-<p><strong>情况三：未命中且无空闲行时</strong></p>
-<p>计数值最大的行的信息块被淘汰，新装行的块的计数器置0，其余全加1。</p>
-<h3 id="一个重要的结论">一个重要的结论</h3>
+<p>一条指令可能包含 <strong>0个、1个、2个、3个、4个</strong> 地址码。根据地址码数目不同，可将指令分为零地址指令、一地址指令、二地址指令……</p>
+<h2 id="三按地址码数目分类">三、按地址码数目分类</h2>
+<h3 id="1-零地址指令">1. 零地址指令</h3>
+<p>格式：<code>OP</code></p>
+<ul>
+<li><strong>不需要操作数</strong>：如空操作、停机、关中断等</li>
+<li><strong>堆栈计算机</strong>：两个操作数隐含存放在栈顶和次栈顶，计算结果压回栈顶</li>
+</ul>
+<h3 id="2-一地址指令">2. 一地址指令</h3>
+<p>格式：<code>OP A₁</code></p>
+<p><strong>两种含义：</strong></p>
+<ul>
+<li>
+<p><strong>单操作数指令</strong>（加1、减1、取反、求补）：</p>
+<ul>
+<li><span class="arithmatex">\( OP(A_1) \rightarrow A_1 \)</span></li>
+<li>访存 3 次：取指 → 读 <span class="arithmatex">\(A_1\)</span> → 写 <span class="arithmatex">\(A_1\)</span></li>
+</ul>
+</li>
+<li>
+<p><strong>隐含 ACC 的双操作数指令</strong>：</p>
+<ul>
+<li><span class="arithmatex">\( (ACC) \ OP(A_1) \rightarrow ACC \)</span></li>
+<li>访存 2 次：取指 → 读 <span class="arithmatex">\(A_1\)</span></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-二地址指令">3. 二地址指令</h3>
+<p>格式：<code>OP A₁（目的） A₂（源）</code></p>
+<ul>
+<li><span class="arithmatex">\( (A_1) \ OP(A_2) \rightarrow A_1 \)</span></li>
+<li>访存 4 次：取指 → 读 <span class="arithmatex">\(A_1\)</span> → 读 <span class="arithmatex">\(A_2\)</span> → 写 <span class="arithmatex">\(A_1\)</span></li>
+</ul>
+<h3 id="4-三地址指令">4. 三地址指令</h3>
+<p>格式：<code>OP A₁ A₂ A₃（结果）</code></p>
+<ul>
+<li><span class="arithmatex">\( (A_1) \ OP(A_2) \rightarrow A_3 \)</span></li>
+<li>访存 4 次：取指 → 读 <span class="arithmatex">\(A_1\)</span> → 读 <span class="arithmatex">\(A_2\)</span> → 写 <span class="arithmatex">\(A_3\)</span></li>
+</ul>
+<h3 id="5-四地址指令">5. 四地址指令</h3>
+<p>格式：<code>OP A₁ A₂ A₃（结果） A₄（下址）</code></p>
+<ul>
+<li><span class="arithmatex">\( (A_1) \ OP(A_2) \rightarrow A_3 \)</span>，<span class="arithmatex">\( A_4 \)</span> = 下一条将要执行指令的地址</li>
+<li>访存 4 次：取指 → 读 <span class="arithmatex">\(A_1\)</span> → 读 <span class="arithmatex">\(A_2\)</span> → 写 <span class="arithmatex">\(A_3\)</span></li>
+</ul>
 <blockquote>
-<p>Cache块的总数 = <span class="arithmatex">\(2^n\)</span>，则计数器只需n位。且Cache装满后所有计数器的值一定不重复。</p>
+<p>正常情况下取指后 PC+1，而四地址指令执行后将 PC 修改为 <span class="arithmatex">\( A_4 \)</span> 所指地址。</p>
 </blockquote>
-<p>这个结论在选择题中经常出现。比如4个Cache块，计数器只需要2位，取值范围0~3，装满后四个计数器的值恰好是0、1、2、3各一个。</p>
-<h3 id="lru的优缺点">LRU的优缺点</h3>
-<p>LRU算法的实际运行效果优秀，Cache命中率高。但它也有局限性：若被频繁访问的主存块数量 &gt; Cache行的数量，则有可能发生"抖动"，比如访问序列{1,2,3,4,5,1,2,3,4,5,1,2...}。</p>
-<hr/>
-<h2 id="六最不经常使用算法lfu">六、最不经常使用算法（LFU）</h2>
-<p><strong>最不经常使用算法</strong>：为每一个Cache块设置一个"计数器"，用于记录每个Cache块被访问过几次。当Cache满后替换"计数器"最小的。</p>
-<p><img alt="LFU算法示例" src="../cache_replace_images/page_27.png"/></p>
-<p>LFU的思路是统计每个块被访问的总次数，替换访问次数最少的那个。新调入的块计数器=0，之后每被访问一次计数器+1。</p>
-<p>如果有多个计数器最小的行，可按行号递增、或FIFO策略进行选择。</p>
-<p>但LFU的问题在于：<strong>曾经被经常访问的主存块在未来不一定会用到</strong>。比如微信视频聊天相关的块，在视频聊天时被频繁访问，但关闭视频后就再也不会用到了，LFU还是会保留它。因此LFU并没有很好地遵循局部性原理，实际运行效果不如LRU。</p>
-<hr/>
-<h2 id="七四种算法对比">七、四种算法对比</h2>
-<p><strong>从命中率角度看</strong>：LRU &gt; LFU &gt; FIFO ≈ RAND</p>
-<p><strong>从实现复杂度角度看</strong>：RAND &lt; FIFO &lt; LFU &lt; LRU</p>
-<p>LRU虽然实现最复杂，但命中率最高，是实际应用中最常用的替换算法。</p>
-<hr/>
-<h2 id="八考点总结">八、考点总结</h2>
-<h3 id="考点1lru的计数器规则">考点1：LRU的计数器规则</h3>
-<p>这是本节最核心的考点。要能手动模拟LRU的替换过程，关键是记住三条规则：</p>
+<p><img alt="按地址码数目分类总结图" src="../%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F_images/page_17.png"/></p>
+<div class="admonition note">
+<p class="admonition-title">地址码位数的影响</p>
 <ul>
-<li>命中时：命中的行清零，比它低的加1，其余不变</li>
-<li>未命中有空闲：新装入的行置0，其余非空闲行加1</li>
-<li>未命中无空闲：计数器最大的淘汰，新装入的行置0，其余加1</li>
+<li><span class="arithmatex">\( n \)</span> 位地址码的直接寻址范围 <span class="arithmatex">\( = 2^n \)</span></li>
+<li>若指令总长度固定不变，则<strong>地址码数量越多，寻址能力越差</strong></li>
 </ul>
-<h3 id="考点2计数器位数">考点2：计数器位数</h3>
-<p>Cache块的总数 = <span class="arithmatex">\(2^n\)</span>，则计数器只需n位。且Cache装满后所有计数器的值一定不重复。</p>
-<h3 id="考点3各算法的特点">考点3：各算法的特点</h3>
+</div>
+<h3 id="6-各类指令访存次数对比">6. 各类指令访存次数对比</h3>
+<table>
+<thead>
+<tr>
+<th>指令类型</th>
+<th>格式</th>
+<th>含义</th>
+<th>访存次数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>零地址</td>
+<td><code>OP</code></td>
+<td>不需要操作数 / 堆栈隐含</td>
+<td>—</td>
+</tr>
+<tr>
+<td>一地址</td>
+<td><code>OP A₁</code></td>
+<td><span class="arithmatex">\( OP(A_1) \rightarrow A_1 \)</span> 或 <span class="arithmatex">\( (ACC) \ OP(A_1) \rightarrow ACC \)</span></td>
+<td>2~3次</td>
+</tr>
+<tr>
+<td>二地址</td>
+<td><code>OP A₁ A₂</code></td>
+<td><span class="arithmatex">\( (A_1) \ OP(A_2) \rightarrow A_1 \)</span></td>
+<td>4次</td>
+</tr>
+<tr>
+<td>三地址</td>
+<td><code>OP A₁ A₂ A₃</code></td>
+<td><span class="arithmatex">\( (A_1) \ OP(A_2) \rightarrow A_3 \)</span></td>
+<td>4次</td>
+</tr>
+<tr>
+<td>四地址</td>
+<td><code>OP A₁ A₂ A₃ A₄</code></td>
+<td><span class="arithmatex">\( (A_1) \ OP(A_2) \rightarrow A_3 \)</span>，<span class="arithmatex">\( A_4 \)</span> = 下址</td>
+<td>4次</td>
+</tr>
+</tbody>
+</table>
+<h2 id="四按指令长度分类">四、按指令长度分类</h2>
 <ul>
-<li><strong>RAND</strong>：实现简单，命中率低，效果不稳定</li>
-<li><strong>FIFO</strong>：实现简单，可能出现抖动，命中率低</li>
-<li><strong>LRU</strong>：基于局部性原理，命中率高，是最常用的算法</li>
-<li><strong>LFU</strong>：基于访问频率，但不如LRU，因为过去频繁不代表将来频繁</li>
+<li><strong>指令字长</strong>：一条指令的总长度（可能会变）</li>
+<li><strong>机器字长</strong>：CPU 进行一次整数运算所能处理的二进制数据的位数（通常和 ALU 直接相关）</li>
+<li><strong>存储字长</strong>：一个存储单元中的二进制代码位数（通常和 MDR 位数相同）</li>
 </ul>
-<h3 id="考点4抖动现象">考点4：抖动现象</h3>
-<p>FIFO和LRU都可能出现抖动。FIFO的抖动是因为没考虑局部性；LRU的抖动是因为被频繁访问的块数量超过了Cache容量。</p>
-<hr/>
-<h2 id="九本节小结">九、本节小结</h2>
-<p>Cache替换算法解决的是"Cache满了怎么办"的问题。四种算法中，LRU是重点，要掌握其计数器规则和手动模拟方法。记住LRU基于局部性原理，实际效果最好；LFU虽然也考虑了访问历史，但效果不如LRU。</p>
+<p>根据指令长度与机器字长的关系：<strong>半字长指令、单字长指令、双字长指令</strong>（指令长度是机器字长的多少倍）。</p>
+<blockquote>
+<p>指令字长会影响取指令所需时间。如：机器字长 = 存储字长 = 16bit，则取一条双字长指令需要<strong>两次访存</strong>。</p>
+</blockquote>
+<ul>
+<li><strong>定长指令字结构</strong>：所有指令长度都相等</li>
+<li><strong>变长指令字结构</strong>：各种指令长度不等</li>
+</ul>
+<h2 id="五按操作码长度分类">五、按操作码长度分类</h2>
+<ul>
+<li><strong>定长操作码</strong>：所有指令操作码长度相同，<span class="arithmatex">\( n \)</span> 位 → <span class="arithmatex">\( 2^n \)</span> 条指令。译码电路<strong>简单</strong>，灵活性低</li>
+<li><strong>可变长操作码</strong>：操作码长度可变。译码电路<strong>复杂</strong>，灵活性高</li>
+</ul>
+<blockquote>
+<p>定长指令字结构 + 可变长操作码 → <strong>扩展操作码指令格式</strong>（不同地址数的指令使用不同长度的操作码）。</p>
+</blockquote>
+<h2 id="六按操作类型分类">六、按操作类型分类</h2>
+<table>
+<thead>
+<tr>
+<th>操作类型</th>
+<th>说明</th>
+<th>典型指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据传送</td>
+<td>主存与 CPU 之间的数据传送</td>
+<td>LOAD、STORE</td>
+</tr>
+<tr>
+<td>算术逻辑操作</td>
+<td>加减乘除、与或非异或等</td>
+<td>—</td>
+</tr>
+<tr>
+<td>移位操作</td>
+<td>算术移位、逻辑移位、循环移位</td>
+<td>—</td>
+</tr>
+<tr>
+<td>转移操作</td>
+<td>改变程序执行顺序</td>
+<td>JMP、JZ、JO、JC、CALL、RETURN、Trap</td>
+</tr>
+<tr>
+<td>输入输出操作</td>
+<td>CPU 和 I/O 设备之间的数据传送</td>
+<td>端口读写</td>
+</tr>
+</tbody>
+</table>
+<h2 id="考点总结">考点总结</h2>
+<h3 id="核心概念">核心概念</h3>
+<ul>
+<li>指令 = 操作码 + 地址码，是计算机运行的最小功能单位</li>
+<li>地址码数目决定指令类型（零地址 ~ 四地址）</li>
+<li>指令字长、机器字长、存储字长三者的区别与联系</li>
+</ul>
+<h3 id="常见考点">常见考点</h3>
+<ol>
+<li>各类指令的<strong>访存次数计算</strong>（一地址指令的两种情况）</li>
+<li>地址码位数与寻址范围的关系：<span class="arithmatex">\( n \)</span> 位 → 直接寻址范围 <span class="arithmatex">\( 2^n \)</span></li>
+<li>定长 vs 变长指令字结构、定长 vs 可变长操作码的对比</li>
+<li>指令字长对取指时间的影响</li>
+</ol>
+<h3 id="易错点">易错点</h3>
+<div class="admonition warning">
+<p class="admonition-title">常见错误</p>
+<ol>
+<li>一地址指令的两种含义容易混淆：单操作数指令 vs 隐含 ACC 的双操作数指令</li>
+<li>四地址指令中 <span class="arithmatex">\( A_4 \)</span> 是<strong>下一条指令的地址</strong>，而非操作数地址</li>
+<li>地址码位数影响的是<strong>直接寻址范围</strong>，不是指令的总寻址能力</li>
+<li>取指令的访存次数容易被遗漏——所有指令都需要至少 1 次取指访存</li>
+</ol>
+</div>
+<h2 id="本节小结">本节小结</h2>
+<p>指令系统是计算机硬件与软件的接口。本节从指令的基本格式出发，介绍了指令的定义、操作码与地址码的结构，重点分析了按地址码数目分类（零地址 ~ 四地址指令）的格式与含义，以及按指令长度、操作码长度、操作类型的分类方式。核心要点是理解各类指令的访存次数差异和地址码位数对寻址范围的影响。</p>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
@@ -909,7 +1016,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Previous: Cache和主存的映射方式" class="md-footer__link md-footer__link--prev" href="../Cache%E5%92%8C%E4%B8%BB%E5%AD%98%E7%9A%84%E6%98%A0%E5%B0%84%E6%96%B9%E5%BC%8F/">
+<a aria-label="Previous: Cache写策略" class="md-footer__link md-footer__link--prev" href="../../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/Cache%E5%86%99%E7%AD%96%E7%95%A5/">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
 </div>
@@ -918,17 +1025,17 @@
                 Previous
               </span>
 <div class="md-ellipsis">
-                Cache和主存的映射方式
+                Cache写策略
               </div>
 </div>
 </a>
-<a aria-label="Next: Cache写策略" class="md-footer__link md-footer__link--next" href="../Cache%E5%86%99%E7%AD%96%E7%95%A5/">
+<a aria-label="Next: 扩展操作码指令格式" class="md-footer__link md-footer__link--next" href="../4.1.4%20%E6%89%A9%E5%B1%95%E6%93%8D%E4%BD%9C%E7%A0%81%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/">
 <div class="md-footer__title">
 <span class="md-footer__direction">
                 Next
               </span>
 <div class="md-ellipsis">
-                Cache写策略
+                扩展操作码指令格式
               </div>
 </div>
 <div class="md-footer__button md-icon">

@@ -1,0 +1,1375 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="This is E5trusw3nt's Notebook" name="description"/>
+<meta content="E5trusw3nt" name="author"/>
+<link href="../4.2.1%20%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80/" rel="prev"/>
+<link href="../../../%E5%86%99%E4%BD%9C/latex/" rel="next"/>
+<link href="../../../style/images/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.6" name="generator"/>
+<title>数据寻址 - E5trusw3nt's Notebook</title>
+<link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=JetBrains+Mono,+LXGW+WenKai+Mono+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"JetBrains Mono, LXGW WenKai Mono GB Screen";--md-code-font:"JetBrains Mono"}</style>
+<link href="../../../style/css/img.css" rel="stylesheet"/>
+<link href="../../../style/css/code.css" rel="stylesheet"/>
+<link href="../../../style/css/table.css" rel="stylesheet"/>
+<link href="../../../style/css/fonts.css" rel="stylesheet"/>
+<link href="../../../style/css/mermaid.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="black" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#422-数据寻址">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="E5trusw3nt's Notebook" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../../style/images/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            E5trusw3nt's Notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              数据寻址
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="black" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/TimeComplexity/">
+          
+  
+  
+    
+  
+  Computer Science
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../%E5%86%99%E4%BD%9C/latex/">
+          
+  
+  
+    
+  
+  Writing
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../%E5%85%B6%E5%AE%83/Matplotlib/">
+          
+  
+  
+    
+  
+  Others
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="E5trusw3nt's Notebook" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="E5trusw3nt's Notebook">
+<img alt="logo" src="../../../style/images/logo.png"/>
+</a>
+    E5trusw3nt's Notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Estruswent/notebook" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+<span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-ellipsis">
+    
+  
+    Computer Science
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Computer Science
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/TimeComplexity/">
+<span class="md-ellipsis">
+    
+  
+    数据结构基础
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/NPC/">
+<span class="md-ellipsis">
+    
+  
+    高级数据结构
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/Lecture1/">
+<span class="md-ellipsis">
+    
+  
+    数据库系统
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/Lecture0/">
+<span class="md-ellipsis">
+    
+  
+    面向对象程序设计
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../%E8%84%91%E6%9C%BA%E6%8E%A5%E5%8F%A3%E7%AE%97%E6%B3%95%E5%8F%8A%E5%AE%9E%E8%B7%B5/Lecture0/">
+<span class="md-ellipsis">
+    
+  
+    脑机接口算法及实践
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    计算机组成原理
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_6_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_6">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    计算机组成原理
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E6%95%B0%E5%88%B6%E4%B8%8E%E7%BC%96%E7%A0%81/">
+<span class="md-ellipsis">
+    
+  
+    第二章：数据的表示和运算
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../%E7%AC%AC%E4%B8%89%E7%AB%A0/Cache%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/">
+<span class="md-ellipsis">
+    
+  
+    第三章：存储系统
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_6_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_6_3" id="__nav_2_6_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    第四章：指令系统
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_6_3_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_6_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    第四章：指令系统
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../4.1.1%2B2%2B3%20%20%E6%8C%87%E4%BB%A4%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F/">
+<span class="md-ellipsis">
+    
+  
+    指令的基本格式
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../4.1.4%20%E6%89%A9%E5%B1%95%E6%93%8D%E4%BD%9C%E7%A0%81%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F/">
+<span class="md-ellipsis">
+    
+  
+    扩展操作码指令格式
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../4.2.1%20%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80/">
+<span class="md-ellipsis">
+    
+  
+    指令寻址
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    数据寻址
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    数据寻址
+  
+
+    
+  </span>
+</a>
+<nav aria-label="index" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      index
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#总览">
+<span class="md-ellipsis">
+      
+        总览
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#一数据寻址概述">
+<span class="md-ellipsis">
+      
+        一、数据寻址概述
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#二隐含寻址">
+<span class="md-ellipsis">
+      
+        二、隐含寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#三立即寻址">
+<span class="md-ellipsis">
+      
+        三、立即寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#四直接寻址">
+<span class="md-ellipsis">
+      
+        四、直接寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#五间接寻址">
+<span class="md-ellipsis">
+      
+        五、间接寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#六寄存器寻址">
+<span class="md-ellipsis">
+      
+        六、寄存器寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#七寄存器间接寻址">
+<span class="md-ellipsis">
+      
+        七、寄存器间接寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#八基址寻址">
+<span class="md-ellipsis">
+      
+        八、基址寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#九变址寻址">
+<span class="md-ellipsis">
+      
+        九、变址寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#十基址变址复合寻址">
+<span class="md-ellipsis">
+      
+        十、基址变址复合寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#十一相对寻址">
+<span class="md-ellipsis">
+      
+        十一、相对寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#十二偏移寻址总结">
+<span class="md-ellipsis">
+      
+        十二、偏移寻址总结
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#十三堆栈寻址">
+<span class="md-ellipsis">
+      
+        十三、堆栈寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点总结">
+<span class="md-ellipsis">
+      
+        考点总结
+      
+    </span>
+</a>
+<nav aria-label="考点总结" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#核心概念">
+<span class="md-ellipsis">
+      
+        核心概念
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#常见考点">
+<span class="md-ellipsis">
+      
+        常见考点
+      
+    </span>
+</a>
+<nav aria-label="常见考点" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点1各种寻址方式的有效地址计算">
+<span class="md-ellipsis">
+      
+        考点1：各种寻址方式的有效地址计算
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点2各种寻址方式的访存次数">
+<span class="md-ellipsis">
+      
+        考点2：各种寻址方式的访存次数
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点3基址寻址与变址寻址的对比">
+<span class="md-ellipsis">
+      
+        考点3：基址寻址与变址寻址的对比
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点4相对寻址的特点与应用">
+<span class="md-ellipsis">
+      
+        考点4：相对寻址的特点与应用
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点5堆栈寻址的入栈和出栈操作">
+<span class="md-ellipsis">
+      
+        考点5：堆栈寻址的入栈和出栈操作
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点6各种寻址方式的特点对比">
+<span class="md-ellipsis">
+      
+        考点6：各种寻址方式的特点对比
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#易错点">
+<span class="md-ellipsis">
+      
+        易错点
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#本节小结">
+<span class="md-ellipsis">
+      
+        本节小结
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../%E5%86%99%E4%BD%9C/latex/">
+<span class="md-ellipsis">
+    
+  
+    Writing
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../%E5%85%B6%E5%AE%83/Matplotlib/">
+<span class="md-ellipsis">
+    
+  
+    Others
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="index" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      index
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#总览">
+<span class="md-ellipsis">
+      
+        总览
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#一数据寻址概述">
+<span class="md-ellipsis">
+      
+        一、数据寻址概述
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#二隐含寻址">
+<span class="md-ellipsis">
+      
+        二、隐含寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#三立即寻址">
+<span class="md-ellipsis">
+      
+        三、立即寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#四直接寻址">
+<span class="md-ellipsis">
+      
+        四、直接寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#五间接寻址">
+<span class="md-ellipsis">
+      
+        五、间接寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#六寄存器寻址">
+<span class="md-ellipsis">
+      
+        六、寄存器寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#七寄存器间接寻址">
+<span class="md-ellipsis">
+      
+        七、寄存器间接寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#八基址寻址">
+<span class="md-ellipsis">
+      
+        八、基址寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#九变址寻址">
+<span class="md-ellipsis">
+      
+        九、变址寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#十基址变址复合寻址">
+<span class="md-ellipsis">
+      
+        十、基址变址复合寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#十一相对寻址">
+<span class="md-ellipsis">
+      
+        十一、相对寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#十二偏移寻址总结">
+<span class="md-ellipsis">
+      
+        十二、偏移寻址总结
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#十三堆栈寻址">
+<span class="md-ellipsis">
+      
+        十三、堆栈寻址
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点总结">
+<span class="md-ellipsis">
+      
+        考点总结
+      
+    </span>
+</a>
+<nav aria-label="考点总结" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#核心概念">
+<span class="md-ellipsis">
+      
+        核心概念
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#常见考点">
+<span class="md-ellipsis">
+      
+        常见考点
+      
+    </span>
+</a>
+<nav aria-label="常见考点" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点1各种寻址方式的有效地址计算">
+<span class="md-ellipsis">
+      
+        考点1：各种寻址方式的有效地址计算
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点2各种寻址方式的访存次数">
+<span class="md-ellipsis">
+      
+        考点2：各种寻址方式的访存次数
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点3基址寻址与变址寻址的对比">
+<span class="md-ellipsis">
+      
+        考点3：基址寻址与变址寻址的对比
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点4相对寻址的特点与应用">
+<span class="md-ellipsis">
+      
+        考点4：相对寻址的特点与应用
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点5堆栈寻址的入栈和出栈操作">
+<span class="md-ellipsis">
+      
+        考点5：堆栈寻址的入栈和出栈操作
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#考点6各种寻址方式的特点对比">
+<span class="md-ellipsis">
+      
+        考点6：各种寻址方式的特点对比
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#易错点">
+<span class="md-ellipsis">
+      
+        易错点
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#本节小结">
+<span class="md-ellipsis">
+      
+        本节小结
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/Estruswent/notebook/edit/master/docs/计算机组成原理/第四章/4.2.2 数据寻址.md" rel="edit" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
+</a>
+<a class="md-content__button md-icon" href="https://github.com/Estruswent/notebook/raw/master/docs/计算机组成原理/第四章/4.2.2 数据寻址.md" title="View source of this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
+</a>
+<h1 id="422-数据寻址">4.2.2 数据寻址</h1>
+<h2 id="总览">总览</h2>
+<p><img alt="指令寻址vs数据寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr1_page_2.png"/></p>
+<hr/>
+<h2 id="一数据寻址概述">一、数据寻址概述</h2>
+<p>指令寻址确定的是<strong>下一条欲执行指令的指令地址</strong>，始终由程序计数器PC给出，分为顺序寻址和跳跃寻址两种方式。</p>
+<p>数据寻址确定的是<strong>本条指令的地址码指明的真实地址</strong>，即求出操作数的真实地址，称为<strong>有效地址（EA）</strong>。</p>
+<p><img alt="数据寻址概述" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr1_page_5.png"/></p>
+<p><strong>指令格式：</strong></p>
+<p>一地址指令：操作码（OP） + 寻址特征 + 形式地址（A）</p>
+<p>二地址指令：操作码（OP） + 寻址特征 + 形式地址（A₁） + 寻址特征 + 形式地址（A₂）</p>
+<blockquote>
+<p><strong>核心定义：</strong> 数据寻址的核心是根据指令中的形式地址A，通过不同的寻址方式，求出操作数的<strong>有效地址EA</strong>。</p>
+</blockquote>
+<h2 id="二隐含寻址">二、隐含寻址</h2>
+<p>隐含寻址不是明显地给出操作数的地址，而是在指令中隐含着操作数的地址。</p>
+<p><img alt="隐含寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr1_page_11.png"/></p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>优点</strong>：有利于缩短指令字长</li>
+<li><strong>缺点</strong>：需增加存储操作数或隐含地址的硬件</li>
+</ul>
+<h2 id="三立即寻址">三、立即寻址</h2>
+<p>立即寻址是指形式地址A就是操作数本身，又称为立即数，一般采用补码形式。#表示立即寻址特征。</p>
+<p><img alt="立即寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr1_page_12.png"/></p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>优点</strong>：指令执行阶段不访问主存，指令执行时间最短</li>
+<li><strong>缺点</strong>：A的位数限制了立即数的范围</li>
+<li>如A的位数为 <span class="arithmatex">\( n \)</span>，且立即数采用补码时，可表示的数据范围为 <span class="arithmatex">\( -2^{n-1} \sim 2^{n-1} - 1 \)</span></li>
+</ul>
+<h2 id="四直接寻址">四、直接寻址</h2>
+<p>直接寻址是指指令字中的形式地址A就是操作数的真实地址EA，即 <span class="arithmatex">\( EA = A \)</span>。</p>
+<p><img alt="直接寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr1_page_6.png"/></p>
+<p><strong>一条指令的执行：</strong></p>
+<ul>
+<li>取指令：访存1次</li>
+<li>执行指令：访存1次</li>
+<li>暂不考虑存结果</li>
+<li>共访存2次</li>
+</ul>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>优点</strong>：简单，指令执行阶段仅访问一次主存，不需专门计算操作数的地址</li>
+<li><strong>缺点</strong>：<ul>
+<li>A的位数决定了该指令操作数的寻址范围</li>
+<li>操作数的地址不易修改</li>
+</ul>
+</li>
+</ul>
+<h2 id="五间接寻址">五、间接寻址</h2>
+<p>间接寻址是指指令的地址字段给出的形式地址不是操作数的真正地址，而是操作数有效地址所在的存储单元的地址，也就是操作数地址的地址，即 <span class="arithmatex">\( EA = (A) \)</span>。</p>
+<p><img alt="间接寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr1_page_7.png"/></p>
+<p><strong>一次间址的执行过程：</strong></p>
+<ul>
+<li>取指令：访存1次</li>
+<li>执行指令：访存2次（第一次取有效地址，第二次取操作数）</li>
+<li>暂不考虑存结果</li>
+<li>共访存3次</li>
+</ul>
+<p><img alt="间接寻址的多次间址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr1_page_8.png"/></p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>优点</strong>：<ul>
+<li>可扩大寻址范围（有效地址EA的位数大于形式地址A的位数）</li>
+<li>便于编制程序（用间接寻址可以方便地完成子程序返回）</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：指令在执行阶段要多次访存（一次间址需两次访存，多次寻址需根据存储字的最高位确定几次访存）</li>
+</ul>
+<h2 id="六寄存器寻址">六、寄存器寻址</h2>
+<p>寄存器寻址是指在指令字中直接给出操作数所在的寄存器编号，即 <span class="arithmatex">\( EA = R_i \)</span>，其操作数在由 <span class="arithmatex">\( R_i \)</span> 所指的寄存器内。</p>
+<p><img alt="寄存器寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr1_page_9.png"/></p>
+<p><strong>一条指令的执行：</strong></p>
+<ul>
+<li>取指令：访存1次</li>
+<li>执行指令：访存0次（只访问寄存器）</li>
+<li>暂不考虑存结果</li>
+<li>共访存1次</li>
+</ul>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>优点</strong>：指令在执行阶段不访问主存，只访问寄存器，指令字短且执行速度快，支持向量/矩阵运算</li>
+<li><strong>缺点</strong>：寄存器价格昂贵，计算机中寄存器个数有限</li>
+</ul>
+<h2 id="七寄存器间接寻址">七、寄存器间接寻址</h2>
+<p>寄存器间接寻址是指寄存器 <span class="arithmatex">\( R_i \)</span> 中给出的不是一个操作数，而是操作数所在主存单元的地址，即 <span class="arithmatex">\( EA = (R_i) \)</span>。</p>
+<p><img alt="寄存器间接寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr1_page_10.png"/></p>
+<p><strong>一条指令的执行：</strong></p>
+<ul>
+<li>取指令：访存1次</li>
+<li>执行指令：访存1次（访问寄存器取地址，再访问主存取操作数）</li>
+<li>暂不考虑存结果</li>
+<li>共访存2次</li>
+</ul>
+<p><strong>特点：</strong></p>
+<ul>
+<li>与一般间接寻址相比速度更快，但指令的执行阶段需要访问主存（因为操作数在主存中）</li>
+</ul>
+<h2 id="八基址寻址">八、基址寻址</h2>
+<p>基址寻址是将CPU中基址寄存器（BR）的内容加上指令格式中的形式地址A，而形成操作数的有效地址，即 <span class="arithmatex">\( EA = (BR) + A \)</span>。</p>
+<p><img alt="基址寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_5.png"/></p>
+<p><strong>两种实现方式：</strong></p>
+<ul>
+<li><strong>采用专用寄存器BR作为基址寄存器</strong></li>
+<li><strong>采用通用寄存器作为基址寄存器</strong>（需在指令中指明将哪个通用寄存器作为基址寄存器使用）</li>
+</ul>
+<p><img alt="基址寻址的作用" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_6.png"/></p>
+<p><img alt="基址寻址便于程序浮动" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_7.png"/></p>
+<p><strong>注：</strong> 基址寄存器是面向操作系统的，其内容由操作系统或管理程序确定。在程序执行过程中，基址寄存器的内容不变（作为基地址），形式地址可变（作为偏移量）。</p>
+<p>当采用通用寄存器作为基址寄存器时，可由用户决定哪个寄存器作为基址寄存器，但其内容仍由操作系统确定。</p>
+<p><img alt="基址寻址总结" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_8.png"/></p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>优点</strong>：可扩大寻址范围（基址寄存器的位数大于形式地址A的位数）；用户不必考虑自己的程序存于主存的哪一空间区域，故有利于多道程序设计，以及可用于编制浮动程序（整个程序在内存里边的浮动）</li>
+<li><strong>应用</strong>：便于程序"浮动"，方便实现多道程序并发运行</li>
+</ul>
+<h2 id="九变址寻址">九、变址寻址</h2>
+<p>变址寻址是有效地址EA等于指令字中的形式地址A与变址寄存器IX的内容相加之和，即 <span class="arithmatex">\( EA = (IX) + A \)</span>，其中IX可为变址寄存器（专用），也可用通用寄存器作为变址寄存器。</p>
+<p><img alt="变址寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_9.png"/></p>
+<p><strong>与基址寻址的区别：</strong></p>
+<ul>
+<li><strong>变址寄存器</strong>是面向用户的，在程序执行过程中，变址寄存器的内容可由用户改变（IX作为偏移量），形式地址A不变（作为基地址）</li>
+<li><strong>基址寻址</strong>中，BR保持不变作为基地址，A作为偏移量</li>
+</ul>
+<p><img alt="变址寻址的作用——数组处理" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_10.png"/></p>
+<p><img alt="变址寻址的实现" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_11.png"/></p>
+<p><strong>注：</strong> 此处未添加"寻址特征"位，但实际上每条指令都会指明寻址方式。此处讲解仅用口头描述。</p>
+<p><img alt="变址寻址总结" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_12.png"/></p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>优点</strong>：在数组处理过程中，可设定A为数组的首地址，不断改变变址寄存器IX的内容，便可很容易形成数组中任一数据的地址，特别适合编制循环程序</li>
+</ul>
+<h2 id="十基址变址复合寻址">十、基址变址复合寻址</h2>
+<p>基址寻址和变址寻址可以复合使用（可理解为复合函数）。</p>
+<p><strong>先基址后变址寻址：</strong> <span class="arithmatex">\( EA = (IX) + (BR) + A \)</span></p>
+<p><img alt="基址变址复合寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_13.png"/></p>
+<h2 id="十一相对寻址">十一、相对寻址</h2>
+<p>相对寻址是把程序计数器PC的内容加上指令格式中的形式地址A而形成操作数的有效地址，即 <span class="arithmatex">\( EA = (PC) + A \)</span>，其中A是相对于PC所指地址的位移量，可正可负，补码表示。</p>
+<p><img alt="相对寻址" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_14.png"/></p>
+<p><strong>取出当前指令后，PC会指向下一条指令：</strong></p>
+<ul>
+<li>当前指令存放地址=1000</li>
+<li>若当前指令字长=2B，则PC+2</li>
+<li>若当前指令字长=4B，则PC+4</li>
+<li>因此取出当前指令后PC可能为 1002 or 1004</li>
+</ul>
+<p><img alt="相对寻址的作用——程序浮动" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_15.png"/></p>
+<p><img alt="直接寻址的问题" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_16.png"/></p>
+<p><img alt="相对寻址的优点" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_17.png"/></p>
+<p><img alt="相对寻址总结" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_18.png"/></p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><strong>优点</strong>：操作数的地址不是固定的，它随着PC值的变化而变化，并且与指令地址之间总是相差一个固定值，因此便于程序浮动（一段代码在程序内部的浮动）</li>
+<li><strong>应用</strong>：相对寻址广泛应用于转移指令</li>
+</ul>
+<h2 id="十二偏移寻址总结">十二、偏移寻址总结</h2>
+<p>偏移寻址都属于"以某个地址作为起点，形式地址视为偏移量"的寻址方式。</p>
+<p><img alt="偏移寻址总结" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr2_page_4.png"/></p>
+<p><strong>三种偏移寻址的区别在于偏移的"起点"不一样：</strong></p>
+<ul>
+<li><strong>基址寻址</strong>：<span class="arithmatex">\( EA = (BR) + A \)</span>，以程序的起始存放地址作为"起点"</li>
+<li><strong>变址寻址</strong>：<span class="arithmatex">\( EA = (IX) + A \)</span>，程序员自己决定从哪里作为"起点"</li>
+<li><strong>相对寻址</strong>：<span class="arithmatex">\( EA = (PC) + A \)</span>，以程序计数器PC所指地址作为"起点"</li>
+</ul>
+<h2 id="十三堆栈寻址">十三、堆栈寻址</h2>
+<p>堆栈寻址是指操作数存放在堆栈中，隐含使用堆栈指针（SP）作为操作数地址。</p>
+<p>堆栈是存储器（或专用寄存器组）中一块特定的按"后进先出（LIFO）"原则管理的存储区，该存储区中被读/写单元的地址是用一个特定的寄存器给出的，该寄存器称为堆栈指针（SP）。</p>
+<p><img alt="堆栈寻址基本概念" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr3_page_3.png"/></p>
+<p><strong>完成一次加法的过程：</strong></p>
+<p><img alt="堆栈寻址——POP操作" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr3_page_4.png"/></p>
+<p><img alt="堆栈寻址——POP和ADD操作" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr3_page_5.png"/></p>
+<p><img alt="堆栈寻址——PUSH操作" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr3_page_6.png"/></p>
+<p><strong>入栈和出栈的方向：</strong></p>
+<p><img alt="堆栈寻址——入栈出栈方向" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr3_page_7.png"/></p>
+<p><strong>硬堆栈与软堆栈：</strong></p>
+<p><img alt="硬堆栈与软堆栈" src="../%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80_images/addr3_page_8.png"/></p>
+<ul>
+<li><strong>硬堆栈</strong>：成本高，不访问主存</li>
+<li><strong>软堆栈</strong>：成本低，需要访问主存</li>
+</ul>
+<p>堆栈可用于函数调用时保存当前函数的相关信息（可参考数据结构"算法空间复杂度"的视频）。</p>
+<h2 id="考点总结">考点总结</h2>
+<h3 id="核心概念">核心概念</h3>
+<ol>
+<li><strong>数据寻址的定义</strong>：根据指令中的形式地址A，通过不同的寻址方式，求出操作数的有效地址EA</li>
+<li><strong>有效地址（EA）</strong>：操作数的真实地址</li>
+<li><strong>形式地址（A）</strong>：指令地址码字段给出的地址</li>
+<li><strong>寻址特征</strong>：指示采用何种寻址方式的字段</li>
+<li><strong>访存次数</strong>：不同寻址方式在指令执行期间访问主存的次数不同</li>
+<li><strong>偏移寻址</strong>：基址寻址、变址寻址、相对寻址的统称，共同点是以某个地址为起点，形式地址为偏移量</li>
+</ol>
+<h3 id="常见考点">常见考点</h3>
+<h4 id="考点1各种寻址方式的有效地址计算">考点1：各种寻址方式的有效地址计算</h4>
+<p>给定指令和相关寄存器值，计算不同寻址方式下的有效地址。</p>
+<div class="admonition example">
+<p class="admonition-title">典型计算题</p>
+<p><strong>题目</strong>：假设指令字长=机器字长=存储字长，形式地址A=1000，寄存器R₁=2000，基址寄存器BR=3000，变址寄存器IX=500，当前PC=4000（已取指后）。求各种寻址方式的有效地址。</p>
+<p><strong>解答：</strong></p>
+<ul>
+<li>立即寻址：EA无意义，操作数=A=1000</li>
+<li>直接寻址：EA=A=1000</li>
+<li>间接寻址：EA=(A)=(1000)，即访问地址1000处的内容</li>
+<li>寄存器寻址：EA=R₁=2000</li>
+<li>寄存器间接寻址：EA=(R₁)=(2000)，即访问地址2000处的内容</li>
+<li>基址寻址：EA=(BR)+A=3000+1000=4000</li>
+<li>变址寻址：EA=(IX)+A=500+1000=1500</li>
+<li>相对寻址：EA=(PC)+A=4000+1000=5000</li>
+</ul>
+</div>
+<h4 id="考点2各种寻址方式的访存次数">考点2：各种寻址方式的访存次数</h4>
+<p>不同寻址方式在指令执行期间访问主存的次数不同，这是考研重点。</p>
+<div class="admonition example">
+<p class="admonition-title">典型计算题</p>
+<p><strong>题目</strong>：分析各种寻址方式在指令执行期间的访存次数（不考虑取指令和存结果）。</p>
+<p><strong>解答：</strong></p>
+<ul>
+<li>隐含寻址：0次（操作数在寄存器中隐含给出）</li>
+<li>立即寻址：0次（操作数在指令中直接给出）</li>
+<li>直接寻址：1次（访问主存取操作数）</li>
+<li>一次间接寻址：2次（第一次访问主存取有效地址，第二次访问主存取操作数）</li>
+<li>寄存器寻址：0次（操作数在寄存器中）</li>
+<li>寄存器间接寻址：1次（访问寄存器取地址，再访问主存取操作数）</li>
+<li>基址寻址：1次（访问主存取操作数）</li>
+<li>变址寻址：1次（访问主存取操作数）</li>
+<li>相对寻址：1次（访问主存取操作数）</li>
+<li>堆栈寻址：0次（硬堆栈）或1次（软堆栈）</li>
+</ul>
+</div>
+<h4 id="考点3基址寻址与变址寻址的对比">考点3：基址寻址与变址寻址的对比</h4>
+<p>基址寻址和变址寻址都是偏移寻址，但有本质区别。</p>
+<table>
+<thead>
+<tr>
+<th>比较项</th>
+<th>基址寻址</th>
+<th>变址寻址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>有效地址</strong></td>
+<td><span class="arithmatex">\( EA = (BR) + A \)</span></td>
+<td><span class="arithmatex">\( EA = (IX) + A \)</span></td>
+</tr>
+<tr>
+<td><strong>面向对象</strong></td>
+<td>面向操作系统</td>
+<td>面向用户</td>
+</tr>
+<tr>
+<td><strong>内容变化</strong></td>
+<td>BR内容不变（作为基地址）</td>
+<td>IX内容可变（作为偏移量）</td>
+</tr>
+<tr>
+<td><strong>形式地址</strong></td>
+<td>A可变（作为偏移量）</td>
+<td>A不变（作为基地址）</td>
+</tr>
+<tr>
+<td><strong>主要用途</strong></td>
+<td>多道程序设计、程序浮动</td>
+<td>数组处理、循环程序</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition example">
+<p class="admonition-title">理解题</p>
+<p><strong>题目</strong>：为什么基址寻址适合多道程序设计，而变址寻址适合数组处理？</p>
+<p><strong>解答：</strong></p>
+<ul>
+<li><strong>基址寻址</strong>：BR由操作系统设置，指向程序的起始地址。当程序在内存中浮动时，只需修改BR的值，无需修改程序中的指令。这对于多道程序并发运行非常有利。</li>
+<li><strong>变址寻址</strong>：A为数组首地址，IX作为数组下标的偏移量。通过改变IX的值，可以方便地访问数组中的不同元素，特别适合编制循环程序处理数组。</li>
+</ul>
+</div>
+<h4 id="考点4相对寻址的特点与应用">考点4：相对寻址的特点与应用</h4>
+<p>相对寻址是转移指令常用的寻址方式，理解其特点是考研重点。</p>
+<div class="admonition example">
+<p class="admonition-title">典型分析题</p>
+<p><strong>题目</strong>：为什么相对寻址广泛应用于转移指令？相对寻址如何实现程序浮动？</p>
+<p><strong>解答：</strong></p>
+<ul>
+<li><strong>相对寻址的特点</strong>：<span class="arithmatex">\( EA = (PC) + A \)</span>，操作数的地址与当前指令地址之间总是相差一个固定值A</li>
+<li><strong>程序浮动</strong>：当一段代码在程序内部移动时，由于操作数地址与指令地址的相对位置不变，转移指令的地址码A无需修改</li>
+<li><strong>转移指令应用</strong>：条件转移、无条件转移等指令常用相对寻址，便于实现循环和分支</li>
+</ul>
+</div>
+<h4 id="考点5堆栈寻址的入栈和出栈操作">考点5：堆栈寻址的入栈和出栈操作</h4>
+<p>堆栈寻址是考研重点，需要理解入栈和出栈的操作过程。</p>
+<div class="admonition example">
+<p class="admonition-title">操作分析题</p>
+<p><strong>题目</strong>：分析堆栈寻址中PUSH和POP操作的过程，说明SP的变化。</p>
+<p><strong>解答：</strong></p>
+<ul>
+<li>
+<p><strong>入栈（PUSH）操作</strong>：</p>
+<ol>
+<li>先修改堆栈指针：<span class="arithmatex">\( (SP) - 1 \rightarrow SP \)</span>（假设堆栈向低地址生长）</li>
+<li>将数据压入栈顶：<span class="arithmatex">\( (Y) \rightarrow M_{sp} \)</span></li>
+</ol>
+</li>
+<li>
+<p><strong>出栈（POP）操作</strong>：</p>
+<ol>
+<li>先将栈顶数据弹出：<span class="arithmatex">\( (M_{sp}) \rightarrow ACC \)</span></li>
+<li>再修改堆栈指针：<span class="arithmatex">\( (SP) + 1 \rightarrow SP \)</span></li>
+</ol>
+</li>
+<li>
+<p><strong>关键点</strong>：入栈先减SP，出栈先弹数据再加SP（取决于堆栈生长方向）</p>
+</li>
+</ul>
+</div>
+<h4 id="考点6各种寻址方式的特点对比">考点6：各种寻址方式的特点对比</h4>
+<p>掌握各种寻址方式的特点，能够根据题目要求选择合适的寻址方式。</p>
+<div class="admonition example">
+<p class="admonition-title">设计题</p>
+<p><strong>题目</strong>：某计算机需要实现以下功能，请选择合适的寻址方式：</p>
+<p>a) 访问固定地址的操作数
+b) 处理数组中的不同元素
+c) 实现程序在内存中的浮动
+d) 减少指令字长，加快指令执行速度</p>
+<p><strong>解答：</strong></p>
+<p>a) <strong>直接寻址</strong>：EA=A，适合访问固定地址的操作数
+b) <strong>变址寻址</strong>：EA=(IX)+A，A为数组首地址，IX为下标偏移量
+c) <strong>相对寻址</strong>：EA=(PC)+A，操作数地址与指令地址相对固定，便于程序浮动
+d) <strong>寄存器寻址</strong>：EA=R_i，指令在执行阶段不访问主存，速度快</p>
+</div>
+<h3 id="易错点">易错点</h3>
+<div class="admonition warning">
+<p class="admonition-title">常见错误</p>
+<ol>
+<li><strong>混淆指令寻址与数据寻址</strong>：指令寻址确定下一条指令的地址（由PC给出），数据寻址确定本条指令操作数的地址（由地址码给出）</li>
+<li><strong>忘记间接寻址的访存次数</strong>：一次间接寻址需要2次访存（取有效地址+取操作数），不是1次</li>
+<li><strong>混淆基址寻址与变址寻址</strong>：基址寻址BR不变A可变（面向OS），变址寻址IX可变A不变（面向用户）</li>
+<li><strong>相对寻址的PC值</strong>：取出当前指令后，PC已经指向下一条指令，所以相对寻址是相对于下一条指令的偏移</li>
+<li><strong>堆栈寻址的SP变化方向</strong>：入栈和出栈时SP的变化方向取决于堆栈的生长方向，需要根据具体实现判断</li>
+<li><strong>立即寻址的范围限制</strong>：立即数的范围受形式地址A的位数限制，采用补码时范围为 <span class="arithmatex">\( -2^{n-1} \sim 2^{n-1} - 1 \)</span></li>
+<li><strong>寄存器间接寻址与间接寻址混淆</strong>：寄存器间接寻址EA=(R_i)只需1次访存，间接寻址EA=(A)需要2次访存</li>
+</ol>
+</div>
+<h2 id="本节小结">本节小结</h2>
+<p>数据寻址是计算机组成原理的重要内容，核心要点：</p>
+<ol>
+<li>理解各种寻址方式的定义和有效地址计算</li>
+<li>掌握各种寻址方式的访存次数</li>
+<li>能够区分基址寻址和变址寻址的本质区别</li>
+<li>理解相对寻址的特点和应用场景</li>
+<li>掌握堆栈寻址的入栈和出栈操作过程</li>
+<li>能够根据题目要求选择合适的寻址方式</li>
+</ol>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: 指令寻址" class="md-footer__link md-footer__link--prev" href="../4.2.1%20%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80/">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</div>
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Previous
+              </span>
+<div class="md-ellipsis">
+                指令寻址
+              </div>
+</div>
+</a>
+<a aria-label="Next: Latex Introduction" class="md-footer__link md-footer__link--next" href="../../../%E5%86%99%E4%BD%9C/latex/">
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                Next
+              </span>
+<div class="md-ellipsis">
+                Latex Introduction
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright 2024 by estruswent
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "content.footnote.tooltips", "header.autohide", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.tracking", "navigation.prune", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../../style/javascripts/mathjax.js"></script>
+<script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
